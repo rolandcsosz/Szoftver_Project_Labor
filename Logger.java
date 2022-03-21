@@ -1,6 +1,9 @@
 
 class Logger
 {
-	
+	void log()
+	{
+		
+	}
 
 }
