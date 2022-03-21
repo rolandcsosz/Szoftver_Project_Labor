@@ -2,6 +2,6 @@
 public class Logger {
 	void log()
 	{
-		System.out.println("Hello World, Logger");
+		System.out.println("Hello World, Logggfdgfer");
 	}
 }
