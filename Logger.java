@@ -1,9 +1,0 @@
-
-class Logger
-{
-	void log()
-	{
-		
-	}
-
-}
