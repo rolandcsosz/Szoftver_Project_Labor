@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Szkeleton/Szkeleton.iml" filepath="$PROJECT_DIR$/Szkeleton/Szkeleton.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Szoftver_Project_Labor.iml" filepath="$PROJECT_DIR$/Szoftver_Project_Labor.iml" />
+    </modules>
+  </component>
+</project>
