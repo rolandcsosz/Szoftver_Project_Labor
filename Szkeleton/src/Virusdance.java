@@ -1,2 +1,3 @@
-public class Virusdance {
+public class Virusdance{
+
 }

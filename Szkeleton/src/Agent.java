@@ -1,2 +1,2 @@
-public class Agent {
+public class Agent{
 }
