@@ -21,4 +21,9 @@ public class Field {
     public void removeCollectable(Collectable collectable){
         //todo
     }
+    
+    public boolean isNeighbour(Field field){
+        //todo
+        return true;
+    }
 }
