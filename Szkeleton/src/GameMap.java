@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class GameMap {
 	private Field fields;
 	private Game game;
@@ -8,5 +10,6 @@ public class GameMap {
 	}
 	
 	public List<Field> getFields() {
+		return null;
 	}
 }
