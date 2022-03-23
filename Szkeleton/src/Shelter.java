@@ -1,6 +1,6 @@
 public class Shelter extends Field{
 
-   public void generateEquipments(){
+   public void generateEquipments(Equipment e){
        //todo
    }
 
