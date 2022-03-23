@@ -14,7 +14,8 @@ public class Main {
 		virologistPicksUpaCloak();
 		virologistPicksUpaGlove();
 		virologistPicksUpMaterial();
-
+		virologistMakesVaccine();
+		virologistMakesDanceVirus();
 	}
 
 	private static void virologistLearnsGeneticCode(){
