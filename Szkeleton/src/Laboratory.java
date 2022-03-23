@@ -1,6 +1,5 @@
 public class Laboratory extends Field {
-
-    public void generateGeneticCodes(){
-        //todo
-    }
+	private GeneticCode geneticCode;
+	public void generateCeneticCodes() {
+	}
 }

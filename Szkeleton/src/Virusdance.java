@@ -1,7 +1,10 @@
-public class Virusdance extends Agent{
+public class Virusdance extends Agent {
 
-    @Override
-    public void effect(Virologist v) {
-        super.effect(v);
-    }
+	@Override
+	public void effect(Virologist on) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

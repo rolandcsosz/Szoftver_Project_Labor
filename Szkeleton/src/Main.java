@@ -5,5 +5,11 @@ public class Main {
 		    System.out.println("Hello Java");
 		    
 	}
+	
+	static void makeVaccine()
+	{
+		Virologist v1 = new Virologist();
+		
+	}
 		
 }

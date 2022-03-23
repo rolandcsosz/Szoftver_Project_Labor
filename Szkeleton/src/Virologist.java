@@ -1,83 +1,75 @@
 import java.util.List;
 
 public class Virologist implements Steppable {
-
-    int maxMaterial;
-    boolean isParalysed;
-    int stunDuration;
-    Field currentField;
-
-    public void move(Field field){
-        //todo
-    }
-
-    @Override
-    public void step() {
-
-    }
-
-    public void attack(Virologist virologist, Agent agent){
-        //todo
-    }
-
-    public void createAgent(Agent agent){
-        //todo
-    }
-
-    public void learnGeneticCode(GeneticCode geneticCode){
-        //todo
-    }
-
-    public void forgetGeneticCode(GeneticCode geneticCode){
-        //todo
-    }
-
-    public boolean isNeighbour(Field field){
-        //todo
-        return true;
-    }
-
-    public void scout(){
-        //todo
-    }
-
-    public Field getCurrentField(){
-        //todo
-        return null;
-    }
-
-    public void pickUpCollectable(Collectable collectable){
-        //todo
-    }
-
-    public List<Collectable> getCollectables(){
-        //todo
-        return null;
-    }
-
-    public void addAgent(Agent agent){
-        //todo
-    }
-
-    public void move(){
-        //todo
-    }
-
-    public void removeAgent(Agent agent){
-        //todo
-    }
-
-    public boolean getParalysedStatus(){
-        //todo
-        return true;
-    }
-
-    public void addEffect(Agent agent){
-        //todo
-    }
-
-    public void removeEffect(Agent agent){
-        //todo
-    }
-
+	private int maxMaterial;
+	private boolean IsParalysed;
+	private int stunDuration;
+	private Field currentField;
+	private Field field;
+	private Equipment Equipments;
+	private Agent agents;
+	private GeneticCode geneticcodes;
+	private Material materials;
+	public void move(Field to) {
+	}
+	
+	public void step() {
+	}
+	
+	public void attack(Virologist v, Agent a) {
+	}
+	
+	public void steal(Virologist v) {
+	}
+	
+	public void createAgens(Agent a) {
+	}
+	
+	public void learnGeneticCode(GeneticCode g) {
+	}
+	
+	public void forgetGeneticCode(GeneticCode g) {
+	}
+	
+	public void scout() {
+	}
+	
+	public Field getCurrentField() {
+		return null;
+	}
+	
+	public void pickUp(Collectable c) {
+	}
+	
+	public List<Collectable> getCollectables() {
+		return null;
+	}
+	
+	public void addAgent(Agent a) {
+	}
+	
+	public void move() {
+	}
+	
+	public void removeAgent(Agent a) {
+	}
+	
+	public Boolean getParalysedStatus() {
+		return true;
+	}
+	
+	public void addEffect(Agent a) {
+	}
+	
+	public void removeEffect(Agent a) {
+	}
+	
+	public void pickUp(GeneticCode gc) {
+	}
+	
+	public void pickUp(Equipment eq) {
+	}
+	
+	public void pickUp(Material m) {
+	}
 }

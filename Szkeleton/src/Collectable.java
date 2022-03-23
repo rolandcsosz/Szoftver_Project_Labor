@@ -1,3 +1,3 @@
 public interface Collectable {
-    void PickUpBy(Virologist virologist);
+	public void PickUpBy(Virologist v);
 }

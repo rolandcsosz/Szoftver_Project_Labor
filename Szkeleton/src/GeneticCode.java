@@ -1,12 +1,15 @@
-public class GeneticCode implements Collectable{
+public class GeneticCode implements Collectable {
+	public Type type;
+	private Virologist Virologist;
+	public void getType() {
+	}
+	
+	public void StolenBy(Virologist v) {
+	}
 
-    Type type;
-    @Override
-    public void PickUpBy(Virologist virologist) {
-
-    }
-
-    public void getType(){
-        //todo
-    }
+	@Override
+	public void PickUpBy(Virologist v) {
+		// TODO Auto-generated method stub
+		
+	}
 }

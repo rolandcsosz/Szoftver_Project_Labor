@@ -1,7 +1,5 @@
-public class Material implements Collectable{
-
-    @Override
-    public void PickUpBy(Virologist virologist) {
-
-    }
+public class Material implements Collectable {
+	private Virologist Virologist;
+	public void PickUpBy(Virologist v) {
+	}
 }

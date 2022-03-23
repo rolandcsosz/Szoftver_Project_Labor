@@ -1,7 +1,6 @@
-public class Glove extends Equipment{
-
-    @Override
-    public void effect(Virologist virologist) {
-        super.effect(virologist);
-    }
+public class Glove extends Equipment {
+	
+	public void effect(Virologist on) {
+	}
+	
 }
