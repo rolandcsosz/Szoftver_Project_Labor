@@ -34,6 +34,7 @@ public class Virologist implements Steppable {
 
     public boolean isNeighbour(Field field){
         //todo
+        return true;
     }
 
     public void scout(){
@@ -42,6 +43,7 @@ public class Virologist implements Steppable {
 
     public Field getCurrentField(){
         //todo
+        return null;
     }
 
     public void pickUpCollectable(Collectable collectable){
@@ -50,6 +52,7 @@ public class Virologist implements Steppable {
 
     public List<Collectable> getCollectables(){
         //todo
+        return null;
     }
 
     public void addAgent(Agent agent){
@@ -66,6 +69,7 @@ public class Virologist implements Steppable {
 
     public boolean getParalysedStatus(){
         //todo
+        return true;
     }
 
     public void addEffect(Agent agent){

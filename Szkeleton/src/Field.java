@@ -14,6 +14,8 @@ public class Field {
 
     public Field getRandomNeighbour(){
         //todo
+        Field field = null;
+        return field;
     }
 
     public void removeCollectable(Collectable collectable){
