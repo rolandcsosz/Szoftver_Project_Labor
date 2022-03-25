@@ -1,3 +1,5 @@
 public class Timer {
-    //todo, ha minden igaz mostanra nem kell
+	private Steppable steppables;
+	public void tick() {
+	}
 }

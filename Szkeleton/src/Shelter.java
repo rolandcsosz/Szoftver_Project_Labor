@@ -1,7 +1,5 @@
-public class Shelter extends Field{
-
-   public void generateEquipments(Equipment e){
-       //todo
-   }
-
+public class Shelter extends Field {
+	private Equipment Equipment;
+	public void generateEquipments(Equipment eq) {
+	}
 }

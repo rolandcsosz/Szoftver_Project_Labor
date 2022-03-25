@@ -1,24 +1,22 @@
 public class Field {
-
-    public void acceptVirologists(Virologist virologist){
-        //todo
-    }
-
-    public void removeVirologists(Virologist virologist){
-        //todo
-    }
-
-    public void getCollectables(){
-        //todo
-    }
-
-    public Field getRandomNeighbour(){
-        //todo
-        Field field = null;
-        return field;
-    }
-
-    public void removeCollectable(Collectable collectable){
-        //todo
-    }
+	private Virologist virologists;
+	public void acceptVirologists(Virologist v) {
+	}
+	
+	public void removeVirologist(Virologist v) {
+	}
+	
+	public void getCollectables() {
+	}
+	
+	public Field getRandomNeighbour() {
+		return null;
+	}
+	
+	public void removeCollectable(Collectable c) {
+	}
+	
+	public boolean IsNeighbour(Field m) {
+		return true;
+	}
 }

@@ -1,3 +1,3 @@
-public interface Effectable {
-    void effect(Virologist virologist);
+public interface Effectable{
+	public void effect(Virologist on);
 }

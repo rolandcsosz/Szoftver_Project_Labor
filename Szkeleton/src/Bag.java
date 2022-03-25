@@ -1,6 +1,10 @@
-public class Bag extends Equipment{
-    @Override
-    public void effect(Virologist virologist) {
-        super.effect(virologist);
-    }
+public class Bag extends Equipment {
+
+
+	@Override
+	public void effect(Virologist on) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

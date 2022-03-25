@@ -1,16 +1,12 @@
 public class Warehouse extends Field implements Steppable {
-
-    private int materialLevel;
-    @Override
-    public void step() {
-
-    }
-
-    public void removeMaterial(){
-        //todo
-    }
-
-    public void produceMaterial(){
-        //todo
-    }
+	private Object materialLevel;
+	private Material materials;
+	public void removeMaterial() {
+	}
+	
+	public void produceMaterial() {
+	}
+	
+	public void step() {
+	}
 }

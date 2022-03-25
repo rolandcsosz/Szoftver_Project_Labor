@@ -1,7 +1,5 @@
-public class Vaccine extends Agent{
+public class Vaccine extends Agent {
+	public void effect(Virologist on) {
+	}
 
-    @Override
-    public void effect(Virologist v) {
-        super.effect(v);
-    }
 }

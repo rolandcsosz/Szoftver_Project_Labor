@@ -1,36 +1,26 @@
 import java.util.List;
 
-public class Agent implements Effectable, Collectable, Steppable{
-
-    int timeCounter;
-    List<Material> cost;
-    boolean isActivated;
-
-    public void effect(Virologist v){
-        //todo
-    }
-
-    public List<Material> getCost(){
-        //todo
-        return null;
-    }
-
-    public GeneticCode getGeneticCode(){
-        //todo
-        return null;
-    }
-
-    public void PickUpBy(Virologist v){
-        //todo
-    }
-
-    public boolean getActivated(){
-        //todo
-        return true;
-    }
-
-    @Override
-    public void step() {
-
-    }
+public abstract class Agent implements Collectable, Effectable, Steppable {
+	private int timeCounter;
+	private List<Material> cost;
+	public boolean isActivated;
+	private GeneticCode geneticCode;
+	public abstract void effect(Virologist on);
+	public List<Material> getCost() {
+		return null;
+	}
+	
+	public GeneticCode getGeneticCode() {
+		return null;
+	}
+	
+	public void PickUpBy(Virologist v) {
+	}
+	
+	public void step() {
+	}
+	
+	public Boolean getActivated() {
+		return true;
+	}
 }
