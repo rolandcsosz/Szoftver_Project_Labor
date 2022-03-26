@@ -15,7 +15,10 @@ public class Main {
 		virologistPicksUpaGlove();
 		virologistPicksUpMaterial();
 		virologistMakesVaccine();
-		virologistMakesDanceVirus();
+		virologistMakesOblivionVirus();
+		virologistMakesVirusDance();
+		virologistMakesParalysesVirus();
+		useVaccine();
 	}
 
 	private static void virologistLearnsGeneticCode(){
@@ -122,7 +125,7 @@ public class Main {
 		v.addAgent(new_vc);
 	}
 
-	static void virologistMakesDanceVirus() {
+	static void virologistMakesOblivionVirus() {
 		//Inicializálás és beállítások
 		Virologist v1 = new Virologist();
 		Oblivion ov = new Oblivion();
@@ -137,14 +140,89 @@ public class Main {
 		v1.pickUp(m3);
 		// szekvenciák alapján a logika
 		List<Material> cost = ov.getCost();
-		GeneticCode gc_vd = ov.getGeneticCode();
+		GeneticCode gc_ov = ov.getGeneticCode();
 
 		//if(cost.size() < v1.getMaterialCount());
-		//	if(gc == vc.getGeneticCode()) -> új vaccine és hozzáad
+		//	if(gc == ov.getGeneticCode()) -> új felejto virus és hozzáad
 		v1.setMaterialCount(v1.getMaterialCount()-cost.size());
 
 		Oblivion new_ov = new Oblivion();
 
 		v1.addAgent(new_ov);
+	}
+
+	static void virologistMakesVirusDance()
+	{
+
+		//Inicializálás és beállítás
+		Virologist v = new Virologist();
+		Virusdance vd = new Virusdance();
+		GeneticCode gc = new GeneticCode();
+
+		Material m1 = new Material();
+		Material m2 = new Material();
+		Material m3 = new Material();
+
+
+		v.pickUp(gc);
+		v.pickUp(m1);
+		v.pickUp(m2);
+		v.pickUp(m3);
+
+		//Szekvenciák alapján logika
+		List<Material> cost = vd.getCost();
+		GeneticCode gc_cost = vd.getGeneticCode();
+
+		//if(cost.size()<v.getMaterialCount())
+		//	if(gc == vc.getGeneticCode()) -> új vaccine és hozzáad
+
+		v.setMaterialCount(v.getMaterialCount()-cost.size());
+
+		Virusdance new_vd = new Virusdance();
+
+		v.addAgent(new_vd);
+	}
+
+	static void virologistMakesParalysesVirus()
+	{
+
+		//Inicializálás és beállítás
+		Virologist v = new Virologist();
+		Paralyses vp = new Paralyses();
+		GeneticCode gc = new GeneticCode();
+
+		Material m1 = new Material();
+		Material m2 = new Material();
+		Material m3 = new Material();
+
+
+		v.pickUp(gc);
+		v.pickUp(m1);
+		v.pickUp(m2);
+		v.pickUp(m3);
+
+		//Szekvenciák alapján logika
+		List<Material> cost = vp.getCost();
+		GeneticCode gc_cost = vp.getGeneticCode();
+
+		//if(cost.size()<v.getMaterialCount())
+		//	if(gc == vp.getGeneticCode())
+
+		v.setMaterialCount(v.getMaterialCount()-cost.size());
+
+		Paralyses new_vp = new Paralyses();
+
+		v.addAgent(new_vp);
+	}
+
+	static void useVaccine(){
+		Vaccine v = new Vaccine();
+		Virologist virologist = new Virologist();
+		virologist.addAgent(v);
+		virologist.attack(virologist, v);
+	}
+
+	static void VirologistSteal(){
+
 	}
 }
