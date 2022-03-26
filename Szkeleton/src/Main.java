@@ -19,6 +19,7 @@ public class Main {
 		virologistMakesVirusDance();
 		virologistMakesParalysesVirus();
 		useVaccine();
+		VirologistSteal();
 	}
 
 	private static void virologistLearnsGeneticCode(){
@@ -219,10 +220,37 @@ public class Main {
 		Vaccine v = new Vaccine();
 		Virologist virologist = new Virologist();
 		virologist.addAgent(v);
-		virologist.attack(virologist, v);
+		//virologist.attack(virologist, v);
+
 	}
 
 	static void VirologistSteal(){
+		Virologist v1 = new Virologist();
+		Virologist v2 = new Virologist();
+		Glove g = new Glove();
+		Cloak c = new Cloak();
+		Bag b = new Bag();
+		Material m1 = new Material();
+		Material m2 = new Material();
+		Material m3 = new Material();
+		v2.pickUp(m1);
+		v2.pickUp(m2);
+		v2.pickUp(m3);
+		v2.pickUp(g);
+		v2.pickUp(c);
+		v2.pickUp(b);
+
+		//v1.steal(v2);
+		List<Collectable> collectables = v2.getCollectables();
+		for (Collectable coll: collectables)
+		{
+			// Ez nem jó így mert csak a védőfelszerelésre vonatkozik a materialt, így nem lehet felvenni.
+			if(v1.getCollectables().size()<3){
+				coll.PickUpBy(v1);
+				v2.remove(coll);
+			}
+		}
+
 
 	}
 }
