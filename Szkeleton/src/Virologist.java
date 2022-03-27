@@ -17,6 +17,7 @@ public class Virologist implements Steppable {
 	}
 
 	public void attack(Virologist v, Agent a) {
+		System.out.println("Tamadlak ");
 	}
 
 	public void steal(Virologist v) {
