@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Agent implements Collectable, Effectable, Steppable {
@@ -7,7 +8,8 @@ public abstract class Agent implements Collectable, Effectable, Steppable {
 	private GeneticCode geneticCode;
 	public abstract void effect(Virologist on);
 	public List<Material> getCost() {
-		return null;
+		List<Material> materials = new ArrayList<Material>();
+		return materials;
 	}
 	
 	public GeneticCode getGeneticCode() {
@@ -27,4 +29,6 @@ public abstract class Agent implements Collectable, Effectable, Steppable {
 	public void setActivated(){
 		isActivated = true;
 	}
+	
+
 }

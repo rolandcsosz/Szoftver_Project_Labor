@@ -1,20 +1,38 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Warehouse extends Field implements Steppable {
 	private int materialLevel;
-	private Material materials;
+	private List<Material> materials = new ArrayList<Material>();
 	public void removeMaterial() {
 	}
 	
-	public void produceMaterial(Material material) {
+	public void produceMaterial(int count) {
+		for(int i = 0; i<=count;i++)
+		{
+			Material m = new Material();
+			materials.add(m);
+		}
 	}
 	
 	public void step() {
+		produceMaterial(1);
 	}
 
 	public int getMaterialLevel() {
-		return materialLevel;
+		return materials.size();
 	}
 
 	public void setMaterialLevel(int materialLevel) {
-		this.materialLevel = materialLevel;
+		while(materials.size() > materialLevel)
+		{
+			materials.remove(0);
+		}
+	}
+	
+	public List<Collectable> getCollectables() {
+		List<Collectable> cl = new ArrayList<Collectable>();
+		cl.addAll(materials);
+		return cl;
 	}
 }

@@ -53,12 +53,12 @@ public class Main {
 	        switch(number) {
 	        case "1": {
 	        	System.out.println("1");
-	        	//movesToEmptyField();
+	        	movesToEmptyField();
 	        	break;
 	        }
 	        case "2": {
 	        	System.out.println("2");
-	        	//movesToLaboratory();
+	        	movesToLaboratory();
 	        	break;
 	        }
 	        case "3": {
@@ -138,159 +138,122 @@ public class Main {
 		
 	}
 
-	private static void virologistLearnsGeneticCode(){
-		Virologist v = new Virologist();
-		Laboratory laboratory = new Laboratory();
-		GeneticCode g = new GeneticCode();
-		laboratory.generateCeneticCodes(g);
 
-		/*Szekvenciák alapján*/
-
-		if(!v.getParalysedStatus()){
-			for(int i = 0; i < v.getCollectables().size(); i++) {
-				//if (v.getCollectables().get(i) -> rászűrni a Genetikai kódokra
-				//	v.getCollectables().add(g);
-				//	g.PickUpBy(v);
-			}
-		}
-	}
-
+	//kijav�tva
 	private static void movesToEmptyField(){
 		Virologist v = new Virologist();
 		Field f = new Field();
-		Field actual = v.getCurrentField();
 
 		/*Szekvenciák alapján*/
 
-		if(!v.getParalysedStatus() && actual.IsNeighbour(f)){
-			v.move(f);
-			f.acceptVirologists(v);
-			actual.removeVirologist(v);
-		}
+		v.move(f);
 
 	}
 
+	//kijav�tva
 	private static void movesToLaboratory(){
 		Virologist v = new Virologist();
 		Laboratory l = new Laboratory();
-		Field actual = v.getCurrentField();
 
 		/*Szekvenciák alapján*/
 
-		if(!v.getParalysedStatus() && actual.IsNeighbour(l)){
-			v.move(l);
-			l.acceptVirologists(v);
-			actual.removeVirologist(v);
-		}
+		v.move(l);
 
 	}
 
+	//kijav�tva
 	private static void movesToWarehouse(){
 		Virologist v = new Virologist();
 		Warehouse w = new Warehouse();
-		Field actual = v.getCurrentField();
 
 		/*Szekvenciák alapján*/
 
-		if(!v.getParalysedStatus() && actual.IsNeighbour(w)){
-			v.move(w);
-			w.acceptVirologists(v);
-			actual.removeVirologist(v);
-		}
-
+		v.move(w);
 	}
 
+	//kijavitva
 	private static void movesToShelter(){
 		Virologist v = new Virologist();
 		Shelter s = new Shelter();
-		Field actual = v.getCurrentField();
 
 		/*Szekvenciák alapján*/
-
-		if(!v.getParalysedStatus() && actual.IsNeighbour(s)){
-			v.move(s);
-			s.acceptVirologists(v);
-			actual.removeVirologist(v);
-		}
+		
+		v.move(s);
 
 	}
+	
+	//kijav�tva
+	private static void virologistLearnsGeneticCode(){
+		Virologist v = new Virologist();
+		Laboratory l = new Laboratory();
+		GeneticCode g = new GeneticCode();
+		v.move(l);
 
+		/*Szekvenciak alapjan*/
+		
+		v.scout(l);
+
+	}
+	
+	//kijavitva
 	private static void virologistPicksUpaBag(){
 		Virologist v = new Virologist();
 		Shelter s = new Shelter();
 		Bag b = new Bag();
-		s.generateEquipments(b);
+		v.move(s);
+		s.addEquipment(b);
 
 		/*Szekvenciák alapján*/
 
-		boolean has = false;
-		/*for(int i = 0; i < v.getCollectables().size(); i++){
-			if(v.getCollectables().get(i) == b)
-				has = true;
-		}*/
-		if(!has){
-			//v.getCollectables().add(b);
-			v.pickUp(b);
-			b.effect(v);
-			s.removeCollectable(b);
-		}
+		
+		v.scout(s);
+
 	}
 
+	//kijavitva
 	private static void virologistPicksUpaCloak(){
 		Virologist v = new Virologist();
 		Shelter s = new Shelter();
 		Cloak c = new Cloak();
-		s.generateEquipments(c);
+		v.move(s);
+		s.addEquipment(c);
 
 		/*Szekvenciák alapján*/
 
-		boolean has = false;
-		/*for(int i = 0; i < v.getCollectables().size(); i++){
-			if(v.getCollectables().get(i) == c)
-				has = true;
-		}*/
-		if(!has){
-			//v.getCollectables().add(c);
-			v.pickUp(c);
-			c.effect(v);
-			s.removeCollectable(c);
-		}
+		v.scout(s);
 
 	}
 
+	//kijavitva
 	private static void virologistPicksUpaGlove(){
 		Virologist v = new Virologist();
 		Shelter s = new Shelter();
 		Glove g = new Glove();
-		s.generateEquipments(g);
+		v.move(s);
+		s.addEquipment(g);
 
 		/*Szekvenciák alapján*/
 
-		boolean has = false;
-		/*for(int i = 0; i < v.getCollectables().size(); i++){
-			if(v.getCollectables().get(i) == g)
-				has = true;
-		}*/
-		if(!has){
-			//v.getCollectables().add(g);
-			v.pickUp(g);
-			g.effect(v);
-			s.removeCollectable(g);
-		}
+		v.scout(s);
 	}
 
+	//kijavitva
 	private static void virologistPicksUpMaterial(){
 		Virologist v = new Virologist();
 		Warehouse w = new Warehouse();
-		Material m = new Material();
-		w.produceMaterial(m);
+		
+		w.produceMaterial(1);
+		v.move(w);
+		
+		
+		v.scout(w);
 
 	}
 
 	static void virologistMakesVaccine()
 	{
 
-		//Inicializálás és beállítás
+		//Inicializalas kommunikacios diagram alapjan
 		Virologist v = new Virologist();
 		Vaccine vc = new Vaccine();
 		GeneticCode gc = new GeneticCode();
@@ -306,43 +269,28 @@ public class Main {
 		v.pickUp(m3);
 
 		//Szekvenciák alapján logika
-		List<Material> cost = vc.getCost();
-		GeneticCode gc_cost = vc.getGeneticCode();
-
-		//if(cost.size()<v1.getMaterialVCount())
-		//	if(gc == vc.getGeneticCode()) -> új vaccine és hozzáad
-
-		//v.setMaterialCount(v.getMaterialCount()-cost.size());
-
-		Vaccine new_vc = new Vaccine();
-
-		v.addAgent(new_vc);
+	
+		v.createAgens(vc);
+		
 	}
 
 	static void virologistMakesOblivionVirus() {
 		//Inicializálás és beállítások
-		Virologist v1 = new Virologist();
+		Virologist v = new Virologist();
 		Oblivion ov = new Oblivion();
 		GeneticCode gc = new GeneticCode();
 		Material m1 = new Material();
 		Material m2 = new Material();
 		Material m3 = new Material();
 
-		v1.pickUp(gc);
-		v1.pickUp(m1);
-		v1.pickUp(m2);
-		v1.pickUp(m3);
+		v.pickUp(gc);
+		v.pickUp(m1);
+		v.pickUp(m2);
+		v.pickUp(m3);
+		
 		// szekvenciák alapján a logika
-		List<Material> cost = ov.getCost();
-		GeneticCode gc_ov = ov.getGeneticCode();
-
-		//if(cost.size() < v1.getMaterialCount());
-		//	if(gc == ov.getGeneticCode()) -> új felejto virus és hozzáad
-		//v1.setMaterialCount(v1.getMaterialCount()-cost.size());
-
-		Oblivion new_ov = new Oblivion();
-
-		v1.addAgent(new_ov);
+		
+		v.createAgens(ov);
 	}
 
 	static void virologistMakesVirusDance()
@@ -364,17 +312,9 @@ public class Main {
 		v.pickUp(m3);
 
 		//Szekvenciák alapján logika
-		List<Material> cost = vd.getCost();
-		GeneticCode gc_cost = vd.getGeneticCode();
-
-		//if(cost.size()<v.getMaterialCount())
-		//	if(gc == vc.getGeneticCode()) -> új vaccine és hozzáad
-
-		//v.setMaterialCount(v.getMaterialCount()-cost.size());
-
-		Virusdance new_vd = new Virusdance();
-
-		v.addAgent(new_vd);
+		
+		v.createAgens(vd);
+		
 	}
 
 	static void virologistMakesParalysesVirus()
@@ -396,30 +336,72 @@ public class Main {
 		v.pickUp(m3);
 
 		//Szekvenciák alapján logika
-		List<Material> cost = vp.getCost();
-		GeneticCode gc_cost = vp.getGeneticCode();
 
-		//if(cost.size()<v.getMaterialCount())
-		//	if(gc == vp.getGeneticCode())
-
-		//v.setMaterialCount(v.getMaterialCount()-cost.size());
-
-		Paralyses new_vp = new Paralyses();
-
-		v.addAgent(new_vp);
+		v.createAgens(vp);
+		
 	}
 
 	static void useVaccine(){
-		Vaccine v = new Vaccine();
-		Virologist virologist = new Virologist();
-		virologist.addAgent(v);
-		//virologist.attack(virologist, v);
+		Vaccine vc = new Vaccine();
+		Virologist v = new Virologist();
+		v.addAgent(vc);
+		
+		v.attack(v,vc);
 
 	}
 
+	static void VirologistAttacksWithVirusDance(){
+		Field f1 = new Field();
+		Field f2 = new Field();
+		f1.setNeighbour(f2);
+		Virologist v1 = new Virologist();
+		Virologist v2 = new Virologist();
+		v1.move(f1);
+		v2.move(f2);
+		Virusdance vd = new Virusdance();
+		v1.addAgent(vd);
+
+		v1.attack(v2,vd);
+		
+	}
+
+	static void VirologistAttacksWithParalyses(){
+		Field f1 = new Field();
+		Field f2 = new Field();
+		f1.setNeighbour(f2);
+		Virologist v1 = new Virologist();
+		Virologist v2 = new Virologist();
+		v1.move(f1);
+		v2.move(f2);
+		Paralyses p = new Paralyses();
+		v1.addAgent(p);
+
+		v1.attack(v2,p);
+
+	}
+
+	static void VirologistAttacksWithOblivion(){
+		Field f1 = new Field();
+		Field f2 = new Field();
+		f1.setNeighbour(f2);
+		Virologist v1 = new Virologist();
+		Virologist v2 = new Virologist();
+		v1.move(f1);
+		v2.move(f2);
+		Oblivion o = new Oblivion();
+		v1.addAgent(o);
+
+		v1.attack(v2,o);
+
+	}
+	
 	static void VirologistSteal(){
 		Virologist v1 = new Virologist();
 		Virologist v2 = new Virologist();
+		Field f1 = new Field();
+		Field f2 = new Field();
+		v1.move(f1);
+		v2.move(f2);
 		Glove g = new Glove();
 		Cloak c = new Cloak();
 		Bag b = new Bag();
@@ -433,71 +415,7 @@ public class Main {
 		v2.pickUp(c);
 		v2.pickUp(b);
 
-		//v1.steal(v2);
-		//List<Collectable> collectables = v2.getCollectables();
-		//for (Collectable coll: collectables)
-		//{
-		//	if(v1.IsEnoughSpace(coll)){
-		//		coll.PickUpBy(v1);
-		//		v2.remove(coll);
-		//	}
-		//}
-	}
+		v1.steal(v2);
 
-	static void VirologistAttacksWithVirusDance(){
-		Field f1 = new Field();
-		Field f2 = new Field();
-		f1.setNeighbour(f2);
-		Virologist v1 = new Virologist();
-		Virologist v2 = new Virologist();
-		f1.acceptVirologists(v1);
-		f2.acceptVirologists(v2);
-		Virusdance vd = new Virusdance();
-		v1.addAgent(vd);
-
-		//v1.attack(v2,vd);
-		Field f = v2.getField();
-		if(f1.IsNeighbour(f)){
-			vd.effect(v2);			//Valahol meg kell majd vizsgálni a virologuus felszereléseit
-			vd.setActivated();		// Vagy ezt az effecten belül nézzük majd meg?
-		}
-	}
-
-	static void VirologistAttacksWithParalyses(){
-		Field f1 = new Field();
-		Field f2 = new Field();
-		f1.setNeighbour(f2);
-		Virologist v1 = new Virologist();
-		Virologist v2 = new Virologist();
-		f1.acceptVirologists(v1);
-		f2.acceptVirologists(v2);
-		Paralyses p = new Paralyses();
-		v1.addAgent(p);
-
-		//v1.attack(v2,vd);
-		Field f = v2.getField();
-		if(f1.IsNeighbour(f)){
-			p.effect(v2);
-			p.setActivated();
-		}
-	}
-
-	static void VirologistAttacksWithOblivion(){
-		Field f1 = new Field();
-		Field f2 = new Field();
-		f1.setNeighbour(f2);
-		Virologist v1 = new Virologist();
-		Virologist v2 = new Virologist();
-		f1.acceptVirologists(v1);
-		f2.acceptVirologists(v2);
-		Oblivion o = new Oblivion();
-		v1.addAgent(o);
-
-		//v1.attack(v2,vd);
-		Field f = v2.getField();
-		if(f1.IsNeighbour(f)){
-			o.effect(v2);
-			o.setActivated();
-		}
 	}
 }
