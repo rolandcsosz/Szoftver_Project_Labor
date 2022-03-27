@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,7 +8,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		System.out.println("Syntax terror");
-		virologistLearnsGeneticCode();
+		/*virologistLearnsGeneticCode();
 		movesToEmptyField();
 		movesToLaboratory();
 		movesToWarehouse();
@@ -22,7 +25,100 @@ public class Main {
 		VirologistSteal();
 		VirologistAttacksWithVirusDance();
 		VirologistAttacksWithOblivion();
-		VirologistAttacksWithParalyses();
+		VirologistAttacksWithParalyses();*/
+		
+		System.out.println("\nChoose a test case:\n1. movesToEmptyField\n2. movesToLaboratory\n3. movesToWarehouse\n4. movesToShelter\n5. virologistPicksUpaBag\n6. virologistPicksUpaCloak\n"
+				+ "7. virologistPicksUpaGlove\n8. virologistPicksUpMaterial\n9. virologistMakesVaccine\n10. virologistMakesOblivionVirus\n11. virologistMakesVirusDance\n"
+				+ "12. virologistMakesParalysesVirus\n13. useVaccine\n14. VirologistSteal\n15. VirologistAttacksWithVirusDance\n16. VirologistAttacksWithOblivion\n17. VirologistAttacksWithParalyses\n"
+				+ "18. virologistLearnsGeneticCode");
+		
+		BufferedReader reader = new BufferedReader(
+	            new InputStreamReader(System.in));
+
+	        String number = null;
+			try {
+				number = reader.readLine();
+			} catch (IOException e) {
+				System.out.println("Error");
+			}
+	        
+	        switch(number) {
+	        case "1": {
+	        	movesToEmptyField();
+	        	break;
+	        }
+	        case "2": {
+	        	movesToLaboratory();
+	        	break;
+	        }
+	        case "3": {
+	        	movesToWarehouse();
+	        	break;
+	        }
+	        case "4": {
+	        	movesToShelter();
+	        	break;
+	        }
+	        case "5": {
+	        	virologistPicksUpaBag();
+	        	break;
+	        }
+	        case "6": {
+	        	virologistPicksUpaCloak();
+	        	break;
+	        }
+	        case "7": {
+	        	virologistPicksUpaGlove();
+	        	break;
+	        }
+	        case "8": {
+	        	virologistPicksUpMaterial();
+	        	break;
+	        }
+	        case "9": {
+	        	virologistMakesVaccine();
+	        	break;
+	        }
+	        case "10": {
+	        	virologistMakesOblivionVirus();
+	        	break;
+	        }
+	        case "11": {
+	        	virologistMakesVirusDance();
+	        	break;
+	        }
+	        case "12":{
+	        	virologistMakesParalysesVirus();
+	        	break;
+	        }
+	        case "13":{
+	        	useVaccine();
+	        	break;
+	        }
+	        case "14":{
+	        	VirologistSteal();
+	        	break;
+	        }
+	        case "15":{
+	        	VirologistAttacksWithVirusDance();
+	        	break;
+	        }
+	        case "16":{
+	        	VirologistAttacksWithOblivion();
+	        	break;
+	        }
+	        case "17":{
+	        	VirologistAttacksWithParalyses();
+	        	break;
+	        }
+	        case "18":{
+	        	virologistLearnsGeneticCode();
+	        	break;
+	        }
+	        default:
+	        	break;
+	        }
+		
 	}
 
 	private static void virologistLearnsGeneticCode(){
@@ -111,12 +207,12 @@ public class Main {
 		/*Szekvenciák alapján*/
 
 		boolean has = false;
-		for(int i = 0; i < v.getCollectables().size(); i++){
+		/*for(int i = 0; i < v.getCollectables().size(); i++){
 			if(v.getCollectables().get(i) == b)
 				has = true;
-		}
+		}*/
 		if(!has){
-			v.getCollectables().add(b);
+			//v.getCollectables().add(b);
 			v.pickUp(b);
 			b.effect(v);
 			s.removeCollectable(b);
@@ -132,12 +228,12 @@ public class Main {
 		/*Szekvenciák alapján*/
 
 		boolean has = false;
-		for(int i = 0; i < v.getCollectables().size(); i++){
+		/*for(int i = 0; i < v.getCollectables().size(); i++){
 			if(v.getCollectables().get(i) == c)
 				has = true;
-		}
+		}*/
 		if(!has){
-			v.getCollectables().add(c);
+			//v.getCollectables().add(c);
 			v.pickUp(c);
 			c.effect(v);
 			s.removeCollectable(c);
@@ -154,12 +250,12 @@ public class Main {
 		/*Szekvenciák alapján*/
 
 		boolean has = false;
-		for(int i = 0; i < v.getCollectables().size(); i++){
+		/*for(int i = 0; i < v.getCollectables().size(); i++){
 			if(v.getCollectables().get(i) == g)
 				has = true;
-		}
+		}*/
 		if(!has){
-			v.getCollectables().add(g);
+			//v.getCollectables().add(g);
 			v.pickUp(g);
 			g.effect(v);
 			s.removeCollectable(g);
