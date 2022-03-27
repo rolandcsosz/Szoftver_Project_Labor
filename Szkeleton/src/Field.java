@@ -1,5 +1,16 @@
+import java.util.List;
+
 public class Field {
 	private Virologist virologists;
+	private List<Field> neighbours; // Ez nem volt benne pedig kell
+
+	public Field() {
+	}
+
+	//Ide kell valami ami összekapcsola
+	public void setNeighbour(Field field){
+	}
+
 	public void acceptVirologists(Virologist v) {
 	}
 	

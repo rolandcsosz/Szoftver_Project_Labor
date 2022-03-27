@@ -20,6 +20,9 @@ public class Main {
 		virologistMakesParalysesVirus();
 		useVaccine();
 		VirologistSteal();
+		VirologistAttacksWithVirusDance();
+		VirologistAttacksWithOblivion();
+		VirologistAttacksWithParalyses();
 	}
 
 	private static void virologistLearnsGeneticCode(){
@@ -281,13 +284,67 @@ public class Main {
 		List<Collectable> collectables = v2.getCollectables();
 		for (Collectable coll: collectables)
 		{
-			// Ez nem jó így mert csak a védőfelszerelésre vonatkozik a materialt, így nem lehet felvenni.
-			if(v1.getCollectables().size()<3){
+			if(v1.IsEnoughSpace(coll)){
 				coll.PickUpBy(v1);
 				v2.remove(coll);
 			}
 		}
+	}
 
+	static void VirologistAttacksWithVirusDance(){
+		Field f1 = new Field();
+		Field f2 = new Field();
+		f1.setNeighbour(f2);
+		Virologist v1 = new Virologist();
+		Virologist v2 = new Virologist();
+		f1.acceptVirologists(v1);
+		f2.acceptVirologists(v2);
+		Virusdance vd = new Virusdance();
+		v1.addAgent(vd);
 
+		//v1.attack(v2,vd);
+		Field f = v2.getField();
+		if(f1.IsNeighbour(f)){
+			vd.effect(v2);			//Valahol meg kell majd vizsgálni a virologuus felszereléseit
+			vd.setActivated();		// Vagy ezt az effecten belül nézzük majd meg?
+		}
+	}
+
+	static void VirologistAttacksWithParalyses(){
+		Field f1 = new Field();
+		Field f2 = new Field();
+		f1.setNeighbour(f2);
+		Virologist v1 = new Virologist();
+		Virologist v2 = new Virologist();
+		f1.acceptVirologists(v1);
+		f2.acceptVirologists(v2);
+		Paralyses p = new Paralyses();
+		v1.addAgent(p);
+
+		//v1.attack(v2,vd);
+		Field f = v2.getField();
+		if(f1.IsNeighbour(f)){
+			p.effect(v2);
+			p.setActivated();
+		}
+	}
+
+	static void VirologistAttacksWithOblivion(){
+		Field f1 = new Field();
+		Field f2 = new Field();
+		f1.setNeighbour(f2);
+		Virologist v1 = new Virologist();
+		Virologist v2 = new Virologist();
+		f1.acceptVirologists(v1);
+		f2.acceptVirologists(v2);
+		Oblivion o = new Oblivion();
+		v1.addAgent(o);
+
+		//v1.attack(v2,vd);
+		Field f = v2.getField();
+		if(f1.IsNeighbour(f)){
+			o.effect(v2);
+			o.setActivated();
+		}
 	}
 }
