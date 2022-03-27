@@ -21,6 +21,8 @@ public class Main {
 		useVaccine();
 		VirologistSteal();
 		VirologistAttacksWithVirusDance();
+		VirologistAttacksWithOblivion();
+		VirologistAttacksWithParalyses();
 	}
 
 	private static void virologistLearnsGeneticCode(){
