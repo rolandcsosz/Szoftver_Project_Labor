@@ -27,9 +27,17 @@ public class Main {
 		Laboratory laboratory = new Laboratory();
 		GeneticCode g = new GeneticCode();
 		laboratory.generateCeneticCodes(g);
-		v.move(laboratory);
-		g.PickUpBy(v);
 
+		/*Szekvenciák alapján*/
+
+		if(v.getParalysedStatus() == false){
+			for(int i = 0; i < v.getGeneticCodes().size(); i++) {
+				if (v.getGeneticCodes().get(i).getType() != g.getType()) {
+					v.getGeneticCodes().add(g);
+					g.PickUpBy(v);
+				}
+			}
+		}
 	}
 
 	private static void movesToEmptyField(){

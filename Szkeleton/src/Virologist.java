@@ -100,4 +100,8 @@ public class Virologist implements Steppable {
 
 		return 0;
 	}
+
+	public List<GeneticCode> getGeneticCodes(){
+		return geneticCodes;
+	}
 }
