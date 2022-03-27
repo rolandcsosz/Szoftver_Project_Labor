@@ -8,7 +8,7 @@ public class Virologist implements Steppable {
 	private Field field;
 	private Equipment Equipments;
 	private Agent agents;
-	private GeneticCode geneticcodes;
+	private List<GeneticCode> geneticCodes;
 	private Material materials;
 	public void move(Field to) {
 	}
@@ -17,6 +17,7 @@ public class Virologist implements Steppable {
 	}
 
 	public void attack(Virologist v, Agent a) {
+		System.out.println("Tamadlak ");
 	}
 
 	public void steal(Virologist v) {
@@ -98,5 +99,9 @@ public class Virologist implements Steppable {
 	{
 
 		return 0;
+	}
+
+	public List<GeneticCode> getGeneticCodes(){
+		return geneticCodes;
 	}
 }
