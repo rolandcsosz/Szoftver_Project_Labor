@@ -3,11 +3,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("Syntax terror");
+		System.out.println("Syntax terror - Szkeleton");
 		/*virologistLearnsGeneticCode();
 		movesToEmptyField();
 		movesToLaboratory();
@@ -27,28 +28,37 @@ public class Main {
 		VirologistAttacksWithOblivion();
 		VirologistAttacksWithParalyses();*/
 		
-		System.out.println("\nChoose a test case:\n1. movesToEmptyField\n2. movesToLaboratory\n3. movesToWarehouse\n4. movesToShelter\n5. virologistPicksUpaBag\n6. virologistPicksUpaCloak\n"
-				+ "7. virologistPicksUpaGlove\n8. virologistPicksUpMaterial\n9. virologistMakesVaccine\n10. virologistMakesOblivionVirus\n11. virologistMakesVirusDance\n"
-				+ "12. virologistMakesParalysesVirus\n13. useVaccine\n14. VirologistSteal\n15. VirologistAttacksWithVirusDance\n16. VirologistAttacksWithOblivion\n17. VirologistAttacksWithParalyses\n"
-				+ "18. virologistLearnsGeneticCode");
 		
-		BufferedReader reader = new BufferedReader(
-	            new InputStreamReader(System.in));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		
+		Scanner scanner = new Scanner(System.in);
 
 	        String number = null;
-			try {
-				number = reader.readLine();
-			} catch (IOException e) {
-				System.out.println("Error");
-			}
+	        boolean isRunning = true;
+	        
+	        while(isRunning) {
+	        	
+	        System.out.println("----------------------------------------------------------------\nTest cases:\n1. movesToEmptyField\n2. movesToLaboratory\n3. movesToWarehouse\n4. movesToShelter\n5. virologistPicksUpaBag\n6. virologistPicksUpaCloak\n"
+	    				+ "7. virologistPicksUpaGlove\n8. virologistPicksUpMaterial\n9. virologistMakesVaccine\n10. virologistMakesOblivionVirus\n11. virologistMakesVirusDance\n"
+	    				+ "12. virologistMakesParalysesVirus\n13. useVaccine\n14. VirologistSteal\n15. VirologistAttacksWithVirusDance\n16. VirologistAttacksWithOblivion\n17. VirologistAttacksWithParalyses\n"
+	    				+ "18. virologistLearnsGeneticCode\n\nThe number of the choosen menu (type one number and press ENTER):");
+	        number = scanner.next();
+	        
+			//try {
+			//	number = reader.readLine();
+			//} catch (IOException e) {
+			//	System.out.println("Error");
+			//}
 	        
 	        switch(number) {
 	        case "1": {
-	        	movesToEmptyField();
+	        	System.out.println("1");
+	        	//movesToEmptyField();
 	        	break;
 	        }
 	        case "2": {
-	        	movesToLaboratory();
+	        	System.out.println("2");
+	        	//movesToLaboratory();
 	        	break;
 	        }
 	        case "3": {
@@ -115,8 +125,15 @@ public class Main {
 	        	virologistLearnsGeneticCode();
 	        	break;
 	        }
+	        case "19":{
+	        	isRunning = false;
+	        	 System.out.println("----------------------------------------------------------------\nExit. Bye :))");
+	        	break;
+	        }
 	        default:
 	        	break;
+	        }
+	        
 	        }
 		
 	}
