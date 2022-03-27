@@ -159,7 +159,7 @@ public class Main {
 		//if(cost.size()<v1.getMaterialVCount())
 		//	if(gc == vc.getGeneticCode()) -> új vaccine és hozzáad
 
-		v.setMaterialCount(v.getMaterialCount()-cost.size());
+		//v.setMaterialCount(v.getMaterialCount()-cost.size());
 
 		Vaccine new_vc = new Vaccine();
 
@@ -185,7 +185,7 @@ public class Main {
 
 		//if(cost.size() < v1.getMaterialCount());
 		//	if(gc == ov.getGeneticCode()) -> új felejto virus és hozzáad
-		v1.setMaterialCount(v1.getMaterialCount()-cost.size());
+		//v1.setMaterialCount(v1.getMaterialCount()-cost.size());
 
 		Oblivion new_ov = new Oblivion();
 
@@ -217,7 +217,7 @@ public class Main {
 		//if(cost.size()<v.getMaterialCount())
 		//	if(gc == vc.getGeneticCode()) -> új vaccine és hozzáad
 
-		v.setMaterialCount(v.getMaterialCount()-cost.size());
+		//v.setMaterialCount(v.getMaterialCount()-cost.size());
 
 		Virusdance new_vd = new Virusdance();
 
@@ -249,7 +249,7 @@ public class Main {
 		//if(cost.size()<v.getMaterialCount())
 		//	if(gc == vp.getGeneticCode())
 
-		v.setMaterialCount(v.getMaterialCount()-cost.size());
+		//v.setMaterialCount(v.getMaterialCount()-cost.size());
 
 		Paralyses new_vp = new Paralyses();
 
@@ -281,14 +281,14 @@ public class Main {
 		v2.pickUp(b);
 
 		//v1.steal(v2);
-		List<Collectable> collectables = v2.getCollectables();
-		for (Collectable coll: collectables)
-		{
-			if(v1.IsEnoughSpace(coll)){
-				coll.PickUpBy(v1);
-				v2.remove(coll);
-			}
-		}
+		//List<Collectable> collectables = v2.getCollectables();
+		//for (Collectable coll: collectables)
+		//{
+		//	if(v1.IsEnoughSpace(coll)){
+		//		coll.PickUpBy(v1);
+		//		v2.remove(coll);
+		//	}
+		//}
 	}
 
 	static void VirologistAttacksWithVirusDance(){
