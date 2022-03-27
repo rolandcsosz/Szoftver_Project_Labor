@@ -33,12 +33,11 @@ public class Main {
 
 		/*Szekvenciák alapján*/
 
-		if(v.getParalysedStatus() == false){
-			for(int i = 0; i < v.getGeneticCodes().size(); i++) {
-				if (v.getGeneticCodes().get(i).getType() != g.getType()) {
-					v.getGeneticCodes().add(g);
-					g.PickUpBy(v);
-				}
+		if(!v.getParalysedStatus()){
+			for(int i = 0; i < v.getCollectables().size(); i++) {
+				//if (v.getCollectables().get(i) -> rászűrni a Genetikai kódokra
+				//	v.getCollectables().add(g);
+				//	g.PickUpBy(v);
 			}
 		}
 	}
@@ -50,7 +49,7 @@ public class Main {
 
 		/*Szekvenciák alapján*/
 
-		if(v.getParalysedStatus()==false && actual.IsNeighbour(f)){
+		if(!v.getParalysedStatus() && actual.IsNeighbour(f)){
 			v.move(f);
 			f.acceptVirologists(v);
 			actual.removeVirologist(v);
@@ -65,7 +64,7 @@ public class Main {
 
 		/*Szekvenciák alapján*/
 
-		if(v.getParalysedStatus()==false && actual.IsNeighbour(l)){
+		if(!v.getParalysedStatus() && actual.IsNeighbour(l)){
 			v.move(l);
 			l.acceptVirologists(v);
 			actual.removeVirologist(v);
@@ -80,7 +79,7 @@ public class Main {
 
 		/*Szekvenciák alapján*/
 
-		if(v.getParalysedStatus()==false && actual.IsNeighbour(w)){
+		if(!v.getParalysedStatus() && actual.IsNeighbour(w)){
 			v.move(w);
 			w.acceptVirologists(v);
 			actual.removeVirologist(v);
@@ -95,7 +94,7 @@ public class Main {
 
 		/*Szekvenciák alapján*/
 
-		if(v.getParalysedStatus()==false && actual.IsNeighbour(s)){
+		if(!v.getParalysedStatus() && actual.IsNeighbour(s)){
 			v.move(s);
 			s.acceptVirologists(v);
 			actual.removeVirologist(v);
@@ -108,7 +107,20 @@ public class Main {
 		Shelter s = new Shelter();
 		Bag b = new Bag();
 		s.generateEquipments(b);
-		v.pickUp(b);
+
+		/*Szekvenciák alapján*/
+
+		boolean has = false;
+		for(int i = 0; i < v.getCollectables().size(); i++){
+			if(v.getCollectables().get(i) == b)
+				has = true;
+		}
+		if(!has){
+			v.getCollectables().add(b);
+			v.pickUp(b);
+			b.effect(v);
+			s.removeCollectable(b);
+		}
 	}
 
 	private static void virologistPicksUpaCloak(){
@@ -116,7 +128,21 @@ public class Main {
 		Shelter s = new Shelter();
 		Cloak c = new Cloak();
 		s.generateEquipments(c);
-		v.pickUp(c);
+
+		/*Szekvenciák alapján*/
+
+		boolean has = false;
+		for(int i = 0; i < v.getCollectables().size(); i++){
+			if(v.getCollectables().get(i) == c)
+				has = true;
+		}
+		if(!has){
+			v.getCollectables().add(c);
+			v.pickUp(c);
+			c.effect(v);
+			s.removeCollectable(c);
+		}
+
 	}
 
 	private static void virologistPicksUpaGlove(){
@@ -124,14 +150,28 @@ public class Main {
 		Shelter s = new Shelter();
 		Glove g = new Glove();
 		s.generateEquipments(g);
-		v.pickUp(g);
+
+		/*Szekvenciák alapján*/
+
+		boolean has = false;
+		for(int i = 0; i < v.getCollectables().size(); i++){
+			if(v.getCollectables().get(i) == g)
+				has = true;
+		}
+		if(!has){
+			v.getCollectables().add(g);
+			v.pickUp(g);
+			g.effect(v);
+			s.removeCollectable(g);
+		}
 	}
 
 	private static void virologistPicksUpMaterial(){
 		Virologist v = new Virologist();
 		Warehouse w = new Warehouse();
 		Material m = new Material();
-		v.pickUp(m);
+		w.produceMaterial(m);
+
 	}
 
 	static void virologistMakesVaccine()

@@ -6,10 +6,10 @@ public class Virologist implements Steppable {
 	private int stunDuration;
 	private Field currentField;  //Erre nincs szükség
 	private Field field;
-	private List<Equipment> Equipments;   // Ezt és az allatta lévőket átírtam List-ek re
+	private List<Equipment> equipments;   // Ezt és az allatta lévőket átírtam List-ek re
 	private List<Agent> agents;
 	private List<GeneticCode> geneticcodes;
-	private List<Material> materials;
+	private List<Material> materials; //ez miért van átírva listre?
 
 	public void move(Field field) {
 	}
@@ -115,5 +115,9 @@ public class Virologist implements Steppable {
 
 	public List<GeneticCode> getGeneticCodes(){
 			return geneticcodes;
+	}
+
+	public  List<Equipment> getEquipments() {
+		return equipments;
 	}
 }
