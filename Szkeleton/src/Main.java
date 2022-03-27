@@ -28,40 +28,77 @@ public class Main {
 		Laboratory laboratory = new Laboratory();
 		GeneticCode g = new GeneticCode();
 		laboratory.generateCeneticCodes(g);
-		v.move(laboratory);
-		g.PickUpBy(v);
+
+		/*Szekvenciák alapján*/
+
+		if(v.getParalysedStatus() == false){
+			for(int i = 0; i < v.getGeneticCodes().size(); i++) {
+				if (v.getGeneticCodes().get(i).getType() != g.getType()) {
+					v.getGeneticCodes().add(g);
+					g.PickUpBy(v);
+				}
+			}
+		}
 	}
 
 	private static void movesToEmptyField(){
 		Virologist v = new Virologist();
 		Field f = new Field();
 		Field actual = v.getCurrentField();
-		v.move(f);
-		//actual.removeVirologists(v);
+
+		/*Szekvenciák alapján*/
+
+		if(v.getParalysedStatus()==false && actual.IsNeighbour(f)){
+			v.move(f);
+			f.acceptVirologists(v);
+			actual.removeVirologist(v);
+		}
+
 	}
 
 	private static void movesToLaboratory(){
 		Virologist v = new Virologist();
 		Laboratory l = new Laboratory();
 		Field actual = v.getCurrentField();
-		v.move(l);
-		//actual.removeVirologists(v);
+
+		/*Szekvenciák alapján*/
+
+		if(v.getParalysedStatus()==false && actual.IsNeighbour(l)){
+			v.move(l);
+			l.acceptVirologists(v);
+			actual.removeVirologist(v);
+		}
+
 	}
 
 	private static void movesToWarehouse(){
 		Virologist v = new Virologist();
 		Warehouse w = new Warehouse();
 		Field actual = v.getCurrentField();
-		v.move(w);
-		//actual.removeVirologists(v);
+
+		/*Szekvenciák alapján*/
+
+		if(v.getParalysedStatus()==false && actual.IsNeighbour(w)){
+			v.move(w);
+			w.acceptVirologists(v);
+			actual.removeVirologist(v);
+		}
+
 	}
 
 	private static void movesToShelter(){
 		Virologist v = new Virologist();
 		Shelter s = new Shelter();
 		Field actual = v.getCurrentField();
-		v.move(s);
-		//actual.removeVirologists(v);
+
+		/*Szekvenciák alapján*/
+
+		if(v.getParalysedStatus()==false && actual.IsNeighbour(s)){
+			v.move(s);
+			s.acceptVirologists(v);
+			actual.removeVirologist(v);
+		}
+
 	}
 
 	private static void virologistPicksUpaBag(){

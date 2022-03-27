@@ -4,21 +4,16 @@ public class Virologist implements Steppable {
 	private int maxMaterial;
 	private boolean IsParalysed;
 	private int stunDuration;
-	private Field currentField;  //Erre nincs szükség
+	private Field currentField;
 	private Field field;
-	private List<Equipment> Equipments;   // Ezt és az allatta lévőket átírtam List-ek re
-	private List<Agent> agents;
-	private List<GeneticCode> geneticcodes;
-	private List<Material> materials;
+	private Equipment Equipments;
+	private Agent agents;
+	private List<GeneticCode> geneticCodes;
+	private Material materials;
 	public void move(Field to) {
 	}
 
 	public void step() {
-	}
-
-	//kell
-	public Field getField(){
-		return field;
 	}
 
 	public void attack(Virologist v, Agent a) {
@@ -106,10 +101,7 @@ public class Virologist implements Steppable {
 		return 0;
 	}
 
-	public boolean IsEnoughSpace(Collectable c){
-		return true;
-	}
-	public boolean IsEnoughSpace(Material m){
-		return true;
+	public List<GeneticCode> getGeneticCodes(){
+		return geneticCodes;
 	}
 }
