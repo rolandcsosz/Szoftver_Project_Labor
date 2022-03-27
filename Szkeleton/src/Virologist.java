@@ -8,7 +8,7 @@ public class Virologist implements Steppable {
 	private Field field;
 	private Equipment Equipments;
 	private Agent agents;
-	private GeneticCode geneticcodes;
+	private List<GeneticCode> geneticCodes;
 	private Material materials;
 	public void move(Field to) {
 	}
