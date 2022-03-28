@@ -2,7 +2,8 @@ public class Virusdance extends Agent {
 
 	@Override
 	public void effect(Virologist on) {
-		// TODO Auto-generated method stub
+		Logger.log(Logger.getParameter() + ".addEffect(" + Logger.getsecondParameter() + ")", 2);
+		on.addEffect(this);
 		
 	}
 

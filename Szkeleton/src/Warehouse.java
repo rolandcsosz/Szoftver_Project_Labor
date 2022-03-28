@@ -8,7 +8,7 @@ public class Warehouse extends Field implements Steppable {
 	}
 	
 	public void produceMaterial(int count) {
-		for(int i = 0; i<=count;i++)
+		for(int i = 0; i<count;i++)
 		{
 			Material m = new Material();
 			materials.add(m);

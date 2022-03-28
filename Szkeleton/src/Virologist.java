@@ -24,10 +24,13 @@ public class Virologist implements Steppable {
 
 	public void move(Field f) {
 		
-		
+		Logger.log(Logger.getParameter() + ".getParalysedStatus()", 1);
+		Logger.log("f1.IsNeighbour(" + Logger.getParameter() + ")", 1);
 		if(!this.getParalysedStatus() && field.IsNeighbour(f)){
+			Logger.log("f2.acceptVirologists(v)", 1);
 			f.acceptVirologists(this);
-			//field.removeVirologist(this);
+			Logger.log("f1.removeVirologist(v)", 1);
+			field.removeVirologist(this);
 			field = f;
 		}
 	}
@@ -42,36 +45,69 @@ public class Virologist implements Steppable {
 
 	public void attack(Virologist v, Agent a) {
 
-		if(field.IsNeighbour(v.getField()))
+		Logger.log(Logger.getParameter() + ".getParalysedStatus()", 1);
+		Logger.log("f1.IsNeighbour(" + Logger.getParameter() + ".getField())", 1);
+	
+		if(!this.getParalysedStatus() && field.IsNeighbour(v.getField()))
 		{
+			Logger.log(Logger.getsecondParameter() +".effect(" + Logger.getParameter() + ")", 1);
 			a.effect(v);
-			v.addEffect(a);
+
 		}
 	}
 
 	public void steal(Virologist v) {
 		
+		Logger.log(Logger.getParameter() + ".getParalysedStatus()", 1);
+		Logger.log("f1.IsNeighbour(" + Logger.getParameter() + ".getField())", 1);
+		if(!this.getParalysedStatus() && field.IsNeighbour(v.getField()))
+		{
+		
+		Logger.log(Logger.getParameter() + ".getCollectables()", 1);
 		for (Collectable c: v.getCollectables())
 		{
+			//Log miatti parameter beallitasok
+			if(c instanceof Bag) {
+				Logger.setsecondParameter("b");
+			}
+			
+			if(c instanceof Cloak) {
+				Logger.setsecondParameter("c");
+			}
+			
+			if(c instanceof Material) {
+				Logger.setsecondParameter("m");
+			}
+			
+			if(c instanceof Glove) {
+				Logger.setsecondParameter("g");
+			}
+				
+			Logger.log(Logger.getsecondParameter() + ".pickUpBy(" + Logger.getParameter() + ")", 1);
 			c.PickUpBy(this);
-			this.pickUp(c);
+			
+			Logger.log(Logger.getParameter() + ".remove(" + Logger.getsecondParameter() + ")" , 1);
 			v.remove(c);
 		
 		}
-	
+		}
 	}
 
 	public void createAgens(Agent a) {
 
+		Logger.log(Logger.getsecondParameter() + ".getCost()", 1);
 		List<Material> cost = a.getCost();
 
+		Logger.log("v.getMaterialCount()", 1);
 		if(cost.size() < this.getMaterialCount())
 		{
-		
+			Logger.log("v.setMaterialCount(v.getMaterialCount()-cost.size())", 1);
 			this.setMaterialCount(this.getMaterialCount()-cost.size());
 	
+			Logger.log("<<create>> new_" + Logger.getsecondParameter(), 1);
 			Agent new_a = a;
 	
+			Logger.log("v.addAgent(new_" + Logger.getsecondParameter() + ")", 1);
 			this.addAgent(new_a);
 		
 		}
@@ -87,12 +123,17 @@ public class Virologist implements Steppable {
 	
 	public void scout(Laboratory l) {
 		
-		for(Collectable cb:l.getCollectables())
+		Logger.log("v.getParalysedStatus()", 1);
+		if(!this.getParalysedStatus())
 		{
-				cb.PickUpBy(this);
-				this.pickUp(cb);
-				l.removeCollectable(cb);
-
+			Logger.log("l.getCollectables()", 1);
+			for(Collectable cb:l.getCollectables())
+			{
+					Logger.log("gc.pickUpBy(v)", 1);
+					cb.PickUpBy(this);
+	
+			}
+			
 		}
 		
 		
@@ -100,14 +141,24 @@ public class Virologist implements Steppable {
 	
 	public void scout(Shelter s) {
 		
-		for(Collectable cb:s.getCollectables())
+		Logger.log("v.getParalysedStatus()", 1);
+		if(!this.getParalysedStatus())
 		{
-				cb.PickUpBy(this);
-				this.pickUp(cb);
-				s.removeCollectable(cb);
-				
-				((Equipment)cb).effect(this);
-
+			
+			Logger.log("l.getCollectables()", 1);
+			for(Collectable cb:s.getCollectables())
+			{
+					Logger.log(Logger.getParameter() + ".pickUpBy(v)", 1);
+					cb.PickUpBy(this);
+					
+					Logger.log(Logger.getParameter() + ".effect(v)", 1);
+					((Equipment)cb).effect(this);
+					
+					Logger.log("s.removeCollectable(" + Logger.getParameter() + ")", 1);
+					s.removeCollectable(cb);
+	
+			}
+		
 		}
 		
 		
@@ -117,8 +168,10 @@ public class Virologist implements Steppable {
 		
 		for(Collectable cb:wh.getCollectables())
 		{
+				Logger.log(Logger.getParameter() + ".pickUpBy(v)", 1);
 				cb.PickUpBy(this);
-				this.pickUp(cb);
+				
+				Logger.log("wh.removeCollectable(" + Logger.getParameter() + ")", 1);
 				wh.removeCollectable(cb);
 
 
@@ -151,7 +204,7 @@ public class Virologist implements Steppable {
 	public void removeAgent(Agent a) {
 	}
 
-	public Boolean getParalysedStatus() {
+	public boolean getParalysedStatus() {
 		return IsParalysed;
 	}
 
@@ -195,7 +248,7 @@ public class Virologist implements Steppable {
 
 	public int getMaterialCount() {
 
-		return 0;
+		return materials.size();
 	}
 
 	public boolean IsEnoughSpace(Collectable c) {

@@ -5,6 +5,8 @@ public abstract class Equipment implements Effectable, Collectable {
 	
 	public abstract void effect(Virologist on);
 	
-	public void PickUpBy(Virologist by) {
+	public void PickUpBy(Virologist v) {
+		Logger.log("v.pickUp(" + Logger.getParameter() + ")", 2);
+		v.pickUp(this);
 	}
 }

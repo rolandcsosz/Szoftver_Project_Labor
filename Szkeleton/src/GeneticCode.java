@@ -10,7 +10,8 @@ public class GeneticCode implements Collectable {
 
 	@Override
 	public void PickUpBy(Virologist v) {
-		// TODO Auto-generated method stub
+		Logger.log(Logger.getParameter() + ".pickUp(gc)", 2);
+		v.pickUp(this);
 		
 	}
 }
