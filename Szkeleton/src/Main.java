@@ -23,7 +23,7 @@ public class Main {
 	        	
 	        	 System.out.println("----------------------------------------------------------------\nTest cases:\n1. Virologist moves to empty field\n2. Virologist moves to laboratory\n3. Virologist moves to warehouse\n4. Virologist moves to shelter\n5. Virologist picks up a bag\n6. Virologist picks up a cloak\n"
 		    				+ "7. Virologist picks up a glove\n8. Virologist picks up a material\n9. Virologist learns genetic code \n10.Virologist makes vaccine\n11. Virologist makes oblivion virus\n12. Virologist makes virus dance\n"
-		    				+ "13. Virologist makes paralyses virus\n14. Virologist uses vaccine\n15. Virologist steals\n15. Virologist attacks with virus dance\n17. Virologist attacks with oblivion virus\n18. Virologist attacks with paralyses virus\n"
+		    				+ "13. Virologist makes paralyses virus\n14. Virologist uses vaccine\n15. Virologist steals\n16. Virologist attacks with virus dance\n17. Virologist attacks with oblivion virus\n19. Exit program\n"
 		    				+ "\n\nThe number of the choosen menu (type one number and press ENTER):");
 		       
 	        	 number = scanner.next();
@@ -71,52 +71,52 @@ public class Main {
 	        }
 	        case "9": {
 	        	System.out.println("9. Virologist learns genetic code ");
-	        	virologistMakesVaccine();
+	        	virologistLearnsGeneticCode();
 	        	break;
 	        }
 	        case "10": {
 	        	System.out.println("10.Virologist makes vaccine");
-	        	virologistMakesOblivionVirus();
+	        	virologistMakesVaccine();
 	        	break;
 	        }
 	        case "11": {
 	        	System.out.println("11. Virologist makes oblivion virus");
-	        	virologistMakesVirusDance();
+	        	virologistMakesOblivionVirus();
 	        	break;
 	        }
 	        case "12":{
 	        	System.out.println("12. Virologist makes virus dance");
-	        	virologistMakesParalysesVirus();
+	        	virologistMakesVirusDance();
 	        	break;
 	        }
 	        case "13":{
 	        	System.out.println("13. Virologist makes paralyses virus");
-	        	useVaccine();
+	        	virologistMakesParalysesVirus();
 	        	break;
 	        }
 	        case "14":{
 	        	System.out.println("14. Virologist uses vaccine");
-	        	VirologistSteal();
+	        	useVaccine();
 	        	break;
 	        }
 	        case "15":{
 	        	System.out.println("15. Virologist steals");
-	        	VirologistAttacksWithVirusDance();
+	        	VirologistSteal();
 	        	break;
 	        }
 	        case "16":{
 	        	System.out.println("16. Virologist attacks with virus dance");
-	        	VirologistAttacksWithOblivion();
+	        	VirologistAttacksWithVirusDance();
 	        	break;
 	        }
 	        case "17":{
 	        	System.out.println("17. Virologist attacks with oblivion virus");
-	        	VirologistAttacksWithParalyses();
+	        	VirologistAttacksWithOblivion();
 	        	break;
 	        }
 	        case "18":{
 	        	System.out.println("18. Virologist attacks with paralyses virus");
-	        	virologistLearnsGeneticCode();
+	        	VirologistAttacksWithParalyses();
 	        	break;
 	        }
 	        case "19":{
@@ -481,13 +481,14 @@ public class Main {
 		v1.move(f1);
 		Logger.log("v2.move(f2)", 0);
 		v2.move(f2);
-		Glove g = new Glove();
-		Cloak c = new Cloak();
-		Bag b = new Bag();
 		Material m = new Material();
+		Cloak c = new Cloak();
+		Glove g = new Glove();
+		Bag b = new Bag();
+
 		v2.pickUp(m);
-		v2.pickUp(g);
 		v2.pickUp(c);
+		v2.pickUp(g);
 		v2.pickUp(b);
 
 
