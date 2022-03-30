@@ -2,15 +2,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Virologist implements Steppable {
-	private int maxMaterial;
 	private boolean IsParalysed;
-	private int stunDuration;
 	private Field field;
-	private List<Equipment> equipments;   // Ezt és az allatta lévőket átírtam List-ek re
+	private List<Equipment> equipments; 
 	private List<Agent> agents;
 	private List<GeneticCode> geneticcodes;
-	private List<Material> materials; //ez miért van átírva listre?
+	private List<Material> materials; 
 	
+	/**
+	   * This is a method which set the attributes after initializing the object.
+	   * @param args Unused.
+	   * @return Nothing.
+	   */
 	public Virologist()
 	{
 		IsParalysed = false;
@@ -22,6 +25,11 @@ public class Virologist implements Steppable {
 		
 	}
 
+	/**
+	   * This is a method moves the virologist to another field.
+	   * @param the field the virologist will move
+	   * @return Nothing.
+	   */
 	public void move(Field f) {
 		
 		Logger.log(Logger.getParameter() + ".getParalysedStatus()", 1);
@@ -43,6 +51,12 @@ public class Virologist implements Steppable {
 		return field;
 	}
 
+	/**
+	   * This is a method makes the virologist attack an other virologist (or itself) with an agent
+	   * @param the other virologist the virologist will attack
+	   * @param the agent the virologist will attack with
+	   * @return Nothing.
+	   */
 	public void attack(Virologist v, Agent a) {
 
 		Logger.log(Logger.getParameter() + ".getParalysedStatus()", 1);
@@ -56,6 +70,12 @@ public class Virologist implements Steppable {
 		}
 	}
 
+	/**
+	   * This is a method makes the virologist steal everything which is pickable for the virologist
+	   * from an other virologist
+	   * @param the other virologist the virologist will steal from
+	   * @return Nothing.
+	   */
 	public void steal(Virologist v) {
 		
 		Logger.log(Logger.getParameter() + ".getParalysedStatus()", 1);
@@ -93,6 +113,11 @@ public class Virologist implements Steppable {
 		}
 	}
 
+	/**
+	   * This is a method makes the virologist make an agent
+	   * @param the "blueprint" of the agent which the virologist will create
+	   * @return Nothing.
+	   */
 	public void createAgens(Agent a) {
 
 		Logger.log(Logger.getsecondParameter() + ".getCost()", 1);
@@ -120,7 +145,11 @@ public class Virologist implements Steppable {
 	}
 
 	
-	
+	/**
+	   * This is a method makes the virologist pick up everything which possible in a laboratory 
+	   * @param the field where the virologist will scout
+	   * @return Nothing.
+	   */
 	public void scout(Laboratory l) {
 		
 		Logger.log("v.getParalysedStatus()", 1);
@@ -139,6 +168,11 @@ public class Virologist implements Steppable {
 		
 	}
 	
+	/**
+	   * This is a method makes the virologist pick up everything which possible in a shelter
+	   * @param the field where the virologist will scout
+	   * @return Nothing.
+	   */
 	public void scout(Shelter s) {
 		
 		Logger.log("v.getParalysedStatus()", 1);
@@ -164,6 +198,11 @@ public class Virologist implements Steppable {
 		
 	}
 	
+	/**
+	   * This is a method makes the virologist pick up everything which possible in a warehouse
+	   * @param the field where the virologist will scout
+	   * @return Nothing.
+	   */
 	public void scout(Warehouse wh) {
 		
 		for(Collectable cb:wh.getCollectables())
@@ -184,6 +223,11 @@ public class Virologist implements Steppable {
 	public void pickUp(Collectable c) {
 	}
 
+	/**
+	   * This is a method makes the virologist return every collectable item what it posesses
+	   * @param Unused.
+	   * @return list of every collectable item what the virologist posesses
+	   */
 	public List<Collectable> getCollectables() {
 		List<Collectable> perm = new ArrayList<Collectable>();
 		perm.addAll(agents);

@@ -9,6 +9,9 @@ public class Main {
 	
 	public static Logger logger = new Logger();
 
+	/**
+	   * This is the main method
+	   */
 	public static void main(String[] args) {
 		System.out.println("Syntax terror - Szkeleton");
 		
@@ -133,6 +136,12 @@ public class Main {
 	}
 
 
+	/**
+	   * This is a method which generates the required objects and set them to the required states for the
+	   * "Virologist moves to empty field" and simulate that.
+	   * @param args Unused.
+	   * @return Nothing.
+	   */
 	private static void movesToEmptyField(){
 		
 		/*Kommunikacios diagramok alapjan*/
@@ -154,6 +163,12 @@ public class Main {
 	}
 
 
+	/**
+	   * This is a method which generates the required objects and set them to the required states for the
+	   * "Virologist moves to laboratory" and simulate that.
+	   * @param args Unused.
+	   * @return Nothing.
+	   */
 	private static void movesToLaboratory(){
 		
 		/*Kommunikacios diagramok alapjan*/
@@ -174,6 +189,12 @@ public class Main {
 	}
 
 
+	/**
+	   * This is a method which generates the required objects and set them to the required states for the
+	   * "Virologist moves to warehouse" and simulate that.
+	   * @param args Unused.
+	   * @return Nothing.
+	   */
 	private static void movesToWarehouse(){
 		
 		/*Kommunikacios diagramok alapjan*/
@@ -193,6 +214,12 @@ public class Main {
 	}
 
 
+	/**
+	   * This is a method which generates the required objects and set them to the required states for the
+	   * "Virologist moves to shelter" and simulate that.
+	   * @param args Unused.
+	   * @return Nothing.
+	   */
 	private static void movesToShelter(){
 		
 		/*Kommunikacios diagramok alapjan*/
@@ -212,7 +239,12 @@ public class Main {
 
 	}
 	
-	
+	/**
+	   * This is a method which generates the required objects and set them to the required states for the
+	   * "Virologist learns genetic code" and simulate that.
+	   * @param args Unused.
+	   * @return Nothing.
+	   */
 	private static void virologistLearnsGeneticCode(){
 		
 		/*Kommunikacios diagramok alapjan*/
@@ -240,6 +272,12 @@ public class Main {
 
 	}
 	
+	/**
+	   * This is a method which generates the required objects and set them to the required states for the
+	   * "Virologist picks up a bag" and simulate that.
+	   * @param args Unused.
+	   * @return Nothing.
+	   */
 	private static void virologistPicksUpaBag(){
 		
 		/*Kommunikacios diagramok alapjan*/
@@ -271,6 +309,12 @@ public class Main {
 	}
 
 	
+	/**
+	   * This is a method which generates the required objects and set them to the required states for the
+	   * "Virologist picks up a cloak" and simulate that.
+	   * @param args Unused.
+	   * @return Nothing.
+	   */
 	private static void virologistPicksUpaCloak(){
 		
 		/*Kommunikacios diagramok alapjan*/
@@ -300,6 +344,12 @@ public class Main {
 	}
 
 
+	/**
+	   * This is a method which generates the required objects and set them to the required states for the
+	   * "Virologist picks up a glove" and simulate that.
+	   * @param args Unused.
+	   * @return Nothing.
+	   */
 	private static void virologistPicksUpaGlove(){
 		
 		/*Kommunikacios diagramok alapjan*/
@@ -329,6 +379,12 @@ public class Main {
 	}
 
 
+	/**
+	   * This is a method which generates the required objects and set them to the required states for the
+	   * "Virologist picks up material" and simulate that.
+	   * @param args Unused.
+	   * @return Nothing.
+	   */
 	private static void virologistPicksUpMaterial(){
 		
 		/*Kommunikacios diagramok alapjan*/
@@ -356,6 +412,12 @@ public class Main {
 
 	}
 
+	/**
+	   * This is a method which generates the required objects and set them to the required states for the
+	   * "Virologist makes vaccine" and simulate that.
+	   * @param args Unused.
+	   * @return Nothing.
+	   */
 	static void virologistMakesVaccine()
 	{
 		/*Kommunikacios diagramok alapjan*/
@@ -385,6 +447,12 @@ public class Main {
 		
 	}
 
+	/**
+	   * This is a method which generates the required objects and set them to the required states for the
+	   * "Virologist makes oblivion virus" and simulate that.
+	   * @param args Unused.
+	   * @return Nothing.
+	   */
 	static void virologistMakesOblivionVirus() {
 		
 		/*Kommunikacios diagramok alapjan*/
@@ -412,6 +480,12 @@ public class Main {
 		v.createAgens(ov);
 	}
 
+	/**
+	   * This is a method which generates the required objects and set them to the required states for the
+	   * "Virologist makes virus dance" and simulate that.
+	   * @param args Unused.
+	   * @return Nothing.
+	   */
 	static void virologistMakesVirusDance()
 	{
 		/*Kommunikacios diagramok alapjan*/
@@ -443,6 +517,12 @@ public class Main {
 		
 	}
 
+	/**
+	   * This is a method which generates the required objects and set them to the required states for the
+	   * "Virologist makes paralyses virus" and simulate that.
+	   * @param args Unused.
+	   * @return Nothing.
+	   */
 	static void virologistMakesParalysesVirus()
 	{
 		/*Kommunikacios diagramok alapjan*/
@@ -471,6 +551,12 @@ public class Main {
 		
 	}
 
+	/**
+	   * This is a method which generates the required objects and set them to the required states for the
+	   * "Virologist uses vaccine" and simulate that.
+	   * @param args Unused.
+	   * @return Nothing.
+	   */
 	static void useVaccine(){
 		
 		/*Kommunikacios diagramok alapjan*/
@@ -493,6 +579,12 @@ public class Main {
 
 	}
 
+	/**
+	   * This is a method which generates the required objects and set them to the required states for the
+	   * "Virologist attacks with virus dance" and simulate that.
+	   * @param args Unused.
+	   * @return Nothing.
+	   */
 	static void VirologistAttacksWithVirusDance(){
 		
 		/*Kommunikacios diagramok alapjan*/
@@ -530,6 +622,12 @@ public class Main {
 		
 	}
 
+	/**
+	   * This is a method which generates the required objects and set them to the required states for the
+	   * "Virologist attacks with paralyses virus" and simulate that.
+	   * @param args Unused.
+	   * @return Nothing.
+	   */
 	static void VirologistAttacksWithParalyses(){
 		
 		/*Kommunikacios diagramok alapjan*/
@@ -566,6 +664,12 @@ public class Main {
 
 	}
 
+	/**
+	   * This is a method which generates the required objects and set them to the required states for the
+	   * "Virologist attacks with oblivion virus" and simulate that.
+	   * @param args Unused.
+	   * @return Nothing.
+	   */
 	static void VirologistAttacksWithOblivion(){
 
 		/*Kommunikacios diagramok alapjan*/
@@ -602,6 +706,12 @@ public class Main {
 
 	}
 	
+	/**
+	   * This is a method which generates the required objects and set them to the required states for the
+	   * "Virologist steals" and simulate that.
+	   * @param args Unused.
+	   * @return Nothing.
+	   */
 	static void VirologistSteal(){
 	
 
