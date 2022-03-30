@@ -271,7 +271,6 @@ public class Virologist implements Steppable {
 	}
 
 	public void remove(Collectable c) {
-
 	}
 
 	public void remove(GeneticCode gc) {
@@ -279,6 +278,7 @@ public class Virologist implements Steppable {
 	}
 
 	public void remove(Equipment eq) {
+		//todo kesztyu lehamlasa
 
 	}
 
@@ -315,4 +315,6 @@ public class Virologist implements Steppable {
 	{
 		return false;
 	}
+
+	//todo eldobas fuggveny
 }

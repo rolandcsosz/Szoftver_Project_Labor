@@ -1,5 +1,7 @@
 public class Glove extends Equipment {
-	
+
+	//todo lehamlast kezelo adattag
+
 	public void effect(Virologist on) {
 	}
 	
