@@ -30,5 +30,6 @@ public abstract class Agent implements Collectable, Effectable, Steppable {
 		isActivated = true;
 	}
 	
+	
 
 }
