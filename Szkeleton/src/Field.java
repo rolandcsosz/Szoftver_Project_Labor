@@ -36,4 +36,12 @@ public class Field {
 	public boolean IsNeighbour(Field m) {
 		return true;
 	}
+
+	public Virologist getVirologist() {
+		return virologist;
+	}
+
+
 }
+
+
