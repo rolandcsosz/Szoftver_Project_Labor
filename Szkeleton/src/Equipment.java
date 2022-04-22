@@ -1,5 +1,5 @@
 public abstract class Equipment implements Effectable, Collectable {
-	private Virologist Virologist;
+	private Virologist virologist;
 	public void step() {
 	}
 	
@@ -8,5 +8,9 @@ public abstract class Equipment implements Effectable, Collectable {
 	public void PickUpBy(Virologist v) {
 		Logger.log("v.pickUp(" + Logger.getParameter() + ")", 2);
 		v.pickUp(this);
+	}
+
+	public Virologist getVirologist() {
+		return virologist;
 	}
 }

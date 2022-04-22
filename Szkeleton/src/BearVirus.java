@@ -1,7 +1,7 @@
 public class BearVirus extends Agent{
 
     @Override
-    public void effect(Virologist on) {
-     //todo
+    public void effect(Virologist v) {
+        v.addEffect(this);
     }
 }

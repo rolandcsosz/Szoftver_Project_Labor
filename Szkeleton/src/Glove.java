@@ -1,6 +1,6 @@
 public class Glove extends Equipment {
 
-	//todo lehamlast kezelo adattag
+	private int lifeCounter;
 
 	public void effect(Virologist on) {
 	}
@@ -9,6 +9,12 @@ public class Glove extends Equipment {
 	public void PickUpBy(Virologist v) {
 		Logger.log(Logger.getParameter() + ".pickUp(g)", 2);
 		v.pickUp(this);
-		
+	}
+
+	public void reduceLife(){
+		lifeCounter--;
+		if(lifeCounter == 0){
+			super.getVirologist().remove(this);
+		}
 	}
 }

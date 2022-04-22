@@ -16,7 +16,6 @@ public class Field {
 	
 	public void removeVirologist(Virologist v) {
 		virologist = null;
-	
 	}
 	
 	public List<Collectable> getCollectables() {
@@ -34,7 +33,7 @@ public class Field {
 	
 	
 	public boolean IsNeighbour(Field m) {
-		return true;
+		return neighbours.contains(m);
 	}
 
 	public Virologist getVirologist() {
