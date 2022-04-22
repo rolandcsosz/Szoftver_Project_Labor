@@ -1,3 +1,4 @@
+import javax.security.auth.login.LoginException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -25,7 +26,7 @@ public class Main {
 
             System.out.println("----------------------------------------------------------------\nTest cases:\n1. Virologist moves to empty field\n2. Virologist moves to laboratory\n3. Virologist moves to warehouse\n4. Virologist moves to shelter\n5. Virologist picks up a bag\n6. Virologist picks up a cloak\n"
                     + "7. Virologist picks up a glove\n8. Virologist picks up a material\n9. Virologist learns genetic code \n10.Virologist makes vaccine\n11. Virologist makes oblivion virus\n12. Virologist makes virus dance\n"
-                    + "13. Virologist makes paralyses virus\n14. Virologist uses vaccine\n15. Virologist steals\n16. Virologist attacks with virus dance\n17. Virologist attacks with oblivion virus\n18. Virologist attacks with paralyses virus\n19. Add virologists to game map\n20. Exit program\n"
+                    + "13. Virologist makes paralyses virus\n14. Virologist uses vaccine\n15. Virologist steals\n16. Virologist attacks with virus dance\n17. Virologist attacks with oblivion virus\n18. Virologist attacks with paralyses virus\n19. Add virologists to game map\n20. Create fields\n21. Create equipments\n22. Create Genetic Codes\n23. Create Virologists\n99. Exit program\n"
                     + "\n\nThe number of the choosen menu (type one number and press ENTER):");
 
             number = scanner.next();
@@ -127,6 +128,26 @@ public class Main {
                     break;
                 }
                 case "20": {
+                    System.out.println("20. Create fields");
+                    CreteFields();
+                    break;
+                }
+                case "21": {
+                    System.out.println("21. Create equipments");
+                    CreateEquipments();
+                    break;
+                }
+                case "22": {
+                    System.out.println("22. Create GeneticCodes");
+                    CreateGeneticCodes();
+                    break;
+                }
+                case "23":{
+                    System.out.println("23. Create Virologists");
+                    CreateVirologists();
+                    break;
+                }
+                case "99": {
                     isRunning = false;
                     System.out.println("----------------------------------------------------------------\nExit. Bye! :D");
                     break;
@@ -779,9 +800,124 @@ public class Main {
         v1.steal(v2);
 
     }
-
+/**
+ * A gamemap addVirologists fuggvenyet teszteli. Letrehoz egy palyat, ahol a ket virologust random mezokre helyezi
+ *
+ * */
     static void VirologistAdded() {
         GameMap gm = new GameMap();
         gm.addVirologists();
+    }
+
+    /**
+     * 7.teszteset doksi alapjan
+     * Letrehoz kulonbozo mezoket, majd beallitja a szomszedaikat
+     */
+    static void CreteFields() {
+        List<Field> fields = new ArrayList<>();
+        fields.add(new Laboratory());
+        fields.add(new Field());
+        fields.add(new Shelter());
+        Logger.log("1db laboratory letrehozva", 0);
+        Logger.log("1db emptyfield letrehozva", 0);
+        Logger.log("1db shelter letrehozva", 0);
+
+        fields.get(0).setNeighbour(fields.get(1));
+        fields.get(1).setNeighbour(fields.get(2));
+
+        if (fields.get(0).IsNeighbour(fields.get(1))) {
+            Logger.log("E1 beallitva L1 szomszedjakent", 0);
+        }
+        if (fields.get(1).IsNeighbour(fields.get(2))) {
+            Logger.log("S1 beallitva E1 szomszedjakent", 0);
+        }
+    }
+
+    /**
+     * 8.teszteset doksi alapjan
+     * Letrehozza a felszereleseket majd elhelyezi ezeket az ovohelyeken
+     */
+    static void CreateEquipments() {
+        List<Field> fields = new ArrayList<>();
+        fields.add(new Shelter());
+        fields.add(new Shelter());
+        fields.add(new Shelter());
+        fields.add(new Shelter());
+        Logger.log("4 db shelter letrehozva", 0);
+
+        Cloak cloak = new Cloak();
+        Logger.log("1db cloak letrehozva", 0);
+        Axe axe = new Axe();
+        Logger.log("1db axe letrehozva", 0);
+        Bag bag = new Bag();
+        Logger.log("1db bag letrehozva", 0);
+        Glove glove = new Glove();
+        Logger.log("1db glove letrehozva", 0);
+        if (fields.get(0) instanceof Shelter) {
+            ((Shelter) fields.get(0)).addEquipment(cloak);
+            Logger.log("S1->EC1 vegrehajtva", 0);
+        }
+        if (fields.get(1) instanceof Shelter) {
+            ((Shelter) fields.get(1)).addEquipment(cloak);
+            Logger.log("S2->EA1 vegrehajtva", 0);
+        }
+        if (fields.get(2) instanceof Shelter) {
+            ((Shelter) fields.get(2)).addEquipment(cloak);
+            Logger.log("S3->EB1 vegrehajtva", 0);
+        }
+        if (fields.get(3) instanceof Shelter) {
+            ((Shelter) fields.get(3)).addEquipment(cloak);
+            Logger.log("S4->EG1 vegrehajtva", 0);
+        }
+    }
+
+    /**
+     * Javitva lett, Laboratory van Warehouse helyett (9.teszteset)
+     * Genetikai kodokat keszit, amiket elhelyez laboratoriumokban
+     */
+    static void CreateGeneticCodes() {
+        List<Field> fields = new ArrayList<>();
+        fields.add(new Laboratory());
+        fields.add(new Laboratory());
+        Logger.log("2 db laboratory letrehozva", 0);
+
+        GeneticCode geneticCode1 = new GeneticCode();
+        GeneticCode geneticCode2 = new GeneticCode();
+        Logger.log("2 db geneticcode letrehozva", 0);
+        if (fields.get(0) instanceof Laboratory) {
+            ((Laboratory) fields.get(0)).addGeneticCode(geneticCode1);
+            if (fields.get(0).getCollectables().get(0) == geneticCode1) {
+                Logger.log("L1->GC1 vegrehajtva", 0);
+            }
+        }
+        if (fields.get(1) instanceof Laboratory) {
+            ((Laboratory) fields.get(1)).addGeneticCode(geneticCode2);
+            if (fields.get(1).getCollectables().get(0) == geneticCode2) {
+                Logger.log("L2->GC2 vegrehajtva", 0);
+            }
+        }
+    }
+
+    /**
+     * 10.teszteset doksi alapjan
+     * Virologusokat keszit, az egyiket egy ures mezore, a masikat pedig egy ovohelyre helyezi
+     */
+    static void CreateVirologists() {
+        GameMap gameMap = new GameMap();
+        Virologist virologist1 = new Virologist();
+        Virologist virologist2 = new Virologist();
+        Logger.log("2db virologist letrehozva",0);
+        Field emptyField = new Field();
+        Shelter shelter = new Shelter();
+        Logger.log("1db emptyfield letrehozva",0);
+        Logger.log("1db shelter letrehozva",0);
+        virologist1.move(emptyField);
+        if(emptyField.getVirologist() == virologist1){
+            Logger.log("V1 virologus az E1 mezore lepett",0);
+        }
+        virologist2.move(shelter);
+        if(shelter.getVirologist() == virologist2){
+            Logger.log("V2 virologus az S1 mezore lepett",0);
+        }
     }
 }
