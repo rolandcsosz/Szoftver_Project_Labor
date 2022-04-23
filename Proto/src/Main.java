@@ -927,6 +927,8 @@ public class Main {
     }
     
     //Javitott
+    //Hozzaad egy virologushoz vagy egy mezohoz egy targyat
+    //hiba szintek nem "letezik a valtozo" -> "nem olyan tipusu a valtozo" -> "nem lehet hozzaadni mert fullon van"
     //(agens on field?)
     static void add(String actor, String thing)
     {
