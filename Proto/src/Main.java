@@ -2,163 +2,159 @@ import javax.security.auth.login.LoginException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 public class Main {
 
     public static Logger logger = new Logger();
+    static Scanner scanner;
+    static String[] line;
+    static boolean isRunning = true;
+    
+    static HashMap<String, Virologist> virologists = new HashMap<String, Virologist>();
+    static HashMap<String, Field> fields = new HashMap<String, Field>();
+    static HashMap<String, Equipment> equipments = new HashMap<String, Equipment>();
+    static HashMap<String, Agent> agents = new HashMap<String, Agent>();
+    static HashMap<String, GeneticCode> geneticcodes = new HashMap<String, GeneticCode>();
+    static HashMap<String, Material> materials = new HashMap<String, Material>();
+    
+    static HashMap<String,Integer> counters = new HashMap<String,Integer>();
+    
 
     /**
      * This is the main method
      */
     public static void main(String[] args) {
-        System.out.println("Syntax terror - Szkeleton");
-
-
-        Scanner scanner = new Scanner(System.in);
-
-        String number = null;
-        boolean isRunning = true;
-
+    	
+    	
+    	scanner = new Scanner(System.in);
+    	
         while (isRunning) {
 
-            System.out.println("----------------------------------------------------------------\nTest cases:\n1. Virologist moves to empty field\n2. Virologist moves to laboratory\n3. Virologist moves to warehouse\n4. Virologist moves to shelter\n5. Virologist picks up a bag\n6. Virologist picks up a cloak\n"
-                    + "7. Virologist picks up a glove\n8. Virologist picks up a material\n9. Virologist learns genetic code \n10.Virologist makes vaccine\n11. Virologist makes oblivion virus\n12. Virologist makes virus dance\n"
-                    + "13. Virologist makes paralyses virus\n14. Virologist uses vaccine\n15. Virologist steals\n16. Virologist attacks with virus dance\n17. Virologist attacks with oblivion virus\n18. Virologist attacks with paralyses virus\n19. Add virologists to game map\n20. Create fields\n21. Create equipments\n22. Create Genetic Codes\n23. Create Virologists\n99. Exit program\n"
-                    + "\n\nThe number of the choosen menu (type one number and press ENTER):");
+        	line = scanner.nextLine().split(" ");
 
-            number = scanner.next();
+            switch (line[0]) {
+            
+	            //3 parametert var
+	            case "attack": {
+	            	if(isParametesAreOk(line,3))
+	            	{}
+	            		
+	                break;
+	            }
+            
+            	//2 parametert var
+                case "create": {
+	            	if(isParametesAreOk(line,2))
+	            	{
+	            		create(line[1],line[2]);
+	            	}
+	            	
+	            	for (Entry<String, Virologist> entry : virologists.entrySet())
+	                    System.out.println("Key = " + entry.getKey() +
+	                                     ", Value = " + entry.getValue());
+                    break;
+                }
+                
+               //2 parametert var
+                case "add": {
+	            	if(isParametesAreOk(line,3))
+	            	{}
+                    break;
+                }
+                
+                
+                //2 parametert var
+                case "make": {
+	            	if(isParametesAreOk(line,2))
+	            	{}
+                    break;
+                }
+                
+                //2 parametert var
+                case "steal": {
+	            	if(isParametesAreOk(line,2))
+	            	{}
+                    break;
+                }
+                
+                //2 parametert var
+                case "setneighbour": {
+	            	if(isParametesAreOk(line,2))
+	            	{}
+                    break;
+                }
+                
+                //2 parametert var
+                case "move": {
+	            	if(isParametesAreOk(line,2))
+	            	{}
+                    break;
+                }
+                
+                //1 parametert var
+                case "save": {
+	            	if(isParametesAreOk(line,3))
+	            	{}
+                    break;
+                }
+                
+                //1 parametert var
+                case "load": {
+	            	if(isParametesAreOk(line,0))
+	            	{}
+                    break;
+                }
+                
+                //0 parametert var
+                case "restart": {
+	            	if(isParametesAreOk(line,0))
+	            	{}
+                    break;
+                }
+                
+                //0 parametert var
+                case "exit": {
+	            	if(isParametesAreOk(line,0))
+	                	isRunning = false;
 
-            switch (number) {
-                case "1": {
-                    System.out.println("1. Virologist moves to empty field");
-                    movesToEmptyField();
                     break;
                 }
-                case "2": {
-                    System.out.println("2. Virologist moves to laboratory");
-                    movesToLaboratory();
-                    break;
-                }
-                case "3": {
-                    System.out.println("3. Virologist moves to warehouse");
-                    movesToWarehouse();
-                    break;
-                }
-                case "4": {
-                    System.out.println("4. Virologist moves to shelter");
-                    movesToShelter();
-                    break;
-                }
-                case "5": {
-                    System.out.println("5. Virologist picks up a bag");
-                    virologistPicksUpaBag();
-                    break;
-                }
-                case "6": {
-                    System.out.println("6. Virologist picks up a cloak");
-                    virologistPicksUpaCloak();
-                    break;
-                }
-                case "7": {
-                    System.out.println("7. Virologist picks up a glove");
-                    virologistPicksUpaGlove();
-                    break;
-                }
-                case "8": {
-                    System.out.println("8. Virologist picks up a material");
-                    virologistPicksUpMaterial();
-                    break;
-                }
-                case "9": {
-                    System.out.println("9. Virologist learns genetic code ");
-                    virologistLearnsGeneticCode();
-                    break;
-                }
-                case "10": {
-                    System.out.println("10.Virologist makes vaccine");
-                    virologistMakesVaccine();
-                    break;
-                }
-                case "11": {
-                    System.out.println("11. Virologist makes oblivion virus");
-                    virologistMakesOblivionVirus();
-                    break;
-                }
-                case "12": {
-                    System.out.println("12. Virologist makes virus dance");
-                    virologistMakesVirusDance();
-                    break;
-                }
-                case "13": {
-                    System.out.println("13. Virologist makes paralyses virus");
-                    virologistMakesParalysesVirus();
-                    break;
-                }
-                case "14": {
-                    System.out.println("14. Virologist uses vaccine");
-                    useVaccine();
-                    break;
-                }
-                case "15": {
-                    System.out.println("15. Virologist steals");
-                    VirologistSteal();
-                    break;
-                }
-                case "16": {
-                    System.out.println("16. Virologist attacks with virus dance");
-                    VirologistAttacksWithVirusDance();
-                    break;
-                }
-                case "17": {
-                    System.out.println("17. Virologist attacks with oblivion virus");
-                    VirologistAttacksWithOblivion();
-                    break;
-                }
-                case "18": {
-                    System.out.println("18. Virologist attacks with paralyses virus");
-                    VirologistAttacksWithParalyses();
-                    break;
-                }
-                case "19": {
-                    System.out.println("19. Add virologists to the game map");
-                    VirologistAdded();
-                    break;
-                }
-                case "20": {
-                    System.out.println("20. Create fields");
-                    CreteFields();
-                    break;
-                }
-                case "21": {
-                    System.out.println("21. Create equipments");
-                    CreateEquipments();
-                    break;
-                }
-                case "22": {
-                    System.out.println("22. Create GeneticCodes");
-                    CreateGeneticCodes();
-                    break;
-                }
-                case "23":{
-                    System.out.println("23. Create Virologists");
-                    CreateVirologists();
-                    break;
-                }
-                case "99": {
-                    isRunning = false;
-                    System.out.println("----------------------------------------------------------------\nExit. Bye! :D");
+                
+                //0 parametert var
+                case "help": {
+
                     break;
                 }
 
                 default:
-                    break;
+                	System.out.println("'" + line[0] + "' is not recognized as command. See 'help'.");
             }
 
         }
 
+    }
+    
+    static boolean isParametesAreOk(String[] line, int req)
+    {
+    	if(line.length - 1 == req)
+    		return true;
+    	else {
+    		
+    		String msg = line.length > req  ? "Too many arguments. See 'help'."
+    				  						: "Too few arguments. See 'help'.";
+    		System.out.println(msg);
+    		
+    		return false;
+
+    	}
     }
 
 
@@ -919,5 +915,249 @@ public class Main {
         if(shelter.getVirologist() == virologist2){
             Logger.log("V2 virologus az S1 mezore lepett",0);
         }
+    }
+    
+    static String addObjectAndGetKey(Object obj)
+    {
+    	int counter;
+    	
+    	if(obj instanceof Virologist) 
+    	{
+    		if(counters.get(obj.getClass().toString()) == null) {
+    			counters.put(obj.getClass().toString(), 0);
+    		}
+    		
+    		counter = counters.get(obj.getClass().toString())+1;
+    		counters.replace(obj.getClass().toString(), counter);
+    		virologists.put("V" + counter, (Virologist)obj);
+        	return "V" + counter;
+    	}
+    	
+    	if(obj instanceof Laboratory) 
+    	{
+    		if(counters.get(obj.getClass().toString()) == null) {
+    			counters.put(obj.getClass().toString(), 0);
+    		}
+    		
+    		counter = counters.get(obj.getClass().toString())+1;
+    		counters.replace(obj.getClass().toString(), counter);
+    		fields.put("L" + counter, (Laboratory)obj);
+        	return "L" + counter;
+    	}
+    	
+    	if(obj instanceof Shelter) 
+    	{
+    		if(counters.get(obj.getClass().toString()) == null) {
+    			counters.put(obj.getClass().toString(), 0);
+    		}
+    		
+    		counter = counters.get(obj.getClass().toString())+1;
+    		counters.replace(obj.getClass().toString(), counter);
+    		fields.put("S" + counter, (Shelter)obj);
+        	return "S" + counter;
+    	}
+    	
+    	if(obj instanceof Warehouse) 
+    	{
+    		if(counters.get(obj.getClass().toString()) == null) {
+    			counters.put(obj.getClass().toString(), 0);
+    		}
+    		
+    		counter = counters.get(obj.getClass().toString())+1;
+    		counters.replace(obj.getClass().toString(), counter);
+    		fields.put("Wh" + counter, (Warehouse)obj);
+        	return "Wh" + counter;
+    	}
+    	
+    	if(obj instanceof Material) 
+    	{
+    		if(counters.get(obj.getClass().toString()) == null) {
+    			counters.put(obj.getClass().toString(), 0);
+    		}
+    		
+    		counter = counters.get(obj.getClass().toString())+1;
+    		counters.replace(obj.getClass().toString(), counter);
+    		materials.put("M" + counter, (Material)obj);
+        	return "M" + counter;
+    	}
+    	
+    	if(obj instanceof Axe) 
+    	{
+    		if(counters.get(obj.getClass().toString()) == null) {
+    			counters.put(obj.getClass().toString(), 0);
+    		}
+    		
+    		counter = counters.get(obj.getClass().toString())+1;
+    		counters.replace(obj.getClass().toString(), counter);
+    		equipments.put("A" + counter, (Axe)obj);
+        	return "A" + counter;
+    	}
+    	
+    	if(obj instanceof Glove) 
+    	{
+    		if(counters.get(obj.getClass().toString()) == null) {
+    			counters.put(obj.getClass().toString(), 0);
+    		}
+    		
+    		counter = counters.get(obj.getClass().toString())+1;
+    		counters.replace(obj.getClass().toString(), counter);
+    		equipments.put("G" + counter, (Glove)obj);
+        	return "G" + counter;
+    	}
+    	
+    	if(obj instanceof Cloak) 
+    	{
+    		if(counters.get(obj.getClass().toString()) == null) {
+    			counters.put(obj.getClass().toString(), 0);
+    		}
+    		
+    		counter = counters.get(obj.getClass().toString())+1;
+    		counters.replace(obj.getClass().toString(), counter);
+    		equipments.put("C" + counter, (Cloak)obj);
+        	return "C" + counter;
+    	}
+    	
+    	if(obj instanceof Bag) 
+    	{
+    		if(counters.get(obj.getClass().toString()) == null) {
+    			counters.put(obj.getClass().toString(), 0);
+    		}
+    		
+    		counter = counters.get(obj.getClass().toString())+1;
+    		counters.replace(obj.getClass().toString(), counter);
+    		equipments.put("B" + counter, (Bag)obj);
+        	return "B" + counter;
+    	}
+    	
+    	if(obj instanceof GeneticCode) 
+    	{
+    		if(counters.get(obj.getClass().toString()) == null) {
+    			counters.put(obj.getClass().toString(), 0);
+    		}
+    		
+    		counter = counters.get(obj.getClass().toString())+1;
+    		counters.replace(obj.getClass().toString(), counter);
+    		geneticcodes.put("GC" + counter, (GeneticCode)obj);
+        	return "GC" + counter;
+    	}
+    	
+    	if(obj instanceof BearVirus) 
+    	{
+    		if(counters.get(obj.getClass().toString()) == null) {
+    			counters.put(obj.getClass().toString(), 0);
+    		}
+    		
+    		counter = counters.get(obj.getClass().toString())+1;
+    		counters.replace(obj.getClass().toString(), counter);
+    		agents.put("BV" + counter, (BearVirus)obj);
+        	return "BV" + counter;
+    	}
+    	
+    	if(obj instanceof Virusdance) 
+    	{
+    		if(counters.get(obj.getClass().toString()) == null) {
+    			counters.put(obj.getClass().toString(), 0);
+    		}
+    		
+    		counter = counters.get(obj.getClass().toString())+1;
+    		counters.replace(obj.getClass().toString(), counter);
+    		agents.put("VD" + counter, (Virusdance)obj);
+        	return "VD" + counter;
+    	}
+    	
+    	if(obj instanceof Vaccine) 
+    	{
+    		if(counters.get(obj.getClass().toString()) == null) {
+    			counters.put(obj.getClass().toString(), 0);
+    		}
+    		
+    		counter = counters.get(obj.getClass().toString())+1;
+    		counters.replace(obj.getClass().toString(), counter);
+    		agents.put("V" + counter, (Vaccine)obj);
+        	return "V" + counter;
+    	}
+    	
+    	if(obj instanceof Oblivion) 
+    	{
+    		if(counters.get(obj.getClass().toString()) == null) {
+    			counters.put(obj.getClass().toString(), 0);
+    		}
+    		
+    		counter = counters.get(obj.getClass().toString())+1;
+    		counters.replace(obj.getClass().toString(), counter);
+    		agents.put("O" + counter, (Oblivion)obj);
+        	return "O" + counter;
+    	}
+    	
+    	if(obj instanceof Paralyses) 
+    	{
+    		if(counters.get(obj.getClass().toString()) == null) {
+    			counters.put(obj.getClass().toString(), 0);
+    		}
+    		
+    		counter = counters.get(obj.getClass().toString())+1;
+    		counters.replace(obj.getClass().toString(), counter);
+    		agents.put("P" + counter, (Paralyses)obj);
+        	return "P" + counter;
+    	}
+    		
+    	return "";
+    		
+
+
+    }
+    
+    static void create(String type, String quantity)
+    {
+    	String variables = null;
+    	String actualVar = null;
+    	Class<?> entity = null;
+    	int quant;
+    	
+		try {
+			entity = Class.forName(type.substring(0, 1).toUpperCase() + type.substring(1)); // virologist -> Virologist
+		} catch (ClassNotFoundException e) {
+			System.out.println("'" + type + "' is not recognized as a type. See 'help'.");
+    		return;
+		}
+
+    	
+    	try {
+    		quant = Integer.valueOf(quantity);
+    	} catch (NumberFormatException e) {
+    	    System.out.println("'" + quantity + "' is not recognized as a number. See 'help'.");
+    	    return;
+    	}
+
+    	
+    	for(int i = 0;i < quant;i++)
+    	{
+    		
+    		Constructor<?> constructor = entity.getConstructors()[0];
+    		Object obj = null;
+    		
+    		try {
+				obj = constructor.newInstance();
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException e) {
+			}
+    		
+    		if(obj != null) {
+    			actualVar = addObjectAndGetKey(obj);
+    			
+    			if(variables == null) {
+        			variables = "[" + actualVar;
+        		}
+    			
+    			else {
+    				variables += "," + actualVar;
+    			}
+    		}
+    		
+    	}
+    	
+    	variables += "]";
+    	
+    	System.out.println(quantity + " " + type + "s created.\n" + variables);
     }
 }
