@@ -7,7 +7,6 @@ public class Shelter extends Field {
 		equipment = eq;
 	}
 	
-	
 	public List<Collectable> getCollectables() {
 		List<Collectable> cl = new ArrayList<Collectable>();
 		cl.add(equipment);

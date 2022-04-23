@@ -18,6 +18,7 @@ public class Main {
     static String[] line;
     static boolean isRunning = true;
     
+    //a program futasa kozben hasznalt valtozok tarolva, a kreaslas utani nev a kulcs
     static HashMap<String, Virologist> virologists = new HashMap<String, Virologist>();
     static HashMap<String, Field> fields = new HashMap<String, Field>();
     static HashMap<String, Equipment> equipments = new HashMap<String, Equipment>();
@@ -25,6 +26,7 @@ public class Main {
     static HashMap<String, GeneticCode> geneticcodes = new HashMap<String, GeneticCode>();
     static HashMap<String, Material> materials = new HashMap<String, Material>();
     
+    //krealasnal a ez felelos a nevek szamozasaert
     static HashMap<String,Integer> counters = new HashMap<String,Integer>();
     
 
@@ -57,7 +59,12 @@ public class Main {
 	            		create(line[1],line[2]);
 	            	}
 	            	
+	            	//teszt cellal
 	            	for (Entry<String, Virologist> entry : virologists.entrySet())
+	                    System.out.println("Key = " + entry.getKey() +
+	                                     ", Value = " + entry.getValue());
+	            	//teszt cellal
+	            	for (Entry<String, Equipment> entry : equipments.entrySet())
 	                    System.out.println("Key = " + entry.getKey() +
 	                                     ", Value = " + entry.getValue());
                     break;
@@ -65,8 +72,10 @@ public class Main {
                 
                //2 parametert var
                 case "add": {
-	            	if(isParametesAreOk(line,3))
-	            	{}
+	            	if(isParametesAreOk(line,2))
+	            	{
+	            		add(line[1],line[2]);
+	            	}
                     break;
                 }
                 
@@ -917,6 +926,146 @@ public class Main {
         }
     }
     
+    //Javitott
+    //(agens on field?)
+    static void add(String actor, String thing)
+    {
+    	if(!checkVariable(actor))
+    	{
+    		System.out.println("'" + actor + "' is not recognized as a variable. See 'help'.");
+    		return;
+    	}
+    	
+    	if(!checkVariable(thing))
+    	{
+    		System.out.println("'" + thing + "' is not recognized as a variable. See 'help'.");
+    		return;
+    	}
+    	
+    	Object actor_obj = getVariableByName(actor);
+    	
+
+    	if(!(actor_obj instanceof Virologist || actor_obj instanceof Field))
+    	{
+    		System.out.println("'" + actor + "' is not recognized as a virologist or any kind of field. See 'help'.");
+    		return;
+    	}
+    	
+    	Object thing_obj = getVariableByName(thing);
+    	
+    	if(!(thing_obj instanceof Agent || thing_obj instanceof Material || thing_obj instanceof Bag || thing_obj instanceof Glove || thing_obj instanceof Cloak || thing_obj instanceof Axe || thing_obj instanceof Virologist))
+    	{
+    		
+    		System.out.println(thing_obj.getClass().toString() +  "'" + thing + "' is not recognized as a virologist or equipment or agent or material. See 'help'.");
+    		return;
+    	}
+    	
+    	
+    	//Ha virologushoz rendelunk dolgokat
+    	if(actor_obj instanceof Virologist) {
+    		
+    		
+    		if(thing_obj instanceof Agent) {
+    			((Virologist)actor_obj).pickUp((Agent)thing_obj);
+    			System.out.println("'" + thing + "' is added to '" + actor + "'.");
+    		}
+    		
+    		if(thing_obj instanceof Material) {
+    			if(((Virologist)actor_obj).getMaterialCount() == ((Virologist)actor_obj).getMaxMaterial()) {
+    				System.out.println("'" + thing + "' is not added to '" + actor + "' because '" + actor + "' has maximum level of material.");
+    				return;
+    			}
+    			((Virologist)actor_obj).pickUp((Material)thing_obj);
+    			System.out.println("'" + thing + "' is added to '" + actor + "'.");
+    		}
+    		
+    		if(thing_obj instanceof Equipment) {
+    			if(((Virologist)actor_obj).getEquipments().size() == 3) {
+    				System.out.println("'" + thing + "' is not added to '" + actor + "' because '" + actor + "' has already 3 equipments.");
+    				return;
+    			}
+    			
+    			((Virologist)actor_obj).pickUp((Equipment)thing_obj);
+    			System.out.println("'" + thing + "' is added to '" + actor + "'.");
+    		}
+    		
+    	}
+    	
+    	//ha mezohoz rendelunk dolgokat
+    	if(actor_obj instanceof Field) {
+    		
+    		Field f = (Field)actor_obj;
+    		
+    		if(actor_obj instanceof Laboratory) {
+    			if(thing_obj instanceof GeneticCode) {
+    				((Laboratory) actor_obj).addGeneticCode((GeneticCode)thing_obj);
+        		}
+    			System.out.println("'" + thing + "' is added to '" + actor + "'.");
+    		}
+    		
+    		if(actor_obj instanceof Shelter) {
+    			if(thing_obj instanceof GeneticCode) {
+    				((Shelter)thing_obj).addEquipment((Equipment)actor_obj);
+        		}
+    			System.out.println("'" + thing + "' is added to '" + actor + "'.");
+    		}
+    		
+    		if(actor_obj instanceof Warehouse) {
+    			if(thing_obj instanceof GeneticCode) {
+    				int level = ((Warehouse)thing_obj).getMaterialLevel();
+    				((Warehouse)thing_obj).setMaterialLevel(level+1);
+        		}
+    			System.out.println("'" + thing + "' is added to '" + actor + "'.");
+    		}
+    		
+    		
+    		if(thing_obj instanceof Virologist) {
+    			f.acceptVirologists((Virologist)thing_obj);
+    			System.out.println("'" + thing + "' is added to '" + actor + "'.");
+    		}
+    		
+    	}	
+    		
+
+    }
+    
+    //Javitott
+    //Visszaadja a nevhez tartozo objektumot object tipusban 
+    static Object getVariableByName(String name)
+    {
+    	if(virologists.containsKey(name))
+    		return virologists.get(name);
+    	
+    	if(materials.containsKey(name))
+    		return materials.get(name);
+    	
+    	if(agents.containsKey(name))
+    		return agents.get(name);
+    	
+    	if(fields.containsKey(name))
+    		return fields.get(name);
+    	
+    	if(geneticcodes.containsKey(name))
+    		return geneticcodes.get(name);
+    	
+    	if(equipments.containsKey(name))
+    		return equipments.get(name);
+    	
+    	return null;
+    }
+    
+    //Javitott
+    //Megnezi hogy a nevhez tartozo variable letezik e
+    static boolean checkVariable(String name)
+    {
+    	if(fields.containsKey(name)||virologists.containsKey(name)||materials.containsKey(name)||equipments.containsKey(name)||agents.containsKey(name)||geneticcodes.containsKey(name))
+    		return true;
+    	
+    	return false;
+    }
+    
+    //Javitott
+    //hozzaadja a parameterkent megadott objectet a megfelelo HashMap-hez es letrehoz neki egy megfelelo nevet
     static String addObjectAndGetKey(Object obj)
     {
     	int counter;
@@ -1107,6 +1256,9 @@ public class Main {
 
     }
     
+    //Javitott
+    //letrehozza a megadott objectet a megfelelo szamban
+    //hiba:geneticcode-> GeneticCode
     static void create(String type, String quantity)
     {
     	String variables = null;

@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Virologist implements Steppable {
+	private int maxMaterial;
     private boolean IsParalysed;
     private Field field;
     private List<Equipment> equipments;
@@ -16,9 +17,10 @@ public class Virologist implements Steppable {
      * @return Nothing.
      */
     public Virologist() {
+    	maxMaterial = 3;
         IsParalysed = false;
         field = new Field();
-        equipments = new ArrayList<Equipment>();
+        equipments = new ArrayList<Equipment>(3);
         agents = new ArrayList<Agent>();
         geneticcodes = new ArrayList<GeneticCode>();
         materials = new ArrayList<Material>();
@@ -273,6 +275,10 @@ public class Virologist implements Steppable {
             this.die();
         }
     }
+    
+    public int getMaxMaterial() {
+    	return maxMaterial;
+    }
 
     public void removeEffect(Agent a) {
     }
@@ -282,7 +288,8 @@ public class Virologist implements Steppable {
     }
 
     public void pickUp(Equipment eq) {
-        equipments.add(eq);
+    	
+    		equipments.add(eq);
     }
 
     public void pickUp(Material m) {
@@ -318,9 +325,6 @@ public class Virologist implements Steppable {
         return true;
     }
 
-    public boolean IsEnoughSpace(Material m) {
-        return true;
-    }
 
     public List<GeneticCode> getGeneticCodes() {
         return geneticcodes;
