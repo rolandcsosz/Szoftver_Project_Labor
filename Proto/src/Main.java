@@ -40,7 +40,8 @@ public class Main {
     	
         while (isRunning) {
 
-        	line = scanner.nextLine().split(" ");
+        		line = scanner.nextLine().split(" ");
+        	
 
             switch (line[0]) {
             
