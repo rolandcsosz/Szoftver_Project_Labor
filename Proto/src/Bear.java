@@ -10,7 +10,7 @@ public class Bear extends Virologist implements Steppable{
 
     public void attack(Virologist v){
         //virust ken kifogyhatatlan keszlettel
-        if(this.getField().IsNeighbour(v.getField())){
+        if(this.getCurrentfield().IsNeighbour(v.getCurrentfield())){
             BearVirus bv = new BearVirus();
             bv.effect(v);
         }
