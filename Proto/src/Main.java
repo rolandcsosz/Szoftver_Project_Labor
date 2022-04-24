@@ -60,13 +60,13 @@ public class Main {
 	            	}
 	            	
 	            	//teszt cellal
-	            	for (Entry<String, Virologist> entry : virologists.entrySet())
+	            	/*for (Entry<String, Virologist> entry : virologists.entrySet())
 	                    System.out.println("Key = " + entry.getKey() +
 	                                     ", Value = " + entry.getValue());
 	            	//teszt cellal
 	            	for (Entry<String, Equipment> entry : equipments.entrySet())
 	                    System.out.println("Key = " + entry.getKey() +
-	                                     ", Value = " + entry.getValue());
+	                                     ", Value = " + entry.getValue());*/
                     break;
                 }
                 
@@ -1032,6 +1032,7 @@ public class Main {
     		
     		if(thing_obj instanceof Virologist) {
     			f.acceptVirologists((Virologist)thing_obj);
+                ((Virologist)thing_obj).setCurrentfield(f);
     			System.out.println("'" + thing + "' is added to '" + actor + "'.");
     		}
     		
@@ -1351,20 +1352,20 @@ public class Main {
         //Ellenőrzés: mindkét objektum Field típusu-e
         if(!(field1_obj instanceof Field || field2_obj instanceof Field))
         {
-            System.out.println("'" + field1 + "' or" + field2 + " is not recognized as a field. See 'help'.");
+            System.out.println("'" + field1 + "' or '" + field2 + "' is not recognized as a field. See 'help'.");
             return;
         }
 
         //Ha a két mező már szomszédos nem csinálunk semmit
         if(((Field)field1_obj).IsNeighbour((Field)field2_obj))
         {
-            System.out.println("'" + field1 + "' and" + field2 + " are already neighbours. See 'help'.");
+            System.out.println("'" + field1 + "' and '" + field2 + "' are already neighbours. See 'help'.");
             return;
         }
 
         //Minden oké, ha eddig eljutunk -> beállítjuk a szomszédokat
         ((Field)field1_obj).setNeighbour((Field)field2_obj);
-        System.out.println("'" + field2 + "' is set as neighbour to " + field1 + " .");
+        System.out.println("'" + field2 + "' is set as neighbour to '" + field1 + "'.");
         return;
 
     }
@@ -1410,20 +1411,20 @@ public class Main {
         //Ha a virológus aktuális mezője nem szomszédos a megadott mezővel
         if(!(((Virologist)virologist_obj).getCurrentfield().IsNeighbour((Field) field_obj)))
         {
-            System.out.println("'" + virologist + "'s field and " + field + " are not neighbours. See 'help'.");
+            System.out.println("'" + virologist + "'s field and '" + field + "' are not neighbours. See 'help'.");
             return;
         }
 
         //Ha a virológus bénult állapotban van
         if((((Virologist)virologist_obj).getParalysedStatus()))
         {
-            System.out.println("'" + virologist + "'is paralyzed.");
+            System.out.println("'" + virologist + "' is paralyzed. See 'help'.");
             return;
         }
 
         //Egyébként minden oké és léptetünk
         ((Virologist)virologist_obj).move(((Field)field_obj));
-        System.out.println("'" + virologist + "moved to " + field);
+        System.out.println("'" + virologist + "'" + " moved to " + "'" + field + "'" + ".");
         return;
     }
 }

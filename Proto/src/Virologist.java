@@ -34,13 +34,8 @@ public class Virologist implements Steppable {
      * @return Nothing.
      */
     public void move(Field f) {
-
-        Logger.log(Logger.getParameter() + ".getParalysedStatus()", 1);
-        Logger.log("f1.IsNeighbour(" + Logger.getParameter() + ")", 1);
         if (!this.getParalysedStatus() && currentfield.IsNeighbour(f)) {
-            Logger.log("f2.acceptVirologists(v)", 1);
             f.acceptVirologists(this);
-            Logger.log("f1.removeVirologist(v)", 1);
             currentfield.removeVirologist(this);
             currentfield = f;
         }
@@ -52,6 +47,10 @@ public class Virologist implements Steppable {
 
     public Field getCurrentfield() {
         return currentfield;
+    }
+
+    public void setCurrentfield(Field currentfield) {
+        this.currentfield = currentfield;
     }
 
     /**
