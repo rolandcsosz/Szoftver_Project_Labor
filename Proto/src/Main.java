@@ -111,7 +111,10 @@ public class Main {
                 //1 parametert var
                 case "save": {
 	            	if(isParametesAreOk(line,3))
-	            	{}
+	            	{
+
+		            	steal(line[1],line[2]);
+	            	}
                     break;
                 }
                 
@@ -125,7 +128,15 @@ public class Main {
                 //0 parametert var
                 case "restart": {
 	            	if(isParametesAreOk(line,0))
-	            	{}
+	            	{
+	            		virologists.clear();
+	            		fields.clear();
+	            		equipments.clear();
+	            		agents.clear();
+	            		geneticcodes.clear();
+	            		materials.clear();
+	            		counters.clear();
+	            	}
                     break;
                 }
                 
@@ -139,7 +150,17 @@ public class Main {
                 
                 //0 parametert var
                 case "help": {
-
+                	System.out.println("attack: requires two virologists' name and an agent's name, for example: attack V1 V2 VO1\n"
+                			+ "create: requires an object (warehouse, laboratory, shelter, cloak, glove, bag, axe, geneticcode, vaccine, oblivion, paralyses, virusdance, bearvirus, virologist, bear, material) and a whole number, for example: create virologist 3\n"
+                			+ "add: requires two objects name, for example: add S1 C10\n"
+                			+ "make: requires a virologist's name and an agent (oblivion, paralyses, virusdance, bearvirus, vaccine), for example: make V1 oblivion\n"
+                			+ "steal: requires two virologists' name, for example: steal V1 V2\n"
+                			+ "setneighbour: requires two fields' name, for example: setneighbour W1 L1\n"
+                			+ "move: requires a virologist's name and a field's name, for example: move V1 W1\n"
+                			+ "save: requires a file, in which to save the game\n"
+                			+ "load: requires a file, from where to load the game\n"
+                			+ "restart: no parameters required\n"
+                			+ "exit: no parameters required");
                     break;
                 }
 
@@ -1313,5 +1334,44 @@ public class Main {
     	variables += "]";
     	
     	System.out.println(quantity + " " + type + "s created.\n" + variables);
+    }
+    
+    static void steal(String actor, String victim) {
+    	if(!checkVariable(actor)) {
+    		System.out.println("'" + actor + "' is not recognised as a variable. See 'help'.");
+    		return;
+    	}
+    	
+    	if(!checkVariable(victim)) {
+    		System.out.println("'" + victim + "' is not recognised as a variable. See 'help'.");
+    		return;
+    	}
+    	
+    	Object actor_obj = getVariableByName(actor);
+    	if(!(actor_obj instanceof Virologist)) {
+    		System.out.println("'" + actor +"' is not recognised as a virologist. See 'help'.");
+    		return;
+    	}
+    	
+    	Object victim_obj = getVariableByName(victim);
+    	if(!(victim_obj instanceof Virologist)) {
+    		System.out.println("'" + victim +"' is not recognised as a virologist. See 'help'.");
+    		return;
+    	}
+    	
+    	//ha a megtámadott virológus nincs a bénító vírus hatása alatt
+    	if(!((Virologist)victim_obj).getParalysedStatus()) {
+    		System.out.println("'" + actor + "' did not steal from '" + victim + "' because '" + victim + "' is not under Paralyses virus's effect.");
+    		return;
+    	}
+    	
+    	//ha nem állnak azonos mezõn
+    	if(((Virologist)actor_obj).getField() != ((Virologist)victim_obj).getField() || !(((Virologist)actor_obj).getField().IsNeighbour(((Virologist)victim_obj).getField()))) {
+    		System.out.println("'" + actor + "' did not steal from '" + victim + "' because they are not standing on the same field.");
+    		return;
+    	}
+    	
+    	((Virologist)actor_obj).steal((Virologist)victim_obj);
+    	System.out.println("'" + actor +"' meglopta '" + victim + "' virológust.");
     }
 }
