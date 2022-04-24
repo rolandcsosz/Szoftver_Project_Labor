@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Virologist implements Steppable {
 	private int maxMaterial;
@@ -34,13 +35,8 @@ public class Virologist implements Steppable {
      * @return Nothing.
      */
     public void move(Field f) {
-
-        Logger.log(Logger.getParameter() + ".getParalysedStatus()", 1);
-        Logger.log("f1.IsNeighbour(" + Logger.getParameter() + ")", 1);
         if (!this.getParalysedStatus() && currentfield.IsNeighbour(f)) {
-            Logger.log("f2.acceptVirologists(v)", 1);
             f.acceptVirologists(this);
-            Logger.log("f1.removeVirologist(v)", 1);
             currentfield.removeVirologist(this);
             currentfield = f;
         }
@@ -54,6 +50,11 @@ public class Virologist implements Steppable {
         return currentfield;
     }
 
+    public void setCurrentfield(Field currentfield) {
+
+        this.currentfield = currentfield;
+    }
+
     /**
      * This is a method makes the virologist attack an other virologist (or itself) with an agent
      *
@@ -63,17 +64,14 @@ public class Virologist implements Steppable {
      */
     public void attack(Virologist v, Agent a) {
 
-        /*Logger.log(Logger.getParameter() + ".getParalysedStatus()", 1);
+        Logger.log(Logger.getParameter() + ".getParalysedStatus()", 1);
         Logger.log("f1.IsNeighbour(" + Logger.getParameter() + ".getField())", 1);
 
-        if (!this.getParalysedStatus() && field.IsNeighbour(v.getField())) {
+        if (!this.getParalysedStatus() && currentfield.IsNeighbour(v.getCurrentfield())) {
             Logger.log(Logger.getsecondParameter() + ".effect(" + Logger.getParameter() + ")", 1);
             a.effect(v);
         }
-        */
-        if(!this.getParalysedStatus() && currentfield.IsNeighbour(v.getCurrentfield())){
-            a.effect(v);
-        }
+
     }
 
     /**
@@ -142,9 +140,11 @@ public class Virologist implements Steppable {
     }
 
     public void learnGeneticCode(GeneticCode g) {
+
     }
 
     public void forgetGeneticCode(GeneticCode g) {
+        geneticcodes.remove(g);
     }
 
 
@@ -191,12 +191,8 @@ public class Virologist implements Steppable {
 
                 Logger.log("s.removeCollectable(" + Logger.getParameter() + ")", 1);
                 s.removeCollectable(cb);
-
             }
-
         }
-
-
     }
 
     /**
@@ -213,11 +209,7 @@ public class Virologist implements Steppable {
 
             Logger.log("wh.removeCollectable(" + Logger.getParameter() + ")", 1);
             wh.removeCollectable(cb);
-
-
         }
-
-
     }
 
 
@@ -246,9 +238,12 @@ public class Virologist implements Steppable {
     }
 
     public void move() {
+        Field randomField = currentfield.getRandomNeighbour();
+        move(randomField);
     }
 
     public void removeAgent(Agent a) {
+        agents.remove(a);
     }
 
     public boolean getParalysedStatus() {
@@ -256,21 +251,39 @@ public class Virologist implements Steppable {
     }
 
     public void addEffect(Agent a) {
-        if (a instanceof Vaccine) {
-            a.setActivated();
-        } else if (a instanceof Paralyses) {
-            IsParalysed = true;
-            a.setActivated();
-        } else if (a instanceof Oblivion) {
-            for (int i = 0; i < geneticcodes.size(); i++)
-                geneticcodes.set(i, null);
-            a.setActivated();
-        } else if (a instanceof Virusdance) {
-			Field random = currentfield.getRandomNeighbour();
-            move(random);
-            a.setActivated();
-        } else if (a instanceof BearVirus){
-            this.die();
+        for(Agent agent: agents){
+            if(agent instanceof Vaccine && agent.getActivated()){
+                return;
+            }
+        }
+        for (Collectable c : this.getCollectables()) {
+            if(c instanceof Cloak){
+                Random random = new Random();
+                int h = random.nextInt(100);
+                if(h > ((Cloak) c).getHatasfok()) {
+                    if (a instanceof Vaccine) {
+                        a.setActivated();
+                    } else if (a instanceof Paralyses) {
+                        IsParalysed = true;
+                        a.setActivated();
+                    } else if (a instanceof Oblivion) {
+                        for (int i = 0; i < geneticcodes.size(); i++)
+                            geneticcodes.set(i, null);
+                        a.setActivated();
+                    } else if (a instanceof Virusdance) {
+                        Field randomField = currentfield.getRandomNeighbour();
+                        move(randomField);
+                        a.setActivated();
+                    } else if (a instanceof BearVirus) {
+                        this.die();
+                    }
+                }
+            }
+
+            if(c instanceof Glove){
+                ((Glove) c).effect(this);
+                attack(a.getVirologist(), a);
+            }
         }
     }
     
@@ -279,6 +292,7 @@ public class Virologist implements Steppable {
     }
 
     public void removeEffect(Agent a) {
+
     }
 
     public void pickUp(GeneticCode gc) {
@@ -298,16 +312,15 @@ public class Virologist implements Steppable {
     }
 
     public void remove(GeneticCode gc) {
-
+        geneticcodes.remove(gc);
     }
 
     public void remove(Equipment eq) {
-        //todo kesztyu lehamlasa
-
+        equipments.remove(eq);
     }
 
     public void remove(Material m) {
-
+        materials.remove(m);
     }
 
     public void setMaterialCount(int new_size) {
@@ -336,11 +349,11 @@ public class Virologist implements Steppable {
         return false;
     }
 
-    //todo eldobas fuggveny
 
     public void die(){
         Bear b = new Bear();
         currentfield.removeVirologist(this);
         currentfield.acceptVirologists(b);
     }
+
 }

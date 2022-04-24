@@ -2,7 +2,8 @@ public class Glove extends Equipment {
 
 	private int lifeCounter;
 
-	public void effect(Virologist on) {
+	public void effect(Virologist v) {
+		reduceLife();
 	}
 	
 	@Override
