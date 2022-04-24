@@ -934,6 +934,84 @@ public class Main {
             Logger.log("V2 virologus az S1 mezore lepett",0);
         }
     }
+
+    static void attack(String actor, String target, String thing){
+        if(!checkVariable(actor))
+        {
+            System.out.println("'" + actor + "' is not recognized as a variable. See 'help'.");
+            return;
+        }
+
+        if(!checkVariable(target))
+        {
+            System.out.println("'" + target + "' is not recognized as a target. See 'help'.");
+            return;
+        }
+
+        if(!checkVariable(thing))
+        {
+            System.out.println("'" + thing + "' is not recognized as a variable. See 'help'.");
+            return;
+        }
+        //----------------------------------------------
+
+        Object actor_obj = getVariableByName(actor);
+        if(!(actor_obj instanceof Virologist))
+        {
+            System.out.println("'" + actor + "' is not recognized as a virologist. See 'help'.");
+            return;
+        }
+
+        Object target_obj = getVariableByName(target);
+        if(!(actor_obj instanceof Virologist))
+        {
+            System.out.println("'" + target + "' is not recognized as a virologist. See 'help'.");
+            return;
+        }
+
+        Object thing_obj = getVariableByName(thing);
+        if(!(thing_obj instanceof Agent))
+        {
+            System.out.println(thing_obj.getClass().toString() +  "'" + thing + "' is not recognized as agent. See 'help'.");
+            return;
+        }
+        //--------------------------------------------------
+
+        ((Virologist)actor_obj).attack((Virologist)target_obj, (Agent)thing_obj);
+        System.out.println("'" + actor + "' is attacking'" + target + "' with" + thing +"'");
+
+    }
+
+
+    static void make(String actor, String thing){
+        if(!checkVariable(actor))
+        {
+            System.out.println("'" + actor + "' is not recognized as a variable. See 'help'.");
+            return;
+        }
+
+        if(!checkVariable(thing))
+        {
+            System.out.println("'" + thing + "' is not recognized as a thing. See 'help'.");
+            return;
+        }
+
+        Object actor_obj = getVariableByName(actor);
+        Object thing_obj = getVariableByName(thing);
+
+        if(!(actor_obj instanceof Virologist))
+        {
+            System.out.println("'" + actor + "' is not recognized as a virologist. See 'help'.");
+            return;
+        }
+        if(!(thing_obj instanceof Agent))
+        {
+            System.out.println(thing_obj.getClass().toString() +  "'" + thing + "' is not recognized as a agent. See 'help'.");
+            return;
+        }
+
+         (((Virologist) actor_obj)).createAgens((Agent)thing_obj);
+    }
     
     //Javitott
     //Hozzaad egy virologushoz vagy egy mezohoz egy targyat

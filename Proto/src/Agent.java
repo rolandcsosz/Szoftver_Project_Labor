@@ -20,6 +20,11 @@ public abstract class Agent implements Collectable, Effectable, Steppable {
 	}
 	
 	public void step() {
+		timeCounter--;
+	}
+
+	public int getTime(){
+		return timeCounter;
 	}
 	
 	public Boolean getActivated() {
