@@ -261,6 +261,11 @@ public class Virologist implements Steppable {
     }
 
     public void addEffect(Agent a) {
+        for(Agent agent: agents){
+            if(agent instanceof Vaccine && agent.getActivated()){
+                return;
+            }
+        }
 
         for (Collectable c : this.getCollectables()) {
             if(c instanceof Cloak){
@@ -290,8 +295,6 @@ public class Virologist implements Steppable {
                 ((Glove) c).effect(this);
                 attack(a.getVirologist(), a);
             }
-
-
         }
     }
     
