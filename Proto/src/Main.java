@@ -1,7 +1,9 @@
 import javax.security.auth.login.LoginException;
 import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -11,7 +13,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
-public class Main {
+public class Main{
 
     public static Logger logger = new Logger();
     static Scanner scanner;
@@ -29,6 +31,8 @@ public class Main {
     //krealasnal a ez felelos a nevek szamozasaert
     static HashMap<String,Integer> counters = new HashMap<String,Integer>();
     
+    static ArrayList<String[]> commands = new ArrayList<String[]>();
+    
 
     /**
      * This is the main method
@@ -41,6 +45,8 @@ public class Main {
         while (isRunning) {
 
         	line = scanner.nextLine().split(" ");
+        	
+        	commands.add(line);
 
             switch (line[0]) {
             
@@ -121,18 +127,88 @@ public class Main {
                 
                 //1 parametert var
                 case "save": {
-	            	if(isParametesAreOk(line,3))
+	            	if(isParametesAreOk(line,1))
 	            	{
-
-		            	steal(line[1],line[2]);
+	            		try {
+	            			FileWriter fw = new FileWriter(line[1]);
+	            			PrintWriter pw = new PrintWriter(fw);
+	            			for(String[] l : commands) {
+	            				pw.println(l);
+	            			}
+	            		} catch(IOException ex) {
+	            			System.out.println("Invalid filename");
+	            			return;
+	            		}
 	            	}
                     break;
                 }
                 
                 //1 parametert var
                 case "load": {
-	            	if(isParametesAreOk(line,0))
-	            	{}
+	            	if(isParametesAreOk(line,1))
+	            	{
+	            		try {
+	            			FileReader fr = new FileReader(line[1]);
+	            			BufferedReader br = new BufferedReader(fr);
+	            			while(true) {
+	            				String l = br.readLine();
+	            				if(l == null)
+	            					return;
+	            				String[] lines = l.split(" ");
+	            				switch (lines[0]) {
+	            	            case "attack": {
+	            	            	if(isParametesAreOk(lines,3))
+	            	            	{}
+	            	            		
+	            	                break;
+	            	            }
+	                            case "create": {
+	            	            	if(isParametesAreOk(lines,2))
+	            	            	{
+	            	            		create(lines[1],lines[2]);
+	            	            	}
+	                                break;
+	                            }
+	                            case "add": {
+	            	            	if(isParametesAreOk(lines,2))
+	            	            	{
+	            	            		add(lines[1],lines[2]);
+	            	            	}
+	                                break;
+	                            }
+	                            case "make": {
+	            	            	if(isParametesAreOk(lines,2))
+	            	            	{}
+	                                break;
+	                            }
+	                            case "steal": {
+	            	            	if(isParametesAreOk(lines,2))
+	            	            	{
+	            	            		steal(lines[1],lines[2]);
+	            	            	}
+	                                break;
+	                            }
+	                            case "setneighbour": {
+	            	            	if(isParametesAreOk(lines,2))
+	            	            	{
+	                                    setNeighbour(lines[1],lines[2]);
+	                                }
+	                                break;
+	                            }
+	                            case "move": {
+	            	            	if(isParametesAreOk(lines,2))
+	            	            	{
+	                                    move(lines[1], lines[2]);
+	                                }
+	                                break;
+	                            }
+	            			}
+	            			}
+	            		} catch(IOException ex) {
+	            			System.out.println("Invalid filename");
+	            			return;
+	            		}
+	            	}
                     break;
                 }
                 
