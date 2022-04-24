@@ -4,7 +4,7 @@ import java.util.List;
 public class Virologist implements Steppable {
 	private int maxMaterial;
     private boolean IsParalysed;
-    private Field field;
+    private Field currentfield;
     private List<Equipment> equipments;
     private List<Agent> agents;
     private List<GeneticCode> geneticcodes;
@@ -19,7 +19,7 @@ public class Virologist implements Steppable {
     public Virologist() {
     	maxMaterial = 3;
         IsParalysed = false;
-        field = new Field();
+        currentfield = new Field();
         equipments = new ArrayList<Equipment>(3);
         agents = new ArrayList<Agent>();
         geneticcodes = new ArrayList<GeneticCode>();
@@ -37,12 +37,12 @@ public class Virologist implements Steppable {
 
         Logger.log(Logger.getParameter() + ".getParalysedStatus()", 1);
         Logger.log("f1.IsNeighbour(" + Logger.getParameter() + ")", 1);
-        if (!this.getParalysedStatus() && field.IsNeighbour(f)) {
+        if (!this.getParalysedStatus() && currentfield.IsNeighbour(f)) {
             Logger.log("f2.acceptVirologists(v)", 1);
             f.acceptVirologists(this);
             Logger.log("f1.removeVirologist(v)", 1);
-            field.removeVirologist(this);
-            field = f;
+            currentfield.removeVirologist(this);
+            currentfield = f;
         }
     }
 
@@ -50,8 +50,8 @@ public class Virologist implements Steppable {
     }
 
 
-    public Field getField() {
-        return field;
+    public Field getCurrentfield() {
+        return currentfield;
     }
 
     /**
@@ -71,7 +71,7 @@ public class Virologist implements Steppable {
             a.effect(v);
         }
         */
-        if(!this.getParalysedStatus() && field.IsNeighbour(v.getField())){
+        if(!this.getParalysedStatus() && currentfield.IsNeighbour(v.getCurrentfield())){
             a.effect(v);
         }
     }
@@ -87,7 +87,7 @@ public class Virologist implements Steppable {
 
         Logger.log(Logger.getParameter() + ".getParalysedStatus()", 1);
         Logger.log("f1.IsNeighbour(v2.getCurrentField())", 1);
-        if (!this.getParalysedStatus() && field.IsNeighbour(v.getField())) {
+        if (!this.getParalysedStatus() && currentfield.IsNeighbour(v.getCurrentfield())) {
 
             Logger.log("v2.getCollectables()", 1);
             for (Collectable c : v.getCollectables()) {
@@ -268,7 +268,7 @@ public class Virologist implements Steppable {
                 geneticcodes.set(i, null);
             a.setActivated();
         } else if (a instanceof Virusdance) {
-			Field random = field.getRandomNeighbour();
+			Field random = currentfield.getRandomNeighbour();
             move(random);
             a.setActivated();
         } else if (a instanceof BearVirus){
@@ -342,7 +342,7 @@ public class Virologist implements Steppable {
 
     public void die(){
         Bear b = new Bear();
-        field.removeVirologist(this);
-        field.acceptVirologists(b);
+        currentfield.removeVirologist(this);
+        currentfield.acceptVirologists(b);
     }
 }

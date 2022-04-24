@@ -93,18 +93,27 @@ public class Main {
 	            	{}
                     break;
                 }
-                
-                //2 parametert var
+
+                /**
+                 * Mindkét paraméter egy mező
+                 */
                 case "setneighbour": {
 	            	if(isParametesAreOk(line,2))
-	            	{}
+	            	{
+                        setNeighbour(line[1],line[2]);
+                    }
                     break;
                 }
-                
-                //2 parametert var
+
+                /**
+                 * Az első paraméter a virológus
+                 * A második paraméter a mező
+                 */
                 case "move": {
 	            	if(isParametesAreOk(line,2))
-	            	{}
+	            	{
+                        move(line[1], line[2]);
+                    }
                     break;
                 }
                 
@@ -1313,5 +1322,108 @@ public class Main {
     	variables += "]";
     	
     	System.out.println(quantity + " " + type + "s created.\n" + variables);
+    }
+
+    /**
+     * Mezők szomszédainak beállítása
+     * @param field1 - neki állítjuk be field2-t szomszédként
+     * @param field2 - őt állítjuk be szomszédként field1-nek (de végülis tök mindegy melyiket adjuk meg)
+     */
+    static void setNeighbour(String  field1, String field2){
+        //Ellenőrizzük, hogy van-e ilyen mező
+        if(!checkVariable(field1))
+        {
+            System.out.println("'" + field1 + "' is not recognized as a variable. See 'help'.");
+            return;
+        }
+
+        //Ellenőrizzük, hogy van-e ilyen mező
+        if(!checkVariable(field2))
+        {
+            System.out.println("'" + field2 + "' is not recognized as a variable. See 'help'.");
+            return;
+        }
+
+        //Visszaadja a mezőkhöz tartozó objektumokat
+        Object field1_obj = getVariableByName(field1);
+        Object field2_obj = getVariableByName(field2);
+
+        //Ellenőrzés: mindkét objektum Field típusu-e
+        if(!(field1_obj instanceof Field || field2_obj instanceof Field))
+        {
+            System.out.println("'" + field1 + "' or" + field2 + " is not recognized as a field. See 'help'.");
+            return;
+        }
+
+        //Ha a két mező már szomszédos nem csinálunk semmit
+        if(((Field)field1_obj).IsNeighbour((Field)field2_obj))
+        {
+            System.out.println("'" + field1 + "' and" + field2 + " are already neighbours. See 'help'.");
+            return;
+        }
+
+        //Minden oké, ha eddig eljutunk -> beállítjuk a szomszédokat
+        ((Field)field1_obj).setNeighbour((Field)field2_obj);
+        System.out.println("'" + field2 + "' is set as neighbour to " + field1 + " .");
+        return;
+
+    }
+
+    /**
+     * Virológust mozgatása
+     * @param virologist - a felhasználó által megadott virológust akit mozgatni szeretnénk
+     * @param field - a felhasználó által megadott mező, ahova a virológust akarjuk mozgatni
+     */
+    static void move(String virologist, String field){
+        //Ellenőrizzük, hogy van-e ilyen virológus
+        if(!checkVariable(virologist))
+        {
+            System.out.println("'" + virologist + "' is not recognized as a variable. See 'help'.");
+            return;
+        }
+
+        //Ellenőrizzük, hogy van-e ilyen mező
+        if(!checkVariable(field))
+        {
+            System.out.println("'" + field + "' is not recognized as a variable. See 'help'.");
+            return;
+        }
+
+        //Visszaadja a virológushoz tartozó objektumot
+        Object virologist_obj = getVariableByName(virologist);
+
+        if(!(virologist_obj instanceof Virologist))
+        {
+            System.out.println("'" + virologist + " is not recognized as a virologist. See 'help'.");
+            return;
+        }
+
+        //Visszaadja a mezőhöz tartozó objektumot
+        Object field_obj = getVariableByName(field);
+
+        if(!(field_obj instanceof Field))
+        {
+            System.out.println("'" + field + " is not recognized as a field. See 'help'.");
+            return;
+        }
+
+        //Ha a virológus aktuális mezője nem szomszédos a megadott mezővel
+        if(!(((Virologist)virologist_obj).getCurrentfield().IsNeighbour((Field) field_obj)))
+        {
+            System.out.println("'" + virologist + "'s field and " + field + " are not neighbours. See 'help'.");
+            return;
+        }
+
+        //Ha a virológus bénult állapotban van
+        if((((Virologist)virologist_obj).getParalysedStatus()))
+        {
+            System.out.println("'" + virologist + "'is paralyzed.");
+            return;
+        }
+
+        //Egyébként minden oké és léptetünk
+        ((Virologist)virologist_obj).move(((Field)field_obj));
+        System.out.println("'" + virologist + "moved to " + field);
+        return;
     }
 }
