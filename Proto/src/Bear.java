@@ -1,7 +1,7 @@
 public class Bear extends Virologist implements Steppable{
     @Override
     public void step() {
-        //random movement
+        move();
     }
 
     public  void destroy(){

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Virologist implements Steppable {
 	private int maxMaterial;
@@ -143,9 +144,11 @@ public class Virologist implements Steppable {
     }
 
     public void learnGeneticCode(GeneticCode g) {
+
     }
 
     public void forgetGeneticCode(GeneticCode g) {
+        geneticcodes.remove(g);
     }
 
 
@@ -250,6 +253,7 @@ public class Virologist implements Steppable {
     }
 
     public void removeAgent(Agent a) {
+        agents.remove(a);
     }
 
     public boolean getParalysedStatus() {
@@ -257,21 +261,37 @@ public class Virologist implements Steppable {
     }
 
     public void addEffect(Agent a) {
-        if (a instanceof Vaccine) {
-            a.setActivated();
-        } else if (a instanceof Paralyses) {
-            IsParalysed = true;
-            a.setActivated();
-        } else if (a instanceof Oblivion) {
-            for (int i = 0; i < geneticcodes.size(); i++)
-                geneticcodes.set(i, null);
-            a.setActivated();
-        } else if (a instanceof Virusdance) {
-			Field random = currentfield.getRandomNeighbour();
-            move(random);
-            a.setActivated();
-        } else if (a instanceof BearVirus){
-            this.die();
+
+        for (Collectable c : this.getCollectables()) {
+            if(c instanceof Cloak){
+                Random random = new Random();
+                int h = random.nextInt(100);
+                if(h > ((Cloak) c).getHatasfok()) {
+                    if (a instanceof Vaccine) {
+                        a.setActivated();
+                    } else if (a instanceof Paralyses) {
+                        IsParalysed = true;
+                        a.setActivated();
+                    } else if (a instanceof Oblivion) {
+                        for (int i = 0; i < geneticcodes.size(); i++)
+                            geneticcodes.set(i, null);
+                        a.setActivated();
+                    } else if (a instanceof Virusdance) {
+                        Field randomField = currentfield.getRandomNeighbour();
+                        move(randomField);
+                        a.setActivated();
+                    } else if (a instanceof BearVirus) {
+                        this.die();
+                    }
+                }
+            }
+
+            if(c instanceof Glove){
+                ((Glove) c).effect(this);
+                attack(a.getVirologist(), a);
+            }
+
+
         }
     }
     
@@ -280,6 +300,7 @@ public class Virologist implements Steppable {
     }
 
     public void removeEffect(Agent a) {
+
     }
 
     public void pickUp(GeneticCode gc) {
@@ -344,4 +365,5 @@ public class Virologist implements Steppable {
         currentfield.removeVirologist(this);
         currentfield.acceptVirologists(b);
     }
+
 }
