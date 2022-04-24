@@ -4,7 +4,8 @@
 public class  Cloak extends Equipment {
 
 	private double hatasfok = 82.3;
-	public void effect(Virologist on) {
+	public void effect(Virologist v) {
+
 	}
 	
 	@Override

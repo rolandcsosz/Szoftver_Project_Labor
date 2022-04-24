@@ -51,6 +51,7 @@ public class Virologist implements Steppable {
     }
 
     public void setCurrentfield(Field currentfield) {
+
         this.currentfield = currentfield;
     }
 
@@ -63,17 +64,14 @@ public class Virologist implements Steppable {
      */
     public void attack(Virologist v, Agent a) {
 
-        /*Logger.log(Logger.getParameter() + ".getParalysedStatus()", 1);
+        Logger.log(Logger.getParameter() + ".getParalysedStatus()", 1);
         Logger.log("f1.IsNeighbour(" + Logger.getParameter() + ".getField())", 1);
 
-        if (!this.getParalysedStatus() && field.IsNeighbour(v.getField())) {
+        if (!this.getParalysedStatus() && currentfield.IsNeighbour(v.getCurrentfield())) {
             Logger.log(Logger.getsecondParameter() + ".effect(" + Logger.getParameter() + ")", 1);
             a.effect(v);
         }
-        */
-        if(!this.getParalysedStatus() && currentfield.IsNeighbour(v.getCurrentfield())){
-            a.effect(v);
-        }
+
     }
 
     /**
@@ -195,12 +193,8 @@ public class Virologist implements Steppable {
 
                 Logger.log("s.removeCollectable(" + Logger.getParameter() + ")", 1);
                 s.removeCollectable(cb);
-
             }
-
         }
-
-
     }
 
     /**
@@ -217,11 +211,7 @@ public class Virologist implements Steppable {
 
             Logger.log("wh.removeCollectable(" + Logger.getParameter() + ")", 1);
             wh.removeCollectable(cb);
-
-
         }
-
-
     }
 
 
@@ -250,6 +240,8 @@ public class Virologist implements Steppable {
     }
 
     public void move() {
+        Field randomField = currentfield.getRandomNeighbour();
+        move(randomField);
     }
 
     public void removeAgent(Agent a) {
@@ -266,7 +258,6 @@ public class Virologist implements Steppable {
                 return;
             }
         }
-
         for (Collectable c : this.getCollectables()) {
             if(c instanceof Cloak){
                 Random random = new Random();
@@ -323,16 +314,15 @@ public class Virologist implements Steppable {
     }
 
     public void remove(GeneticCode gc) {
-
+        geneticcodes.remove(gc);
     }
 
     public void remove(Equipment eq) {
-        //todo kesztyu lehamlasa
-
+        equipments.remove(eq);
     }
 
     public void remove(Material m) {
-
+        materials.remove(m);
     }
 
     public void setMaterialCount(int new_size) {
@@ -361,7 +351,6 @@ public class Virologist implements Steppable {
         return false;
     }
 
-    //todo eldobas fuggveny
 
     public void die(){
         Bear b = new Bear();

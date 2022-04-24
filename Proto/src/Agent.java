@@ -23,7 +23,7 @@ public abstract class Agent implements Collectable, Effectable, Steppable {
 	}
 	
 	public void step() {
-		if(isActivated == true) {
+		if(isActivated) {
 			timeCounter--;
 		}
 	}
