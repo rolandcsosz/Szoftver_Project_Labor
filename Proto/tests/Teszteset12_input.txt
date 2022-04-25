@@ -1,0 +1,17 @@
+create virologist 1
+create shelter 2
+create cloak 1
+create axe 1
+create glove 1
+create bag 1
+add S1 C1
+add S1 A1
+add S1 G1
+add S2 B1
+setneighbour S1 S2
+add S1 V1
+add V1 C1
+add V1 A1
+add V1 G1
+move V1 S2
+add V1 B1

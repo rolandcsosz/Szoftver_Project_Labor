@@ -1,0 +1,6 @@
+create field 1
+create laboratory 1
+setneighbour F1 L1
+create virologist 1
+add F1 V1
+move V1 L1

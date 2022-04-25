@@ -1,6 +1,9 @@
-create field 1
-create shelter 1
-setneighbour F1 S1
-create virologist 1
-add F1 V1
-move V1 S1
+1 fields created.
+[F1]
+1 warehouses created.
+[W1]
+'W1' is set as neighbour to 'F1'.
+1 virologists created.
+[V1]
+'V1' is added to 'F1'.
+'V1' moved to 'W1'.

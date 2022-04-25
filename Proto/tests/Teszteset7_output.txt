@@ -1,0 +1,8 @@
+1 laboratorys created.
+[L1]
+1 fields created.
+[F1]
+1 shelters created.
+[S1]
+'F1' is set as neighbour to 'L1'.
+'S1' is set as neighbour to 'F1'.

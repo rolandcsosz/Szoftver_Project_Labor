@@ -9,6 +9,17 @@ function test([string]$testfile, [string]$expectedfile) {
       Write-Host "Test file: $testfile passed." -ForegroundColor Green
 	  Write-Host ""
      }
+   elseif ($output -eq $null -or $expResult -eq $null){
+
+     Write-Host "Test file: $testfile failed." -ForegroundColor Red
+        Write-Host "Expected:" -ForegroundColor Red -BackgroundColor Yellow
+        Write-Host "-------------------------------------"
+        Write-Host $expResult
+        Write-Host "Actual:" -ForegroundColor Red -BackgroundColor Yellow
+        Write-Host "-------------------------------------"
+        Write-Host $output
+	Write-Host ""
+     }
   else{
 
     $diff = compare $output $expResult

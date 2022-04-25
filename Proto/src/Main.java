@@ -136,7 +136,7 @@ public class Main {
                 
                 //1 parametert var
                 case "save": {
-	            	if(isParametesAreOk(line,3))
+	            	if(isParametesAreOk(line,1))
 	            	{
 	            		save(line[1]);
 	            	}
@@ -145,7 +145,7 @@ public class Main {
                 
                 //1 parametert var
                 case "load": {
-	            	if(isParametesAreOk(line,0))
+	            	if(isParametesAreOk(line,1))
 	            	{
 	            		load(line[1]);
 	            	}
@@ -171,8 +171,9 @@ public class Main {
                 
                 //0 parametert var
                 case "help": {
-
-                	help();
+                	if(isParametesAreOk(line,0))
+                		help();
+                	
                     break;
                 }
 
@@ -1066,7 +1067,7 @@ public class Main {
     	
     	Object thing_obj = getVariableByName(thing);
     	
-    	if(!(thing_obj instanceof Agent || thing_obj instanceof Material || thing_obj instanceof Bag || thing_obj instanceof Glove || thing_obj instanceof Cloak || thing_obj instanceof Axe || thing_obj instanceof Virologist))
+    	if(!(thing_obj instanceof Agent || thing_obj instanceof Material || thing_obj instanceof GeneticCode || thing_obj instanceof Bag || thing_obj instanceof Glove || thing_obj instanceof Cloak || thing_obj instanceof Axe || thing_obj instanceof Virologist))
     	{
     		
     		System.out.println(thing_obj.getClass().toString() +  "'" + thing + "' is not recognized as a virologist or equipment or agent or material. See 'help'.");
@@ -1081,6 +1082,13 @@ public class Main {
     		if(thing_obj instanceof Agent) {
     			((Virologist)actor_obj).pickUp((Agent)thing_obj);
     			System.out.println("'" + thing + "' is added to '" + actor + "'.");
+    			return;
+    		}
+    		
+    		if(thing_obj instanceof GeneticCode) {
+    			((Virologist)actor_obj).pickUp((GeneticCode)thing_obj);
+    			System.out.println("'" + thing + "' is added to '" + actor + "'.");
+    			return;
     		}
     		
     		if(thing_obj instanceof Material) {
@@ -1090,6 +1098,7 @@ public class Main {
     			}
     			((Virologist)actor_obj).pickUp((Material)thing_obj);
     			System.out.println("'" + thing + "' is added to '" + actor + "'.");
+    			return;
     		}
     		
     		if(thing_obj instanceof Equipment) {
@@ -1100,43 +1109,48 @@ public class Main {
     			
     			((Virologist)actor_obj).pickUp((Equipment)thing_obj);
     			System.out.println("'" + thing + "' is added to '" + actor + "'.");
+    			return;
     		}
+
     		
     	}
     	
     	//ha mezohoz rendelunk dolgokat
     	if(actor_obj instanceof Field) {
     		
-    		Field f = (Field)actor_obj;
-    		
     		if(actor_obj instanceof Laboratory) {
     			if(thing_obj instanceof GeneticCode) {
     				((Laboratory) actor_obj).addGeneticCode((GeneticCode)thing_obj);
         		}
     			System.out.println("'" + thing + "' is added to '" + actor + "'.");
+    			return;
     		}
     		
     		if(actor_obj instanceof Shelter) {
-    			if(thing_obj instanceof GeneticCode) {
-    				((Shelter)thing_obj).addEquipment((Equipment)actor_obj);
+    			if(thing_obj instanceof Equipment) {
+    				((Shelter)actor_obj).addEquipment((Equipment)thing_obj);
         		}
     			System.out.println("'" + thing + "' is added to '" + actor + "'.");
+    			return;
     		}
     		
     		if(actor_obj instanceof Warehouse) {
-    			if(thing_obj instanceof GeneticCode) {
-    				int level = ((Warehouse)thing_obj).getMaterialLevel();
-    				((Warehouse)thing_obj).setMaterialLevel(level+1);
+    			if(thing_obj instanceof Material) {
+    				int level = ((Warehouse)actor_obj).getMaterialLevel();
+    				((Warehouse)actor_obj).setMaterialLevel(level+1);
         		}
     			System.out.println("'" + thing + "' is added to '" + actor + "'.");
+    			return;
     		}
     		
     		
     		if(thing_obj instanceof Virologist) {
-    			f.acceptVirologists((Virologist)thing_obj);
-                ((Virologist)thing_obj).setCurrentfield(f);
+    			((Field)actor_obj).acceptVirologists((Virologist)thing_obj);
+                ((Virologist)thing_obj).setCurrentfield(((Field)actor_obj));
     			System.out.println("'" + thing + "' is added to '" + actor + "'.");
+    			return;
     		}
+    		
     		
     	}	
     		
@@ -1240,8 +1254,8 @@ public class Main {
     		
     		counter = counters.get(obj.getClass().toString())+1;
     		counters.replace(obj.getClass().toString(), counter);
-    		fields.put("Wh" + counter, (Warehouse)obj);
-        	return "Wh" + counter;
+    		fields.put("W" + counter, (Warehouse)obj);
+        	return "W" + counter;
     	}
     	
     	if(obj instanceof Material) 

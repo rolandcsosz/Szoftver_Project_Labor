@@ -1,0 +1,4 @@
+create warehouse 2
+create geneticCode 2
+add W1 GC1
+add W2 GC2

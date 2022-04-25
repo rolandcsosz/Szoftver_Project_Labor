@@ -1,0 +1,5 @@
+create virologist 2
+create field 1
+create shelter 1
+add F1 V1
+add S1 V2
