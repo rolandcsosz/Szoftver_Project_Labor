@@ -5,6 +5,12 @@ function test([string]$testfile, [string]$expectedfile) {
     $input = cat $path
     $output = echo $input | java -cp .\src\class\ Main
 
+  if ($output -eq $null -and $expResult -eq $null){
+      Write-Host "Test file: $testfile passed." -ForegroundColor Green
+	  Write-Host ""
+     }
+  else{
+
     $diff = compare $output $expResult
 
     if ($diff.Length -eq 0) {
@@ -20,6 +26,8 @@ function test([string]$testfile, [string]$expectedfile) {
         Write-Host $output
 	Write-Host ""
     }
+
+ }
 }
 
 function testAll() {

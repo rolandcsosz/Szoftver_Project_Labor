@@ -16,7 +16,13 @@ public class Main {
     public static Logger logger = new Logger();
     static Scanner scanner;
     static String[] line;
+    static String wholeLine;
     static boolean isRunning = true;
+    
+  //A beolvasáshoz kellenek. Azért tettem ide õket, hogy a parseMap függvény is lássa õket.
+  	private static InputStreamReader isr =	new InputStreamReader(System.in);
+  	private static BufferedReader br = new BufferedReader(isr);
+
     
     //a program futasa kozben hasznalt valtozok tarolva, a kreaslas utani nev a kulcs
     static HashMap<String, Virologist> virologists = new HashMap<String, Virologist>();
@@ -35,13 +41,20 @@ public class Main {
      */
     public static void main(String[] args) {
     	
-    	
-    	scanner = new Scanner(System.in);
+
     	
         while (isRunning) {
 
-        		line = scanner.nextLine().split(" ");
+    		try {
+				wholeLine = br.readLine();
+			} catch (IOException e) {
+
+			}
+
+    		if (wholeLine == null) break;
         	
+        	line = wholeLine.split(" ");
+
 
             switch (line[0]) {
             
@@ -1171,6 +1184,18 @@ public class Main {
     		counters.replace(obj.getClass().toString(), counter);
     		virologists.put("V" + counter, (Virologist)obj);
         	return "V" + counter;
+    	}
+    	
+    	if(obj instanceof Field && !(obj instanceof Laboratory||obj instanceof Shelter||obj instanceof Warehouse)) 
+    	{
+    		if(counters.get(obj.getClass().toString()) == null) {
+    			counters.put(obj.getClass().toString(), 0);
+    		}
+    		
+    		counter = counters.get(obj.getClass().toString())+1;
+    		counters.replace(obj.getClass().toString(), counter);
+    		fields.put("F" + counter, (Field)obj);
+        	return "F" + counter;
     	}
     	
     	if(obj instanceof Laboratory) 

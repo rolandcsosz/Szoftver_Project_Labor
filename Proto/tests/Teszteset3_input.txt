@@ -1,0 +1,5 @@
+create field 2
+setneighbour F1 F2
+create virologist 1
+add F1 V1
+move V1 F2
