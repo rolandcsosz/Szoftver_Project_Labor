@@ -1,0 +1,9 @@
+create virologist 2
+create shelter 2
+create warehouse 1
+create oblivion 1
+setneighbour W1 S1
+add V1 O1
+add S1 V1
+add S2 V2
+attack V1 V2 O1

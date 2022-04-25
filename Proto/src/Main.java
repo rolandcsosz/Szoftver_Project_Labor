@@ -134,6 +134,13 @@ public class Main {
                     break;
                 }
                 
+                case "kill": {
+	            	if(isParametesAreOk(line,2))
+	            	{
+                        kill(line[1], line[2]);
+                    }
+                    break;
+                }
                 //1 parametert var
                 case "save": {
 	            	if(isParametesAreOk(line,1))
@@ -165,9 +172,11 @@ public class Main {
                 case "exit": {
 	            	if(isParametesAreOk(line,0))
 	                	isRunning = false;
-
+	            	System.out.println("Exit, bye!");
                     break;
                 }
+                
+
                 
                 //0 parametert var
                 case "help": {
@@ -200,765 +209,6 @@ public class Main {
     	}
     }
 
-
-    /**
-     * This is a method which generates the required objects and set them to the required states for the
-     * "Virologist moves to empty field" and simulate that.
-     *
-     * @param args Unused.
-     * @return Nothing.
-     */
-    private static void movesToEmptyField() {
-
-        /*Kommunikacios diagramok alapjan*/
-
-        System.out.println("\nInitialization before the action:");
-        Logger.log("<<create>> Virologist:v", 0);
-        Virologist v = new Virologist();
-        Logger.log("<<create>> Field:f", 0);
-        Field f = new Field();
-
-        /*Szekvenciak alapjan*/
-
-        System.out.println("\nAfter initialization: ");
-        Logger.setParameter("f2");
-        Logger.log("v.move(" + Logger.getParameter() + ")", 0);
-        v.move(f);
-
-
-    }
-
-
-    /**
-     * This is a method which generates the required objects and set them to the required states for the
-     * "Virologist moves to laboratory" and simulate that.
-     *
-     * @param args Unused.
-     * @return Nothing.
-     */
-    private static void movesToLaboratory() {
-
-        /*Kommunikacios diagramok alapjan*/
-
-        System.out.println("\nInitialization before the action:");
-        Logger.log("<<create>> Virologist:v", 0);
-        Virologist v = new Virologist();
-        Logger.log("<<create>> Laboratory:l", 0);
-        Laboratory l = new Laboratory();
-
-        /*Szekvenciak alapjan*/
-
-        System.out.println("\nAfter initialization: ");
-        Logger.setParameter("l");
-        Logger.log("v.move(" + Logger.getParameter() + ")", 0);
-        v.move(l);
-
-    }
-
-
-    /**
-     * This is a method which generates the required objects and set them to the required states for the
-     * "Virologist moves to warehouse" and simulate that.
-     *
-     * @param args Unused.
-     * @return Nothing.
-     */
-    private static void movesToWarehouse() {
-
-        /*Kommunikacios diagramok alapjan*/
-
-        System.out.println("\nInitialization before the action:");
-        Logger.log("<<create>> Virologist:v", 0);
-        Virologist v = new Virologist();
-        Logger.log("<<create>> Warehouse:wh", 0);
-        Warehouse wh = new Warehouse();
-
-        /*Szekvenciak alapjan*/
-
-        System.out.println("\nAfter initialization: ");
-        Logger.setParameter("wh");
-        Logger.log("v.move(" + Logger.getParameter() + ")", 0);
-        v.move(wh);
-    }
-
-
-    /**
-     * This is a method which generates the required objects and set them to the required states for the
-     * "Virologist moves to shelter" and simulate that.
-     *
-     * @param args Unused.
-     * @return Nothing.
-     */
-    private static void movesToShelter() {
-
-        /*Kommunikacios diagramok alapjan*/
-
-        System.out.println("\nInitialization before the action:");
-        Logger.log("<<create>> Virologist:v", 0);
-        Virologist v = new Virologist();
-        Logger.log("<<create>> Shelter:s", 0);
-        Shelter s = new Shelter();
-
-        /*Szekvenciak alapjan*/
-
-        System.out.println("\nAfter initialization: ");
-        Logger.setParameter("s");
-        Logger.log("v.move(" + Logger.getParameter() + ")", 0);
-        v.move(s);
-
-    }
-
-    /**
-     * This is a method which generates the required objects and set them to the required states for the
-     * "Virologist learns genetic code" and simulate that.
-     *
-     * @param args Unused.
-     * @return Nothing.
-     */
-    private static void virologistLearnsGeneticCode() {
-
-        /*Kommunikacios diagramok alapjan*/
-
-        System.out.println("\nInitialization before the action:");
-        Logger.log("<<create>> Virologist:v", 0);
-        Virologist v = new Virologist();
-        Logger.log("<<create>> Laboratory:l", 0);
-        Laboratory l = new Laboratory();
-        Logger.log("<<create>> GeneticCode:g", 0);
-        GeneticCode g = new GeneticCode();
-        Logger.log("l.generateGeneticCode(g)", 0);
-        l.addGeneticCode(g);
-        Logger.setParameter("l");
-
-        Logger.log("v.move(" + Logger.getParameter() + ")", 0);
-        v.move(l);
-
-        /*Szekvenciak alapjan*/
-
-        System.out.println("\nAfter initialization: ");
-
-        Logger.log("v.scout(" + Logger.getParameter() + ")", 0);
-        v.scout(l);
-
-    }
-
-    /**
-     * This is a method which generates the required objects and set them to the required states for the
-     * "Virologist picks up a bag" and simulate that.
-     *
-     * @param args Unused.
-     * @return Nothing.
-     */
-    private static void virologistPicksUpaBag() {
-
-        /*Kommunikacios diagramok alapjan*/
-
-        System.out.println("\nInitialization before the action:");
-        Logger.log("<<create>> Virologist:v", 0);
-        Virologist v = new Virologist();
-        Logger.log("<<create>> Shelter:s", 0);
-        Shelter s = new Shelter();
-        Logger.log("<<create>> Bag:b", 0);
-        Bag b = new Bag();
-        Logger.log("s.addEquipment(b)", 0);
-        s.addEquipment(b);
-        Logger.setParameter("s");
-
-        Logger.log("v.move(" + Logger.getParameter() + ")", 0);
-        v.move(s);
-
-        s.addEquipment(b);
-
-
-        /*Szekvenciak alapjan*/
-
-        System.out.println("\nAfter initialization: ");
-        Logger.log("v.scout(" + Logger.getParameter() + ")", 0);
-        Logger.setParameter("b");
-        v.scout(s);
-
-    }
-
-
-    /**
-     * This is a method which generates the required objects and set them to the required states for the
-     * "Virologist picks up a cloak" and simulate that.
-     *
-     * @param args Unused.
-     * @return Nothing.
-     */
-    private static void virologistPicksUpaCloak() {
-
-        /*Kommunikacios diagramok alapjan*/
-
-        System.out.println("\nInitialization before the action:");
-        Logger.log("<<create>> Virologist:v", 0);
-        Virologist v = new Virologist();
-        Logger.log("<<create>> Shelter:s", 0);
-        Shelter s = new Shelter();
-        Logger.log("<<create>> Cloak:c", 0);
-        Cloak c = new Cloak();
-
-        Logger.log("s.addEquipment(c)", 0);
-        s.addEquipment(c);
-
-        Logger.setParameter("s");
-        Logger.log("v.move(" + Logger.getParameter() + ")", 0);
-        v.move(s);
-
-        /*Szekvenciak alapjan*/
-
-        System.out.println("\nAfter initialization: ");
-        Logger.log("v.scout(" + Logger.getParameter() + ")", 0);
-        Logger.setParameter("c");
-        v.scout(s);
-
-    }
-
-
-    /**
-     * This is a method which generates the required objects and set them to the required states for the
-     * "Virologist picks up a glove" and simulate that.
-     *
-     * @param args Unused.
-     * @return Nothing.
-     */
-    private static void virologistPicksUpaGlove() {
-
-        /*Kommunikacios diagramok alapjan*/
-
-        System.out.println("\nInitialization before the action:");
-        Logger.log("<<create>> Virologist:v", 0);
-        Virologist v = new Virologist();
-        Logger.log("<<create>> Shelter:s", 0);
-        Shelter s = new Shelter();
-        Logger.log("<<create>> Glove:g", 0);
-        Glove g = new Glove();
-
-        Logger.log("s.addEquipment(g)", 0);
-        s.addEquipment(g);
-        Logger.setParameter("s");
-
-        Logger.log("v.move(" + Logger.getParameter() + ")", 0);
-        v.move(s);
-
-
-        /*Szekvenciak alapjan*/
-
-        System.out.println("\nAfter initialization: ");
-        Logger.log("v.scout(" + Logger.getParameter() + ")", 0);
-        Logger.setParameter("g");
-        v.scout(s);
-    }
-
-
-    /**
-     * This is a method which generates the required objects and set them to the required states for the
-     * "Virologist picks up material" and simulate that.
-     *
-     * @param args Unused.
-     * @return Nothing.
-     */
-    private static void virologistPicksUpMaterial() {
-
-        /*Kommunikacios diagramok alapjan*/
-
-        System.out.println("\nInitialization before the action:");
-        Logger.log("<<create>> Virologist:v", 0);
-        Virologist v = new Virologist();
-        Logger.log("<<create>> Warehouse:w", 0);
-        Warehouse w = new Warehouse();
-        Logger.log("w.produceMaterial(1)", 0);
-        w.produceMaterial(1);
-
-
-        Logger.setParameter("w");
-
-        Logger.log("v.move(" + Logger.getParameter() + ")", 0);
-        v.move(w);
-
-        /*Szekvenciak alapjan*/
-
-        System.out.println("\nAfter initialization: ");
-        Logger.log("v.scout(" + Logger.getParameter() + ")", 0);
-        Logger.setParameter("g");
-        v.scout(w);
-
-    }
-
-    /**
-     * This is a method which generates the required objects and set them to the required states for the
-     * "Virologist makes vaccine" and simulate that.
-     *
-     * @param args Unused.
-     * @return Nothing.
-     */
-    static void virologistMakesVaccine() {
-        /*Kommunikacios diagramok alapjan*/
-
-        System.out.println("\nInitialization before the action:");
-        Logger.log("<<create>> Virologist:v", 0);
-        Virologist v = new Virologist();
-        Logger.log("<<create>> Vaccine:vc", 0);
-        Vaccine vc = new Vaccine();
-        Logger.log("<<create>> GeneticCode:gc", 0);
-        GeneticCode gc = new GeneticCode();
-        Logger.log("<<create>> Material:m", 0);
-        Material m = new Material();
-
-
-        Logger.log("v.pickUp(gc)", 0);
-        v.pickUp(gc);
-        Logger.log("v.pickUp(m)", 0);
-        v.pickUp(m);
-
-        /*Szekvenciak alapjan*/
-
-        System.out.println("\nAfter initialization: ");
-        Logger.log("v.createAgens(vc)", 0);
-        Logger.setsecondParameter("vc");
-        v.createAgens(vc);
-
-    }
-
-    /**
-     * This is a method which generates the required objects and set them to the required states for the
-     * "Virologist makes oblivion virus" and simulate that.
-     *
-     * @param args Unused.
-     * @return Nothing.
-     */
-    static void virologistMakesOblivionVirus() {
-
-        /*Kommunikacios diagramok alapjan*/
-
-        System.out.println("\nInitialization before the action:");
-        Logger.log("<<create>> Virologist:v", 0);
-        Virologist v = new Virologist();
-        Logger.log("<<create>> Oblivion:o", 0);
-        Oblivion ov = new Oblivion();
-        Logger.log("<<create>> GeneticCode:gc", 0);
-        GeneticCode gc = new GeneticCode();
-        Logger.log("<<create>> Material:m", 0);
-        Material m = new Material();
-
-        Logger.log("v.pickUp(gc)", 0);
-        v.pickUp(gc);
-        Logger.log("v.pickUp(m)", 0);
-        v.pickUp(m);
-
-        /*Szekvenciak alapjan*/
-
-        System.out.println("\nAfter initialization: ");
-        Logger.log("v.createAgens(o)", 0);
-        Logger.setsecondParameter("o");
-        v.createAgens(ov);
-    }
-
-    /**
-     * This is a method which generates the required objects and set them to the required states for the
-     * "Virologist makes virus dance" and simulate that.
-     *
-     * @param args Unused.
-     * @return Nothing.
-     */
-    static void virologistMakesVirusDance() {
-        /*Kommunikacios diagramok alapjan*/
-
-        System.out.println("\nInitialization before the action:");
-        Logger.log("<<create>> Virologist:v", 0);
-        Virologist v = new Virologist();
-        Logger.log("<<create>> Virusdance:vd", 0);
-        Virusdance vd = new Virusdance();
-        Logger.log("<<create>> GeneticCode:gc", 0);
-        GeneticCode gc = new GeneticCode();
-        Logger.log("<<create>> Material:m", 0);
-        Material m = new Material();
-
-
-        Logger.log("v.pickUp(gc)", 0);
-        v.pickUp(gc);
-        Logger.log("v.pickUp(m)", 0);
-        v.pickUp(m);
-
-
-        /*Szekvenciak alapjan*/
-
-        System.out.println("\nAfter initialization: ");
-        Logger.log("v.createAgens(vd)", 0);
-        Logger.setsecondParameter("vd");
-        v.createAgens(vd);
-
-    }
-
-    /**
-     * This is a method which generates the required objects and set them to the required states for the
-     * "Virologist makes paralyses virus" and simulate that.
-     *
-     * @param args Unused.
-     * @return Nothing.
-     */
-    static void virologistMakesParalysesVirus() {
-        /*Kommunikacios diagramok alapjan*/
-
-        System.out.println("\nInitialization before the action:");
-        Logger.log("<<create>> Virologist:v", 0);
-        Virologist v = new Virologist();
-        Logger.log("<<create>> Paralyses:p", 0);
-        Paralyses p = new Paralyses();
-        Logger.log("<<create>> GeneticCode:gc", 0);
-        GeneticCode gc = new GeneticCode();
-        Logger.log("<<create>> Material:m", 0);
-        Material m = new Material();
-
-        Logger.log("v.pickUp(gc)", 0);
-        v.pickUp(gc);
-        Logger.log("v.pickUp(m)", 0);
-        v.pickUp(m);
-
-        /*Szekvenciak alapjan*/
-
-        System.out.println("\nAfter initialization: ");
-        Logger.log("v.createAgens(p)", 0);
-        Logger.setsecondParameter("p");
-        v.createAgens(p);
-
-    }
-
-    /**
-     * This is a method which generates the required objects and set them to the required states for the
-     * "Virologist uses vaccine" and simulate that.
-     *
-     * @param args Unused.
-     * @return Nothing.
-     */
-    static void useVaccine() {
-
-        /*Kommunikacios diagramok alapjan*/
-
-        System.out.println("\nInitialization before the action:");
-        Logger.log("<<create>> Virologist:v", 0);
-        Virologist v = new Virologist();
-        Logger.log("<<create>> Vaccine:vc", 0);
-        Vaccine vc = new Vaccine();
-        Logger.log("v.pickUp(vc)", 0);
-        v.addAgent(vc);
-
-        /*Szekvenciak alapjan*/
-
-        System.out.println("\nAfter initialization: ");
-        Logger.log("v.attack(v,vc)", 0);
-        Logger.setParameter("v");
-        Logger.setsecondParameter("vc");
-        v.attack(v, vc);
-
-    }
-
-    /**
-     * This is a method which generates the required objects and set them to the required states for the
-     * "Virologist attacks with virus dance" and simulate that.
-     *
-     * @param args Unused.
-     * @return Nothing.
-     */
-    static void VirologistAttacksWithVirusDance() {
-
-        /*Kommunikacios diagramok alapjan*/
-
-        System.out.println("\nInitialization before the action:");
-        Logger.log("<<create>> Virologist:v1", 0);
-        Virologist v1 = new Virologist();
-        Logger.log("<<create>> Virologist:v2", 0);
-        Virologist v2 = new Virologist();
-        Logger.log("<<create>> Field:f1", 0);
-        Field f1 = new Field();
-        Logger.log("<<create>> Field:f2", 0);
-        Field f2 = new Field();
-
-        f1.setNeighbour(f2);
-
-        Logger.log("v1.move(f1)", 0);
-        v1.move(f1);
-        Logger.log("v2.move(f2)", 0);
-        v2.move(f2);
-
-        Logger.log("<<create>> Virusdance:vd", 0);
-        Virusdance vd = new Virusdance();
-        Logger.log("v.pickUp(vd)", 0);
-        v1.addAgent(vd);
-
-
-        /*Szekvenciak alapjan*/
-
-        System.out.println("\nAfter initialization: ");
-        Logger.log("v1.attack(v2,vd)", 0);
-        Logger.setParameter("v2");
-        Logger.setsecondParameter("vd");
-        v1.attack(v2, vd);
-
-    }
-
-    /**
-     * This is a method which generates the required objects and set them to the required states for the
-     * "Virologist attacks with paralyses virus" and simulate that.
-     *
-     * @param args Unused.
-     * @return Nothing.
-     */
-    static void VirologistAttacksWithParalyses() {
-
-        /*Kommunikacios diagramok alapjan*/
-
-        System.out.println("\nInitialization before the action:");
-        Logger.log("<<create>> Virologist:v1", 0);
-        Virologist v1 = new Virologist();
-        Logger.log("<<create>> Virologist:v2", 0);
-        Virologist v2 = new Virologist();
-        Logger.log("<<create>> Field:f1", 0);
-        Field f1 = new Field();
-        Logger.log("<<create>> Field:f2", 0);
-        Field f2 = new Field();
-
-        f1.setNeighbour(f2);
-
-        Logger.log("v1.move(f1)", 0);
-        v1.move(f1);
-        Logger.log("v2.move(f2)", 0);
-        v2.move(f2);
-
-        Logger.log("<<create>> Paralyses:p", 0);
-        Paralyses p = new Paralyses();
-        Logger.log("v1.pickUp(p)", 0);
-        v1.addAgent(p);
-
-        /*Szekvenciak alapjan*/
-
-        System.out.println("\nAfter initialization: ");
-        Logger.log("v1.attack(v2,p)", 0);
-        Logger.setParameter("v2");
-        Logger.setsecondParameter("p");
-        v1.attack(v2, p);
-
-    }
-
-    /**
-     * This is a method which generates the required objects and set them to the required states for the
-     * "Virologist attacks with oblivion virus" and simulate that.
-     *
-     * @param args Unused.
-     * @return Nothing.
-     */
-    static void VirologistAttacksWithOblivion() {
-
-        /*Kommunikacios diagramok alapjan*/
-
-        System.out.println("\nInitialization before the action:");
-        Logger.log("<<create>> Virologist:v1", 0);
-        Virologist v1 = new Virologist();
-        Logger.log("<<create>> Virologist:v2", 0);
-        Virologist v2 = new Virologist();
-        Logger.log("<<create>> Field:f1", 0);
-        Field f1 = new Field();
-        Logger.log("<<create>> Field:f2", 0);
-        Field f2 = new Field();
-
-        f1.setNeighbour(f2);
-
-        Logger.log("v1.move(f1)", 0);
-        v1.move(f1);
-        Logger.log("v2.move(f2)", 0);
-        v2.move(f2);
-
-        Logger.log("<<create>> Oblivion:o", 0);
-        Oblivion o = new Oblivion();
-        Logger.log("v1.pickUp(o)", 0);
-        v1.addAgent(o);
-
-        /*Szekvenciak alapjan*/
-
-        System.out.println("\nAfter initialization: ");
-        Logger.log("v1.attack(v2,o)", 0);
-        Logger.setParameter("v2");
-        Logger.setsecondParameter("o");
-        v1.attack(v2, o);
-
-    }
-
-    /**
-     * This is a method which generates the required objects and set them to the required states for the
-     * "Virologist steals" and simulate that.
-     *
-     * @param args Unused.
-     * @return Nothing.
-     */
-    static void VirologistSteal() {
-
-
-        /*Kommunikacios diagramok alapjan*/
-
-        System.out.println("\nInitialization before the action:");
-        Logger.log("<<create>> Virologist:v1", 0);
-        Virologist v1 = new Virologist();
-        Logger.log("<<create>> Virologist:v2", 0);
-        Virologist v2 = new Virologist();
-        Logger.log("<<create>> Field:f1", 0);
-        Field f1 = new Field();
-        Logger.log("<<create>> Field:f2", 0);
-        Field f2 = new Field();
-
-        f1.setNeighbour(f2);
-
-        Logger.log("v1.move(f1)", 0);
-        v1.move(f1);
-        Logger.log("v2.move(f2)", 0);
-        v2.move(f2);
-        Logger.log("<<create>> Material:m", 0);
-        Material m = new Material();
-        Logger.log("<<create>> Cloak:c", 0);
-        Cloak c = new Cloak();
-        Logger.log("<<create>> Glove:g", 0);
-        Glove g = new Glove();
-        Logger.log("<<create>> Bag:b", 0);
-        Bag b = new Bag();
-
-        Logger.log("v1.pickUp(m)", 0);
-        v2.pickUp(m);
-        Logger.log("v1.pickUp(c)", 0);
-        v2.pickUp(c);
-        Logger.log("v1.pickUp(g)", 0);
-        v2.pickUp(g);
-        Logger.log("v1.pickUp(b)", 0);
-        v2.pickUp(b);
-
-        /*Szekvenciak alapjan*/
-
-        System.out.println("\nAfter initialization: ");
-        Logger.log("v1.steal(v2)", 0);
-        Logger.setParameter("v1");
-        Logger.setsecondParameter("p");
-        v1.steal(v2);
-
-    }
-/**
- * A gamemap addVirologists fuggvenyet teszteli. Letrehoz egy palyat, ahol a ket virologust random mezokre helyezi
- *
- * */
-    static void VirologistAdded() {
-        GameMap gm = new GameMap();
-        gm.addVirologists();
-    }
-
-    /**
-     * 7.teszteset doksi alapjan
-     * Letrehoz kulonbozo mezoket, majd beallitja a szomszedaikat
-     */
-    static void CreteFields() {
-        List<Field> fields = new ArrayList<>();
-        fields.add(new Laboratory());
-        fields.add(new Field());
-        fields.add(new Shelter());
-        Logger.log("1db laboratory letrehozva", 0);
-        Logger.log("1db emptyfield letrehozva", 0);
-        Logger.log("1db shelter letrehozva", 0);
-
-        fields.get(0).setNeighbour(fields.get(1));
-        fields.get(1).setNeighbour(fields.get(2));
-
-        if (fields.get(0).IsNeighbour(fields.get(1))) {
-            Logger.log("E1 beallitva L1 szomszedjakent", 0);
-        }
-        if (fields.get(1).IsNeighbour(fields.get(2))) {
-            Logger.log("S1 beallitva E1 szomszedjakent", 0);
-        }
-    }
-
-    /**
-     * 8.teszteset doksi alapjan
-     * Letrehozza a felszereleseket majd elhelyezi ezeket az ovohelyeken
-     */
-    static void CreateEquipments() {
-        List<Field> fields = new ArrayList<>();
-        fields.add(new Shelter());
-        fields.add(new Shelter());
-        fields.add(new Shelter());
-        fields.add(new Shelter());
-        Logger.log("4 db shelter letrehozva", 0);
-
-        Cloak cloak = new Cloak();
-        Logger.log("1db cloak letrehozva", 0);
-        Axe axe = new Axe();
-        Logger.log("1db axe letrehozva", 0);
-        Bag bag = new Bag();
-        Logger.log("1db bag letrehozva", 0);
-        Glove glove = new Glove();
-        Logger.log("1db glove letrehozva", 0);
-        if (fields.get(0) instanceof Shelter) {
-            ((Shelter) fields.get(0)).addEquipment(cloak);
-            Logger.log("S1->EC1 vegrehajtva", 0);
-        }
-        if (fields.get(1) instanceof Shelter) {
-            ((Shelter) fields.get(1)).addEquipment(cloak);
-            Logger.log("S2->EA1 vegrehajtva", 0);
-        }
-        if (fields.get(2) instanceof Shelter) {
-            ((Shelter) fields.get(2)).addEquipment(cloak);
-            Logger.log("S3->EB1 vegrehajtva", 0);
-        }
-        if (fields.get(3) instanceof Shelter) {
-            ((Shelter) fields.get(3)).addEquipment(cloak);
-            Logger.log("S4->EG1 vegrehajtva", 0);
-        }
-    }
-
-    /**
-     * Javitva lett, Laboratory van Warehouse helyett (9.teszteset)
-     * Genetikai kodokat keszit, amiket elhelyez laboratoriumokban
-     */
-    static void CreateGeneticCodes() {
-        List<Field> fields = new ArrayList<>();
-        fields.add(new Laboratory());
-        fields.add(new Laboratory());
-        Logger.log("2 db laboratory letrehozva", 0);
-
-        GeneticCode geneticCode1 = new GeneticCode();
-        GeneticCode geneticCode2 = new GeneticCode();
-        Logger.log("2 db geneticcode letrehozva", 0);
-        if (fields.get(0) instanceof Laboratory) {
-            ((Laboratory) fields.get(0)).addGeneticCode(geneticCode1);
-            if (fields.get(0).getCollectables().get(0) == geneticCode1) {
-                Logger.log("L1->GC1 vegrehajtva", 0);
-            }
-        }
-        if (fields.get(1) instanceof Laboratory) {
-            ((Laboratory) fields.get(1)).addGeneticCode(geneticCode2);
-            if (fields.get(1).getCollectables().get(0) == geneticCode2) {
-                Logger.log("L2->GC2 vegrehajtva", 0);
-            }
-        }
-    }
-
-    /**
-     * 10.teszteset doksi alapjan
-     * Virologusokat keszit, az egyiket egy ures mezore, a masikat pedig egy ovohelyre helyezi
-     */
-    static void CreateVirologists() {
-        GameMap gameMap = new GameMap();
-        Virologist virologist1 = new Virologist();
-        Virologist virologist2 = new Virologist();
-        Logger.log("2db virologist letrehozva",0);
-        Field emptyField = new Field();
-        Shelter shelter = new Shelter();
-        Logger.log("1db emptyfield letrehozva",0);
-        Logger.log("1db shelter letrehozva",0);
-        virologist1.move(emptyField);
-        if(emptyField.getVirologist() == virologist1){
-            Logger.log("V1 virologus az E1 mezore lepett",0);
-        }
-        virologist2.move(shelter);
-        if(shelter.getVirologist() == virologist2){
-            Logger.log("V2 virologus az S1 mezore lepett",0);
-        }
-    }
 
     static void attack(String actor, String target, String thing){
         if(!checkVariable(actor))
@@ -1080,6 +330,11 @@ public class Main {
     		
     		
     		if(thing_obj instanceof Agent) {
+    			if(thing_obj instanceof BearVirus) {
+    				actor_obj = new Bear();
+    				System.out.println("'" + thing + "' is added to '" + actor + "' and become a bear. ");
+    				return;
+    			}
     			((Virologist)actor_obj).pickUp((Agent)thing_obj);
     			System.out.println("'" + thing + "' is added to '" + actor + "'.");
     			return;
@@ -1121,35 +376,62 @@ public class Main {
     		if(actor_obj instanceof Laboratory) {
     			if(thing_obj instanceof GeneticCode) {
     				((Laboratory) actor_obj).addGeneticCode((GeneticCode)thing_obj);
+    				System.out.println("'" + thing + "' is added to '" + actor + "'.");
+        			return;
         		}
-    			System.out.println("'" + thing + "' is added to '" + actor + "'.");
-    			return;
+    			
+    			if(thing_obj instanceof Virologist) {
+        			((Laboratory)actor_obj).acceptVirologists((Virologist)thing_obj);
+                    ((Virologist)thing_obj).setCurrentfield(((Laboratory)actor_obj));
+        			System.out.println("'" + thing + "' is added to '" + actor + "'.");
+        			return;
+        		}
+    			
     		}
     		
     		if(actor_obj instanceof Shelter) {
     			if(thing_obj instanceof Equipment) {
     				((Shelter)actor_obj).addEquipment((Equipment)thing_obj);
+    				System.out.println("'" + thing + "' is added to '" + actor + "'.");
+        			return;
         		}
-    			System.out.println("'" + thing + "' is added to '" + actor + "'.");
-    			return;
+    			
+    			if(thing_obj instanceof Virologist) {
+        			((Shelter)actor_obj).acceptVirologists((Virologist)thing_obj);
+                    ((Virologist)thing_obj).setCurrentfield(((Shelter)actor_obj));
+        			System.out.println("'" + thing + "' is added to '" + actor + "'.");
+        			return;
+        		}
+    			
+    			
     		}
     		
     		if(actor_obj instanceof Warehouse) {
     			if(thing_obj instanceof Material) {
     				int level = ((Warehouse)actor_obj).getMaterialLevel();
     				((Warehouse)actor_obj).setMaterialLevel(level+1);
+    				System.out.println("'" + thing + "' is added to '" + actor + "'.");
+        			return;
         		}
-    			System.out.println("'" + thing + "' is added to '" + actor + "'.");
-    			return;
+    			
+    			if(thing_obj instanceof Virologist) {
+        			((Warehouse)actor_obj).acceptVirologists((Virologist)thing_obj);
+                    ((Virologist)thing_obj).setCurrentfield(((Warehouse)actor_obj));
+        			System.out.println("'" + thing + "' is added to '" + actor + "'.");
+        			return;
+        		}
+    			
+    			
     		}
     		
-    		
-    		if(thing_obj instanceof Virologist) {
+			
+			if(thing_obj instanceof Virologist) {
     			((Field)actor_obj).acceptVirologists((Virologist)thing_obj);
                 ((Virologist)thing_obj).setCurrentfield(((Field)actor_obj));
     			System.out.println("'" + thing + "' is added to '" + actor + "'.");
     			return;
     		}
+    	
     		
     		
     	}	
@@ -1198,7 +480,7 @@ public class Main {
     {
     	int counter;
     	
-    	if(obj instanceof Virologist) 
+    	if(obj instanceof Virologist && !(obj instanceof Bear)) 
     	{
     		if(counters.get(obj.getClass().toString()) == null) {
     			counters.put(obj.getClass().toString(), 0);
@@ -1210,6 +492,18 @@ public class Main {
         	return "V" + counter;
     	}
     	
+    	if(obj instanceof Bear) 
+    	{
+    		if(counters.get(obj.getClass().toString()) == null) {
+    			counters.put(obj.getClass().toString(), 0);
+    		}
+    		
+    		counter = counters.get(obj.getClass().toString())+1;
+    		counters.replace(obj.getClass().toString(), counter);
+    		virologists.put("BR" + counter, (Bear)obj);
+        	return "BR" + counter;
+    	
+    	}
     	if(obj instanceof Field && !(obj instanceof Laboratory||obj instanceof Shelter||obj instanceof Warehouse)) 
     	{
     		if(counters.get(obj.getClass().toString()) == null) {
@@ -1354,6 +648,18 @@ public class Main {
         	return "VD" + counter;
     	}
     	
+    	if(obj instanceof BearVirus) 
+    	{
+    		if(counters.get(obj.getClass().toString()) == null) {
+    			counters.put(obj.getClass().toString(), 0);
+    		}
+    		
+    		counter = counters.get(obj.getClass().toString())+1;
+    		counters.replace(obj.getClass().toString(), counter);
+    		agents.put("BV" + counter, (BearVirus)obj);
+        	return "BV" + counter;
+    	}
+    	
     	if(obj instanceof Vaccine) 
     	{
     		if(counters.get(obj.getClass().toString()) == null) {
@@ -1391,7 +697,6 @@ public class Main {
     	}
     		
     	return "";
-    		
 
 
     }
@@ -1485,16 +790,61 @@ public class Main {
         }
 
         //Ha a két mező már szomszédos nem csinálunk semmit
+        if(field2_obj instanceof Shelter)
+        {
+        	if(((Field)field1_obj).IsNeighbour((Shelter)field2_obj))
+            {
+                System.out.println("'" + field1 + "' and '" + field2 + "' are already neighbours. See 'help'.");
+                return;
+            }
+        	
+        	//Minden oké, ha eddig eljutunk -> beállítjuk a szomszédokat
+            ((Field)field1_obj).setNeighbour((Shelter)field2_obj);
+            System.out.println("'" + field2 + "' is set as neighbour to '" + field1 + "'.");
+            return;
+        }
+        
+        if(field2_obj instanceof Laboratory)
+        {
+        	if(((Field)field1_obj).IsNeighbour((Laboratory)field2_obj))
+            {
+                System.out.println("'" + field1 + "' and '" + field2 + "' are already neighbours. See 'help'.");
+                return;
+            }
+        	
+        	//Minden oké, ha eddig eljutunk -> beállítjuk a szomszédokat
+            ((Field)field1_obj).setNeighbour((Laboratory)field2_obj);
+            System.out.println("'" + field2 + "' is set as neighbour to '" + field1 + "'.");
+            return;
+        }
+        
+        if(field2_obj instanceof Warehouse)
+        {
+        	if(((Field)field1_obj).IsNeighbour((Warehouse)field2_obj))
+            {
+                System.out.println("'" + field1 + "' and '" + field2 + "' are already neighbours. See 'help'.");
+                return;
+            }
+        	
+        	//Minden oké, ha eddig eljutunk -> beállítjuk a szomszédokat
+            ((Field)field1_obj).setNeighbour((Warehouse)field2_obj);
+            System.out.println("'" + field2 + "' is set as neighbour to '" + field1 + "'.");
+            return;
+        }
+        
         if(((Field)field1_obj).IsNeighbour((Field)field2_obj))
         {
             System.out.println("'" + field1 + "' and '" + field2 + "' are already neighbours. See 'help'.");
             return;
         }
-
-        //Minden oké, ha eddig eljutunk -> beállítjuk a szomszédokat
+    	
+    	//Minden oké, ha eddig eljutunk -> beállítjuk a szomszédokat
         ((Field)field1_obj).setNeighbour((Field)field2_obj);
         System.out.println("'" + field2 + "' is set as neighbour to '" + field1 + "'.");
         return;
+        
+
+        
 
     }
 
@@ -1622,6 +972,9 @@ public class Main {
                     }
                     break;
                 }
+                
+
+                
 			}
 			}
 		} catch(IOException ex) {
@@ -1644,8 +997,53 @@ public class Main {
     	
     }
     
+    static void kill(String virologist, String bear) {
+    	if(!checkVariable(virologist))
+    	{
+    		System.out.println("'" + virologist + "' is not recognized as a variable. See 'help'.");
+    		return;
+    	}
+    	
+    	if(!checkVariable(bear))
+    	{
+    		System.out.println("'" + bear + "' is not recognized as a variable. See 'help'.");
+    		return;
+    	}
+    	
+    	Object actor_obj = getVariableByName(virologist);
+    	
+
+    	if(!(actor_obj instanceof Virologist))
+    	{
+    		System.out.println("'" + virologist + "' is not recognized as a virologist. See 'help'.");
+    		return;
+    	}
+    	
+    	Object thing_obj = getVariableByName(bear);
+    	
+    	if(!(thing_obj instanceof Bear))
+    	{
+    		
+    		System.out.println("'" + bear + "' is not recognized as a bear. See 'help'.");
+    		return;
+    	}
+    	
+    	for (Collectable a : ((Virologist)actor_obj).getCollectables()) {
+    		if(a instanceof Axe) {
+    			if(!((Axe)a).isUsed) {
+    				((Bear)thing_obj).die();
+    				((Axe)a).setUsedStatus();
+    				System.out.println("'" + bear + "' is killed successfully.");
+    				return;
+    			}
+    		}
+    	}
+    	
+    	System.out.println("'" + bear + "' is not killed.");
+    }
+    
     static void help() {
-    	System.out.println("attack: requires two virologists' name and an agent's name, for example: attack V1 V2 VO1\n"
+    	System.out.println("attack: requires two virologists' name and an agent's name, for example: attack V1 V2 DV1\n"
     			+ "create: requires an object (warehouse, laboratory, shelter, cloak, glove, bag, axe, geneticcode, vaccine, oblivion, paralyses, virusdance, bearvirus, virologist, bear, material) and a whole number, for example: create virologist 3\n"
     			+ "add: requires two objects name, for example: add S1 C1\n"
     			+ "make: requires a virologist's name and an agent (oblivion, paralyses, virusdance, bearvirus, vaccine), for example: make V1 oblivion\n"

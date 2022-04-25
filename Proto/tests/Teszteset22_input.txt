@@ -1,0 +1,9 @@
+create virologist 1
+create bear 1
+create warehouse 2
+create axe 1
+add V1 A1
+setneighbour W1 W2
+add W1 V1
+add W2 BR1
+kill V1 BR1 

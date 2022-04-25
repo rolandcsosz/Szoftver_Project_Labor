@@ -19,4 +19,5 @@
 'C1' is added to 'V1'.
 'A1' is added to 'V1'.
 'G1' is added to 'V1'.
+'V1' moved to 'S2'.
 'B1' is not added to 'V1' because 'V1' has already 3 equipments.

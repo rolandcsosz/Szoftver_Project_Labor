@@ -1,0 +1,11 @@
+2 virologists created.
+[V1,V2]
+2 warehouses created.
+[W1,W2]
+1 cloaks created.
+[C1]
+'C1' is added to 'V2'.
+'W2' is set as neighbour to 'W1'.
+'V1' is added to 'W1'.
+'V2' is added to 'W2'.
+attack?

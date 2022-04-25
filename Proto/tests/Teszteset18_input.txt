@@ -1,0 +1,10 @@
+create virologist 2
+create shelter 2
+create glove 1
+create oblivion 1
+setneighbour S1 S2
+add V1 O1
+add V2 G1
+add S1 V1
+add S2 V2
+attack V1 V2 O1

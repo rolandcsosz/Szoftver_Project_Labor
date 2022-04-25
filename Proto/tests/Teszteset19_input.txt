@@ -1,0 +1,10 @@
+create virologist 2
+create warehouse 2
+create cloak 1
+create virusdance 1
+add V2 C1
+add V1 VD1
+setneighbour W1 W2
+add W1 V1
+add W2 V2
+attack V1 V2 VD1

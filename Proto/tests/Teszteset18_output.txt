@@ -1,0 +1,11 @@
+2 virologists created.
+[V1,V2]
+2 shelters created.
+[S1,S2] 1 gloves created.
+[G1] 1 oblivions created.
+[O1] 'S2' is set as neighbour to 'S1'.
+'O1' is added to 'V1'.
+'G1' is added to 'V2'.
+'V1' is added to 'S1'.
+'V2' is added to 'S2'.
+attack?

@@ -1,6 +1,6 @@
-2 warehouses created.
-[W1,W2]
+2 laboratorys created.
+[L1,L2]
 2 geneticCodes created.
 [GC1,GC2]
-'GC1' is added to 'W1'.
-'GC2' is added to 'W2'.
+'GC1' is added to 'L1'.
+'GC2' is added to 'L2'.

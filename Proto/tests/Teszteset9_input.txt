@@ -1,4 +1,4 @@
-create warehouse 2
+create laboratory 2
 create geneticCode 2
-add W1 GC1
-add W2 GC2
+add L1 GC1
+add L2 GC2

@@ -1,1 +1,9 @@
-exit
+save game1.txt
+restart
+create shelter 1
+create virologist 1
+create cloak 1
+add S1 C1
+load game1.txt
+add V1 C1
+

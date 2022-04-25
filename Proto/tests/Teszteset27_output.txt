@@ -1,0 +1,20 @@
+1 virologists created.
+[V1]
+1 laboratorys created.
+[L1]
+1 warehouses created.
+[W1]
+1 geneticCodes created.
+[GC1]
+1 materials created.
+[M1]
+1 oblivions created.
+[O1]
+'W1' is set as neighbour to 'L1'.
+'GC1' is added to 'L1'.
+'M1' is added to 'W1'.
+'V1' is added to 'L1'.
+'GC1' is added to 'V1'.
+'V1' moved to 'W1'.
+'M1' is added to 'V1'.
+make?
