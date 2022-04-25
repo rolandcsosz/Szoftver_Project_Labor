@@ -1,7 +1,10 @@
 import javax.security.auth.login.LoginException;
 import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -19,7 +22,7 @@ public class Main {
     static String wholeLine;
     static boolean isRunning = true;
     
-  //A beolvasáshoz kellenek. Azért tettem ide õket, hogy a parseMap függvény is lássa õket.
+  //A beolvasï¿½shoz kellenek. Azï¿½rt tettem ide ï¿½ket, hogy a parseMap fï¿½ggvï¿½ny is lï¿½ssa ï¿½ket.
   	private static InputStreamReader isr =	new InputStreamReader(System.in);
   	private static BufferedReader br = new BufferedReader(isr);
 
@@ -134,21 +137,27 @@ public class Main {
                 //1 parametert var
                 case "save": {
 	            	if(isParametesAreOk(line,3))
-	            	{}
+	            	{
+	            		save(line[1]);
+	            	}
                     break;
                 }
                 
                 //1 parametert var
                 case "load": {
 	            	if(isParametesAreOk(line,0))
-	            	{}
+	            	{
+	            		load(line[1]);
+	            	}
                     break;
                 }
                 
                 //0 parametert var
                 case "restart": {
 	            	if(isParametesAreOk(line,0))
-	            	{}
+	            	{
+	            		restart();
+	            	}
                     break;
                 }
                 
@@ -163,6 +172,7 @@ public class Main {
                 //0 parametert var
                 case "help": {
 
+                	help();
                     break;
                 }
 
@@ -1530,5 +1540,107 @@ public class Main {
         ((Virologist)virologist_obj).move(((Field)field_obj));
         System.out.println("'" + virologist + "'" + " moved to " + "'" + field + "'" + ".");
         return;
+    }
+    
+    static void restart() {
+    		virologists.clear();
+    		fields.clear();
+    		equipments.clear();
+    		agents.clear();
+    		geneticcodes.clear();
+    		materials.clear();
+    		counters.clear();
+    }
+    
+    static void load(String file) {
+    	try {
+			FileReader fr = new FileReader(file);
+			BufferedReader br = new BufferedReader(fr);
+			while(true) {
+				String l = br.readLine();
+				if(l == null)
+					return;
+				String[] lines = l.split(" ");
+				switch (lines[0]) {
+	            case "attack": {
+	            	if(isParametesAreOk(lines,3))
+	            	{}
+	            		
+	                break;
+	            }
+                case "create": {
+	            	if(isParametesAreOk(lines,2))
+	            	{
+	            		create(lines[1],lines[2]);
+	            	}
+                    break;
+                }
+                case "add": {
+	            	if(isParametesAreOk(lines,2))
+	            	{
+	            		add(lines[1],lines[2]);
+	            	}
+                    break;
+                }
+                case "make": {
+	            	if(isParametesAreOk(lines,2))
+	            	{}
+                    break;
+                }
+                case "steal": {
+	            	if(isParametesAreOk(lines,2))
+	            	{
+	            		//steal(lines[1],lines[2]);
+	            	}
+                    break;
+                }
+                case "setneighbour": {
+	            	if(isParametesAreOk(lines,2))
+	            	{
+                        setNeighbour(lines[1],lines[2]);
+                    }
+                    break;
+                }
+                case "move": {
+	            	if(isParametesAreOk(lines,2))
+	            	{
+                        move(lines[1], lines[2]);
+                    }
+                    break;
+                }
+			}
+			}
+		} catch(IOException ex) {
+			System.out.println("Invalid filename");
+			return;
+		}
+    }
+    
+    static void save(String file) {
+    	try {
+			FileWriter fw = new FileWriter(file);
+			PrintWriter pw = new PrintWriter(fw);
+			//for(String[] l : commands) {
+			//	pw.println(l);
+			//}
+		} catch(IOException ex) {
+			System.out.println("Invalid filename");
+			return;
+			}
+    	
+    }
+    
+    static void help() {
+    	System.out.println("attack: requires two virologists' name and an agent's name, for example: attack V1 V2 VO1\n"
+    			+ "create: requires an object (warehouse, laboratory, shelter, cloak, glove, bag, axe, geneticcode, vaccine, oblivion, paralyses, virusdance, bearvirus, virologist, bear, material) and a whole number, for example: create virologist 3\n"
+    			+ "add: requires two objects name, for example: add S1 C1\n"
+    			+ "make: requires a virologist's name and an agent (oblivion, paralyses, virusdance, bearvirus, vaccine), for example: make V1 oblivion\n"
+    			+ "steal: requires two virologists' name, for example: steal V1 V2\n"
+    			+ "setneighbour: requires two fields' name, for example: setneighbour W1 L1\n"
+    			+ "move: requires a virologist's name and a field's name, for example: move V1 W1\n"
+    			+ "save: requires a file, in which to save the game\n"
+    			+ "load: requires a file, from where to load the game\n"
+    			+ "restart: no parameters required\n"
+    			+ "exit: no parameters required");
     }
 }

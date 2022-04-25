@@ -82,15 +82,13 @@ public class Virologist implements Steppable {
      * @return Nothing.
      */
     public void steal(Virologist v) {
-
-        Logger.log(Logger.getParameter() + ".getParalysedStatus()", 1);
-        Logger.log("f1.IsNeighbour(v2.getCurrentField())", 1);
-        if (!this.getParalysedStatus() && currentfield.IsNeighbour(v.getCurrentfield())) {
-
-            Logger.log("v2.getCollectables()", 1);
+        /*Logger.log(Logger.getParameter() + ".getParalysedStatus()", 1);
+        Logger.log("f1.IsNeighbour(v2.getCurrentField())", 1);*/
+        if (!this.getParalysedStatus() && (currentfield.IsNeighbour(v.getCurrentfield()) || currentfield == v.getCurrentfield())) {
+            //Logger.log("v2.getCollectables()", 1);
             for (Collectable c : v.getCollectables()) {
                 //Log miatti parameter beallitasok
-                if (c instanceof Bag) {
+                /*if (c instanceof Bag) {
                     Logger.setsecondParameter("b");
                 }
 
@@ -104,12 +102,12 @@ public class Virologist implements Steppable {
 
                 if (c instanceof Glove) {
                     Logger.setsecondParameter("g");
-                }
+                }*/
 
-                Logger.log(Logger.getsecondParameter() + ".pickUpBy(" + Logger.getParameter() + ")", 1);
+                //Logger.log(Logger.getsecondParameter() + ".pickUpBy(" + Logger.getParameter() + ")", 1);
                 c.PickUpBy(this);
 
-                Logger.log("v2.remove(" + Logger.getsecondParameter() + ")", 1);
+                //Logger.log("v2.remove(" + Logger.getsecondParameter() + ")", 1);
                 v.remove(c);
 
             }

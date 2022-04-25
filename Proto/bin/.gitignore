@@ -1,1 +1,34 @@
+<<<<<<< HEAD
 /class/
+=======
+/Agent.class
+/Axe.class
+/Bag.class
+/Bear.class
+/BearVirus.class
+/Cloak.class
+/Collectable.class
+/Effectable.class
+/Equipment.class
+/Field.class
+/Game.class
+/GameMap.class
+/GeneticCode.class
+/Glove.class
+/Laboratory.class
+/Logger.class
+/Main.class
+/Material.class
+/Oblivion.class
+/Paralyses.class
+/Shelter.class
+/Steppable.class
+/Timer.class
+/Type.class
+/Vaccine.class
+/Virologist.class
+/Virusdance.class
+/Warehouse.class
+/build.bat
+/run.bat
+>>>>>>> dfa43f19bd18dbd427fb5e15a7f8c5de1b642106
