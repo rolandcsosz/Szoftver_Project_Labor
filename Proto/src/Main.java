@@ -212,6 +212,7 @@ public class Main {
 
 
     static void attack(String actor, String target, String thing){
+
         if(!checkVariable(actor))
         {
             System.out.println("'" + actor + "' is not recognized as a variable. See 'help'.");
@@ -254,7 +255,7 @@ public class Main {
         //--------------------------------------------------
 
         ((Virologist)actor_obj).attack((Virologist)target_obj, (Agent)thing_obj);
-        System.out.println("'" + actor + "' is attacking'" + target + "' with" + thing +"'");
+        System.out.println("'" + actor + "' is attacking'" + target + "' with " + thing +"'");
 
     }
 
