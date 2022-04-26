@@ -5,7 +5,13 @@ public class Bear extends Virologist implements Steppable{
     }
 
     public  void destroy(){
-        //todo ami utjaba esik lerombol
+        Field f = super.getCurrentfield();
+
+       for(Collectable c: f.getCollectables()){
+           if(c instanceof Material){
+
+           }
+       }
     }
 
     public void attack(Virologist v){

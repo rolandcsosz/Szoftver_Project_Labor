@@ -1,7 +1,7 @@
 public class Vaccine extends Agent {
-	public void effect(Virologist on) {
+	public void effect(Virologist v) {
 		Logger.log(Logger.getParameter() + ".addEffect(" + Logger.getsecondParameter() + ")", 2);
-		on.addEffect(this);
+		v.addEffect(this);
 	}
 
 }

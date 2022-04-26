@@ -2,9 +2,9 @@ public class Bag extends Equipment {
 
 
 	@Override
-	public void effect(Virologist on) {
-		// TODO Auto-generated method stub
-		
+	public void effect(Virologist v) {
+		int new_max = v.getMaxMaterial()*2;
+		v.setMaterialCount(new_max);
 	}
 	
 	@Override

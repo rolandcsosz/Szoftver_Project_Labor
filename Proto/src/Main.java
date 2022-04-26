@@ -1,4 +1,3 @@
-import javax.security.auth.login.LoginException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -7,11 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Scanner;
 
 public class Main {
@@ -64,7 +59,9 @@ public class Main {
 	            //3 parametert var
 	            case "attack": {
 	            	if(isParametesAreOk(line,3))
-	            	{}
+	            	{
+						attack(line[1], line[2], line[3]);
+					}
 	            		
 	                break;
 	            }
@@ -100,14 +97,18 @@ public class Main {
                 //2 parametert var
                 case "make": {
 	            	if(isParametesAreOk(line,2))
-	            	{}
+	            	{
+						make(line[1], line[2]);
+					}
                     break;
                 }
                 
                 //2 parametert var
                 case "steal": {
 	            	if(isParametesAreOk(line,2))
-	            	{}
+	            	{
+
+					}
                     break;
                 }
 
@@ -286,6 +287,8 @@ public class Main {
         }
 
          (((Virologist) actor_obj)).createAgens((Agent)thing_obj);
+		System.out.println("'" + actor + "' is created a '" + thing + "'");
+
     }
     
     //Javitott

@@ -29,6 +29,10 @@ public class Warehouse extends Field implements Steppable {
 			materials.remove(0);
 		}
 	}
+
+	public void removeMaterial(Material material){
+		materials.remove(material);
+	}
 	
 	public List<Collectable> getCollectables() {
 		List<Collectable> cl = new ArrayList<Collectable>();

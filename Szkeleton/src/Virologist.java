@@ -61,17 +61,14 @@ public class Virologist implements Steppable {
      */
     public void attack(Virologist v, Agent a) {
 
-        /*Logger.log(Logger.getParameter() + ".getParalysedStatus()", 1);
+        Logger.log(Logger.getParameter() + ".getParalysedStatus()", 1);
         Logger.log("f1.IsNeighbour(" + Logger.getParameter() + ".getField())", 1);
 
         if (!this.getParalysedStatus() && field.IsNeighbour(v.getField())) {
             Logger.log(Logger.getsecondParameter() + ".effect(" + Logger.getParameter() + ")", 1);
             a.effect(v);
         }
-        */
-        if(!this.getParalysedStatus() && field.IsNeighbour(v.getField())){
-            a.effect(v);
-        }
+
     }
 
     /**

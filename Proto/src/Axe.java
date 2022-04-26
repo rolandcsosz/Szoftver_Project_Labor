@@ -2,7 +2,8 @@ public class Axe extends Equipment{
     //egy hasznalat utan hasznalhatatlan
 	boolean isUsed = false;
     @Override
-    public void effect(Virologist on) {
+    public void effect(Virologist v) {
+        v.die();
     }
     
     boolean getUsedStatus()
