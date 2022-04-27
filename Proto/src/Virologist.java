@@ -118,18 +118,13 @@ public class Virologist implements Steppable {
      */
     public void createAgens(Agent a) {
 
-        Logger.log(Logger.getsecondParameter() + ".getCost()", 1);
         List<Material> cost = a.getCost();
 
-        Logger.log("v.getMaterialCount()", 1);
         if (cost.size() < this.getMaterialCount()) {
-            Logger.log("v.setMaterialCount(v.getMaterialCount()-cost.size())", 1);
             this.setMaterialCount(this.getMaterialCount() - cost.size());
 
-            Logger.log("<<create>> new_" + Logger.getsecondParameter(), 1);
             Agent new_a = a;
 
-            Logger.log("v.addAgent(new_" + Logger.getsecondParameter() + ")", 1);
             this.addAgent(new_a);
 
         }

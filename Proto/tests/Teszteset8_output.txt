@@ -1,14 +1,6 @@
-4 shelters created.
-[S1,S2,S3,S4]
-1 cloaks created.
-[C1]
-1 axes created.
-[A1]
-1 bags created.
-[B1]
-1 gloves created.
-[G1]
-'C1' is added to 'S1'.
-'A1' is added to 'S2'.
-'B1' is added to 'S3'.
-'G1' is added to 'S4'.
+2 laboratorys created.
+[L1,L2]
+2 geneticCodes created.
+[GC1,GC2]
+'GC1' is added to 'L1'.
+'GC2' is added to 'L2'.

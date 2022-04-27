@@ -1,5 +1,6 @@
-create field 2
-setneighbour F1 F2
+create field 1
+create shelter 1
+setneighbour F1 S1
 create virologist 1
 add F1 V1
-move V1 F2
+move V1 S1

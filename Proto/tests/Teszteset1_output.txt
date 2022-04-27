@@ -1,10 +1,1 @@
-1 shelters created.
-[S1]
-1 virologists created.
-[V1]
-1 cloaks created.
-[C1]
-'C1' is added to 'S1'.
-save?
-load?
-'C1' is added to 'V1'.
+Exit, bye!

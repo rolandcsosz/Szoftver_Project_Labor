@@ -1,10 +1,9 @@
-create virologist 2
+create virologist 1
+create bear 1
 create warehouse 2
-create cloak 1
-create virusdance 1
-add V2 C1
-add V1 VD1
+create axe 1
+add V1 A1
 setneighbour W1 W2
 add W1 V1
-add W2 V2
-attack V1 V2 VD1
+add W2 BR1
+kill V1 BR1 

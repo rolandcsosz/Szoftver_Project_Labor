@@ -1,11 +1,16 @@
-2 virologists created.
-[V1,V2]
-2 warehouses created.
-[W1,W2]
-1 cloaks created.
-[C1]
-'C1' is added to 'V2'.
+1 virologists created.
+[V1]
+2 bears created.
+[BR1,BR2]
+3 warehouses created.
+[W1,W2,W3]
+1 axes created.
+[A1]
+'A1' is added to 'V1'.
 'W2' is set as neighbour to 'W1'.
+'W3' is set as neighbour to 'W1'.
 'V1' is added to 'W1'.
-'V2' is added to 'W2'.
-attack?
+'BR1' is added to 'W2'.
+'BR2' is added to 'W3'.
+'BR1' is killed successfully.
+'BR2' is not killed.

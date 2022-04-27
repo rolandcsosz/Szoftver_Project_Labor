@@ -1,4 +1,5 @@
-create laboratory 2
-create geneticCode 2
-add L1 GC1
-add L2 GC2
+create virologist 2
+create field 1
+create shelter 1
+add F1 V1
+add S1 V2

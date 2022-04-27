@@ -73,14 +73,6 @@ public class Main {
 	            		create(line[1],line[2]);
 	            	}
 	            	
-	            	//teszt cellal
-	            	/*for (Entry<String, Virologist> entry : virologists.entrySet())
-	                    System.out.println("Key = " + entry.getKey() +
-	                                     ", Value = " + entry.getValue());
-	            	//teszt cellal
-	            	for (Entry<String, Equipment> entry : equipments.entrySet())
-	                    System.out.println("Key = " + entry.getKey() +
-	                                     ", Value = " + entry.getValue());*/
                     break;
                 }
                 
@@ -254,8 +246,13 @@ public class Main {
         }
         //--------------------------------------------------
 
-        ((Virologist)actor_obj).attack((Virologist)target_obj, (Agent)thing_obj);
-        System.out.println("'" + actor + "' is attacking'" + target + "' with " + thing +"'");
+        if(((Virologist)actor_obj).getCurrentfield().IsNeighbour(((Virologist)target_obj).getCurrentfield())) {
+            ((Virologist)actor_obj).attack((Virologist)target_obj, (Agent)thing_obj);
+            System.out.println("'" + actor + "' is attacking'" + target + "' with '" + thing +"'.");
+        }
+        else {
+        	System.out.println("'" + actor + "' is not attacking'" + target + "' with '" + thing +"' because they are not neighbours.");
+        }
 
     }
 
@@ -672,8 +669,8 @@ public class Main {
     		
     		counter = counters.get(obj.getClass().toString())+1;
     		counters.replace(obj.getClass().toString(), counter);
-    		agents.put("V" + counter, (Vaccine)obj);
-        	return "V" + counter;
+    		agents.put("VC" + counter, (Vaccine)obj);
+        	return "VC" + counter;
     	}
     	
     	if(obj instanceof Oblivion) 

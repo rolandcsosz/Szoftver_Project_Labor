@@ -1,2 +1,1 @@
-create virologist 1
-exit
+help

@@ -33,6 +33,10 @@ public class Field {
 	
 	
 	public boolean IsNeighbour(Field m) {
+		if(this.equals(m)) {
+			return true;
+		}
+		
 		return neighbours.contains(m);
 	}
 
