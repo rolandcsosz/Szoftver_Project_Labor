@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Agent implements Collectable, Effectable, Steppable {
+public abstract class Agent implements Cloneable, Collectable, Effectable, Steppable {
 	private int timeCounter;
 	private Virologist virologist; 			// szükség lehet rá, hogy tudjuk, hogy kinél van az ágens
 	private List<Material> cost;
@@ -43,5 +43,17 @@ public abstract class Agent implements Collectable, Effectable, Steppable {
 
 	public Virologist getVirologist() {
 		return virologist;
+	}
+	
+	@Override
+	public Agent clone() {
+
+	        try {
+				return (Agent)super.clone();
+			} catch (CloneNotSupportedException e) {
+				return null;
+			}
+
+
 	}
 }

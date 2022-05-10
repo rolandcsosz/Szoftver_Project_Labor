@@ -95,4 +95,28 @@ public class Handler {
 		}
 		return null;
 	}
+	
+	public static void move(Virologist v, Field f) {
+		if(!v.getCurrentfield().IsNeighbour(f)) {
+			throw new Error("The selected field is not neighbour");
+		}
+		
+		if(v.getParalysedStatus()) {
+			throw new Error("The virologist is paralysed");
+		}
+		
+		v.move(f);
+		f.acceptVirologists(v);
+	
+	}
+	
+    static void setNeighbours(Field f1, Field f2){
+    	
+    	if(f1.IsNeighbour(f2) || f2.IsNeighbour(f1)) {
+    		throw new Error("The two fields are already neaighbours");
+    	}
+    	
+        f1.setNeighbour(f2);
+        f2.setNeighbour(f1);
+    }
 }

@@ -15,7 +15,7 @@ public class Main {
   	
   	
     public static void main(String[] args) {
-    	
+
 
     }
     
@@ -25,8 +25,27 @@ public class Main {
     }
 
 
-    static void make(String actor, String thing){
+    static void make(Virologist v, Agent a){
 
+    	if(v.getMaterialCount() < a.getCost().size()) {
+    		throw new Error("Virologist has not enough material");
+    	}
+    	
+		boolean hasGeneticCode = false;
+    	for(GeneticCode gc : v.getGeneticCodes()) {
+
+    		if(gc.equals(a.getGeneticCode())) {
+    			hasGeneticCode = true;
+    		}
+    	}
+    	
+    	if(!hasGeneticCode) {
+    		throw new Error("Virologist doesn't have the required genetic code");
+    	}
+    	
+    	v.createAgens(a);
+    	
+    	
     }
     
     
@@ -38,7 +57,8 @@ public class Main {
     static void create(String type, int quantity)
     {
     	if(!Handler.isTypeCorrect(type)) {
-    		return;
+    		throw new Error("The given type name is not recognisable");
+    		
     	}
     	
     	for(int i = 0; i <= quantity; i++) {

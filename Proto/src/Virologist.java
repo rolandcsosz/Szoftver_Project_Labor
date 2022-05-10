@@ -123,7 +123,7 @@ public class Virologist implements Steppable {
         if (cost.size() < this.getMaterialCount()) {
             this.setMaterialCount(this.getMaterialCount() - cost.size());
 
-            Agent new_a = a;
+            Agent new_a = a.clone();
 
             this.addAgent(new_a);
 
