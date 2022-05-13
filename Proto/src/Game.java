@@ -1,4 +1,6 @@
-public class Game {
+import java.io.Serializable;
+
+public class Game implements Serializable {
 	private GameMap gameMap;
 	public void Start() {
 	}

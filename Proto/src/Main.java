@@ -1,13 +1,20 @@
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 public class Main {
 
@@ -16,6 +23,8 @@ public class Main {
     static String[] line;
     static String wholeLine;
     static boolean isRunning = true;
+    
+    static Game game = new Game();
     
   //A beolvas�shoz kellenek. Az�rt tettem ide �ket, hogy a parseMap f�ggv�ny is l�ssa �ket.
   	private static InputStreamReader isr =	new InputStreamReader(System.in);
@@ -138,7 +147,12 @@ public class Main {
                 case "save": {
 	            	if(isParametesAreOk(line,1))
 	            	{
-	            		save(line[1]);
+	            		try {
+	            			save(line[1]);
+	            		} catch(IOException e) {
+	            			JOptionPane.showMessageDialog(null, "Hiba a fájl mentésekor", "Error Message", JOptionPane.ERROR_MESSAGE);
+	            			return;
+	            		}
 	            	}
                     break;
                 }
@@ -147,7 +161,15 @@ public class Main {
                 case "load": {
 	            	if(isParametesAreOk(line,1))
 	            	{
-	            		load(line[1]);
+	            		try {
+	            			load(line[1]);
+	            		} catch(IOException e) {
+	            			JOptionPane.showMessageDialog(null, "Hiba a fájl betöltésekor", "Error Message", JOptionPane.ERROR_MESSAGE);
+	            			return;
+	            		} catch(ClassNotFoundException e) {
+	            			JOptionPane.showMessageDialog(null, "Hiba a fájl betöltésekor", "Error Message", JOptionPane.ERROR_MESSAGE);
+	            			return;
+	            		}
 	            	}
                     break;
                 }
@@ -917,85 +939,24 @@ public class Main {
     		counters.clear();
     }
     
-    static void load(String file) {
+    static void load(String file) throws IOException, ClassNotFoundException{
     	try {
-			FileReader fr = new FileReader(file);
-			BufferedReader br = new BufferedReader(fr);
-			while(true) {
-				String l = br.readLine();
-				if(l == null)
-					return;
-				String[] lines = l.split(" ");
-				switch (lines[0]) {
-	            case "attack": {
-	            	if(isParametesAreOk(lines,3))
-	            	{}
-	            		
-	                break;
-	            }
-                case "create": {
-	            	if(isParametesAreOk(lines,2))
-	            	{
-	            		create(lines[1],lines[2]);
-	            	}
-                    break;
-                }
-                case "add": {
-	            	if(isParametesAreOk(lines,2))
-	            	{
-	            		add(lines[1],lines[2]);
-	            	}
-                    break;
-                }
-                case "make": {
-	            	if(isParametesAreOk(lines,2))
-	            	{}
-                    break;
-                }
-                case "steal": {
-	            	if(isParametesAreOk(lines,2))
-	            	{
-	            		//steal(lines[1],lines[2]);
-	            	}
-                    break;
-                }
-                case "setneighbour": {
-	            	if(isParametesAreOk(lines,2))
-	            	{
-                        setNeighbour(lines[1],lines[2]);
-                    }
-                    break;
-                }
-                case "move": {
-	            	if(isParametesAreOk(lines,2))
-	            	{
-                        move(lines[1], lines[2]);
-                    }
-                    break;
-                }
-                
-
-                
-			}
-			}
-		} catch(IOException ex) {
-			System.out.println("Invalid filename");
-			return;
-		}
+    		FileInputStream f = new FileInputStream("saveFile.data");
+    		ObjectInputStream in = new ObjectInputStream(f);
+    		game = (Game)in.readObject();
+    		in.close();
+    	} catch(IOException e) {
+    		throw e;
+    	} catch (ClassNotFoundException e) {
+    		throw e;
+    	}
     }
     
-    static void save(String file) {
-    	try {
-			FileWriter fw = new FileWriter(file);
-			PrintWriter pw = new PrintWriter(fw);
-			//for(String[] l : commands) {
-			//	pw.println(l);
-			//}
-		} catch(IOException ex) {
-			System.out.println("Invalid filename");
-			return;
-			}
-    	
+    static void save(String file) throws IOException{
+    	try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(new File("saveFile.data")))){
+    		os.writeObject(game);
+    		os.close();
+    	}
     }
     
     static void kill(String virologist, String bear) {
