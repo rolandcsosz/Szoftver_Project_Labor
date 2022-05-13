@@ -1,6 +1,26 @@
 import java.util.Arrays;
 import java.util.HashSet;
 
+import Model.Agent;
+import Model.Axe;
+import Model.Bag;
+import Model.Bear;
+import Model.BearVirus;
+import Model.Cloak;
+import Model.Equipment;
+import Model.Field;
+import Model.GeneticCode;
+import Model.Glove;
+import Model.Laboratory;
+import Model.Material;
+import Model.Oblivion;
+import Model.Paralyses;
+import Model.Shelter;
+import Model.Vaccine;
+import Model.Virologist;
+import Model.Virusdance;
+import Model.Warehouse;
+
 public class Handler {
 	
 	static HashSet<String> types = new HashSet<String>(Arrays.asList(
