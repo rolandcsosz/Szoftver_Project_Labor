@@ -1,17 +1,11 @@
 package UI.Frames;
-
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-import UI.DesignPatterns;
+import UI.Components.GameField;
+import UI.Components.Panel;
+import java.awt.Graphics;
 
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import java.awt.Color;
-import javax.swing.JProgressBar;
-import javax.swing.ImageIcon;
 
 public class Game {
 
@@ -48,18 +42,18 @@ public class Game {
 		frame.setBounds(0, 0, 1200, 650);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		frame.getContentPane().setLayout(null);
 		
 		Panel panel = new Panel();
-		frame.getContentPane().add(panel);
+		GameField gameField = new GameField();
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(Color.WHITE);
-		panel_2.setBounds(0, 0, 1186, 491);
-		frame.getContentPane().add(panel_2);
-		//frame.setUndecorated(true);
+
+		frame.getContentPane().add(panel);
+		frame.getContentPane().add(gameField);
+
 		frame.setVisible(true);
+		
+		//teszt
 		panel.enableVaccine();
 	}
 }

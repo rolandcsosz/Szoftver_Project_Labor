@@ -7,6 +7,8 @@ import Model.Field;
 import Model.GeneticCode;
 import Model.Material;
 import Model.Virologist;
+import UI.Frames.Game;
+import UI.Frames.Menu;
 
 public class Main {
 
@@ -23,6 +25,9 @@ public class Main {
   	
     public static void main(String[] args) {
 
+    	Menu m = new Menu();
+    	m.main(null);
+    	Game g = new Game();
 
     }
     

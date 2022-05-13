@@ -1,4 +1,4 @@
-package UI.Frames;
+package UI.Components;
 
 import java.awt.Color;
 
