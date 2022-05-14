@@ -24,6 +24,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
@@ -70,15 +71,37 @@ public class DesignPatterns {
 	         return telegraficoFont;
 	 }
 		
-		public static ImageIcon scale(String location, int w, int h) {
-			
-			ImageIcon imageIcon = new ImageIcon(location); // load the image to a imageIcon
-			Image image = imageIcon.getImage(); // transform it 
-			Image newimg = image.getScaledInstance(w, h,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-			imageIcon = new ImageIcon(newimg);  // transform it back
-			return imageIcon;
-			
+		/*
+		 * public static ImageIcon scale(String location, int w, int h) {
+		 * 
+		 * ImageIcon imageIcon = new ImageIcon(location); // load the image to a
+		 * imageIcon Image image = imageIcon.getImage(); // transform it Image newimg =
+		 * smooth way imageIcon = new ImageIcon(image); // transform it back return
+		 * imageIcon;
+		 * 
+		 * }
+		 */
+		
+		public static ImageIcon scale(String location, int dWidth, int dHeight) {
+			BufferedImage imageToScale = null;
+			try {
+				imageToScale = ImageIO.read(new File(location));
+			} catch (IOException e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
 			}
+	        BufferedImage scaledImage = null;
+	        if (imageToScale != null) {
+	            scaledImage = new BufferedImage(dWidth, dHeight, imageToScale.getType());
+	            Graphics2D graphics2D = scaledImage.createGraphics();
+	            graphics2D.drawImage(imageToScale, 0, 0, dWidth, dHeight, null);
+	            graphics2D.dispose();
+	        }
+	        
+	        return new ImageIcon(scaledImage);
+	        
+	        
+	    }
 		
 		
 }

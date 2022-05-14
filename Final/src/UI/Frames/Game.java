@@ -54,6 +54,6 @@ public class Game {
 		frame.setVisible(true);
 		
 		//teszt
-		panel.enableVaccine();
+		//panel.enableVaccine();
 	}
 }
