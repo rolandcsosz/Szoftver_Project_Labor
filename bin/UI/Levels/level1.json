@@ -22,7 +22,7 @@
     "xValues": [0,100,200,300],
     "yValues": [200,200,100,300],
     "color" : "RED",
-    "middleX" : 150,
+    "middleX" : 175,
     "middleY" : 200,
     "neighbours" : [1,2,4,7]
   },
@@ -31,8 +31,8 @@
     "xValues": [0,0,300,100,300],
     "yValues": [200,491,491,300,300],
     "color" : "GREEN",
-    "middleX" : 140,
-    "middleY" : 356,
+    "middleX" : 100,
+    "middleY" : 400,
     "neighbours" : [3,5,6]
   },
   {
@@ -148,7 +148,7 @@
     "xValues": [600,600,700,800,600,400],
     "yValues": [100,200,200,100,0,0],
     "color" : "ORANGE",
-    "middleX" : 617,
+    "middleX" : 650,
     "middleY" : 100,
     "neighbours" : [9,18,11,19]
   },

@@ -42,11 +42,11 @@ public class GameField extends JPanel {
 		}
 	}
 
-
+	List<Polygons> polygons;
 	@Override
 	public void paint(Graphics g) {
 
-		List<Polygons> polygons = deserialize();
+		 polygons = deserialize();
 		List<Polygon> awtPolygon = new ArrayList<Polygon>();
 
 		for(int i = 0; i < polygons.size(); i++){
@@ -81,27 +81,68 @@ public class GameField extends JPanel {
 			}
 			g.fillPolygon(polygon);
 		}
-
-		ImageIcon warehouse = new ImageIcon("C:\\Users\\Gergő\\Desktop\\EGYETEM\\4. FÉLÉV\\Projlab\\Szoftver_Project_Labor_uj\\Final\\src\\UI\\Images\\Warehouse.png");
-		JLabel warehouseLabel = new JLabel();
-		warehouseLabel.setIcon(warehouse);
-		this.add(warehouseLabel);
-		BufferedImage image = null;
-		try {
-			image = ImageIO.read(new File("C:\\Users\\Gergő\\Desktop\\EGYETEM\\4. FÉLÉV\\Projlab\\Szoftver_Project_Labor_uj\\Final\\src\\UI\\Images\\Warehouse.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		g.drawImage(image, polygons.get(0).middleX-image.getWidth()/2, polygons.get(0).middleY - image.getHeight()/2, null);
+		fillMap(g);
 
 	}
+
+
+
+	public void fillMap(Graphics g){
+
+		Random random = new Random();
+		List<Integer> was = new ArrayList<Integer>();
+
+		for(int warehouses = 0; warehouses < 2; warehouses ++){
+			int rand25 = random.nextInt(1,25);
+			while(was.contains(rand25))
+				rand25 = random.nextInt(1, 25);
+			was.add(rand25);
+			BufferedImage image = null;
+			try {
+				image = ImageIO.read(new File("Final/src/UI/Images/Warehouse.png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			g.drawImage(image, polygons.get(rand25).middleX - 25, polygons.get(rand25).middleY  -25, 50,50, null);
+		}
+
+		for(int laboratory = 0; laboratory < 5; laboratory ++){
+			int rand25 = random.nextInt(1,25);
+			while(was.contains(rand25))
+				rand25 = random.nextInt(1, 25);
+			was.add(rand25);
+			BufferedImage image = null;
+			try {
+				image = ImageIO.read(new File("Final/src/UI/Images/Laboratory.png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			g.drawImage(image, polygons.get(rand25).middleX - 25, polygons.get(rand25).middleY  -25, 50,50, null);
+		}
+
+		for(int shelter = 0; shelter < 5; shelter ++){
+			int rand25 = random.nextInt(1, 25);
+			while(was.contains(rand25))
+				rand25 = random.nextInt(1, 25);
+			was.add(rand25);
+			BufferedImage image = null;
+			try {
+				image = ImageIO.read(new File("Final/src/UI/Images/Shelter.png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			g.drawImage(image, polygons.get(rand25).middleX - 25, polygons.get(rand25).middleY  -25, 75,75, null);
+		}
+
+	}
+
+
 
 	public List<Polygons> deserialize() {
 		List<Polygons> polygonlist = new ArrayList<Polygons>();
 		Gson gson = new Gson();
 		try {
-			JsonReader reader = new JsonReader(new FileReader("src/UI/Levels/level1.json"));
+			JsonReader reader = new JsonReader(new FileReader("Final/src/UI/Levels/level1.json"));
 			UI.Components.Polygons[] polygons = gson.fromJson(reader, UI.Components.Polygons[].class);
 			polygonlist = Arrays.asList(polygons);
 		} catch (FileNotFoundException e) {
