@@ -31,9 +31,10 @@ import java.awt.Font;
 
 public class DesignPatterns {
 
-	public static Color lightGrey = new Color(220,220,220);
 	public static Color grey = new Color(181,181,181);
+	public static Color lightGrey = new Color(220,220,220);
 	public static Color blue = new Color(69,105,144);
+	public static Color lightBlue = new Color(192,222,255);
 	public static Color red = new Color(239,118,122);
 	public static Color lightRed = new Color(249,188,190);
 	

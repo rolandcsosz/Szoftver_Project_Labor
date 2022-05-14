@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import UI.DesignPatterns;
 import UI.Components.GameField;
 import UI.Components.Panel;
+
 import java.awt.Graphics;
 import javax.swing.JLabel;
 
@@ -54,6 +55,12 @@ public class Game {
 		frame.getContentPane().add(gameField);
 
 		frame.setVisible(true);
+		
+		panel.setAgentNumber(UI.Collectable.DANCE,UI.Player.PLAYER1,1);
+		panel.setAgentNumber(UI.Collectable.PARALYSES,UI.Player.PLAYER2,2);
+		panel.addGeneticCode(UI.Collectable.DANCE_GC,UI.Player.PLAYER1);
+		panel.addGeneticCode(UI.Collectable.PARALYSES_GC,UI.Player.PLAYER2);
+		panel.addEquipment(UI.Collectable.AXE,UI.Player.PLAYER2);
 		
 		//teszt
 		//panel.enableVaccine();

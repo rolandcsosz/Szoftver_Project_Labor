@@ -2,6 +2,8 @@ package UI.Components;
 
 import java.awt.Color;
 
+
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -9,13 +11,77 @@ import javax.swing.JProgressBar;
 import UI.DesignPatterns;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 public class Panel extends JPanel {
 	
+	static List<UI.Collectable> equipments1 = new ArrayList<UI.Collectable>(3);
+	static List<UI.Collectable> equipments2 = new ArrayList<UI.Collectable>(3);
 	
-	JLabel Vaccine_label;
-	private JLabel OblivionVirusNumber_label;
-	private JLabel ParalysesVirusNumber_label;
+	static int glove1Counter;
+	static int glove2Counter;
+	
+	
+	static JLabel Equipment1Number_label;
+	static JLabel Equipment2Number_label;
+	static JLabel Equipment3Number_label;
+	static JLabel Equipment1Number_label_1;
+	static JLabel Equipment2Number_label_1;
+	static JLabel Equipment3Number_label_1;
+	static JLabel VaccineNumber_label;
+	static JLabel DanceVirusNumber_label;
+	static JLabel ParalysesVirusNumber_label_1;
+	static JLabel OblivionVirusNumber_label_1;
+	static JLabel PlayerName_label;
+	static JLabel PlayerName_label_1;
+	static JLabel DanceVirusNumber_label_1;
+	static JLabel Vaccine_label;
+	static JLabel VaccineNumber_label_1;
+	static JLabel DanceVirus_label;
+	static JLabel OblivionVirus_label;
+	static JLabel ParalysesVirus_label;
+	static JLabel DanceVirus_label_1;
+	static JLabel OblivionVirus_label_1;
+	static JLabel ParalysesVirus_label_1;
+	static JLabel Vaccine_label_1 ;
+	
+	static JLabel VaccineGC_label;
+	static JLabel DanceVirusGC_label;
+	static JLabel OblivionVirusGC_label;
+	static JLabel ParalysesVirusGC_label;
+	static JLabel VaccineGC_label_1;
+	static JLabel DanceVirusGC_label_1;
+	static JLabel OblivionVirusGC_label_1;
+	static JLabel ParalysesVirusGC_label_1;
+	
+	static JLabel Equipment1_label;
+	static JLabel Equipment2_label;
+	static JLabel Equipment3_label;
+	static JLabel Equipment1_label_1;
+	static JLabel Equipment2_label_1;
+	static JLabel Equipment3_label_1;
+	
+	int vaccineNumber1 = 0,
+		vaccinaNumber2 = 0,
+		oblivionVirusNumber1 = 0,
+		oblivionVirusNumber2 = 0,
+		paralysesVirusNumber1 = 0
+		,paralysesVirusNumber2 = 0;
+
+
+	static int danceVirusNumber1 = 0;
+
+
+	int danceVirusNumber2 = 0;
+	
+	
+	
+	private static JLabel OblivionVirusNumber_label;
+	private static JLabel ParalysesVirusNumber_label;
 
 	/**
 	 * Create the panel.
@@ -26,7 +92,7 @@ public class Panel extends JPanel {
 		this.setBackground(DesignPatterns.grey);
 		this.setLayout(null);
 		
-		JLabel Equipment3Number_label = new JLabel("0");
+		Equipment3Number_label = new JLabel("0");
 		Equipment3Number_label.setFont(DesignPatterns.robotoMono12);
 		Equipment3Number_label.setVerticalAlignment(SwingConstants.BOTTOM);
 		Equipment3Number_label.setOpaque(true);
@@ -36,7 +102,7 @@ public class Panel extends JPanel {
 		Equipment3Number_label.setBounds(336, 43, 14, 14);
 		add(Equipment3Number_label);
 		
-		JLabel Equipment2Number_label = new JLabel("0");
+		Equipment2Number_label = new JLabel("0");
 		Equipment2Number_label.setFont(DesignPatterns.robotoMono12);
 		Equipment2Number_label.setVerticalAlignment(SwingConstants.BOTTOM);
 		Equipment2Number_label.setOpaque(true);
@@ -46,7 +112,7 @@ public class Panel extends JPanel {
 		Equipment2Number_label.setBounds(289, 43, 14, 14);
 		add(Equipment2Number_label);
 		
-		JLabel Equipment1Number_label = new JLabel("0");
+		Equipment1Number_label = new JLabel("0");
 		Equipment1Number_label.setFont(DesignPatterns.robotoMono12);
 		Equipment1Number_label.setOpaque(true);
 		Equipment1Number_label.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -62,12 +128,13 @@ public class Panel extends JPanel {
 		this.add(Equipment1_panel);
 		Equipment1_panel.setLayout(null);
 		
-		JLabel Equipment1_label = new JLabel();
+		Equipment1_label = new JLabel();
 		Equipment1_label.setEnabled(false);
 		Equipment1_label.setBounds(1, 1, 35, 35);
 		Equipment1_panel.add(Equipment1_label);
 		
-		JLabel VaccineNumber_label = new JLabel("0");
+		VaccineNumber_label = new JLabel("0");
+		VaccineNumber_label.setVisible(false);
 		VaccineNumber_label.setHorizontalAlignment(SwingConstants.CENTER);
 		VaccineNumber_label.setVerticalAlignment(SwingConstants.BOTTOM);
 		VaccineNumber_label.setFont(DesignPatterns.robotoMono12);
@@ -77,7 +144,8 @@ public class Panel extends JPanel {
 		VaccineNumber_label.setBackground(DesignPatterns.blue);
 		VaccineNumber_label.setForeground(Color.WHITE);
 		
-		JLabel DanceVirusNumber_label = new JLabel("0");
+		DanceVirusNumber_label = new JLabel("0");
+		DanceVirusNumber_label.setVisible(false);
 		DanceVirusNumber_label.setHorizontalAlignment(SwingConstants.CENTER);
 		DanceVirusNumber_label.setVerticalAlignment(SwingConstants.BOTTOM);
 		DanceVirusNumber_label.setFont(DesignPatterns.robotoMono12);
@@ -89,6 +157,7 @@ public class Panel extends JPanel {
 		
 		JLabel lblNewLabel_3_1_1;
 		OblivionVirusNumber_label = new JLabel("0");
+		OblivionVirusNumber_label.setVisible(false);
 		OblivionVirusNumber_label.setHorizontalAlignment(SwingConstants.CENTER);
 		OblivionVirusNumber_label.setVerticalAlignment(SwingConstants.BOTTOM);
 		OblivionVirusNumber_label.setFont(DesignPatterns.robotoMono12);
@@ -100,6 +169,7 @@ public class Panel extends JPanel {
 		
 		JLabel lblNewLabel_3_1_1_1;
 		ParalysesVirusNumber_label = new JLabel("0");
+		ParalysesVirusNumber_label.setVisible(false);
 		ParalysesVirusNumber_label.setHorizontalAlignment(SwingConstants.CENTER);
 		ParalysesVirusNumber_label.setVerticalAlignment(SwingConstants.BOTTOM);
 		ParalysesVirusNumber_label.setFont(DesignPatterns.robotoMono12);
@@ -112,12 +182,14 @@ public class Panel extends JPanel {
 		
 		
 		JPanel VaccineGC_panel = new JPanel();
+		VaccineGC_panel.setBorder(new LineBorder(DesignPatterns.blue, 2));
 		VaccineGC_panel.setBounds(10, 20, 37, 37);
 		VaccineGC_panel.setBackground(DesignPatterns.lightGrey);
 		this.add(VaccineGC_panel);
 		VaccineGC_panel.setLayout(null);
 		
-		JLabel VaccineGC_label = new JLabel();
+		VaccineGC_label = new JLabel();
+		VaccineGC_label.setEnabled(false);
 		VaccineGC_label.setIcon(DesignPatterns.vaccineGC);
 		VaccineGC_label.setBounds(1, 1, 35, 35);
 		VaccineGC_panel.add(VaccineGC_label);
@@ -128,7 +200,8 @@ public class Panel extends JPanel {
 		this.add(DanceVirusGC_panel);
 		DanceVirusGC_panel.setLayout(null);
 		
-		JLabel DanceVirusGC_label = new JLabel();
+		DanceVirusGC_label = new JLabel();
+		DanceVirusGC_label.setEnabled(false);
 		DanceVirusGC_label.setBounds(1, 1, 35, 35);
 		DanceVirusGC_label.setIcon(DesignPatterns.danceVirusGC);
 		DanceVirusGC_panel.add(DanceVirusGC_label);
@@ -142,11 +215,13 @@ public class Panel extends JPanel {
 		Vaccine_panel.setBackground(new Color(220, 220, 220));
 		Vaccine_panel.setBounds(10, 75, 37, 37);
 		Vaccine_panel.setLayout(null);
+		Vaccine_panel.setBorder(null);
 		Vaccine_panel.add(Vaccine_label);
 		this.add(Vaccine_panel);
 		
 		
-		JLabel DanceVirus_label = new JLabel();
+		DanceVirus_label = new JLabel();
+		DanceVirus_label.setEnabled(false);
 		DanceVirus_label.setBounds(1, 1, 35, 35);
 		DanceVirus_label.setIcon(DesignPatterns.danceVirus); 
 		
@@ -157,7 +232,7 @@ public class Panel extends JPanel {
 		DanceVirus_panel.add(DanceVirus_label);
 		this.add(DanceVirus_panel);
 		
-		JLabel OblivionVirus_label = new JLabel();
+		OblivionVirus_label = new JLabel();
 		OblivionVirus_label.setEnabled(false);
 		OblivionVirus_label.setBounds(1, 1, 35, 35);
 		OblivionVirus_label.setIcon(DesignPatterns.oblivionVirus); 
@@ -169,7 +244,7 @@ public class Panel extends JPanel {
 		OblivionVirus_panel.add(OblivionVirus_label);
 		this.add(OblivionVirus_panel);
 		
-		JLabel ParalysesVirus_label = new JLabel();
+		ParalysesVirus_label = new JLabel();
 		ParalysesVirus_label.setEnabled(false);
 		ParalysesVirus_label.setBounds(1, 1, 35, 35);
 		ParalysesVirus_label.setIcon(DesignPatterns.paralyseVirus); 
@@ -198,7 +273,7 @@ public class Panel extends JPanel {
 		this.add(OblivionVirusGC_panel);
 		OblivionVirusGC_panel.setLayout(null);
 		
-		JLabel OblivionVirusGC_label = new JLabel();
+		OblivionVirusGC_label = new JLabel();
 		OblivionVirusGC_label.setEnabled(false);
 		OblivionVirusGC_label.setBounds(1, 1, 35, 35);
 		OblivionVirusGC_label.setIcon(DesignPatterns.oblivionVirusGC);
@@ -210,7 +285,7 @@ public class Panel extends JPanel {
 		this.add(ParalysesVirusGC_panel);
 		ParalysesVirusGC_panel.setLayout(null);
 		
-		JLabel ParalysesVirusGC_label = new JLabel();
+		ParalysesVirusGC_label = new JLabel();
 		ParalysesVirusGC_label.setEnabled(false);
 		ParalysesVirusGC_label.setBounds(1, 1, 35, 35);
 		ParalysesVirusGC_label.setIcon(DesignPatterns.paralysesVirusGC); 
@@ -222,7 +297,7 @@ public class Panel extends JPanel {
 		this.add(Equipment2_panel);
 		Equipment2_panel.setLayout(null);
 		
-		JLabel Equipment2_label = new JLabel();
+		Equipment2_label = new JLabel();
 		Equipment2_label.setEnabled(false);
 		Equipment2_label.setBounds(1, 1, 35, 35);
 		Equipment2_panel.add(Equipment2_label);
@@ -233,7 +308,7 @@ public class Panel extends JPanel {
 		this.add(Equipment3_panel);
 		Equipment3_panel.setLayout(null);
 		
-		JLabel Equipment3_label = new JLabel();
+		Equipment3_label = new JLabel();
 		Equipment3_label.setEnabled(false);
 		Equipment3_label.setBounds(1, 1, 35, 35);
 		Equipment3_panel.add(Equipment3_label);
@@ -288,7 +363,8 @@ public class Panel extends JPanel {
 		MaterialCount_label.setFont(DesignPatterns.robotoMono14);
 		this.add(MaterialCount_label);
 		
-		JLabel VaccineNumber_label_1 = new JLabel("0");
+		VaccineNumber_label_1 = new JLabel("0");
+		VaccineNumber_label_1.setVisible(false);
 		VaccineNumber_label_1.setFont(DesignPatterns.robotoMono12);
 		VaccineNumber_label_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		VaccineNumber_label_1.setOpaque(true);
@@ -298,7 +374,8 @@ public class Panel extends JPanel {
 		VaccineNumber_label_1.setBounds(1019, 105, 14, 14);
 		add(VaccineNumber_label_1);
 		
-		JLabel DanceVirusNumber_label_1 = new JLabel("0");
+		DanceVirusNumber_label_1 = new JLabel("0");
+		DanceVirusNumber_label_1.setVisible(false);
 		DanceVirusNumber_label_1.setFont(DesignPatterns.robotoMono12);
 		DanceVirusNumber_label_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		DanceVirusNumber_label_1.setOpaque(true);
@@ -308,7 +385,8 @@ public class Panel extends JPanel {
 		DanceVirusNumber_label_1.setBounds(1066, 105, 14, 14);
 		add(DanceVirusNumber_label_1);
 		
-		JLabel OblivionVirusNumber_label_1 = new JLabel("0");
+		OblivionVirusNumber_label_1 = new JLabel("0");
+		OblivionVirusNumber_label_1.setVisible(false);
 		OblivionVirusNumber_label_1.setFont(DesignPatterns.robotoMono12);
 		OblivionVirusNumber_label_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		OblivionVirusNumber_label_1.setOpaque(true);
@@ -318,7 +396,8 @@ public class Panel extends JPanel {
 		OblivionVirusNumber_label_1.setBounds(1114, 105, 14, 14);
 		add(OblivionVirusNumber_label_1);
 		
-		JLabel ParalysesVirusNumber_label_1 = new JLabel("0");
+		ParalysesVirusNumber_label_1 = new JLabel("0");
+		ParalysesVirusNumber_label_1.setVisible(false);
 		ParalysesVirusNumber_label_1.setFont(DesignPatterns.robotoMono12);
 		ParalysesVirusNumber_label_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		ParalysesVirusNumber_label_1.setOpaque(true);
@@ -335,6 +414,7 @@ public class Panel extends JPanel {
 		add(VaccineGC_panel_1);
 		
 		JLabel VaccineGC_label_1 = new JLabel();
+		VaccineGC_label_1.setEnabled(false);
 		VaccineGC_label_1.setBounds(1, 1, 35, 35);
 		VaccineGC_label_1.setIcon(DesignPatterns.vaccineGC);
 		VaccineGC_panel_1.add(VaccineGC_label_1);
@@ -346,6 +426,7 @@ public class Panel extends JPanel {
 		add(DanceVirusGC_panel_1);
 		
 		JLabel DanceVirusGC_label_1 = new JLabel();
+		DanceVirusGC_label_1.setEnabled(false);
 		DanceVirusGC_label_1.setBounds(1, 1, 35, 35);
 		DanceVirusGC_label_1.setIcon(DesignPatterns.danceVirusGC);
 		DanceVirusGC_panel_1.add(DanceVirusGC_label_1);
@@ -356,7 +437,7 @@ public class Panel extends JPanel {
 		Vaccine_panel_1.setBounds(989, 75, 37, 37);
 		add(Vaccine_panel_1);
 		
-		JLabel Vaccine_label_1 = new JLabel();
+		Vaccine_label_1 = new JLabel();
 		Vaccine_label_1.setEnabled(false);
 		Vaccine_label_1.setBounds(0, 0, 35, 35);
 		Vaccine_label_1.setIcon(DesignPatterns.vaccine);
@@ -368,7 +449,8 @@ public class Panel extends JPanel {
 		DanceVirus_panel_1.setBounds(1036, 75, 37, 37);
 		add(DanceVirus_panel_1);
 		
-		JLabel DanceVirus_label_1 = new JLabel();
+		DanceVirus_label_1 = new JLabel();
+		DanceVirus_label_1.setEnabled(false);
 		DanceVirus_label_1.setBounds(1, 1, 35, 35);
 		DanceVirus_label_1.setIcon(DesignPatterns.danceVirus); 
 		DanceVirus_panel_1.add(DanceVirus_label_1);
@@ -379,7 +461,7 @@ public class Panel extends JPanel {
 		OblivionVirus_panel_1.setBounds(1083, 75, 37, 37);
 		add(OblivionVirus_panel_1);
 		
-		JLabel OblivionVirus_label_1 = new JLabel();
+		OblivionVirus_label_1 = new JLabel();
 		OblivionVirus_label_1.setEnabled(false);
 		OblivionVirus_label_1.setBounds(1, 1, 35, 35);
 		OblivionVirus_label_1.setIcon(DesignPatterns.oblivionVirus); 
@@ -391,7 +473,7 @@ public class Panel extends JPanel {
 		ParalysesVirus_panel_1.setBounds(1130, 75, 37, 37);
 		add(ParalysesVirus_panel_1);
 		
-		JLabel ParalysesVirus_label_1 = new JLabel();
+		ParalysesVirus_label_1 = new JLabel();
 		ParalysesVirus_label_1.setEnabled(false);
 		ParalysesVirus_label_1.setBounds(1, 1, 35, 35);
 		ParalysesVirus_label_1.setIcon(DesignPatterns.paralyseVirus); 
@@ -413,7 +495,7 @@ public class Panel extends JPanel {
 		OblivionVirusGC_panel_1.setBounds(1083, 20, 37, 37);
 		add(OblivionVirusGC_panel_1);
 		
-		JLabel OblivionVirusGC_label_1 = new JLabel();
+		OblivionVirusGC_label_1 = new JLabel();
 		OblivionVirusGC_label_1.setEnabled(false);
 		OblivionVirusGC_label_1.setBounds(1, 1, 35, 35);
 		OblivionVirusGC_label_1.setIcon(DesignPatterns.oblivionVirusGC);
@@ -425,13 +507,13 @@ public class Panel extends JPanel {
 		ParalysesVirusGC_panel_1.setBounds(1130, 20, 37, 37);
 		add(ParalysesVirusGC_panel_1);
 		
-		JLabel ParalysesVirusGC_label_1 = new JLabel();
+		ParalysesVirusGC_label_1 = new JLabel();
 		ParalysesVirusGC_label_1.setEnabled(false);
 		ParalysesVirusGC_label_1.setBounds(1, 1, 35, 35);
 		ParalysesVirusGC_label_1.setIcon(DesignPatterns.paralysesVirusGC);
 		ParalysesVirusGC_panel_1.add(ParalysesVirusGC_label_1);
 		
-		JLabel Equipment3Number_label_1 = new JLabel("0");
+		Equipment3Number_label_1 = new JLabel("0");
 		Equipment3Number_label_1.setFont(DesignPatterns.robotoMono12);
 		Equipment3Number_label_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		Equipment3Number_label_1.setOpaque(true);
@@ -441,7 +523,7 @@ public class Panel extends JPanel {
 		Equipment3Number_label_1.setBounds(960, 43, 14, 14);
 		add(Equipment3Number_label_1);
 		
-		JLabel Equipment2Number_label_1 = new JLabel("0");
+		Equipment2Number_label_1 = new JLabel("0");
 		Equipment2Number_label_1.setFont(DesignPatterns.robotoMono12);
 		Equipment2Number_label_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		Equipment2Number_label_1.setOpaque(true);
@@ -451,7 +533,7 @@ public class Panel extends JPanel {
 		Equipment2Number_label_1.setBounds(913, 43, 14, 14);
 		add(Equipment2Number_label_1);
 		
-		JLabel Equipment1Number_label_1 = new JLabel("0");
+		Equipment1Number_label_1 = new JLabel("0");
 		Equipment1Number_label_1.setFont(DesignPatterns.robotoMono12);
 		Equipment1Number_label_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		Equipment1Number_label_1.setOpaque(true);
@@ -467,8 +549,7 @@ public class Panel extends JPanel {
 		Equipment1_panel_1.setBounds(836, 20, 37, 37);
 		add(Equipment1_panel_1);
 		
-		JLabel Equipment1_label_1 = new JLabel();
-		Equipment1_label_1.setEnabled(false);
+		Equipment1_label_1 = new JLabel();
 		Equipment1_label_1.setBounds(1, 1, 35, 35);
 		Equipment1_panel_1.add(Equipment1_label_1);
 		
@@ -478,7 +559,7 @@ public class Panel extends JPanel {
 		Equipment2_panel_1.setBounds(883, 20, 37, 37);
 		add(Equipment2_panel_1);
 		
-		JLabel Equipment2_label_1 = new JLabel();
+		Equipment2_label_1 = new JLabel();
 		Equipment2_label_1.setEnabled(false);
 		Equipment2_label_1.setBounds(1, 1, 35, 35);
 		Equipment2_panel_1.add(Equipment2_label_1);
@@ -489,7 +570,7 @@ public class Panel extends JPanel {
 		Equipment3_panel_1.setBounds(930, 20, 37, 37);
 		add(Equipment3_panel_1);
 		
-		JLabel Equipment3_label_1 = new JLabel();
+		Equipment3_label_1 = new JLabel();
 		Equipment3_label_1.setEnabled(false);
 		Equipment3_label_1.setBounds(1, 1, 35, 35);
 		Equipment3_panel_1.add(Equipment3_label_1);
@@ -524,7 +605,7 @@ public class Panel extends JPanel {
 		progressBar_1.setBounds(836, 92, 84, 5);
 		add(progressBar_1);
 		
-		JLabel PlayerName_label_1 = new JLabel("Player 2");
+		PlayerName_label_1 = new JLabel("Player 2");
 		PlayerName_label_1.setFont(null);
 		PlayerName_label_1.setFont(DesignPatterns.robotoMono20);
 		PlayerName_label_1.setBounds(714, 11, 149, 36);
@@ -549,7 +630,228 @@ public class Panel extends JPanel {
 
 	}
 	
-	public void enableVaccine() {
-		Vaccine_label.disable();
+	public static void addEquipment(UI.Collectable type,UI.Player player) {
+		
+		JLabel perm = null;
+
+				if(player == UI.Player.PLAYER1) {
+					if(equipments1.size() == 0) {
+						perm = Equipment1_label;
+					}
+					else if(equipments1.size() == 1) {
+						perm = Equipment2_label;
+					}
+					else if(equipments1.size() == 2) {
+						perm = Equipment3_label;
+					}
+				}
+				if(player == UI.Player.PLAYER2) {
+					if(equipments1.size() == 0) {
+						perm = Equipment1_label_1;
+					}
+					else if(equipments1.size() == 1) {
+						perm = Equipment2_label_1;
+					}
+					else if(equipments1.size() == 2) {
+						perm = Equipment3_label_1;
+					}
+				}
+				
+				switch(type) {
+				case AXE:
+					{ perm.setIcon(DesignPatterns.danceVirus);
+						break;
+					}
+				}
 	}
+	
+	public static void addGeneticCode(UI.Collectable type,UI.Player player) {
+		switch(type) {
+			case DANCE_GC:
+			{
+				if(player == UI.Player.PLAYER1) {
+					DanceVirusGC_label.setEnabled(true);
+				}
+				if(player == UI.Player.PLAYER2) {
+					DanceVirusGC_label_1.setEnabled(true);
+				}
+				
+				break;
+				
+			}
+			case VACCINE_GC:
+			{
+				if(player == UI.Player.PLAYER1) {
+					VaccineGC_label.setEnabled(true);
+				}
+				if(player == UI.Player.PLAYER2) {
+					VaccineGC_label_1.setEnabled(true);
+				}
+				
+				break;
+				
+			}
+			case OBLIVION_GC:
+			{
+				if(player == UI.Player.PLAYER1) {
+					OblivionVirusGC_label.setEnabled(true);
+				}
+				if(player == UI.Player.PLAYER2) {
+					OblivionVirusGC_label_1.setEnabled(true);
+				}
+				
+				break;
+			}
+			
+			case PARALYSES_GC:
+			{
+				if(player == UI.Player.PLAYER1) {
+					ParalysesVirusGC_label.setEnabled(true);
+				}
+				if(player == UI.Player.PLAYER2) {
+					ParalysesVirusGC_label_1.setEnabled(true);
+				}
+				
+				break;
+				
+			}
+		}
+	}
+	
+	
+	public static void setAgentNumber(UI.Collectable type,UI.Player player, int num) {
+		
+		switch(type) {
+		case DANCE:
+		{
+			if(player == UI.Player.PLAYER1) {
+				 setCounter(DanceVirusNumber_label,num);
+
+				 if(num == 0) {
+					 DanceVirus_label.setEnabled(false);
+				 }
+				 else {
+					 DanceVirus_label.setEnabled(true);
+				 }
+			}
+			if(player == UI.Player.PLAYER2) {
+				 setCounter(DanceVirusNumber_label_1,num);
+				 if(num == 0) {
+					 DanceVirus_label_1.setEnabled(false);
+				 }
+				 else {
+					 DanceVirus_label_1.setEnabled(true);
+				 }
+			}
+			
+			break;
+		}
+		case VACCINE:
+		{
+			if(player == UI.Player.PLAYER1) {
+				 setCounter(VaccineNumber_label,num);
+				 if(num == 0) {
+					 Vaccine_label.setEnabled(false);
+				 }
+				 else {
+					 Vaccine_label.setEnabled(true);
+				 }
+			}
+			if(player == UI.Player.PLAYER2) {
+				 setCounter(VaccineNumber_label_1,num);
+				 if(num == 0) {
+					 Vaccine_label_1.setEnabled(false);
+				 }
+				 else {
+					 Vaccine_label_1.setEnabled(true);
+				 }
+			}
+			
+			break;
+		}
+		case OBLIVION:
+		{
+			if(player == UI.Player.PLAYER1) {
+				 setCounter(OblivionVirusNumber_label,num);
+				 if(num == 0) {
+					 OblivionVirus_label.setEnabled(false);
+				 }
+				 else {
+					 OblivionVirus_label.setEnabled(true);
+				 }
+			}
+			if(player == UI.Player.PLAYER2) {
+				 setCounter(OblivionVirusNumber_label_1,num);
+				 if(num == 0) {
+					 OblivionVirus_label_1.setEnabled(false);
+				 }
+				 else {
+					 OblivionVirus_label_1.setEnabled(true);
+				 }
+			}
+			
+			break;
+		}
+		
+		case PARALYSES:
+		{
+			if(player == UI.Player.PLAYER1) {
+				 setCounter(ParalysesVirusNumber_label,num);
+				 if(num == 0) {
+					 ParalysesVirus_label.setEnabled(false);
+				 }
+				 else {
+					 ParalysesVirus_label.setEnabled(true);
+				 }
+			}
+			if(player == UI.Player.PLAYER2) {
+				 setCounter(ParalysesVirusNumber_label_1,num);
+				 if(num == 0) {
+					 ParalysesVirus_label_1.setEnabled(false);
+				 }
+				 else {
+					 ParalysesVirus_label_1.setEnabled(true);
+				 }
+			}
+			
+			break;
+		}
+		}
+
+	}
+	
+	
+	
+	static void enableGCorAgent(JLabel label,boolean flag) {
+		if(flag) {
+			label.setEnabled(true);
+			return;
+		}
+		
+		label.setEnabled(false);
+	}
+	
+	
+	static void setCounter(JLabel label, int newValue) {
+
+			label.setText(String.valueOf(newValue));
+			
+			if(label.getText().equals("0")) {
+				label.setVisible(false);
+			}
+			else {
+				label.setVisible(true);
+			}
+	}
+	
+	
+	static void setSelected(JPanel panel,boolean flag) {
+		if(flag) {
+			panel.setBorder(new LineBorder(DesignPatterns.blue, 2));
+			return;
+		}
+		
+		panel.setBorder(null);
+	}
+	
 }
