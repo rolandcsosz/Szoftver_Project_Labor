@@ -1,6 +1,6 @@
 public class Glove extends Equipment {
 
-	private int lifeCounter;
+	private int lifeCounter = 3;
 
 	public void effect(Virologist v) {
 		reduceLife();

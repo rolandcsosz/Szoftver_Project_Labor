@@ -8,6 +8,7 @@ public abstract class Agent implements Collectable, Effectable, Steppable {
 	public boolean isActivated = false;   	//defaultban false legyen és csak akkor lehet true ha átállítjuk a setterel
 	private GeneticCode geneticCode;
 	public abstract void effect(Virologist on);
+
 	public List<Material> getCost() {
 		List<Material> materials = new ArrayList<Material>();
 		return materials;
@@ -25,6 +26,9 @@ public abstract class Agent implements Collectable, Effectable, Steppable {
 	public void step() {
 		if(isActivated) {
 			timeCounter--;
+		}
+		if(timeCounter == 0){
+			virologist.removeAgent(this);
 		}
 	}
 

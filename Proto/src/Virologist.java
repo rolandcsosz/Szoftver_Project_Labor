@@ -5,6 +5,7 @@ import java.util.Random;
 public class Virologist implements Steppable {
 	private int maxMaterial;
     private boolean IsParalysed;
+    private boolean IsProtected;
     private Field currentfield;
     private List<Equipment> equipments;
     private List<Agent> agents;
@@ -28,6 +29,55 @@ public class Virologist implements Steppable {
 
     }
 
+    public Field getCurrentfield() {
+        return currentfield;
+    }
+
+    public void setCurrentfield(Field currentfield) {
+
+        this.currentfield = currentfield;
+    }
+
+    public boolean getParalysedStatus() {
+        return IsParalysed;
+    }
+
+    public void setParalysed(boolean b){
+        IsParalysed = b;
+    }
+
+    public int getMaxMaterial() {
+        return maxMaterial;
+    }
+
+    public List<Collectable> getCollectables() {
+        List<Collectable> perm = new ArrayList<Collectable>();
+        perm.addAll(agents);
+        perm.addAll(geneticcodes);
+        perm.addAll(equipments);
+        perm.addAll(materials);
+
+        return perm;
+
+    }
+
+    boolean isOwnedAlrerady(Equipment eq) {
+        for(Equipment equipment: equipments){
+            if(equipment.getClass().equals(eq.getClass()))
+                return true;
+        }
+        return false;
+    }
+
+
+    public void learnGeneticCode(GeneticCode g) {
+        geneticcodes.add(g);
+    }
+
+    public void forgetGeneticCodes() {
+        geneticcodes.clear();
+    }
+
     /**
      * This is a method moves the virologist to another field.
      *
@@ -43,17 +93,15 @@ public class Virologist implements Steppable {
     }
 
     public void step() {
+        for(Agent a: agents){
+            if(a.getActivated()) {
+                a.effect(this);
+            }
+        }
     }
 
 
-    public Field getCurrentfield() {
-        return currentfield;
-    }
 
-    public void setCurrentfield(Field currentfield) {
-
-        this.currentfield = currentfield;
-    }
 
     /**
      * This is a method makes the virologist attack an other virologist (or itself) with an agent
@@ -63,11 +111,39 @@ public class Virologist implements Steppable {
      * @return Nothing.
      */
     public void attack(Virologist v, Agent a) {
-
         if (!this.getParalysedStatus() && currentfield.IsNeighbour(v.getCurrentfield())) {
-            a.effect(v);
+            v.attackedBy(this, a);
+        }
+    }
+
+    public void attackedBy(Virologist virologist, Agent a){
+        if(this.getParalysedStatus() || this.IsProtected) return;
+        for(Equipment equipment: this.getEquipments()){
+            if(equipment instanceof Cloak){
+                int r = new Random().nextInt(100);
+                if(r>82){
+                    a.effect(this);
+                } else return;
+            }
+            if(equipment instanceof Glove){
+                equipment.effect(virologist);
+                attack(virologist, a);
+            }
         }
 
+        a.effect(this);
+    }
+
+    public void attack(Bear bear, Axe axe){
+        if(!axe.getUsedStatus()) {
+            bear.die();
+            axe.setUsedStatus();
+        }
+    }
+
+    public void drop(Equipment eq){
+        if(equipments.contains(eq))
+            remove(eq);
     }
 
     /**
@@ -78,34 +154,21 @@ public class Virologist implements Steppable {
      * @return Nothing.
      */
     public void steal(Virologist v) {
-        /*Logger.log(Logger.getParameter() + ".getParalysedStatus()", 1);
-        Logger.log("f1.IsNeighbour(v2.getCurrentField())", 1);*/
         if (!this.getParalysedStatus() && (currentfield.IsNeighbour(v.getCurrentfield()) || currentfield == v.getCurrentfield())) {
-            //Logger.log("v2.getCollectables()", 1);
-            for (Collectable c : v.getCollectables()) {
-                //Log miatti parameter beallitasok
-                /*if (c instanceof Bag) {
-                    Logger.setsecondParameter("b");
-                }
+            v.robbedBy(this);
+        }
+    }
 
-                if (c instanceof Cloak) {
-                    Logger.setsecondParameter("c");
-                }
-
-                if (c instanceof Material) {
-                    Logger.setsecondParameter("m");
-                }
-
-                if (c instanceof Glove) {
-                    Logger.setsecondParameter("g");
-                }*/
-
-                //Logger.log(Logger.getsecondParameter() + ".pickUpBy(" + Logger.getParameter() + ")", 1);
-                c.PickUpBy(this);
-
-                //Logger.log("v2.remove(" + Logger.getsecondParameter() + ")", 1);
-                v.remove(c);
-
+    public void robbedBy(Virologist virologist){
+        if(!IsParalysed) return;
+        for(Equipment equipment : equipments){
+            if(!virologist.isOwnedAlrerady(equipment)){
+                virologist.pickUp(equipment);
+            }
+        }
+        for(Material m: materials){
+            if(materials.size()<maxMaterial){
+                pickUp(m);
             }
         }
     }
@@ -130,13 +193,7 @@ public class Virologist implements Steppable {
         }
     }
 
-    public void learnGeneticCode(GeneticCode g) {
 
-    }
-
-    public void forgetGeneticCode(GeneticCode g) {
-        geneticcodes.remove(g);
-    }
 
 
     /**
@@ -213,16 +270,7 @@ public class Virologist implements Steppable {
      * @param Unused.
      * @return list of every collectable item what the virologist posesses
      */
-    public List<Collectable> getCollectables() {
-        List<Collectable> perm = new ArrayList<Collectable>();
-        perm.addAll(agents);
-        perm.addAll(geneticcodes);
-        perm.addAll(equipments);
-        perm.addAll(materials);
 
-        return perm;
-
-    }
 
     public void addAgent(Agent a) {
         agents.add(a);
@@ -237,11 +285,17 @@ public class Virologist implements Steppable {
         agents.remove(a);
     }
 
-    public boolean getParalysedStatus() {
-        return IsParalysed;
+
+
+    public boolean getProtected() {
+        return IsProtected;
+    }
+    public void setProtected(boolean b){
+        IsProtected = b;
     }
 
-    public void addEffect(Agent a) {
+
+    /*public void addEffect(Agent a) {
         for(Agent agent: agents){
             if(agent instanceof Vaccine && agent.getActivated()){
                 return;
@@ -276,11 +330,9 @@ public class Virologist implements Steppable {
                 attack(a.getVirologist(), a);
             }
         }
-    }
+    }*/
     
-    public int getMaxMaterial() {
-    	return maxMaterial;
-    }
+
 
     public void removeEffect(Agent a) {
 
@@ -336,9 +388,7 @@ public class Virologist implements Steppable {
         return equipments;
     }
 
-    boolean isOwnedAlrerady(Equipment eq) {
-        return false;
-    }
+
 
 
     public void die(){
