@@ -41,15 +41,15 @@ public class DesignPatterns {
 	public static Font robotoMono12 = createFont(12);
 	public static Font robotoMono8 = createFont(8);
 	
-	public static ImageIcon danceVirus = scale("Final/src/UI/Images/Virus1.png", 35, 35);
-	public static ImageIcon oblivionVirus = scale("Final/src/UI/Images/Virus2.png", 35, 35);
-	public static ImageIcon vaccine = scale("Final/src/UI/Images/Vaccine.png", 35, 35);
-	public static ImageIcon paralyseVirus = scale("Final/src/UI/Images/Virus3.png", 35, 35);
+	public static ImageIcon danceVirus = scale("src/UI/Images/Virus1.png", 35, 35);
+	public static ImageIcon oblivionVirus = scale("src/UI/Images/Virus2.png", 35, 35);
+	public static ImageIcon vaccine = scale("src/UI/Images/Vaccine.png", 35, 35);
+	public static ImageIcon paralyseVirus = scale("src/UI/Images/Virus3.png", 35, 35);
 	
-	public static ImageIcon danceGC = scale("Final/src/UI/Images/Genetic Code1.png", 35, 35);
-	public static ImageIcon paralysesGC = scale("Final/src/UI/Images/Genetic Code1-1.png", 35, 35);
-	public static ImageIcon oblivionGC = scale("Final/src/UI/Images/Genetic Code1-2.png", 35, 35);
-	public static ImageIcon vaccineGC = scale("Final/src/UI/Images/Genetic Code1-3.png", 35, 35);
+	public static ImageIcon danceGC = scale("src/UI/Images/Genetic Code1.png", 35, 35);
+	public static ImageIcon paralysesGC = scale("src/UI/Images/Genetic Code1-1.png", 35, 35);
+	public static ImageIcon oblivionGC = scale("src/UI/Images/Genetic Code1-2.png", 35, 35);
+	public static ImageIcon vaccineGC = scale("src/UI/Images/Genetic Code1-3.png", 35, 35);
 	
 
 		public static Font createFont(int size) {
@@ -60,7 +60,7 @@ public class DesignPatterns {
 			 
 	         try {
 	         	//myStream3 = new BufferedInputStream();
-	             myStream = new BufferedInputStream(new FileInputStream("Final/src/UI/Fonts/RobotoMono-Regular.ttf"));
+	             myStream = new BufferedInputStream(new FileInputStream("src/UI/Fonts/RobotoMono-Regular.ttf"));
 	             ttfBase = Font.createFont(Font.TRUETYPE_FONT, myStream);
 	             telegraficoFont = ttfBase.deriveFont(Font.PLAIN, size);               
 	         } catch (Exception ex) {

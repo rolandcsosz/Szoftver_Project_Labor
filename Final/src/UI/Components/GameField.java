@@ -1,12 +1,14 @@
 package UI.Components;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Polygon;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.io.*;
 import java.util.*;
+import java.util.List;
 
-import javax.swing.JPanel;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
 import Model.Field;
 import com.google.gson.Gson;
@@ -80,13 +82,26 @@ public class GameField extends JPanel {
 			g.fillPolygon(polygon);
 		}
 
+		ImageIcon warehouse = new ImageIcon("C:\\Users\\Gergő\\Desktop\\EGYETEM\\4. FÉLÉV\\Projlab\\Szoftver_Project_Labor_uj\\Final\\src\\UI\\Images\\Warehouse.png");
+		JLabel warehouseLabel = new JLabel();
+		warehouseLabel.setIcon(warehouse);
+		this.add(warehouseLabel);
+		BufferedImage image = null;
+		try {
+			image = ImageIO.read(new File("C:\\Users\\Gergő\\Desktop\\EGYETEM\\4. FÉLÉV\\Projlab\\Szoftver_Project_Labor_uj\\Final\\src\\UI\\Images\\Warehouse.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		g.drawImage(image, polygons.get(0).middleX-image.getWidth()/2, polygons.get(0).middleY - image.getHeight()/2, null);
+
 	}
 
 	public List<Polygons> deserialize() {
 		List<Polygons> polygonlist = new ArrayList<Polygons>();
 		Gson gson = new Gson();
 		try {
-			JsonReader reader = new JsonReader(new FileReader("Final/src/UI/Levels/level1.json"));
+			JsonReader reader = new JsonReader(new FileReader("src/UI/Levels/level1.json"));
 			UI.Components.Polygons[] polygons = gson.fromJson(reader, UI.Components.Polygons[].class);
 			polygonlist = Arrays.asList(polygons);
 		} catch (FileNotFoundException e) {
