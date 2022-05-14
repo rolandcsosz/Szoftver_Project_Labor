@@ -52,8 +52,13 @@ public class GameField extends JPanel {
 	    int xValues[] = { 70, 90, 100, 80, 70, 65, 60 };
 	      int yValues[] = { 100, 100, 110, 110, 130, 110, 90 };
 	      Polygon polygon1 = new Polygon( xValues, yValues, 7 );
+
+			 int x2Values[] = { 80, 100, 110, 110, 170, 165, 160 };
+			 int y2Values[] = { 100, 50, 110, 110, 130, 110, 90 };
+			 Polygon polygon2 = new Polygon( x2Values, y2Values, 7 );
  
 	        g.fillPolygon( polygon1 );
+			 g.fillPolygon( polygon2 );
 	    } 
 
 }

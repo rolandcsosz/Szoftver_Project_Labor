@@ -1,8 +1,0 @@
-2 virologists created.
-[V1,V2]
-1 fields created.
-[F1]
-1 shelters created.
-[S1]
-'V1' is added to 'F1'.
-'V2' is added to 'S1'.

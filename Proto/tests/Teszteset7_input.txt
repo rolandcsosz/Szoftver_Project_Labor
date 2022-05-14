@@ -1,9 +1,0 @@
-create shelter 4
-create cloak 1
-create axe 1
-create bag 1
-create glove 1
-add S1 C1
-add S2 A1
-add S3 B1
-add S4 G1

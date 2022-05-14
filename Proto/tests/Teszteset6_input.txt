@@ -1,5 +1,0 @@
-create laboratory 1
-create field 1
-create shelter 1
-setneighbour L1 F1
-setneighbour F1 S1

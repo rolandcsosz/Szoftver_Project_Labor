@@ -1,6 +1,0 @@
-create virologist 1
-create shelter 1
-create bag 1
-add S1 B1
-add S1 V1
-add V1 B1

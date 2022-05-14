@@ -1,8 +1,0 @@
-create virologist 2
-create shelter 2
-create oblivion 1
-setneighbour S1 S2
-add S1 V1
-add S2 V2
-add V1 O1
-attack V1 V2 O1

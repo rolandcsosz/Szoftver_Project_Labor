@@ -1,9 +1,0 @@
-1 fields created.
-[F1]
-1 laboratorys created.
-[L1]
-'L1' is set as neighbour to 'F1'.
-1 virologists created.
-[V1]
-'V1' is added to 'F1'.
-'V1' moved to 'L1'.

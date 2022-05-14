@@ -1,8 +1,0 @@
-create virologist 1
-create laboratory 1
-create geneticCode 1
-create oblivion 1
-add L1 GC1
-add L1 V1
-add V1 GC1
-make V1 O1

@@ -155,7 +155,5 @@ public class Menu {
 		
 		btnNewButton.grabFocus();
 
-		
-
 	}
 }

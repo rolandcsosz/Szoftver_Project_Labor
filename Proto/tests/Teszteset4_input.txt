@@ -1,6 +1,0 @@
-create field 1
-create warehouse 1
-setneighbour F1 W1
-create virologist 1
-add F1 V1
-move V1 W1
