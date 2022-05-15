@@ -1171,12 +1171,12 @@ public class Panel extends JPanel {
 		resetSelectionEquipment(player);
 		
 		if(player == UI.Player.PLAYER1) {
-			selectedEquipment1 = 1;
+			selectedEquipment1 = 0;
 			setSelected(Equipment1_panel,true);
 			
 		}
 		if(player == UI.Player.PLAYER2) {
-			selectedEquipment2 = 1;
+			selectedEquipment2 = 0;
 			setSelected(Equipment1_panel_1,true);
 		}
 		
@@ -1302,10 +1302,16 @@ public class Panel extends JPanel {
 	
 	public static UI.Collectable getSelectedEquipment(UI.Player player){
 		if(player == UI.Player.PLAYER1) {
+			if(equipments1.size()<=selectedEquipment1) {
+				return null;
+			}
 			return equipments1.get(selectedEquipment1);
 		}
 		
 		if(player == UI.Player.PLAYER2) {
+			if(equipments1.size()<=selectedEquipment2) {
+				return null;
+			}
 			return equipments1.get(selectedEquipment2);
 			
 		} 
@@ -1315,13 +1321,15 @@ public class Panel extends JPanel {
 	
 	
 	public static void selectNextEquipment(UI.Player player){
-		resetSelectionAgent(player);
+		resetSelectionEquipment(player);
 		
 		if(player == UI.Player.PLAYER1) {
 			selectedEquipment1++;
 			if(selectedEquipment1 == 3)
 				selectedEquipment1 = 0;
+			
 			setSelected(getEquipmentPanelByIndex(player,selectedEquipment1),true);
+			
 			
 		}
 		
@@ -1400,6 +1408,7 @@ public class Panel extends JPanel {
 				
 			}
 
+			System.out.println("deleted");
 			equipments1.remove(index);
 			
 		}

@@ -5,9 +5,20 @@ import UI.Components.Panel;
 import UI.Collectable;
 import UI.Frames.Game;
 import UI.Player;
-
+import Main.Main;
+import Model.Agent;
+import Model.Oblivion;
+import Model.Paralyses;
+import Model.Vaccine;
+import Model.Virusdance;
 
 public class Listener implements KeyListener {
+	
+	boolean isAgentSelected1 = false;
+	boolean isAgentSelected2 = false;
+	boolean isEquipmentSelected1 = false;
+	boolean isEquipmentSelected2 = false;
+	
 
 	UI.Collectable selectedEquipment1;
 	UI.Collectable selectedEquipment2;
@@ -25,8 +36,15 @@ public class Listener implements KeyListener {
         switch(i){
             case KeyEvent.VK_A:{
             	//P1 selectagens
-            	//Panel.selectfirstAgent(Player.PLAYER1);
-            	System.out.println("A");
+            	if(!isAgentSelected1) {
+            		Panel.selectfirstAgent(Player.PLAYER1);
+            		isAgentSelected1 = true;
+            	}
+            	else {
+            		Panel.selectNextAgent(Player.PLAYER1);
+            	}
+            	
+            	selectedAgent1 = Panel.getSelectedAgent(Player.PLAYER1);
             	break;
             	
             }
@@ -52,36 +70,66 @@ public class Listener implements KeyListener {
                 //P1 drop
 
             {
-            	//P1 selectagens
-            	//Panel.selectfirstAgent(Player.PLAYER1);
-            	System.out.println("Yeeey");
+            	
+            	Panel.dropEquipment(Player.PLAYER1, selectedEquipment1);
+            	
             	break;
             	
             }
             case KeyEvent.VK_Q:
                 //P1 selecteq
             {
-            	//P1 selectagens
-            	//Panel.selectfirstAgent(Player.PLAYER1);
-            	System.out.println("Yeeey");
+            	
+                	if(!isEquipmentSelected1) {
+                 		Panel.selectfirstEquipment(Player.PLAYER1);
+                 		isEquipmentSelected1 = true;
+                 	}
+                 	else {
+                 		Panel.selectNextEquipment(Player.PLAYER1);
+                 	}
+                	
+                	selectedEquipment1 = Panel.getSelectedEquipment(Player.PLAYER1);
+                
             	break;
             	
             }
             case KeyEvent.VK_V:
                 //P1 move
             {
-            	//P1 selectagens
-            	//Panel.selectfirstAgent(Player.PLAYER1);
-            	System.out.println("Yeeey");
+            	
             	break;
             	
             }
             case KeyEvent.VK_X:
                 //P1 attacks
             {
-            	//P1 selectagens
-            	//Panel.selectfirstAgent(Player.PLAYER1);
-            	System.out.println("Yeeey");
+            	Agent a = null;
+            	
+            	
+            	
+            	switch(selectedAgent1) {
+	            	case DANCE:{
+	            		a = new Virusdance();
+	            		break;
+	            	}
+	            	
+	            	case OBLIVION:{
+	            		a = new Oblivion();
+	            		break;
+	            	}
+	            	
+	            	case PARALYSES:{
+	            		a = new Paralyses();
+	            		break;
+	            	}
+	            	
+	            	case VACCINE:{
+	            		a = new Vaccine();
+	            		break;
+	            	}
+            	}
+            	
+            	Main.virologist1.attack(Main.virologist2,a);
             	break;
             	
             }
@@ -97,18 +145,23 @@ public class Listener implements KeyListener {
             case KeyEvent.VK_PERIOD:
                 //P2 selecteq
             {
-            	//P1 selectagens
-            	//Panel.selectfirstAgent(Player.PLAYER1);
-            	System.out.println("Yeeey");
+            	if(!isEquipmentSelected2) {
+             		Panel.selectfirstEquipment(Player.PLAYER2);
+             		isEquipmentSelected2 = true;
+             	}
+             	else {
+             		Panel.selectNextEquipment(Player.PLAYER2);
+             	}
+            	
+            	selectedEquipment2 = Panel.getSelectedEquipment(Player.PLAYER2);
             	break;
             	
             }
             case KeyEvent.VK_MINUS:
                 //P2 drop
             {
-            	//P1 selectagens
-            	//Panel.selectfirstAgent(Player.PLAYER1);
-            	System.out.println("Yeeey");
+
+            	Panel.dropEquipment(Player.PLAYER2, selectedEquipment2);
             	break;
             	
             }
@@ -122,29 +175,55 @@ public class Listener implements KeyListener {
             	
             }
             case KeyEvent.VK_RIGHT:
-                //P2 lep
+            	//P2 select agens
+                
             {
-            	//P1 selectagens
-            	//Panel.selectfirstAgent(Player.PLAYER1);
-            	System.out.println("Yeeey");
-            	break;
+                 	if(!isAgentSelected2) {
+                 		Panel.selectfirstAgent(Player.PLAYER2);
+                 		isAgentSelected2 = true;
+                 	}
+                 	else {
+                 		Panel.selectNextAgent(Player.PLAYER2);
+                 	}
+                 	
+                 	selectedAgent2 = Panel.getSelectedAgent(Player.PLAYER2);
+                 	
+                 	break;
             	
             }
             case KeyEvent.VK_LEFT:
-                //P2 select agens
-            {
-            	//P1 selectagens
-            	//Panel.selectfirstAgent(Player.PLAYER1);
-            	System.out.println("Yeeey");
-            	break;
+            {	//P2 lep
+           
             	
             }
             case KeyEvent.VK_DOWN:
                 //P2 attacks
             {
-            	//P1 selectagens
-            	//Panel.selectfirstAgent(Player.PLAYER1);
-            	System.out.println("Yeeey");
+            	Agent a = null;
+            	
+            	switch(selectedAgent2) {
+	            	case DANCE:{
+	            		a = new Virusdance();
+	            		break;
+	            	}
+	            	
+	            	case OBLIVION:{
+	            		a = new Oblivion();
+	            		break;
+	            	}
+	            	
+	            	case PARALYSES:{
+	            		a = new Paralyses();
+	            		break;
+	            	}
+	            	
+	            	case VACCINE:{
+	            		a = new Vaccine();
+	            		break;
+	            	}
+            	}
+            	
+            	Main.virologist2.attack(Main.virologist1,a);
             	break;
             	
             }
