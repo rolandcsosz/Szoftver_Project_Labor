@@ -137,6 +137,12 @@ public class GameField extends JPanel {
 			}
 		}
 
+		for(int i = 0; i < 25; i++){
+			if(!fields.containsKey(polygons.get(i))){
+				fields.put(polygons.get(i), new Field());
+			}
+		}
+
 	}
 
 	public void loadMap(Graphics g){
@@ -170,6 +176,8 @@ public class GameField extends JPanel {
 			}
 		}
 	}
+
+
 
 
 
