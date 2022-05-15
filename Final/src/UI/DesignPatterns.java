@@ -37,6 +37,8 @@ public class DesignPatterns {
 	public static Color lightBlue = new Color(192,222,255);
 	public static Color red = new Color(239,118,122);
 	public static Color lightRed = new Color(249,188,190);
+	public static Color pastelGreen = new Color(122, 221, 122);
+	public static Color pastelOrange = new Color(255, 179, 71);
 	
 	public static Font robotoMono20 = createFont(20);
 	public static Font robotoMono24 = createFont(24);
@@ -44,29 +46,29 @@ public class DesignPatterns {
 	public static Font robotoMono12 = createFont(12);
 	public static Font robotoMono8 = createFont(8);
 	
-<<<<<<< HEAD
-	public static ImageIcon danceVirus = scale("Final/src/UI/Images/Virus1.png", 35, 35);
-	public static ImageIcon oblivionVirus = scale("Final/src/UI/Images/Virus2.png", 35, 35);
-	public static ImageIcon vaccine = scale("Final/src/UI/Images/Vaccine.png", 35, 35);
-	public static ImageIcon paralyseVirus = scale("Final/src/UI/Images/Virus3.png", 35, 35);
+//<<<<<<< HEAD
+	//public static ImageIcon danceVirus = scale("Final/src/UI/Images/Virus1.png", 35, 35);
+	//public static ImageIcon oblivionVirus = scale("Final/src/UI/Images/Virus2.png", 35, 35);
+	//public static ImageIcon vaccine = scale("Final/src/UI/Images/Vaccine.png", 35, 35);
+	//public static ImageIcon paralyseVirus = scale("Final/src/UI/Images/Virus3.png", 35, 35);
 	
-	public static ImageIcon danceGC = scale("Final/src/UI/Images/Genetic Code1.png", 35, 35);
-	public static ImageIcon paralysesGC = scale("Final/src/UI/Images/Genetic Code1-1.png", 35, 35);
-	public static ImageIcon oblivionGC = scale("Final/src/UI/Images/Genetic Code1-2.png", 35, 35);
-	public static ImageIcon vaccineGC = scale("Final/src/UI/Images/Genetic Code1-3.png", 35, 35);
-=======
-	public static ImageIcon crown = new ImageIcon("src/UI/Images/Crown.png");
+	//public static ImageIcon danceGC = scale("Final/src/UI/Images/Genetic Code1.png", 35, 35);
+//public static ImageIcon paralysesGC = scale("Final/src/UI/Images/Genetic Code1-1.png", 35, 35);
+	//public static ImageIcon oblivionGC = scale("Final/src/UI/Images/Genetic Code1-2.png", 35, 35);
+	//public static ImageIcon vaccineGC = scale("Final/src/UI/Images/Genetic Code1-3.png", 35, 35);
+//=======
+	public static ImageIcon crown = new ImageIcon("Final/src/UI/Images/Crown.png");
 	
-	public static ImageIcon danceVirus = new ImageIcon("src/UI/Images/Virus1.png");
-	public static ImageIcon oblivionVirus = new ImageIcon("src/UI/Images/Virus2.png");
-	public static ImageIcon vaccine = new ImageIcon("src/UI/Images/Vaccine.png");
-	public static ImageIcon paralyseVirus = new ImageIcon("src/UI/Images/Virus3.png");
+	public static ImageIcon danceVirus = new ImageIcon("Final/src/UI/Images/Virus1.png");
+	public static ImageIcon oblivionVirus = new ImageIcon("Final/src/UI/Images/Virus2.png");
+	public static ImageIcon vaccine = new ImageIcon("Final/src/UI/Images/Vaccine.png");
+	public static ImageIcon paralyseVirus = new ImageIcon("Final/src/UI/Images/Virus3.png");
 	
-	public static ImageIcon danceVirusGC = new ImageIcon("src/UI/Images/DanceVirusGC.png");
-	public static ImageIcon paralysesVirusGC = new ImageIcon("src/UI/Images/paralysesVirusGC.png");
-	public static ImageIcon oblivionVirusGC = new ImageIcon("src/UI/Images/oblivionVirusGC.png");
-	public static ImageIcon vaccineGC = new ImageIcon("src/UI/Images/VaccineGC.png");
->>>>>>> a0be8b482b1769e6937ced3e0436a9379500d122
+	public static ImageIcon danceVirusGC = new ImageIcon("Final/src/UI/Images/DanceVirusGC.png");
+	public static ImageIcon paralysesVirusGC = new ImageIcon("Final/src/UI/Images/paralysesVirusGC.png");
+	public static ImageIcon oblivionVirusGC = new ImageIcon("Final/src/UI/Images/oblivionVirusGC.png");
+	public static ImageIcon vaccineGC = new ImageIcon("Final/src/UI/Images/VaccineGC.png");
+//>>>>>>> a0be8b482b1769e6937ced3e0436a9379500d122
 	
 
 		public static Font createFont(int size) {

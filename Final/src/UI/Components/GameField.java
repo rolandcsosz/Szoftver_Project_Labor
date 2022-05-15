@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import Model.Field;
+import UI.DesignPatterns;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
@@ -55,28 +56,19 @@ public class GameField extends JPanel {
 			System.out.println(Arrays.toString(polygons.get(i).xValues));
 
 			if(polygons.get(i).color.equals("RED")){
-			g.setColor(Color.RED);
+			g.setColor(DesignPatterns.lightRed);
 
 			} else if(polygons.get(i).color.equals("BLUE")){
-				g.setColor(Color.BLUE);
-
-			}
-			else if(polygons.get(i).color.equals("BLACK")){
-				g.setColor(Color.BLACK);
-
-			} else if(polygons.get(i).color.equals("ORANGE")){
-				g.setColor(Color.ORANGE);
+				g.setColor(DesignPatterns.lightBlue);
 
 			} else if(polygons.get(i).color.equals("GREEN")){
-				g.setColor(Color.GREEN);
+				g.setColor(DesignPatterns.pastelGreen);
 
-			} else if(polygons.get(i).color.equals("CYAN")){
-				g.setColor(Color.CYAN);
+			} else if(polygons.get(i).color.equals("ORANGE")){
+				g.setColor(DesignPatterns.pastelOrange);
 
-			} else if(polygons.get(i).color.equals("YELLOW")){
-				g.setColor(Color.YELLOW);
-
-			}else{
+			}
+			else{
 				g.fillPolygon(polygon);
 			}
 			g.fillPolygon(polygon);
