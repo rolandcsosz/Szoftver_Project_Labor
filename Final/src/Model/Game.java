@@ -1,4 +1,7 @@
 package Model;
+
+import java.util.Random;
+
 public class Game {
 	private GameMap gameMap;
 	public void Start() {
