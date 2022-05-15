@@ -26,6 +26,11 @@ public abstract class Agent implements Cloneable, Collectable, Effectable, Stepp
 	public void step() {
 		if(isActivated) {
 			timeCounter--;
+			if(timeCounter == 0)
+				isActivated = false;
+			
+			if(geneticCode.getType() == Type.Virusdance)
+				virologist.move();
 		}
 	}
 

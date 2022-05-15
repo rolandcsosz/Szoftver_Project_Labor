@@ -1,6 +1,7 @@
 package Model;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Field {
 	private Virologist virologist;
@@ -25,7 +26,10 @@ public class Field {
 	}
 	
 	public Field getRandomNeighbour() {
-		return null;
+		//return null;
+		Random r = new Random();
+		int i = r.ints(0, neighbours.size()).findFirst().getAsInt();
+		return neighbours.get(i);
 	}
 	
 	public void removeCollectable(Collectable c) {

@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Warehouse extends Field implements Steppable {
 	private int materialLevel;
+	private int counter = 0;
 	private List<Material> materials = new ArrayList<Material>();
 	public void removeMaterial() {
 	}
@@ -17,7 +18,12 @@ public class Warehouse extends Field implements Steppable {
 	}
 	
 	public void step() {
-		produceMaterial(1);
+		if(counter == 5) {
+			if(materials.size() < materialLevel) {
+				produceMaterial(1);
+			}
+			counter = 0;
+		} else counter++;
 	}
 
 	public int getMaterialLevel() {

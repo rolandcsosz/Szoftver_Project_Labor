@@ -37,6 +37,7 @@ public class GameMap {
 
 
     public List<Field> getFields() {
-        return null;
+        //return null;
+    	return fields;
     }
 }
