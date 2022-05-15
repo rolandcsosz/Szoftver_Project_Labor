@@ -11,6 +11,9 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import Model.Field;
+import Model.Laboratory;
+import Model.Shelter;
+import Model.Warehouse;
 import UI.DesignPatterns;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -18,7 +21,14 @@ import com.google.gson.stream.JsonReader;
 
 public class GameField extends JPanel {
 
-	HashMap<Polygon, Field> fields = new HashMap<Polygon, Field>();
+	HashMap<Polygons, Field> fields = new HashMap<Polygons, Field>();
+	public boolean isRunning = false;
+	int t = 0;
+
+
+
+
+
 
 	/**
 	 * Create the panel.
@@ -30,18 +40,6 @@ public class GameField extends JPanel {
 
 	}
 
-	public static void readFileByLine(String fileName) {
-		try {
-			File file = new File(fileName);
-			Scanner scanner = new Scanner(file);
-			while (scanner.hasNext()) {
-				System.out.println(scanner.next());
-			}
-			scanner.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
 
 	List<Polygons> polygons;
 	@Override
@@ -53,7 +51,6 @@ public class GameField extends JPanel {
 		for(int i = 0; i < polygons.size(); i++){
 			Polygon polygon = new Polygon(polygons.get(i).xValues,polygons.get(i).yValues,polygons.get(i).xValues.length);
 			awtPolygon.add(polygon);
-			System.out.println(Arrays.toString(polygons.get(i).xValues));
 
 			if(polygons.get(i).color.equals("RED")){
 			g.setColor(DesignPatterns.lightRed);
@@ -73,59 +70,105 @@ public class GameField extends JPanel {
 			}
 			g.fillPolygon(polygon);
 		}
-		fillMap(g);
+		if(t < 1) {
+			fillMap(g, 2, 5, 5);
+			t++;
+		}else{
+			loadMap(g);
+		}
 
 	}
 
 
 
-	public void fillMap(Graphics g){
+	public void fillMap(Graphics g, int w, int s, int l){
 
 		Random random = new Random();
 		List<Integer> was = new ArrayList<Integer>();
-
-		for(int warehouses = 0; warehouses < 2; warehouses ++){
-			int rand25 = random.nextInt(1,25);
-			while(was.contains(rand25))
-				rand25 = random.nextInt(1, 25);
-			was.add(rand25);
-			BufferedImage image = null;
-			try {
-				image = ImageIO.read(new File("Final/src/UI/Images/Warehouse.png"));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			g.drawImage(image, polygons.get(rand25).middleX - 25, polygons.get(rand25).middleY  -25, 50,50, null);
+		BufferedImage WarehouseImage = null;
+		try {
+			WarehouseImage = ImageIO.read(new File("Final/src/UI/Images/Warehouse.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		BufferedImage LaboratoryImage = null;
+		try {
+			LaboratoryImage = ImageIO.read(new File("Final/src/UI/Images/Laboratory.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		BufferedImage ShelterImage = null;
+		try {
+			ShelterImage = ImageIO.read(new File("Final/src/UI/Images/Shelter.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
-		for(int laboratory = 0; laboratory < 5; laboratory ++){
-			int rand25 = random.nextInt(1,25);
-			while(was.contains(rand25))
-				rand25 = random.nextInt(1, 25);
-			was.add(rand25);
-			BufferedImage image = null;
-			try {
-				image = ImageIO.read(new File("Final/src/UI/Images/Laboratory.png"));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			g.drawImage(image, polygons.get(rand25).middleX - 25, polygons.get(rand25).middleY  -25, 50,50, null);
+		 for(int warehouses = 0; warehouses < w; warehouses ++){
+			 if(!isRunning) {
+				 int rand25 = random.nextInt(1, 25);
+				 while (was.contains(rand25))
+					 rand25 = random.nextInt(1, 25);
+				 was.add(rand25);
+				 fields.put(polygons.get(rand25), new Warehouse());
+				 g.drawImage(WarehouseImage, polygons.get(rand25).middleX - 25, polygons.get(rand25).middleY  -25, 50,50, null);
+			 }
 		}
 
-		for(int shelter = 0; shelter < 5; shelter ++){
-			int rand25 = random.nextInt(1, 25);
-			while(was.contains(rand25))
-				rand25 = random.nextInt(1, 25);
-			was.add(rand25);
-			BufferedImage image = null;
-			try {
-				image = ImageIO.read(new File("Final/src/UI/Images/Shelter.png"));
-			} catch (IOException e) {
-				e.printStackTrace();
+		for(int laboratory = 0; laboratory < l; laboratory ++){
+			if(!isRunning) {
+				int rand25 = random.nextInt(1, 25);
+				while (was.contains(rand25))
+					rand25 = random.nextInt(1, 25);
+				was.add(rand25);
+				g.drawImage(LaboratoryImage, polygons.get(rand25).middleX - 25, polygons.get(rand25).middleY - 25, 50, 50, null);
+				fields.put(polygons.get(rand25), new Laboratory());
 			}
-			g.drawImage(image, polygons.get(rand25).middleX - 25, polygons.get(rand25).middleY  -25, 75,75, null);
 		}
 
+		for(int shelter = 0; shelter < s; shelter ++){
+			if(!isRunning) {
+				int rand25 = random.nextInt(1, 25);
+				while (was.contains(rand25))
+					rand25 = random.nextInt(1, 25);
+				was.add(rand25);
+				g.drawImage(ShelterImage, polygons.get(rand25).middleX - 25, polygons.get(rand25).middleY - 25, 75, 75, null);
+				fields.put(polygons.get(rand25), new Shelter());
+			}
+		}
+
+	}
+
+	public void loadMap(Graphics g){
+		BufferedImage WarehouseImage = null;
+		try {
+			WarehouseImage = ImageIO.read(new File("Final/src/UI/Images/Warehouse.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		BufferedImage LaboratoryImage = null;
+		try {
+			LaboratoryImage = ImageIO.read(new File("Final/src/UI/Images/Laboratory.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		BufferedImage ShelterImage = null;
+		try {
+			ShelterImage = ImageIO.read(new File("Final/src/UI/Images/Shelter.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Iterator<Map.Entry<Polygons, Field>> itr = fields.entrySet().iterator();
+		while(itr.hasNext()){
+			Map.Entry<Polygons,Field> entry = itr.next();
+			if(entry.getValue() instanceof Warehouse){
+				g.drawImage(WarehouseImage, entry.getKey().middleX - 25, entry.getKey().middleY  -25, 50,50, null);
+			}else if(entry.getValue() instanceof Laboratory){
+				g.drawImage(LaboratoryImage, entry.getKey().middleX - 25, entry.getKey().middleY  -25, 50,50, null);
+			}else if(entry.getValue() instanceof Shelter){
+				g.drawImage(ShelterImage, entry.getKey().middleX - 25, entry.getKey().middleY  -25, 50,50, null);
+			}
+		}
 	}
 
 

@@ -12,6 +12,7 @@ import java.awt.CardLayout;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import UI.Components.GameField;
 import UI.DesignPatterns;
 
 import javax.swing.JLabel;
@@ -30,6 +31,10 @@ public class Menu {
 	private JComboBox comboBox;
 	private JLabel lblNewLabel_2;
 	private String level = "1";
+
+
+
+
 
 	/**
 	 * Launch the application.
