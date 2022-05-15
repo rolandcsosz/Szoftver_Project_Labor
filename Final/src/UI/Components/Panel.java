@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
+import UI.Collectable;
 import UI.DesignPatterns;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -24,6 +25,8 @@ public class Panel extends JPanel {
 	
 	static int glove1Counter;
 	static int glove2Counter;
+	
+	static JLabel GloveNumber_label;
 	
 	
 	static JLabel Equipment1Number_label;
@@ -65,6 +68,7 @@ public class Panel extends JPanel {
 	static JLabel Equipment2_label_1;
 	static JLabel Equipment3_label_1;
 	
+	
 	int vaccineNumber1 = 0,
 		vaccinaNumber2 = 0,
 		oblivionVirusNumber1 = 0,
@@ -93,6 +97,7 @@ public class Panel extends JPanel {
 		this.setLayout(null);
 		
 		Equipment3Number_label = new JLabel("0");
+		Equipment3Number_label.setVisible(false);
 		Equipment3Number_label.setFont(DesignPatterns.robotoMono12);
 		Equipment3Number_label.setVerticalAlignment(SwingConstants.BOTTOM);
 		Equipment3Number_label.setOpaque(true);
@@ -103,6 +108,7 @@ public class Panel extends JPanel {
 		add(Equipment3Number_label);
 		
 		Equipment2Number_label = new JLabel("0");
+		Equipment2Number_label.setVisible(false);
 		Equipment2Number_label.setFont(DesignPatterns.robotoMono12);
 		Equipment2Number_label.setVerticalAlignment(SwingConstants.BOTTOM);
 		Equipment2Number_label.setOpaque(true);
@@ -113,6 +119,7 @@ public class Panel extends JPanel {
 		add(Equipment2Number_label);
 		
 		Equipment1Number_label = new JLabel("0");
+		Equipment1Number_label.setVisible(false);
 		Equipment1Number_label.setFont(DesignPatterns.robotoMono12);
 		Equipment1Number_label.setOpaque(true);
 		Equipment1Number_label.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -129,7 +136,6 @@ public class Panel extends JPanel {
 		Equipment1_panel.setLayout(null);
 		
 		Equipment1_label = new JLabel();
-		Equipment1_label.setEnabled(false);
 		Equipment1_label.setBounds(1, 1, 35, 35);
 		Equipment1_panel.add(Equipment1_label);
 		
@@ -298,7 +304,6 @@ public class Panel extends JPanel {
 		Equipment2_panel.setLayout(null);
 		
 		Equipment2_label = new JLabel();
-		Equipment2_label.setEnabled(false);
 		Equipment2_label.setBounds(1, 1, 35, 35);
 		Equipment2_panel.add(Equipment2_label);
 		
@@ -309,7 +314,6 @@ public class Panel extends JPanel {
 		Equipment3_panel.setLayout(null);
 		
 		Equipment3_label = new JLabel();
-		Equipment3_label.setEnabled(false);
 		Equipment3_label.setBounds(1, 1, 35, 35);
 		Equipment3_panel.add(Equipment3_label);
 		
@@ -514,6 +518,7 @@ public class Panel extends JPanel {
 		ParalysesVirusGC_panel_1.add(ParalysesVirusGC_label_1);
 		
 		Equipment3Number_label_1 = new JLabel("0");
+		Equipment3Number_label_1.setVisible(false);
 		Equipment3Number_label_1.setFont(DesignPatterns.robotoMono12);
 		Equipment3Number_label_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		Equipment3Number_label_1.setOpaque(true);
@@ -524,6 +529,7 @@ public class Panel extends JPanel {
 		add(Equipment3Number_label_1);
 		
 		Equipment2Number_label_1 = new JLabel("0");
+		Equipment2Number_label_1.setVisible(false);
 		Equipment2Number_label_1.setFont(DesignPatterns.robotoMono12);
 		Equipment2Number_label_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		Equipment2Number_label_1.setOpaque(true);
@@ -534,6 +540,7 @@ public class Panel extends JPanel {
 		add(Equipment2Number_label_1);
 		
 		Equipment1Number_label_1 = new JLabel("0");
+		Equipment1Number_label_1.setVisible(false);
 		Equipment1Number_label_1.setFont(DesignPatterns.robotoMono12);
 		Equipment1Number_label_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		Equipment1Number_label_1.setOpaque(true);
@@ -560,7 +567,6 @@ public class Panel extends JPanel {
 		add(Equipment2_panel_1);
 		
 		Equipment2_label_1 = new JLabel();
-		Equipment2_label_1.setEnabled(false);
 		Equipment2_label_1.setBounds(1, 1, 35, 35);
 		Equipment2_panel_1.add(Equipment2_label_1);
 		
@@ -571,7 +577,6 @@ public class Panel extends JPanel {
 		add(Equipment3_panel_1);
 		
 		Equipment3_label_1 = new JLabel();
-		Equipment3_label_1.setEnabled(false);
 		Equipment3_label_1.setBounds(1, 1, 35, 35);
 		Equipment3_panel_1.add(Equipment3_label_1);
 		
@@ -630,36 +635,174 @@ public class Panel extends JPanel {
 
 	}
 	
+	public static void useAxe(UI.Player player) {
+		
+		int num = -1;
+		JLabel perm = null;
+		
+		if(player == UI.Player.PLAYER1) {
+			for(Collectable c:equipments1) {
+				if(c == UI.Collectable.AXE) {
+					num = equipments1.indexOf(c);
+				}
+			}
+		}
+		
+		if(player == UI.Player.PLAYER2) {
+			for(Collectable c:equipments2) {
+				if(c == UI.Collectable.AXE) {
+					num = equipments2.indexOf(c);
+				}
+			}
+		}
+	}
+	
+	private static JLabel getNumberLabel(UI.Player player, int num) {
+		
+		JLabel perm = null;
+		
+		if(player == UI.Player.PLAYER1) {
+			if(num == 0) {
+				perm = Equipment1Number_label;
+			}
+			else if(num == 1) {
+				perm = Equipment2Number_label;
+			}
+			else if(num == 2) {
+				perm = Equipment3Number_label;
+			}
+		}
+		
+		if(player == UI.Player.PLAYER2) {
+			if(num == 0) {
+				perm = Equipment1Number_label_1;
+			}
+			else if(num == 1) {
+				perm = Equipment2Number_label_1;
+			}
+			else if(num == 2) {
+				perm = Equipment3Number_label_1;
+			}
+		}
+		
+		return perm;
+	}
+	
+	private static int getIndexOfEq(UI.Player player,UI.Collectable type) {
+		int num = -1;
+		
+		if(player == UI.Player.PLAYER1) {
+			for(Collectable c:equipments1) {
+				if(c == type) {
+					num = equipments1.indexOf(c);
+				}
+			}
+		}
+		
+		if(player == UI.Player.PLAYER2) {
+			for(Collectable c:equipments2) {
+				if(c == type) {
+					num = equipments2.indexOf(c);
+				}
+			}
+		}
+		
+		return num;
+	}
+	
+	public static void decreaseGlove(UI.Player player) {
+		
+		JLabel perm = null;
+		
+		int num = getIndexOfEq(player,UI.Collectable.GLOVE);
+		
+		if(num == -1) {
+			return;
+		}
+		
+		perm = getNumberLabel(player,num);
+		
+		if(perm != null) {
+			
+			int value = Integer.parseInt(perm.getText());
+			value--;
+			perm.setText(String.valueOf(value));
+			
+			if(value == 0) {
+				perm.setVisible(false);
+			}
+			else {
+				perm.setVisible(true);
+			}
+			
+		}
+		
+		
+		
+		
+	}
+	
+	
+	
 	public static void addEquipment(UI.Collectable type,UI.Player player) {
 		
 		JLabel perm = null;
+		JLabel number = null;
 
 				if(player == UI.Player.PLAYER1) {
 					if(equipments1.size() == 0) {
 						perm = Equipment1_label;
+						number = Equipment1Number_label;
 					}
 					else if(equipments1.size() == 1) {
 						perm = Equipment2_label;
+						number = Equipment2Number_label;
 					}
 					else if(equipments1.size() == 2) {
 						perm = Equipment3_label;
+						number = Equipment3Number_label;
 					}
+					
+					equipments1.add(type);
 				}
 				if(player == UI.Player.PLAYER2) {
-					if(equipments1.size() == 0) {
+					if(equipments2.size() == 0) {
 						perm = Equipment1_label_1;
+						number = Equipment1Number_label_1;
 					}
-					else if(equipments1.size() == 1) {
+					else if(equipments2.size() == 1) {
 						perm = Equipment2_label_1;
+						number = Equipment2Number_label_1;
 					}
-					else if(equipments1.size() == 2) {
+					else if(equipments2.size() == 2) {
 						perm = Equipment3_label_1;
+						number = Equipment3Number_label_1;
 					}
+					
+					equipments2.add(type);
 				}
 				
+				
+				
 				switch(type) {
-				case AXE:
-					{ perm.setIcon(DesignPatterns.danceVirus);
+					case AXE:
+						{ perm.setIcon(DesignPatterns.axe);
+							break;
+						}
+					case CLOACK:
+						{ perm.setIcon(DesignPatterns.cloack);
+							break;
+						}
+					case BAG:
+					{ perm.setIcon(DesignPatterns.bag);
+						break;
+					}
+					
+					case GLOVE:
+					{ perm.setIcon(DesignPatterns.glove);
+						GloveNumber_label = number;
+						number.setVisible(true);
+						setCounter(number, 3);
 						break;
 					}
 				}

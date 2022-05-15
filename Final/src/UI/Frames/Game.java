@@ -60,7 +60,10 @@ public class Game {
 		panel.setAgentNumber(UI.Collectable.PARALYSES,UI.Player.PLAYER2,2);
 		panel.addGeneticCode(UI.Collectable.DANCE_GC,UI.Player.PLAYER1);
 		panel.addGeneticCode(UI.Collectable.PARALYSES_GC,UI.Player.PLAYER2);
-		panel.addEquipment(UI.Collectable.AXE,UI.Player.PLAYER2);
+		panel.addEquipment(UI.Collectable.AXE,UI.Player.PLAYER1);
+		panel.addEquipment(UI.Collectable.GLOVE,UI.Player.PLAYER2);
+		panel.decreaseGlove(UI.Player.PLAYER2);
+		panel.decreaseGlove(UI.Player.PLAYER1);
 		
 		//teszt
 		//panel.enableVaccine();
