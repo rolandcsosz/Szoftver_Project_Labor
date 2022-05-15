@@ -86,7 +86,7 @@ public class DesignPatterns {
 			 
 	         try {
 	         	//myStream3 = new BufferedInputStream();
-	             myStream = new BufferedInputStream(new FileInputStream("Final/src/UI/Fonts/RobotoMono-Regular.ttf"));
+	             myStream = new BufferedInputStream(new FileInputStream("src/UI/Fonts/RobotoMono-Regular.ttf"));
 	             ttfBase = Font.createFont(Font.TRUETYPE_FONT, myStream);
 	             telegraficoFont = ttfBase.deriveFont(Font.PLAIN, size);               
 	         } catch (Exception ex) {
