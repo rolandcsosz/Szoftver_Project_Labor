@@ -25,7 +25,7 @@ public class Listener implements KeyListener {
         switch(i){
             case KeyEvent.VK_A:{
             	//P1 selectagens
-            	Panel.selectfirstAgent(Player.PLAYER1);
+            	//Panel.selectfirstAgent(Player.PLAYER1);
             	System.out.println("A");
             	break;
             	

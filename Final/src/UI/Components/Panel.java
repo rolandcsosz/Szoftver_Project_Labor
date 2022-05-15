@@ -2,8 +2,7 @@ package UI.Components;
 
 import java.awt.Color;
 
-
-
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -20,11 +19,27 @@ import javax.swing.border.LineBorder;
 
 public class Panel extends JPanel {
 	
+	static int selectedAgent1 = -1;
+	static int selectedAgent2 = -1;
+	static int selectedEquipment1 = -1;
+	static int selectedEquipment2 = -1;
+	
+	
+	static int maxMaterial1 = 100;
+	static int maxMaterial2 = 100;
+	static int actualMaterial1 = 0;
+	static int actualMaterial2 = 0;
+	
 	static List<UI.Collectable> equipments1 = new ArrayList<UI.Collectable>(3);
 	static List<UI.Collectable> equipments2 = new ArrayList<UI.Collectable>(3);
 	
 	static int glove1Counter;
 	static int glove2Counter;
+	
+	static JLabel MaterialCount_label;
+	static JLabel MaterialCount_label_1;
+	
+	static JLabel Selected_label;
 	
 	
 	static JProgressBar progressBar;
@@ -32,6 +47,14 @@ public class Panel extends JPanel {
 	
 	static JLabel GloveNumber_label;
 	
+	static JPanel Vaccine_panel;
+	static JPanel DanceVirus_panel;
+	static JPanel OblivionVirus_panel;
+	static JPanel ParalysesVirus_panel;
+	static JPanel Vaccine_panel_1;
+	static JPanel DanceVirus_panel_1;
+	static JPanel OblivionVirus_panel_1;
+	static JPanel ParalysesVirus_panel_1;
 	
 	static JLabel Equipment1Number_label;
 	static JLabel Equipment2Number_label;
@@ -72,21 +95,17 @@ public class Panel extends JPanel {
 	static JLabel Equipment2_label_1;
 	static JLabel Equipment3_label_1;
 	
+	static JLabel ActualEffect_label;
+	static JLabel ActualEffect_label_1;
 	
-	int vaccineNumber1 = 0,
-		vaccinaNumber2 = 0,
-		oblivionVirusNumber1 = 0,
-		oblivionVirusNumber2 = 0,
-		paralysesVirusNumber1 = 0
-		,paralysesVirusNumber2 = 0;
-
-
-	static int danceVirusNumber1 = 0;
-
-
-	int danceVirusNumber2 = 0;
+	static JPanel Equipment1_panel;
+	static JPanel Equipment2_panel;
+	static JPanel Equipment3_panel;
+	static JPanel Equipment1_panel_1;
+	static JPanel Equipment2_panel_1;
+	static JPanel Equipment3_panel_1;
 	
-	
+
 	
 	private static JLabel OblivionVirusNumber_label;
 	private static JLabel ParalysesVirusNumber_label;
@@ -133,7 +152,7 @@ public class Panel extends JPanel {
 		Equipment1Number_label.setBounds(242, 43, 14, 14);
 		add(Equipment1Number_label);
 		
-		JPanel Equipment1_panel = new JPanel();
+		Equipment1_panel = new JPanel();
 		Equipment1_panel.setBackground(new Color(220, 220, 220));
 		Equipment1_panel.setBounds(212, 20, 37, 37);
 		this.add(Equipment1_panel);
@@ -192,7 +211,7 @@ public class Panel extends JPanel {
 		
 		
 		JPanel VaccineGC_panel = new JPanel();
-		VaccineGC_panel.setBorder(new LineBorder(DesignPatterns.blue, 2));
+		VaccineGC_panel.setBorder(null);
 		VaccineGC_panel.setBounds(10, 20, 37, 37);
 		VaccineGC_panel.setBackground(DesignPatterns.lightGrey);
 		this.add(VaccineGC_panel);
@@ -221,7 +240,7 @@ public class Panel extends JPanel {
 		Vaccine_label.setBounds(0, 0, 35, 35);
 		Vaccine_label.setIcon(DesignPatterns.vaccine);
 		
-		JPanel Vaccine_panel = new JPanel();
+		Vaccine_panel = new JPanel();
 		Vaccine_panel.setBackground(new Color(220, 220, 220));
 		Vaccine_panel.setBounds(10, 75, 37, 37);
 		Vaccine_panel.setLayout(null);
@@ -235,7 +254,7 @@ public class Panel extends JPanel {
 		DanceVirus_label.setBounds(1, 1, 35, 35);
 		DanceVirus_label.setIcon(DesignPatterns.danceVirus); 
 		
-		JPanel DanceVirus_panel = new JPanel();
+		DanceVirus_panel = new JPanel();
 		DanceVirus_panel.setBackground(new Color(220, 220, 220));
 		DanceVirus_panel.setBounds(57, 75, 37, 37);
 		DanceVirus_panel.setLayout(null);
@@ -247,7 +266,7 @@ public class Panel extends JPanel {
 		OblivionVirus_label.setBounds(1, 1, 35, 35);
 		OblivionVirus_label.setIcon(DesignPatterns.oblivionVirus); 
 		
-		JPanel OblivionVirus_panel = new JPanel();
+		OblivionVirus_panel = new JPanel();
 		OblivionVirus_panel.setBackground(new Color(220, 220, 220));
 		OblivionVirus_panel.setBounds(104, 75, 37, 37);
 		OblivionVirus_panel.setLayout(null);
@@ -259,7 +278,7 @@ public class Panel extends JPanel {
 		ParalysesVirus_label.setBounds(1, 1, 35, 35);
 		ParalysesVirus_label.setIcon(DesignPatterns.paralyseVirus); 
 		
-		JPanel ParalysesVirus_panel = new JPanel();
+		ParalysesVirus_panel = new JPanel();
 		ParalysesVirus_panel.setBackground(new Color(220, 220, 220));
 		ParalysesVirus_panel.setBounds(151, 75, 37, 37);
 		ParalysesVirus_panel.setLayout(null);
@@ -301,7 +320,7 @@ public class Panel extends JPanel {
 		ParalysesVirusGC_label.setIcon(DesignPatterns.paralysesVirusGC); 
 		ParalysesVirusGC_panel.add(ParalysesVirusGC_label);
 		
-		JPanel Equipment2_panel = new JPanel();
+		Equipment2_panel = new JPanel();
 		Equipment2_panel.setBackground(new Color(220, 220, 220));
 		Equipment2_panel.setBounds(259, 20, 37, 37);
 		this.add(Equipment2_panel);
@@ -311,7 +330,7 @@ public class Panel extends JPanel {
 		Equipment2_label.setBounds(1, 1, 35, 35);
 		Equipment2_panel.add(Equipment2_label);
 		
-		JPanel Equipment3_panel = new JPanel();
+		Equipment3_panel = new JPanel();
 		Equipment3_panel.setBackground(new Color(220, 220, 220));
 		Equipment3_panel.setBounds(306, 20, 37, 37);
 		this.add(Equipment3_panel);
@@ -339,8 +358,7 @@ public class Panel extends JPanel {
 		this.add(ActualEffect_panel);
 		ActualEffect_panel.setLayout(null);
 		
-		JLabel ActualEffect_label = new JLabel();
-		ActualEffect_label.setEnabled(false);
+		ActualEffect_label = new JLabel();
 		ActualEffect_label.setBounds(1, 1, 35, 35);
 		ActualEffect_panel.add(ActualEffect_label);
 		
@@ -349,9 +367,7 @@ public class Panel extends JPanel {
 		progressBar.setBorder(null);
 		progressBar.setBackground(DesignPatterns.lightGrey);
 		progressBar.setForeground(DesignPatterns.blue);
-		progressBar.setMaximum(0);
 		progressBar.setMaximum(100);
-		progressBar.setValue(40);
 		this.add(progressBar);
 		
 		JLabel PlayerName_label = new JLabel("Player 1");
@@ -365,7 +381,7 @@ public class Panel extends JPanel {
 		MaterialLevel_label.setFont(DesignPatterns.robotoMono12);
 		this.add(MaterialLevel_label);
 		
-		JLabel MaterialCount_label = new JLabel("0/100");
+		MaterialCount_label = new JLabel("0/100");
 		MaterialCount_label.setFont(null);
 		MaterialCount_label.setBounds(365, 80, 116, 17);
 		MaterialCount_label.setFont(DesignPatterns.robotoMono14);
@@ -421,7 +437,7 @@ public class Panel extends JPanel {
 		VaccineGC_panel_1.setBounds(989, 20, 37, 37);
 		add(VaccineGC_panel_1);
 		
-		JLabel VaccineGC_label_1 = new JLabel();
+		VaccineGC_label_1 = new JLabel();
 		VaccineGC_label_1.setEnabled(false);
 		VaccineGC_label_1.setBounds(1, 1, 35, 35);
 		VaccineGC_label_1.setIcon(DesignPatterns.vaccineGC);
@@ -433,13 +449,13 @@ public class Panel extends JPanel {
 		DanceVirusGC_panel_1.setBounds(1036, 20, 37, 37);
 		add(DanceVirusGC_panel_1);
 		
-		JLabel DanceVirusGC_label_1 = new JLabel();
+		DanceVirusGC_label_1 = new JLabel();
 		DanceVirusGC_label_1.setEnabled(false);
 		DanceVirusGC_label_1.setBounds(1, 1, 35, 35);
 		DanceVirusGC_label_1.setIcon(DesignPatterns.danceVirusGC);
 		DanceVirusGC_panel_1.add(DanceVirusGC_label_1);
 		
-		JPanel Vaccine_panel_1 = new JPanel();
+		Vaccine_panel_1 = new JPanel();
 		Vaccine_panel_1.setLayout(null);
 		Vaccine_panel_1.setBackground(new Color(220, 220, 220));
 		Vaccine_panel_1.setBounds(989, 75, 37, 37);
@@ -451,7 +467,7 @@ public class Panel extends JPanel {
 		Vaccine_label_1.setIcon(DesignPatterns.vaccine);
 		Vaccine_panel_1.add(Vaccine_label_1);
 		
-		JPanel DanceVirus_panel_1 = new JPanel();
+		DanceVirus_panel_1 = new JPanel();
 		DanceVirus_panel_1.setLayout(null);
 		DanceVirus_panel_1.setBackground(new Color(220, 220, 220));
 		DanceVirus_panel_1.setBounds(1036, 75, 37, 37);
@@ -463,7 +479,7 @@ public class Panel extends JPanel {
 		DanceVirus_label_1.setIcon(DesignPatterns.danceVirus); 
 		DanceVirus_panel_1.add(DanceVirus_label_1);
 		
-		JPanel OblivionVirus_panel_1 = new JPanel();
+		OblivionVirus_panel_1 = new JPanel();
 		OblivionVirus_panel_1.setLayout(null);
 		OblivionVirus_panel_1.setBackground(new Color(220, 220, 220));
 		OblivionVirus_panel_1.setBounds(1083, 75, 37, 37);
@@ -475,7 +491,7 @@ public class Panel extends JPanel {
 		OblivionVirus_label_1.setIcon(DesignPatterns.oblivionVirus); 
 		OblivionVirus_panel_1.add(OblivionVirus_label_1);
 		
-		JPanel ParalysesVirus_panel_1 = new JPanel();
+		ParalysesVirus_panel_1 = new JPanel();
 		ParalysesVirus_panel_1.setLayout(null);
 		ParalysesVirus_panel_1.setBackground(new Color(220, 220, 220));
 		ParalysesVirus_panel_1.setBounds(1130, 75, 37, 37);
@@ -554,7 +570,7 @@ public class Panel extends JPanel {
 		Equipment1Number_label_1.setBounds(866, 43, 14, 14);
 		add(Equipment1Number_label_1);
 		
-		JPanel Equipment1_panel_1 = new JPanel();
+		Equipment1_panel_1 = new JPanel();
 		Equipment1_panel_1.setLayout(null);
 		Equipment1_panel_1.setBackground(new Color(220, 220, 220));
 		Equipment1_panel_1.setBounds(836, 20, 37, 37);
@@ -564,7 +580,7 @@ public class Panel extends JPanel {
 		Equipment1_label_1.setBounds(1, 1, 35, 35);
 		Equipment1_panel_1.add(Equipment1_label_1);
 		
-		JPanel Equipment2_panel_1 = new JPanel();
+		Equipment2_panel_1 = new JPanel();
 		Equipment2_panel_1.setLayout(null);
 		Equipment2_panel_1.setBackground(new Color(220, 220, 220));
 		Equipment2_panel_1.setBounds(883, 20, 37, 37);
@@ -574,7 +590,7 @@ public class Panel extends JPanel {
 		Equipment2_label_1.setBounds(1, 1, 35, 35);
 		Equipment2_panel_1.add(Equipment2_label_1);
 		
-		JPanel Equipment3_panel_1 = new JPanel();
+		Equipment3_panel_1 = new JPanel();
 		Equipment3_panel_1.setLayout(null);
 		Equipment3_panel_1.setBackground(new Color(220, 220, 220));
 		Equipment3_panel_1.setBounds(930, 20, 37, 37);
@@ -595,19 +611,17 @@ public class Panel extends JPanel {
 		add(ActualEffectText_label_1);
 		
 		JPanel ActualEffect_panel_1 = new JPanel();
-		ActualEffect_panel_1.setLayout(null);
 		ActualEffect_panel_1.setBackground(new Color(220, 220, 220));
 		ActualEffect_panel_1.setBounds(930, 75, 37, 37);
 		add(ActualEffect_panel_1);
+		ActualEffect_panel_1.setLayout(null);
 		
-		JLabel ActualEffect_label_1 = new JLabel();
-		ActualEffect_label_1.setEnabled(false);
+		ActualEffect_label_1 = new JLabel();
 		ActualEffect_label_1.setBounds(1, 1, 35, 35);
 		ActualEffect_panel_1.add(ActualEffect_label_1);
 		
 		progressBar_1 = new JProgressBar();
 		progressBar_1.setValue(40);
-		progressBar_1.setMaximum(0);
 		progressBar_1.setForeground(new Color(69, 105, 144));
 		progressBar_1.setBorder(null);
 		progressBar_1.setBackground(new Color(220, 220, 220));
@@ -626,19 +640,78 @@ public class Panel extends JPanel {
 		MaterialLevel_label_1.setFont(DesignPatterns.robotoMono12);
 		add(MaterialLevel_label_1);
 		
-		JLabel MaterialCount_label_1 = new JLabel("0/100");
+		MaterialCount_label_1 = new JLabel("0/100");
 		MaterialCount_label_1.setFont(null);
 		MaterialCount_label_1.setBounds(717, 80, 116, 17);
 		MaterialCount_label_1.setFont(DesignPatterns.robotoMono14);
 		add(MaterialCount_label_1);
 		
 	
-		
-
-
-
 	}
 	
+	private static ImageIcon getImageByAgent(UI.Collectable type) {
+		
+		switch(type) {
+			case DANCE:{
+				return DesignPatterns.danceVirus;
+			}
+			case OBLIVION:{
+				return DesignPatterns.oblivionVirus;
+			}
+			case PARALYSES:{
+				return DesignPatterns.paralyseVirus;
+			}
+			case BEAR:{
+				return DesignPatterns.bearVirus;
+			}
+			case VACCINE:{
+				return DesignPatterns.vaccine;
+			}
+		}
+		
+		return null;
+		
+	}
+
+		public static void setActualEffect(UI.Player player,UI.Collectable type) {
+			
+			if(player == UI.Player.PLAYER1) {
+				ActualEffect_label.setIcon(getImageByAgent(type));
+			}
+			
+			if(player == UI.Player.PLAYER2) {
+				ActualEffect_label_1.setIcon(getImageByAgent(type));
+			}
+		}
+		
+		public static void setMaxMaterialLevel(UI.Player player,int level) {
+			if(player == UI.Player.PLAYER1) {
+				maxMaterial1 = level;
+				MaterialCount_label.setText(actualMaterial1 + "/" + maxMaterial1);
+				
+			}
+			
+			if(player == UI.Player.PLAYER2) {
+				maxMaterial2 = level;
+				MaterialCount_label_1.setText(actualMaterial2 + "/" + maxMaterial2);
+			}
+		}
+		
+		public static void setMaterialLevel(UI.Player player,int level) {
+			
+			if(player == UI.Player.PLAYER1) {
+				actualMaterial1 = level;
+				MaterialCount_label.setText(actualMaterial1 + "/" + maxMaterial1);
+				
+			}
+			
+			if(player == UI.Player.PLAYER2) {
+				actualMaterial2 = level;
+				MaterialCount_label_1.setText(actualMaterial2 + "/" + maxMaterial2);
+			}
+		}
+
+
 	// 0-100
 	public static void setProgressBar(UI.Player player, int value) {
 		if(player == UI.Player.PLAYER1) {
@@ -652,13 +725,64 @@ public class Panel extends JPanel {
 	
 	public static void transformToBear(UI.Player player) {
 		
+		JLabel perm;
+		JLabel num;
+		
 		if(player == UI.Player.PLAYER1) {
+			
+			for(int i = 0; i < 3; i++) {
+				perm = getEqLabel(player, i);
+				num = getNumberLabel(player, i);
+				perm.setIcon(null);
+				num.setVisible(false);
+				
+			}
+			
+			DanceVirusNumber_label.setVisible(false);
+			VaccineNumber_label.setVisible(false);
+			OblivionVirusNumber_label.setVisible(false);
+			ParalysesVirusNumber_label.setVisible(false);
+			DanceVirusGC_label.setEnabled(false);
+			VaccineGC_label.setEnabled(false);
+			OblivionVirusGC_label.setEnabled(false);
+			ParalysesVirusGC_label.setEnabled(false);
+			DanceVirus_label.setEnabled(false);
+			Vaccine_label.setEnabled(false);
+			OblivionVirus_label.setEnabled(false);
+			ParalysesVirus_label.setEnabled(false);
+		
+			
 			
 		}
 		
 		if(player == UI.Player.PLAYER2) {
 			
+			
+			for(int i = 0; i < 3; i++) {
+				perm = getEqLabel(player, i);
+				num = getNumberLabel(player, i);
+				perm.setIcon(null);
+				num.setVisible(false);
+				
+			}
+			
+			DanceVirusNumber_label_1.setVisible(false);
+			VaccineNumber_label_1.setVisible(false);
+			OblivionVirusNumber_label_1.setVisible(false);
+			ParalysesVirusNumber_label_1.setVisible(false);
+			DanceVirusGC_label_1.setEnabled(false);
+			VaccineGC_label_1.setEnabled(false);
+			OblivionVirusGC_label_1.setEnabled(false);
+			ParalysesVirusGC_label_1.setEnabled(false);
+			DanceVirus_label_1.setEnabled(false);
+			Vaccine_label_1.setEnabled(false);
+			OblivionVirus_label_1.setEnabled(false);
+			ParalysesVirus_label_1.setEnabled(false);
 		}
+		
+		setActualEffect(player,UI.Collectable.BEAR);
+		setProgressBar(player, 100);
+		setMaterialLevel(player, 0);
 	}
 	
 	public static void useAxe(UI.Player player) {
@@ -775,8 +899,6 @@ public class Panel extends JPanel {
 		return num;
 	}
 	
-	
-	
 	public static void decreaseGlove(UI.Player player) {
 		
 		JLabel perm = null;
@@ -802,8 +924,6 @@ public class Panel extends JPanel {
 		
 	}
 	
-	
-	
 	public static void addEquipment(UI.Collectable type,UI.Player player) {
 		
 		JLabel perm = null;
@@ -827,7 +947,7 @@ public class Panel extends JPanel {
 						{ perm.setIcon(DesignPatterns.axe);
 							break;
 						}
-					case CLOACK:
+					case CLOAK:
 						{ perm.setIcon(DesignPatterns.cloack);
 							break;
 						}
@@ -898,8 +1018,7 @@ public class Panel extends JPanel {
 			}
 		}
 	}
-	
-	
+
 	public static void setAgentNumber(UI.Collectable type,UI.Player player, int num) {
 		
 		switch(type) {
@@ -1001,9 +1120,7 @@ public class Panel extends JPanel {
 
 	}
 	
-	
-	
-	static void enableGCorAgent(JLabel label,boolean flag) {
+	public static void enableGCorAgent(JLabel label,boolean flag) {
 		if(flag) {
 			label.setEnabled(true);
 			return;
@@ -1012,8 +1129,7 @@ public class Panel extends JPanel {
 		label.setEnabled(false);
 	}
 	
-	
-	static void setCounter(JLabel label, int newValue) {
+	public static void setCounter(JLabel label, int newValue) {
 
 			label.setText(String.valueOf(newValue));
 			
@@ -1025,8 +1141,7 @@ public class Panel extends JPanel {
 			}
 	}
 	
-	
-	static void setSelected(JPanel panel,boolean flag) {
+	public static void setSelected(JPanel panel,boolean flag) {
 		if(flag) {
 			panel.setBorder(new LineBorder(DesignPatterns.blue, 2));
 			return;
@@ -1035,4 +1150,314 @@ public class Panel extends JPanel {
 		panel.setBorder(null);
 	}
 	
+	public static void selectfirstAgent(UI.Player player){
+		
+		resetSelectionAgent(player);
+		
+		if(player == UI.Player.PLAYER1) {
+			selectedAgent1 = 0;
+			setSelected(Vaccine_panel,true);
+			
+		}
+		if(player == UI.Player.PLAYER2) {
+			selectedAgent2 = 0;
+			setSelected(Vaccine_panel_1,true);
+		}
+		
+	}
+	
+	public static void selectfirstEquipment(UI.Player player){
+		
+		resetSelectionEquipment(player);
+		
+		if(player == UI.Player.PLAYER1) {
+			selectedEquipment1 = 1;
+			setSelected(Equipment1_panel,true);
+			
+		}
+		if(player == UI.Player.PLAYER2) {
+			selectedEquipment2 = 1;
+			setSelected(Equipment1_panel_1,true);
+		}
+		
+	}
+	
+	public static UI.Collectable getSelectedAgent(UI.Player player){
+		if(player == UI.Player.PLAYER1) {
+			return getAgentByIndex(selectedAgent1);
+		}
+		
+		if(player == UI.Player.PLAYER2) {
+			return getAgentByIndex(selectedAgent2);
+		}
+		
+		return null;
+	}
+
+	private static UI.Collectable getAgentByIndex(int index) {
+
+			 switch(index) {
+			 case 0:
+				 return UI.Collectable.VACCINE;
+			 case 1:
+				 return UI.Collectable.DANCE;
+			 case 2:
+				 return UI.Collectable.OBLIVION;
+			 case 3:
+				 return UI.Collectable.PARALYSES;
+			 }
+			 
+			 return null;
+			
+		
+	 }
+
+	private static JPanel getAgentPanelByIndex(UI.Player player, int index) {
+		 if(player == UI.Player.PLAYER1) {
+				
+			 switch(index) {
+			 case 0:
+				 return Vaccine_panel;
+			 case 1:
+				 return DanceVirus_panel;
+			 case 2:
+				 return OblivionVirus_panel;
+			 case 3:
+				 return ParalysesVirus_panel;
+			 }
+			 
+			 return null;
+			 
+		}
+		 
+		 
+		 
+		 if(player == UI.Player.PLAYER2) {
+				
+			 switch(index) {
+			 case 0:
+				 return Vaccine_panel_1;
+			 case 1:
+				 return DanceVirus_panel_1;
+			 case 2:
+				 return OblivionVirus_panel_1;
+			 case 3:
+				 return ParalysesVirus_panel_1;
+			 }
+			 
+		}
+		 
+		 return null;
+	 }
+	 
+	private static JPanel getEquipmentPanelByIndex(UI.Player player, int index) {
+		 if(player == UI.Player.PLAYER1) {
+				
+			 switch(index) {
+			 case 0:
+				 return Equipment1_panel;
+			 case 1:
+				 return Equipment2_panel;
+			 case 2:
+				 return Equipment3_panel;
+			 }
+		 }
+		 
+		 if(player == UI.Player.PLAYER2) {
+				
+			 switch(index) {
+			 case 0:
+				 return Equipment1_panel_1;
+			 case 1:
+				 return Equipment2_panel_1;
+			 case 2:
+				 return Equipment3_panel_1;
+			 }
+		 }
+		 
+		 return null;
+			 
+		}
+	
+	public static void selectNextAgent(UI.Player player){
+		resetSelectionAgent(player);
+		
+		if(player == UI.Player.PLAYER1) {
+			selectedAgent1++;
+			if(selectedAgent1 == 4)
+				selectedAgent1 = 0;
+			setSelected(getAgentPanelByIndex(player,selectedAgent1),true);
+			
+		}
+		
+		if(player == UI.Player.PLAYER2) {
+			selectedAgent2++;
+			if(selectedAgent2 == 4)
+				selectedAgent2 = 0;
+			setSelected(getAgentPanelByIndex(player,selectedAgent2),true);
+		}
+		
+	}
+	
+	
+	public static UI.Collectable getSelectedEquipment(UI.Player player){
+		if(player == UI.Player.PLAYER1) {
+			return equipments1.get(selectedEquipment1);
+		}
+		
+		if(player == UI.Player.PLAYER2) {
+			return equipments1.get(selectedEquipment2);
+			
+		} 
+		
+		return null;
+	}
+	
+	
+	public static void selectNextEquipment(UI.Player player){
+		resetSelectionAgent(player);
+		
+		if(player == UI.Player.PLAYER1) {
+			selectedEquipment1++;
+			if(selectedEquipment1 == 3)
+				selectedEquipment1 = 0;
+			setSelected(getEquipmentPanelByIndex(player,selectedEquipment1),true);
+			
+		}
+		
+		if(player == UI.Player.PLAYER2) {
+			selectedEquipment2++;
+			if(selectedEquipment2 == 3)
+				selectedEquipment2 = 0;
+			setSelected(getEquipmentPanelByIndex(player,selectedEquipment2),true);
+			
+		}
+	}
+	
+	static void resetSelectionAgent(UI.Player player){
+		if(player == UI.Player.PLAYER1) {
+			setSelected(Vaccine_panel,false);
+			setSelected(DanceVirus_panel,false);
+			setSelected(OblivionVirus_panel,false);
+			setSelected(ParalysesVirus_panel,false);
+		}
+		if(player == UI.Player.PLAYER2) {
+			setSelected(Vaccine_panel_1,false);
+			setSelected(DanceVirus_panel_1,false);
+			setSelected(OblivionVirus_panel_1,false);
+			setSelected(ParalysesVirus_panel_1,false);
+		}
+		
+	}
+	
+	static void resetSelectionEquipment(UI.Player player){
+		
+		if(player == UI.Player.PLAYER1) {
+			setSelected(Equipment1_panel,false);
+			setSelected(Equipment2_panel,false);
+			setSelected(Equipment3_panel,false);
+		}
+		if(player == UI.Player.PLAYER2) {
+			setSelected(Equipment1_panel_1,false);
+			setSelected(Equipment2_panel_1,false);
+			setSelected(Equipment3_panel_1,false);
+		}
+		
+		
+
+	}
+	
+	public static void dropEquipment(UI.Player player, UI.Collectable type) {
+
+		
+		if(player == UI.Player.PLAYER1) {
+			if(!equipments1.contains(type)) {
+				return;
+			}
+			
+			int index = equipments1.indexOf(type);
+			
+			switch(index) {
+				case 0:{
+					Equipment1_label.setIcon(Equipment2_label.getIcon());
+					setCounter(Equipment1Number_label,Integer.parseInt(Equipment2Number_label.getText()));
+					Equipment2_label.setIcon(Equipment3_label.getIcon());
+					setCounter(Equipment2Number_label,Integer.parseInt(Equipment3Number_label.getText()));
+					Equipment3_label.setIcon(null);
+					Equipment3Number_label.setVisible(false);
+					
+				}
+				case 1:{
+					Equipment2_label.setIcon(Equipment3_label.getIcon());
+					setCounter(Equipment2Number_label,Integer.parseInt(Equipment3Number_label.getText()));
+					Equipment3_label.setIcon(null);
+					Equipment3Number_label.setVisible(false);
+				}
+				case 2:{
+					Equipment3_label.setIcon(null);
+					Equipment3Number_label.setVisible(false);
+				}
+				
+			}
+
+			equipments1.remove(index);
+			
+		}
+		
+		if(player == UI.Player.PLAYER2) {
+			if(!equipments2.contains(type)) {
+				return;
+			}
+			
+			int index = equipments2.indexOf(type);
+			
+			switch(index) {
+				case 0:{
+					Equipment1_label_1.setIcon(Equipment2_label_1.getIcon());
+					Equipment1Number_label_1.setVisible(Equipment2Number_label_1.isVisible());
+					setCounter(Equipment1Number_label_1,Integer.parseInt(Equipment2Number_label_1.getText()));
+					Equipment2_label_1.setIcon(Equipment3_label_1.getIcon());
+					setCounter(Equipment2Number_label_1,Integer.parseInt(Equipment3Number_label_1.getText()));
+					Equipment2Number_label_1.setVisible(Equipment3Number_label_1.isVisible());
+					Equipment3_label_1.setIcon(null);
+					Equipment3Number_label_1.setVisible(false);
+					break;
+					
+				}
+				case 1:{
+					Equipment2_label_1.setIcon(Equipment3_label_1.getIcon());
+					setCounter(Equipment2Number_label_1,Integer.parseInt(Equipment3Number_label_1.getText()));
+					Equipment3_label_1.setIcon(null);
+					Equipment3Number_label_1.setVisible(false);
+					break;
+				}
+				case 2:{
+					Equipment3_label_1.setIcon(null);
+					Equipment3Number_label_1.setVisible(false);
+					break;
+				}
+				
+			} 
+			
+			
+
+			equipments2.remove(index);
+			
+		}
+	}
+
+	public static void forgetAllGeneticCode(UI.Player player) {
+		if(player == UI.Player.PLAYER1) {
+			DanceVirusGC_label.setEnabled(false);
+			VaccineGC_label.setEnabled(false);
+			OblivionVirusGC_label.setEnabled(false);
+			ParalysesVirusGC_label.setEnabled(false);
+		}
+		if(player == UI.Player.PLAYER2) {
+			DanceVirusGC_label_1.setEnabled(false);
+			VaccineGC_label_1.setEnabled(false);
+			OblivionVirusGC_label_1.setEnabled(false);
+			ParalysesVirusGC_label_1.setEnabled(false);
+		}
+	}
 }

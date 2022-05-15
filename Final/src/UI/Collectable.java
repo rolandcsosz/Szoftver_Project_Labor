@@ -5,6 +5,7 @@ public enum Collectable {
 	OBLIVION,
 	PARALYSES,
 	DANCE,
+	BEAR,
 	
 	VACCINE_GC,
 	OBLIVION_GC,
@@ -12,7 +13,7 @@ public enum Collectable {
 	DANCE_GC,
 	
 	AXE,
-	CLOACK,
+	CLOAK,
 	BAG,
 	GLOVE
 }
