@@ -47,7 +47,7 @@ public class DesignPatterns {
 	public static Font robotoMono8 = createFont(8);
 	
 
-	public static ImageIcon crown = new ImageIcon("Final/src/UI/Images/Crown.png");
+	public static ImageIcon crown = new ImageIcon("src/UI/Images/Crown.png");
 
 	public static ImageIcon axe = new ImageIcon("src/UI/Images/Axe.png");
 	public static ImageIcon brokenAxe = new ImageIcon("src/UI/Images/Broken Axe.png");
@@ -64,15 +64,15 @@ public class DesignPatterns {
 	public static ImageIcon bearVirus = new ImageIcon("src/UI/Images/Bear.png");
 
 	
-	public static ImageIcon danceVirus = new ImageIcon("Final/src/UI/Images/Virus1.png");
-	public static ImageIcon oblivionVirus = new ImageIcon("Final/src/UI/Images/Virus2.png");
-	public static ImageIcon vaccine = new ImageIcon("Final/src/UI/Images/Vaccine.png");
+	public static ImageIcon danceVirus = new ImageIcon("src/UI/Images/Virus1.png");
+	public static ImageIcon oblivionVirus = new ImageIcon("src/UI/Images/Virus2.png");
+	public static ImageIcon vaccine = new ImageIcon("src/UI/Images/Vaccine.png");
 	public static ImageIcon paralyseVirus = new ImageIcon("Final/src/UI/Images/Virus3.png");
 	
-	public static ImageIcon danceVirusGC = new ImageIcon("Final/src/UI/Images/DanceVirusGC.png");
-	public static ImageIcon paralysesVirusGC = new ImageIcon("Final/src/UI/Images/paralysesVirusGC.png");
-	public static ImageIcon oblivionVirusGC = new ImageIcon("Final/src/UI/Images/oblivionVirusGC.png");
-	public static ImageIcon vaccineGC = new ImageIcon("Final/src/UI/Images/VaccineGC.png");
+	public static ImageIcon danceVirusGC = new ImageIcon("src/UI/Images/DanceVirusGC.png");
+	public static ImageIcon paralysesVirusGC = new ImageIcon("src/UI/Images/paralysesVirusGC.png");
+	public static ImageIcon oblivionVirusGC = new ImageIcon("src/UI/Images/oblivionVirusGC.png");
+	public static ImageIcon vaccineGC = new ImageIcon("src/UI/Images/VaccineGC.png");
 
 	
 	

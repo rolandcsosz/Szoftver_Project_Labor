@@ -1,3 +1,4 @@
+package Handlers;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -21,8 +22,8 @@ import Model.Virologist;
 import Model.Virusdance;
 import Model.Warehouse;
 
-public class Handler
-{
+public class Handler {
+	
 	static HashSet<String> types = new HashSet<String>(Arrays.asList(
 			"SIMPLEFIELD",
 			"SHELTER",
@@ -139,12 +140,4 @@ public class Handler
         f1.setNeighbour(f2);
         f2.setNeighbour(f1);
     }
-
-	static void attack(Virologist v, Agent a) {
-
-		if (v.getParalysedStatus() && v.getCurrentfield().IsNeighbour(v.getCurrentfield())) {
-			a.effect(v);
-		}
-
-	}
 }

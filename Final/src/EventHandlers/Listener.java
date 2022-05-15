@@ -1,5 +1,9 @@
+package EventHandlers;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+import javax.swing.JFrame;
+
 import UI.Components.Panel;
 import UI.Collectable;
 import UI.Frames.Game;
@@ -7,7 +11,7 @@ import UI.Levels.*;
 import UI.Player;
 
 
-public class Listener implements KeyListener {
+public class Listener extends JFrame implements KeyListener {
 
 
     @Override
@@ -19,49 +23,49 @@ public class Listener implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int i = e.getKeyCode();
         switch(i){
-            case 65:
+            case KeyEvent.VK_A:
                 //P1 selectagens
-                Panel.selectfirstAgent(Player.PLAYER1);
+                //Panel.selectfirstAgent(Player.PLAYER1);
                 ;
-            case 66:
+            case KeyEvent.VK_B:
                 //P1 scout
                 ;
-            case 67:
+            case KeyEvent.VK_C:
                 //P1 mező kiválaszt
                 ;
-            case 68:
+            case KeyEvent.VK_D:
                 //P1 drop
-
                 ;
-            case 81:
+            case KeyEvent.VK_Q:
                 //P1 selecteq
                 ;
-            case 86:
+            case KeyEvent.VK_V:
                 //P1 move
                 ;
-            case 88:
+            case KeyEvent.VK_X:
                 //P1 attacks
                 ;
-            case 44:
+            case KeyEvent.VK_COMMA:
                 //P2 scouts
                 ;
-            case 46:
+            case KeyEvent.VK_PERIOD:
                 //P2 selecteq
                 ;
-            case 45:
+            case KeyEvent.VK_MINUS:
                 //P2 drop
                 ;
-            case 37:
+            case KeyEvent.VK_LEFT:
                 //P2 select mező
                 ;
-            case 38:
+            case KeyEvent.VK_UP:
                 //P2 lep
                 ;
-            case 39:
+            case KeyEvent.VK_RIGHT:
                 //P2 select agens
                 ;
-            case 40:
+            case KeyEvent.VK_DOWN:
                 //P2 attacks
+            	System.out.println("yeeeee");
                 ;
             default:
                 e.consume();

@@ -7,7 +7,12 @@ import UI.Components.GameField;
 import UI.Components.Panel;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.JLabel;
+
+import Handlers.Listener;
 
 
 public class Game {
@@ -46,6 +51,7 @@ public class Game {
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.addKeyListener(new Listener());
 		
 		Panel panel = new Panel();
 		GameField gameField = new GameField();

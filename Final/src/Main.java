@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import Handlers.Handler;
 import Model.Agent;
 import Model.Equipment;
 import Model.Field;
@@ -21,6 +22,9 @@ public class Main {
   	static List<Agent> agents = new ArrayList<Agent>();
   	static List<Material> materials = new ArrayList<Material>();
   	static List<GeneticCode> geneticCodes = new ArrayList<GeneticCode>();
+  	
+  	public static Virologist virologist1 = new Virologist();
+  	public static Virologist virologist2 = new Virologist();
   	
   	
     public static void main(String[] args) {

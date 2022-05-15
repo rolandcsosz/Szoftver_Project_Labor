@@ -148,19 +148,19 @@ public class GameField extends JPanel {
 	public void loadMap(Graphics g){
 		BufferedImage WarehouseImage = null;
 		try {
-			WarehouseImage = ImageIO.read(new File("Final/src/UI/Images/Warehouse.png"));
+			WarehouseImage = ImageIO.read(new File("src/UI/Images/Warehouse.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		BufferedImage LaboratoryImage = null;
 		try {
-			LaboratoryImage = ImageIO.read(new File("Final/src/UI/Images/Laboratory.png"));
+			LaboratoryImage = ImageIO.read(new File("src/UI/Images/Laboratory.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		BufferedImage ShelterImage = null;
 		try {
-			ShelterImage = ImageIO.read(new File("Final/src/UI/Images/Shelter.png"));
+			ShelterImage = ImageIO.read(new File("src/UI/Images/Shelter.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
