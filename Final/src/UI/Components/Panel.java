@@ -26,6 +26,10 @@ public class Panel extends JPanel {
 	static int glove1Counter;
 	static int glove2Counter;
 	
+	
+	static JProgressBar progressBar;
+	static JProgressBar progressBar_1;
+	
 	static JLabel GloveNumber_label;
 	
 	
@@ -340,7 +344,7 @@ public class Panel extends JPanel {
 		ActualEffect_label.setBounds(1, 1, 35, 35);
 		ActualEffect_panel.add(ActualEffect_label);
 		
-		JProgressBar progressBar = new JProgressBar();
+		progressBar = new JProgressBar();
 		progressBar.setBounds(212, 92, 84, 5);
 		progressBar.setBorder(null);
 		progressBar.setBackground(DesignPatterns.lightGrey);
@@ -601,7 +605,7 @@ public class Panel extends JPanel {
 		ActualEffect_label_1.setBounds(1, 1, 35, 35);
 		ActualEffect_panel_1.add(ActualEffect_label_1);
 		
-		JProgressBar progressBar_1 = new JProgressBar();
+		progressBar_1 = new JProgressBar();
 		progressBar_1.setValue(40);
 		progressBar_1.setMaximum(0);
 		progressBar_1.setForeground(new Color(69, 105, 144));
@@ -635,6 +639,28 @@ public class Panel extends JPanel {
 
 	}
 	
+	// 0-100
+	public static void setProgressBar(UI.Player player, int value) {
+		if(player == UI.Player.PLAYER1) {
+			progressBar.setValue(value);
+		}
+		
+		if(player == UI.Player.PLAYER2) {
+			progressBar_1.setValue(value);
+		}
+	}
+	
+	public static void transformToBear(UI.Player player) {
+		
+		if(player == UI.Player.PLAYER1) {
+			
+		}
+		
+		if(player == UI.Player.PLAYER2) {
+			
+		}
+	}
+	
 	public static void useAxe(UI.Player player) {
 		
 		int num = -1;
@@ -655,6 +681,45 @@ public class Panel extends JPanel {
 				}
 			}
 		}
+		
+		if(num == -1) {
+			return;
+		}
+		
+		perm = getEqLabel(player, num);
+		perm.setIcon(DesignPatterns.brokenAxe);
+	}
+	
+	private static JLabel getEqLabel(UI.Player player, int num) {
+		
+		JLabel perm = null;
+		
+		if(player == UI.Player.PLAYER1) {
+			if(num == 0) {
+				perm = Equipment1_label;
+			}
+			else if(num == 1) {
+				perm = Equipment2_label;
+			}
+			else if(num == 2) {
+				perm = Equipment3_label;
+			}
+			
+		}
+		if(player == UI.Player.PLAYER2) {
+			if(num == 0) {
+				perm = Equipment1_label_1;
+			}
+			else if(num == 1) {
+				perm = Equipment2_label_1;
+			}
+			else if(num == 2) {
+				perm = Equipment3_label_1;
+			}
+			
+		}
+		
+		return perm;
 	}
 	
 	private static JLabel getNumberLabel(UI.Player player, int num) {
@@ -710,6 +775,8 @@ public class Panel extends JPanel {
 		return num;
 	}
 	
+	
+	
 	public static void decreaseGlove(UI.Player player) {
 		
 		JLabel perm = null;
@@ -728,16 +795,9 @@ public class Panel extends JPanel {
 			value--;
 			perm.setText(String.valueOf(value));
 			
-			if(value == 0) {
-				perm.setVisible(false);
-			}
-			else {
 				perm.setVisible(true);
-			}
 			
 		}
-		
-		
 		
 		
 	}
@@ -748,40 +808,18 @@ public class Panel extends JPanel {
 		
 		JLabel perm = null;
 		JLabel number = null;
+		
 
 				if(player == UI.Player.PLAYER1) {
-					if(equipments1.size() == 0) {
-						perm = Equipment1_label;
-						number = Equipment1Number_label;
-					}
-					else if(equipments1.size() == 1) {
-						perm = Equipment2_label;
-						number = Equipment2Number_label;
-					}
-					else if(equipments1.size() == 2) {
-						perm = Equipment3_label;
-						number = Equipment3Number_label;
-					}
-					
+					perm = getEqLabel(player, equipments1.size());
+					number = getNumberLabel(player, equipments1.size());
 					equipments1.add(type);
 				}
 				if(player == UI.Player.PLAYER2) {
-					if(equipments2.size() == 0) {
-						perm = Equipment1_label_1;
-						number = Equipment1Number_label_1;
-					}
-					else if(equipments2.size() == 1) {
-						perm = Equipment2_label_1;
-						number = Equipment2Number_label_1;
-					}
-					else if(equipments2.size() == 2) {
-						perm = Equipment3_label_1;
-						number = Equipment3Number_label_1;
-					}
-					
+					perm = getEqLabel(player, equipments2.size());
+					number = getNumberLabel(player, equipments2.size());
 					equipments2.add(type);
 				}
-				
 				
 				
 				switch(type) {

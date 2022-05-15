@@ -47,6 +47,7 @@ public class DesignPatterns {
 	public static ImageIcon crown = new ImageIcon("src/UI/Images/Crown.png");
 	
 	public static ImageIcon axe = new ImageIcon("src/UI/Images/Axe.png");
+	public static ImageIcon brokenAxe = new ImageIcon("src/UI/Images/Broken Axe.png");
 	public static ImageIcon cloack = new ImageIcon("src/UI/Images/Cloack.png");
 	public static ImageIcon bag = new ImageIcon("src/UI/Images/Bag.png");
 	public static ImageIcon glove = new ImageIcon("src/UI/Images/Glove.png");
