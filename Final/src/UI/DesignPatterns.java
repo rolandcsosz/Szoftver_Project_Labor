@@ -46,18 +46,24 @@ public class DesignPatterns {
 	public static Font robotoMono12 = createFont(12);
 	public static Font robotoMono8 = createFont(8);
 	
-//<<<<<<< HEAD
-	//public static ImageIcon danceVirus = scale("Final/src/UI/Images/Virus1.png", 35, 35);
-	//public static ImageIcon oblivionVirus = scale("Final/src/UI/Images/Virus2.png", 35, 35);
-	//public static ImageIcon vaccine = scale("Final/src/UI/Images/Vaccine.png", 35, 35);
-	//public static ImageIcon paralyseVirus = scale("Final/src/UI/Images/Virus3.png", 35, 35);
-	
-	//public static ImageIcon danceGC = scale("Final/src/UI/Images/Genetic Code1.png", 35, 35);
-//public static ImageIcon paralysesGC = scale("Final/src/UI/Images/Genetic Code1-1.png", 35, 35);
-	//public static ImageIcon oblivionGC = scale("Final/src/UI/Images/Genetic Code1-2.png", 35, 35);
-	//public static ImageIcon vaccineGC = scale("Final/src/UI/Images/Genetic Code1-3.png", 35, 35);
-//=======
+
 	public static ImageIcon crown = new ImageIcon("Final/src/UI/Images/Crown.png");
+
+	public static ImageIcon axe = new ImageIcon("src/UI/Images/Axe.png");
+	public static ImageIcon brokenAxe = new ImageIcon("src/UI/Images/Broken Axe.png");
+	public static ImageIcon cloack = new ImageIcon("src/UI/Images/Cloack.png");
+	public static ImageIcon bag = new ImageIcon("src/UI/Images/Bag.png");
+	public static ImageIcon glove = new ImageIcon("src/UI/Images/Glove.png");
+	
+	public static ImageIcon laboratory = new ImageIcon("src/UI/Images/Laboratory.png");
+	public static ImageIcon shelter = new ImageIcon("src/UI/Images/Shelter.png");
+	public static ImageIcon warehouse = new ImageIcon("src/UI/Images/Warehouse.png");
+	
+	public static ImageIcon virologist1 = new ImageIcon("src/UI/Images/Virologist1.png");
+	public static ImageIcon virologist2 = new ImageIcon("src/UI/Images/Virologist2.png");
+
+	public static ImageIcon bearVirus = new ImageIcon("src/UI/Images/Bear.png");
+
 	
 	public static ImageIcon danceVirus = new ImageIcon("Final/src/UI/Images/Virus1.png");
 	public static ImageIcon oblivionVirus = new ImageIcon("Final/src/UI/Images/Virus2.png");
@@ -68,7 +74,9 @@ public class DesignPatterns {
 	public static ImageIcon paralysesVirusGC = new ImageIcon("Final/src/UI/Images/paralysesVirusGC.png");
 	public static ImageIcon oblivionVirusGC = new ImageIcon("Final/src/UI/Images/oblivionVirusGC.png");
 	public static ImageIcon vaccineGC = new ImageIcon("Final/src/UI/Images/VaccineGC.png");
-//>>>>>>> a0be8b482b1769e6937ced3e0436a9379500d122
+
+	
+	
 	
 
 		public static Font createFont(int size) {
@@ -94,20 +102,15 @@ public class DesignPatterns {
 		
 		
 		
-		public static ImageIcon load(String location) {
-			BufferedImage imageToScale = null;
-			try {
-				imageToScale = ImageIO.read(new File(location));
-			} catch (IOException e) {
-			    // TODO Auto-generated catch block
-			    e.printStackTrace();
+		public static ImageIcon scale(String location, int w, int h) {
+			
+			ImageIcon imageIcon = new ImageIcon(location); // load the image to a imageIcon
+			Image image = imageIcon.getImage(); // transform it 
+			Image newimg = image.getScaledInstance(w, h,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+			imageIcon = new ImageIcon(newimg);  // transform it back
+			return imageIcon;
+			
 			}
-
-	        
-	        return new ImageIcon(imageToScale);
-	        
-	        
-	    }
 		
 		
 }
