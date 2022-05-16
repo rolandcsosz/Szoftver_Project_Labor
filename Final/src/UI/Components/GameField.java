@@ -11,10 +11,7 @@ import java.util.Map.Entry;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import Model.Field;
-import Model.Laboratory;
-import Model.Shelter;
-import Model.Warehouse;
+import Model.*;
 import UI.DesignPatterns;
 import UI.Player;
 
@@ -102,6 +99,7 @@ public class GameField extends JPanel {
 		}
 		if(t < 1) {
 			fillMap(g, 2, 5, 5);
+			setNeighboursByPolygons();
 			t++;
 		}else{
 			loadMap(g);
@@ -119,19 +117,19 @@ public class GameField extends JPanel {
 		List<Integer> was = new ArrayList<Integer>();
 		BufferedImage WarehouseImage = null;
 		try {
-			WarehouseImage = ImageIO.read(new File("src/UI/Images/Warehouse.png"));
+			WarehouseImage = ImageIO.read(new File("Final/src/UI/Images/Warehouse.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		BufferedImage LaboratoryImage = null;
 		try {
-			LaboratoryImage = ImageIO.read(new File("src/UI/Images/Laboratory.png"));
+			LaboratoryImage = ImageIO.read(new File("Final/src/UI/Images/Laboratory.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		BufferedImage ShelterImage = null;
 		try {
-			ShelterImage = ImageIO.read(new File("src/UI/Images/Shelter.png"));
+			ShelterImage = ImageIO.read(new File("Final/src/UI/Images/Shelter.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -180,19 +178,19 @@ public class GameField extends JPanel {
 	public void loadMap(Graphics g){
 		BufferedImage WarehouseImage = null;
 		try {
-			WarehouseImage = ImageIO.read(new File("src/UI/Images/Warehouse.png"));
+			WarehouseImage = ImageIO.read(new File("Final/src/UI/Images/Warehouse.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		BufferedImage LaboratoryImage = null;
 		try {
-			LaboratoryImage = ImageIO.read(new File("src/UI/Images/Laboratory.png"));
+			LaboratoryImage = ImageIO.read(new File("Final/src/UI/Images/Laboratory.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		BufferedImage ShelterImage = null;
 		try {
-			ShelterImage = ImageIO.read(new File("src/UI/Images/Shelter.png"));
+			ShelterImage = ImageIO.read(new File("Final/src/UI/Images/Shelter.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -219,7 +217,7 @@ public class GameField extends JPanel {
 		List<Polygons> polygonlist = new ArrayList<Polygons>();
 		Gson gson = new Gson();
 		try {
-			JsonReader reader = new JsonReader(new FileReader("src/UI/Levels/level1.json"));
+			JsonReader reader = new JsonReader(new FileReader("Final/src/UI/Levels/level1.json"));
 			UI.Components.Polygons[] polygons = gson.fromJson(reader, UI.Components.Polygons[].class);
 			polygonlist = Arrays.asList(polygons);
 		} catch (FileNotFoundException e) {
@@ -315,6 +313,45 @@ public class GameField extends JPanel {
 		}
 		
 	}
+
+	public void setNeighboursByPolygons() {
+		Iterator<Map.Entry<Polygons, Field>> itr1 = fields.entrySet().iterator();
+		Iterator<Map.Entry<Polygons, Field>> itr2 = fields.entrySet().iterator();
+		while (itr1.hasNext()) {
+			Map.Entry<Polygons, Field> entry = itr1.next();
+			int[] a = entry.getKey().neighbours;
+			for(int j = 0; j < a.length; j++){
+				boolean megvan = false;
+				while(itr2.hasNext() && !megvan){
+					Map.Entry<Polygons, Field> perm = itr2.next();
+					if(a[j] == perm.getKey().id){
+						entry.getValue().setNeighbour(perm.getValue());
+						megvan = true;
+						itr2 = fields.entrySet().iterator();
+					}
+				}
+			}
+		}
+	}
+
+
+
+	public void drawVirologist(Virologist v, Graphics graphics) throws IOException {
+		BufferedImage virologistImage = ImageIO.read(new File("Final/src/UI/Images/Virologist.png"));
+		JLabel virologistLabel = new JLabel();
+		virologistLabel.setIcon(new ImageIcon(virologistImage));
+		Iterator<Map.Entry<Polygons, Field>> itr1 = fields.entrySet().iterator();
+		boolean set = false;
+		while (itr1.hasNext() && !set){
+			Map.Entry<Polygons, Field> entry = itr1.next();
+			if(v.getCurrentfield() == entry.getValue()){
+				virologistLabel.setBounds(entry.getKey().middleX,entry.getKey().middleY, size().width, size().height);
+				set = true;
+			}
+		}
+		this.add(virologistLabel);
+		this.setVisible(true);
+	}
 	
 	public void moveVirologist(UI.Player player,Field f) {
 		
@@ -350,10 +387,10 @@ public class GameField extends JPanel {
 			getPolygonsById(fieldselected2).isSelected = true;
 			fieldindex2 = poly.id;
 		}
-		
-		
+
+
 	}
-	
+
 }
 
 
