@@ -32,36 +32,66 @@ public class GameField extends JPanel {
 	int t = 0;
 	private Random s = new Random();
 	
-	static int fieldindex1 = 5;
-	static int fieldindex2 = 10;
-	static int fieldselected1 = 6;
-	static int fieldselected2 = 13;
+	static int fieldindex1 = -1;
+	static int fieldindex2 = -1;
+	static int fieldselected1 = -1;
+	static int fieldselected2 = -1;
 	
 
 	static List<Polygons> polygons;
 	static JLabel Virologist1_label;
 	static JLabel Virologist2_label;
+	
+	JLabel l;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Create the panel.
 	 */
+	
+	
+	
 	public GameField() {
 
 		this.setBackground(Color.WHITE);
 		this.setBounds(0, 0, 1186, 491);
-		setLayout(null);
 		polygons = deserialize();
 		
+		lblNewLabel = new JLabel();
+		lblNewLabel.setBounds(549, 223, 49, 14);
+		lblNewLabel.setIcon(DesignPatterns.virologist1Faded);
+		add(lblNewLabel);
+		 
+		
 		Virologist1_label = new JLabel();
-		Virologist1_label.setBounds(24, 30, 158, 150);
 		Virologist1_label.setIcon(DesignPatterns.virologist1);
 		add(Virologist1_label);
 		
 		Virologist2_label = new JLabel();
-		Virologist2_label.setBounds(484, 231, 158, 150);
 		Virologist2_label.setIcon(DesignPatterns.virologist2);
 		add(Virologist2_label);
+		
+		generateRandomLocationToVirologists();
+		
 
+	}
+	
+	private void generateRandomLocationToVirologists() {
+		Polygons p1 = getRandomPolygons();
+		Polygons p2 = getRandomPolygons();
+		
+		Virologist1_label.setBounds(p1.middleX, p1.middleY,150,150);
+		
+		Virologist1_label.setBounds(p2.middleX, p2.middleY, 150, 150);
+		
+		fieldindex1 = p1.id;
+		fieldindex2 = p2.id;
+		
+	}
+	
+	private Polygons getRandomPolygons() {
+		Random rd = new Random();
+		return polygons.get(rd.nextInt(25));
 	}
 
 
@@ -97,7 +127,7 @@ public class GameField extends JPanel {
 			
 			if(p.isSelected) {
 				g.setColor(DesignPatterns.blue);
-				g.fillPolygon(polygon);	
+				g.drawPolygon(polygon);	
 			}
 		}
 		if(t < 1) {
@@ -107,9 +137,12 @@ public class GameField extends JPanel {
 			loadMap(g);
 		}
 		
+		
 	
+		
 
 	}
+	
 	
 
 
@@ -210,7 +243,7 @@ public class GameField extends JPanel {
 	}
 
 
-	public void setVirologsitsToRandomFields() {
+public void setVirologsitsToRandomFields() {
 		
 	}
 
@@ -264,62 +297,77 @@ public class GameField extends JPanel {
 	Polygons selected, actual;
 		if(player == UI.Player.PLAYER1) {
 			
-			selected = getPolygonsById(fieldselected1);
-			selected.isSelected = false;
-			actual = getPolygonsById(fieldindex1);
-			int num = 0;
-			
-			for(int i = 0; i < actual.neighbours.length; i++) {
-				if(actual.neighbours[i] == selected.id) {
-					num = i;
-					break;
+			if(fieldselected1 != -1) {
+				selected = getPolygonsById(fieldselected1);
+				selected.isSelected = false;
+				actual = getPolygonsById(fieldindex1);
+				int num = 0;
+				
+				for(int i = 0; i < actual.neighbours.length; i++) {
+					if(actual.neighbours[i] == selected.id) {
+						num = i;
+						break;
+					}
 				}
+				
+				if(num == actual.neighbours.length-1) {
+					fieldselected1 = actual.neighbours[0];
+				}
+				else{
+					fieldselected1 = actual.neighbours[num+1];
+				}
+				
+				selected = getPolygonsById(fieldselected1);
+				selected.isSelected = true;
+			}
+			else {
+				actual = getPolygonsById(fieldindex1);
+				selected = getPolygonsById(actual.neighbours[0]);
+				selected.isSelected = true;
 			}
 			
-			if(num == actual.neighbours.length-1) {
-				fieldselected1 = actual.neighbours[0];
-			}
-			else{
-				fieldselected1 = actual.neighbours[num+1];
-			}
-		
-			selected = getPolygonsById(fieldselected1);
-			selected.isSelected = true;
 	
 		}
 		
-		if(player == UI.Player.PLAYER2) {
-			
-			selected = getPolygonsById(fieldselected2);
-			selected.isSelected = false;
-			actual = getPolygonsById(fieldindex2);
-			int num = 0;
-			
-			for(int i = 0; i < actual.neighbours.length; i++) {
-				if(actual.neighbours[i] == selected.id) {
-					num = i;
-					break;
-				}
-			}
-			
-			if(num == actual.neighbours.length-1) {
-				fieldselected2 = actual.neighbours[0];
-			}
-			else{
-				fieldselected2 = actual.neighbours[num+1];
-			}
 		
-			selected = getPolygonsById(fieldselected2);
-			selected.isSelected = true;
+		
+		if(player == UI.Player.PLAYER2) {
+			if(fieldselected2 != -1) {
+			
+				selected = getPolygonsById(fieldselected2);
+				selected.isSelected = false;
+				actual = getPolygonsById(fieldindex2);
+				int num = 0;
+				
+				for(int i = 0; i < actual.neighbours.length; i++) {
+					if(actual.neighbours[i] == selected.id) {
+						num = i;
+						break;
+					}
+				}
+				
+				if(num == actual.neighbours.length-1) {
+					fieldselected2 = actual.neighbours[0];
+				}
+				else{
+					fieldselected2 = actual.neighbours[num+1];
+				}
+			
+				selected = getPolygonsById(fieldselected2);
+				selected.isSelected = true;
 	
+			}
+		else {
+			actual = getPolygonsById(fieldindex2);
+			selected = getPolygonsById(actual.neighbours[0]);
+			selected.isSelected = true;
+			}
 		}
 		
 	}
 	
 	public void moveVirologist(UI.Player player,Field f) {
 		
-		int x = s.nextInt(1000);
-        int y = s.nextInt(900);
 		
 		Polygons poly = null;
 		 for (Entry<Polygons, Field> entry : fields.entrySet()) {
@@ -330,7 +378,6 @@ public class GameField extends JPanel {
 		 System.out.println(fieldselected1);
 		 
 		 if(poly == null) {
-			 System.out.println("nullll");
 			 return;
 		 }
 		
@@ -353,7 +400,6 @@ public class GameField extends JPanel {
 		
 		
 	}
-	
 }
 
 

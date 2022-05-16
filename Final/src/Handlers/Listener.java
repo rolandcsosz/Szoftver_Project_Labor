@@ -207,6 +207,8 @@ public class Listener implements KeyListener {
            
             	Game.gameField.moveVirologist(Player.PLAYER2,selectedField2);
             	 Game.gameField.repaint();
+            	 
+            	 //Main.virologist1.move(selectedField1);
             	break;
             }
             case KeyEvent.VK_DOWN:

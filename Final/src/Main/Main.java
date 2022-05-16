@@ -17,7 +17,7 @@ public class Main {
 	
     static boolean isRunning = true;
     
-  	static List<Field> fields = new ArrayList<Field>();
+  	public static List<Field> fields = new ArrayList<Field>();
   	static List<Virologist> virologists = new ArrayList<Virologist>();
   	static List<Equipment> equipments = new ArrayList<Equipment>();
   	static List<Agent> agents = new ArrayList<Agent>();

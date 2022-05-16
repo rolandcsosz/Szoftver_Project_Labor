@@ -167,6 +167,7 @@ public class Menu {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String lvl = (String) comboBox.getSelectedItem();
+				new Game().main(null);
 			}
 		};
 

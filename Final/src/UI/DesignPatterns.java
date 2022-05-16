@@ -61,6 +61,7 @@ public class DesignPatterns {
 	public static ImageIcon warehouse = new ImageIcon("src/UI/Images/Warehouse.png");
 	
 	public static ImageIcon virologist1 = new ImageIcon("src/UI/Images/Virologist1.png");
+	public static ImageIcon virologist1Faded = new ImageIcon("src/UI/Images/Virologist1Faded.png");
 	public static ImageIcon virologist2 = new ImageIcon("src/UI/Images/Virologist2.png");
 	public static ImageIcon bear = new ImageIcon("src/UI/Images/Bear.png");
 	public static ImageIcon bearVirus = new ImageIcon("src/UI/Images/Bear.png");

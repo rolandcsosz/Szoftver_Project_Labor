@@ -64,18 +64,18 @@ public class Game {
 
 		frame.setVisible(true);
 		
-		panel.setAgentNumber(UI.Collectable.DANCE,UI.Player.PLAYER1,1);
-		panel.setAgentNumber(UI.Collectable.PARALYSES,UI.Player.PLAYER2,2);
-		panel.addGeneticCode(UI.Collectable.DANCE_GC,UI.Player.PLAYER1);
-		panel.addGeneticCode(UI.Collectable.PARALYSES_GC,UI.Player.PLAYER2);
-		panel.addEquipment(UI.Collectable.BAG,UI.Player.PLAYER1);
-		panel.addEquipment(UI.Collectable.AXE,UI.Player.PLAYER1);
+		Panel.setAgentNumber(UI.Collectable.DANCE,UI.Player.PLAYER1,1);
+		Panel.setAgentNumber(UI.Collectable.PARALYSES,UI.Player.PLAYER2,2);
+		Panel.addGeneticCode(UI.Collectable.DANCE_GC,UI.Player.PLAYER1);
+		Panel.addGeneticCode(UI.Collectable.PARALYSES_GC,UI.Player.PLAYER2);
+		Panel.addEquipment(UI.Collectable.BAG,UI.Player.PLAYER1);
+		Panel.addEquipment(UI.Collectable.AXE,UI.Player.PLAYER1);
 		
-		panel.addEquipment(UI.Collectable.GLOVE,UI.Player.PLAYER2);
-		panel.decreaseGlove(UI.Player.PLAYER2);
-		panel.decreaseGlove(UI.Player.PLAYER2);
-		panel.decreaseGlove(UI.Player.PLAYER2);
-		panel.useAxe(UI.Player.PLAYER1);
+		Panel.addEquipment(UI.Collectable.GLOVE,UI.Player.PLAYER2);
+		Panel.decreaseGlove(UI.Player.PLAYER2);
+		Panel.decreaseGlove(UI.Player.PLAYER2);
+		Panel.decreaseGlove(UI.Player.PLAYER2);
+		Panel.useAxe(UI.Player.PLAYER1);
 		
 		//teszt
 		//panel.enableVaccine();
