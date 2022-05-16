@@ -30,6 +30,7 @@ public class GameField extends JPanel {
 	public boolean isRunning = false;
 	boolean isFirstTime = true;
 	int t = 0;
+	private Random s = new Random();
 	
 	static int fieldindex1 = 5;
 	static int fieldindex2 = 10;
@@ -209,7 +210,9 @@ public class GameField extends JPanel {
 	}
 
 
-
+	public void setVirologsitsToRandomFields() {
+		
+	}
 
 
 	public List<Polygons> deserialize() {
@@ -315,17 +318,24 @@ public class GameField extends JPanel {
 	
 	public void moveVirologist(UI.Player player,Field f) {
 		
+		int x = s.nextInt(1000);
+        int y = s.nextInt(900);
+		
 		Polygons poly = null;
 		 for (Entry<Polygons, Field> entry : fields.entrySet()) {
 			 if(entry.getValue().equals(f))
 				 poly=entry.getKey();
 		 }
 		 
-		 if(poly == null)
+		 System.out.println(fieldselected1);
+		 
+		 if(poly == null) {
+			 System.out.println("nullll");
 			 return;
+		 }
 		
 		if(player == UI.Player.PLAYER1) {
-			Virologist1_label.setBounds(poly.middleX, poly.middleY, 158, 150);
+			Virologist1_label.setBounds(poly.middleX-158, poly.middleY-75, 158, 150);
 			getPolygonsById(fieldselected1).isSelected = false;
 			fieldselected1 = fieldindex1;
 			getPolygonsById(fieldselected1).isSelected = true;
@@ -334,12 +344,14 @@ public class GameField extends JPanel {
 			
 		}
 		if(player == UI.Player.PLAYER2) {
-			Virologist2_label.setBounds(poly.middleX, poly.middleY, 158, 150);
+			Virologist2_label.setBounds(poly.middleX-158, poly.middleY-75, 158, 150);
 			getPolygonsById(fieldselected2).isSelected = false;
 			fieldselected2 = fieldindex2;
 			getPolygonsById(fieldselected2).isSelected = true;
 			fieldindex2 = poly.id;
 		}
+		
+		
 	}
 	
 }
