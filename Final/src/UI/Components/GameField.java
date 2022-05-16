@@ -6,6 +6,7 @@ import java.awt.image.ImageObserver;
 import java.io.*;
 import java.util.*;
 import java.util.List;
+import java.util.Map.Entry;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -15,20 +16,30 @@ import Model.Laboratory;
 import Model.Shelter;
 import Model.Warehouse;
 import UI.DesignPatterns;
+import UI.Player;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class GameField extends JPanel {
 
 	HashMap<Polygons, Field> fields = new HashMap<Polygons, Field>();
 	public boolean isRunning = false;
+	boolean isFirstTime = true;
 	int t = 0;
+	
+	static int fieldindex1 = 5;
+	static int fieldindex2 = 10;
+	static int fieldselected1 = 6;
+	static int fieldselected2 = 13;
+	
 
-
-
-
-
+	static List<Polygons> polygons;
+	static JLabel Virologist1_label;
+	static JLabel Virologist2_label;
 
 	/**
 	 * Create the panel.
@@ -37,38 +48,56 @@ public class GameField extends JPanel {
 
 		this.setBackground(Color.WHITE);
 		this.setBounds(0, 0, 1186, 491);
+		setLayout(null);
+		polygons = deserialize();
+		
+		Virologist1_label = new JLabel();
+		Virologist1_label.setBounds(24, 30, 158, 150);
+		Virologist1_label.setIcon(DesignPatterns.virologist1);
+		add(Virologist1_label);
+		
+		Virologist2_label = new JLabel();
+		Virologist2_label.setBounds(484, 231, 158, 150);
+		Virologist2_label.setIcon(DesignPatterns.virologist2);
+		add(Virologist2_label);
 
 	}
 
 
-	List<Polygons> polygons;
 	@Override
-	public void paint(Graphics g) {
+	public void paintComponent(Graphics g) {
 
-		 polygons = deserialize();
-		List<Polygon> awtPolygon = new ArrayList<Polygon>();
 
-		for(int i = 0; i < polygons.size(); i++){
-			Polygon polygon = new Polygon(polygons.get(i).xValues,polygons.get(i).yValues,polygons.get(i).xValues.length);
-			awtPolygon.add(polygon);
 
-			if(polygons.get(i).color.equals("RED")){
+		for(Polygons p: polygons){
+			Polygon polygon = new Polygon(p.xValues,p.yValues,p.xValues.length);
+			if(p.color.equals("RED")){
 			g.setColor(DesignPatterns.lightRed);
 
-			} else if(polygons.get(i).color.equals("BLUE")){
+			} else if(p.color.equals("BLUE")){
 				g.setColor(DesignPatterns.lightBlue);
 
-			} else if(polygons.get(i).color.equals("GREEN")){
+			} else if(p.color.equals("GREEN")){
 				g.setColor(DesignPatterns.pastelGreen);
 
-			} else if(polygons.get(i).color.equals("ORANGE")){
+			} else if(p.color.equals("ORANGE")){
 				g.setColor(DesignPatterns.pastelOrange);
 
 			}
+			
 			else{
-				g.fillPolygon(polygon);
+				g.drawPolygon(polygon);
+
 			}
+			
 			g.fillPolygon(polygon);
+			g.setColor(DesignPatterns.grey);
+			g.drawPolygon(polygon);
+			
+			if(p.isSelected) {
+				g.setColor(DesignPatterns.blue);
+				g.fillPolygon(polygon);	
+			}
 		}
 		if(t < 1) {
 			fillMap(g, 2, 5, 5);
@@ -76,9 +105,11 @@ public class GameField extends JPanel {
 		}else{
 			loadMap(g);
 		}
+		
+	
 
 	}
-
+	
 
 
 	public void fillMap(Graphics g, int w, int s, int l){
@@ -193,6 +224,124 @@ public class GameField extends JPanel {
 		}
 		return  polygonlist;
 	}
+	
+	private Polygons getPolygonsById(int id) {
+		for(Polygons p:polygons) {
+			if(p.id == id)
+				return p;
+		}
+		
+		return null;
+	}
+	
+	
+	public Field getSelectedField(UI.Player player) {
+		if(player == UI.Player.PLAYER1) {
+			return fields.get(getPolygonsById(fieldindex1));
+		}
+		if(player == UI.Player.PLAYER2) {
+			return fields.get(getPolygonsById(fieldindex2));
+		}
+		System.out.println("nulll");
+		return null;
+	}
+	
+	public void transformToBear(UI.Player player) {
+		if(player == UI.Player.PLAYER1) {
+			Virologist1_label.setIcon(DesignPatterns.bear);
+		}
+		
+		if(player == UI.Player.PLAYER2) {
+			Virologist2_label.setIcon(DesignPatterns.bear);
+		}
+	}
+	
+	
+	public void selectNextField(UI.Player player) {
+	Polygons selected, actual;
+		if(player == UI.Player.PLAYER1) {
+			
+			selected = getPolygonsById(fieldselected1);
+			selected.isSelected = false;
+			actual = getPolygonsById(fieldindex1);
+			int num = 0;
+			
+			for(int i = 0; i < actual.neighbours.length; i++) {
+				if(actual.neighbours[i] == selected.id) {
+					num = i;
+					break;
+				}
+			}
+			
+			if(num == actual.neighbours.length-1) {
+				fieldselected1 = actual.neighbours[0];
+			}
+			else{
+				fieldselected1 = actual.neighbours[num+1];
+			}
+		
+			selected = getPolygonsById(fieldselected1);
+			selected.isSelected = true;
+	
+		}
+		
+		if(player == UI.Player.PLAYER2) {
+			
+			selected = getPolygonsById(fieldselected2);
+			selected.isSelected = false;
+			actual = getPolygonsById(fieldindex2);
+			int num = 0;
+			
+			for(int i = 0; i < actual.neighbours.length; i++) {
+				if(actual.neighbours[i] == selected.id) {
+					num = i;
+					break;
+				}
+			}
+			
+			if(num == actual.neighbours.length-1) {
+				fieldselected2 = actual.neighbours[0];
+			}
+			else{
+				fieldselected2 = actual.neighbours[num+1];
+			}
+		
+			selected = getPolygonsById(fieldselected2);
+			selected.isSelected = true;
+	
+		}
+		
+	}
+	
+	public void moveVirologist(UI.Player player,Field f) {
+		
+		Polygons poly = null;
+		 for (Entry<Polygons, Field> entry : fields.entrySet()) {
+			 if(entry.getValue().equals(f))
+				 poly=entry.getKey();
+		 }
+		 
+		 if(poly == null)
+			 return;
+		
+		if(player == UI.Player.PLAYER1) {
+			Virologist1_label.setBounds(poly.middleX, poly.middleY, 158, 150);
+			getPolygonsById(fieldselected1).isSelected = false;
+			fieldselected1 = fieldindex1;
+			getPolygonsById(fieldselected1).isSelected = true;
+			fieldindex1 = poly.id;
+			
+			
+		}
+		if(player == UI.Player.PLAYER2) {
+			Virologist2_label.setBounds(poly.middleX, poly.middleY, 158, 150);
+			getPolygonsById(fieldselected2).isSelected = false;
+			fieldselected2 = fieldindex2;
+			getPolygonsById(fieldselected2).isSelected = true;
+			fieldindex2 = poly.id;
+		}
+	}
+	
 }
 
 

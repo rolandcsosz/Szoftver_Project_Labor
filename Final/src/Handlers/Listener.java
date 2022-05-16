@@ -1,12 +1,17 @@
 package Handlers;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+import javax.swing.SwingUtilities;
+
+import UI.Components.GameField;
 import UI.Components.Panel;
 import UI.Collectable;
 import UI.Frames.Game;
 import UI.Player;
 import Main.Main;
 import Model.Agent;
+import Model.Field;
 import Model.Oblivion;
 import Model.Paralyses;
 import Model.Vaccine;
@@ -24,6 +29,9 @@ public class Listener implements KeyListener {
 	UI.Collectable selectedEquipment2;
 	UI.Collectable selectedAgent1;
 	UI.Collectable selectedAgent2;
+	
+	Field selectedField1;
+	Field selectedField2;
 	
     @Override
     public void keyTyped(KeyEvent e) {
@@ -60,9 +68,11 @@ public class Listener implements KeyListener {
             case KeyEvent.VK_C:
                 //P1 mező kiválaszt
             {
-            	//P1 selectagens
-            	//Panel.selectfirstAgent(Player.PLAYER1);
-            	System.out.println("Yeeey");
+            	Game.gameField.selectNextField(Player.PLAYER1);
+            	Game.gameField.repaint();
+            	selectedField1 = Game.gameField.getSelectedField(Player.PLAYER1);
+            	//SwingUtilities.windowForComponent(Game.gameField).repaint();
+            	//GameField.getSelectedField(Player.PLAYER1);
             	break;
             	
             }
@@ -96,7 +106,8 @@ public class Listener implements KeyListener {
             case KeyEvent.VK_V:
                 //P1 move
             {
-            	
+            	Game.gameField.moveVirologist(Player.PLAYER1,selectedField1);
+            	Game.gameField.repaint();
             	break;
             	
             }
@@ -168,9 +179,9 @@ public class Listener implements KeyListener {
             case KeyEvent.VK_UP:
                 //P2 select mező
             {
-            	//P1 selectagens
-            	//Panel.selectfirstAgent(Player.PLAYER1);
-            	System.out.println("Yeeey");
+            	Game.gameField.selectNextField(Player.PLAYER2);
+            	Game.gameField.repaint();
+            	selectedField2 = Game.gameField.getSelectedField(Player.PLAYER2);
             	break;
             	
             }
@@ -194,7 +205,9 @@ public class Listener implements KeyListener {
             case KeyEvent.VK_LEFT:
             {	//P2 lep
            
-            	
+            	Game.gameField.moveVirologist(Player.PLAYER2,selectedField2);
+            	 Game.gameField.repaint();
+            	break;
             }
             case KeyEvent.VK_DOWN:
                 //P2 attacks
@@ -229,6 +242,8 @@ public class Listener implements KeyListener {
             }
             default:
                 e.consume();
+                
+              
 
         }
 

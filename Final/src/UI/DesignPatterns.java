@@ -37,8 +37,8 @@ public class DesignPatterns {
 	public static Color lightBlue = new Color(192,222,255);
 	public static Color red = new Color(239,118,122);
 	public static Color lightRed = new Color(249,188,190);
-	public static Color pastelGreen = new Color(122, 221, 122);
-	public static Color pastelOrange = new Color(255, 179, 71);
+	public static Color pastelGreen = new Color(163, 235, 223);
+	public static Color pastelOrange = new Color(251, 223, 181);
 	
 	public static Font robotoMono20 = createFont(20);
 	public static Font robotoMono24 = createFont(24);
@@ -48,6 +48,7 @@ public class DesignPatterns {
 	
 
 	public static ImageIcon crown = new ImageIcon("src/UI/Images/Crown.png");
+
 
 	public static ImageIcon axe = new ImageIcon("src/UI/Images/Axe.png");
 	public static ImageIcon brokenAxe = new ImageIcon("src/UI/Images/Broken Axe.png");
@@ -61,13 +62,14 @@ public class DesignPatterns {
 	
 	public static ImageIcon virologist1 = new ImageIcon("src/UI/Images/Virologist1.png");
 	public static ImageIcon virologist2 = new ImageIcon("src/UI/Images/Virologist2.png");
+	public static ImageIcon bear = new ImageIcon("src/UI/Images/Bear.png");
 	public static ImageIcon bearVirus = new ImageIcon("src/UI/Images/Bear.png");
 
 	
 	public static ImageIcon danceVirus = new ImageIcon("src/UI/Images/Virus1.png");
 	public static ImageIcon oblivionVirus = new ImageIcon("src/UI/Images/Virus2.png");
 	public static ImageIcon vaccine = new ImageIcon("src/UI/Images/Vaccine.png");
-	public static ImageIcon paralyseVirus = new ImageIcon("Final/src/UI/Images/Virus3.png");
+	public static ImageIcon paralyseVirus = new ImageIcon("src/UI/Images/Virus3.png");
 	
 	public static ImageIcon danceVirusGC = new ImageIcon("src/UI/Images/DanceVirusGC.png");
 	public static ImageIcon paralysesVirusGC = new ImageIcon("src/UI/Images/paralysesVirusGC.png");

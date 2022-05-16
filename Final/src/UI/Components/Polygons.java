@@ -10,6 +10,7 @@ public class Polygons {
    public int middleX;
     public int middleY;
    public int[] neighbours;
+   public boolean isSelected;
 
     public Polygons(int id, int[] xValues, int[] yValues, String color, int middleX,int middleY, int[] neighbours) {
         this.id = id;

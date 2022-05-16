@@ -18,6 +18,8 @@ import Handlers.Listener;
 public class Game {
 
 	private JFrame frame;
+	public static Panel panel;
+	public static GameField gameField;
 
 	/**
 	 * Launch the application.
@@ -53,8 +55,8 @@ public class Game {
 		frame.getContentPane().setLayout(null);
 		frame.addKeyListener(new Listener());
 		
-		Panel panel = new Panel();
-		GameField gameField = new GameField();
+		panel = new Panel();
+		gameField = new GameField();
 		
 
 		frame.getContentPane().add(panel);
