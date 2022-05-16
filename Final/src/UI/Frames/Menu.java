@@ -20,14 +20,14 @@ import javax.swing.JComboBox;
 public class Menu extends JFrame{
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JLabel lblNewLabel_1;
 	private JComboBox comboBox;
 	private JLabel lblNewLabel_2;
 	public static int level;
+	public static String player1;
+	public static String player2;
 
 	/**
 	 * Launch the application.
@@ -65,7 +65,6 @@ public class Menu extends JFrame{
 		frame.setIconImage(null);
 		
 		textField_2 = new JTextField();
-		textField_2.setFocusAccelerator('a');
 		textField_2.requestFocusInWindow();
 		textField_2.setBackground(DesignPatterns.grey);
 		textField_2.setBounds(66, 90, 220, 26);
@@ -101,6 +100,12 @@ public class Menu extends JFrame{
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Start");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+			}
+		});
 		btnNewButton.setFont(DesignPatterns.robotoMono20);
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(DesignPatterns.blue);
@@ -110,6 +115,8 @@ public class Menu extends JFrame{
 		btnNewButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Main.Main.Player1Name = textField_2.getText();
+				Main.Main.Player2Name = textField_3.getText();
 				frame.dispose();
 				new Game();
 			}
@@ -173,8 +180,10 @@ public class Menu extends JFrame{
 		ActionListener cbActionListener = new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
 				String lvl = (String) comboBox.getSelectedItem();
 				new Game().main(null);
+
 			}
 		};
 

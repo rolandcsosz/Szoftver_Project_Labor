@@ -9,6 +9,8 @@ import javax.swing.JProgressBar;
 
 import UI.Collectable;
 import UI.DesignPatterns;
+import UI.Frames.Menu;
+
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.util.ArrayList;
@@ -370,7 +372,8 @@ public class Panel extends JPanel {
 		progressBar.setMaximum(100);
 		this.add(progressBar);
 		
-		JLabel PlayerName_label = new JLabel("Player 1");
+		JLabel PlayerName_label = new JLabel(Main.Main.Player1Name);
+		PlayerName_label.setVisible(true);
 		PlayerName_label.setBounds(362, 11, 149, 36);
 		PlayerName_label.setFont(DesignPatterns.robotoMono20);
 		this.add(PlayerName_label);
@@ -621,14 +624,13 @@ public class Panel extends JPanel {
 		ActualEffect_panel_1.add(ActualEffect_label_1);
 		
 		progressBar_1 = new JProgressBar();
-		progressBar_1.setValue(40);
 		progressBar_1.setForeground(new Color(69, 105, 144));
 		progressBar_1.setBorder(null);
 		progressBar_1.setBackground(new Color(220, 220, 220));
 		progressBar_1.setBounds(836, 92, 84, 5);
 		add(progressBar_1);
 		
-		PlayerName_label_1 = new JLabel("Player 2");
+		PlayerName_label_1 = new JLabel(Main.Main.Player2Name);
 		PlayerName_label_1.setFont(null);
 		PlayerName_label_1.setFont(DesignPatterns.robotoMono20);
 		PlayerName_label_1.setBounds(714, 11, 149, 36);

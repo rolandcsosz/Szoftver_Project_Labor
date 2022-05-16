@@ -27,6 +27,8 @@ public class Main {
   	public static Virologist virologist1 = new Virologist();
   	public static Virologist virologist2 = new Virologist();
   	
+  	public static String Player1Name;
+  	public static String Player2Name;
   	
     public static void main(String[] args) {
 

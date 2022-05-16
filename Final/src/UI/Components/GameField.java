@@ -146,9 +146,6 @@ public class GameField extends JPanel {
 
 	}
 	
-	
-
-
 	public void fillMap(Graphics g, int w, int s, int l){
 
 		Random random = new Random();
@@ -245,11 +242,9 @@ public class GameField extends JPanel {
 		}
 	}
 
-
-public void setVirologsitsToRandomFields() {
+	public void setVirologsitsToRandomFields() {
 		
 	}
-
 
 	public List<Polygons> deserialize() {
 		List<Polygons> polygonlist = new ArrayList<Polygons>();
@@ -272,7 +267,6 @@ public void setVirologsitsToRandomFields() {
 		
 		return null;
 	}
-	
 	
 	public Field getSelectedField(UI.Player player) {
 		if(player == UI.Player.PLAYER1) {
@@ -312,7 +306,6 @@ public void setVirologsitsToRandomFields() {
 			Virologist2_label.setIcon(DesignPatterns.bear);
 		}
 	}
-	
 	
 	public void selectNextField(UI.Player player) {
 	Polygons selected, actual;
@@ -418,8 +411,6 @@ public void setVirologsitsToRandomFields() {
 		}
 	}
 
-
-
 	public void drawVirologist(Virologist v, Graphics graphics) throws IOException {
 		BufferedImage virologistImage = ImageIO.read(new File("src/UI/Images/Virologist.png"));
 		JLabel virologistLabel = new JLabel();
@@ -435,6 +426,14 @@ public void setVirologsitsToRandomFields() {
 		}
 		this.add(virologistLabel);
 		this.setVisible(true);
+	}
+	
+	public void moveRandomVirologist(UI.Player player) {
+		if(player == UI.Player.PLAYER1) {
+			Virologist1Faded_label.setVisible(false);
+
+			Polygons poly = getPolygonsById(fieldindex1);
+		}
 	}
 	
 	public void moveVirologist(UI.Player player,Field f) {
