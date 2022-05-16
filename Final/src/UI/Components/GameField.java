@@ -14,8 +14,6 @@ import javax.swing.*;
 import Model.*;
 import UI.DesignPatterns;
 import UI.Player;
-import Main.Main;
-import UI.Frames.Menu;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -41,8 +39,10 @@ public class GameField extends JPanel {
 	static JLabel Virologist1_label;
 	static JLabel Virologist2_label;
 	
-	JLabel l;
+	static JLabel l;
+	private JLabel Virologist1Faded_label;
 	private JLabel lblNewLabel;
+	private JLabel Virologist2Faded_label;
 
 	/**
 	 * Create the panel.
@@ -55,10 +55,7 @@ public class GameField extends JPanel {
 		this.setBackground(Color.WHITE);
 		this.setBounds(0, 0, 1186, 491);
 		polygons = deserialize();
-		lblNewLabel = new JLabel();
-		lblNewLabel.setBounds(549, 223, 49, 14);
-		lblNewLabel.setIcon(DesignPatterns.virologist1Faded);
-		add(lblNewLabel);
+		setLayout(null);
 		 
 		
 		Virologist1_label = new JLabel();
@@ -69,23 +66,37 @@ public class GameField extends JPanel {
 		Virologist2_label.setIcon(DesignPatterns.virologist2);
 		add(Virologist2_label);
 		
-		generateRandomLocationToVirologists();
+		Virologist1Faded_label = new JLabel();
+		Virologist1Faded_label.setVisible(false);
+		Virologist1Faded_label.setIcon(DesignPatterns.virologist1Faded);
+		add(Virologist1Faded_label);
+
+		lblNewLabel = new JLabel();
+		lblNewLabel.setBounds(180, 437, 49, 14);
+		add(lblNewLabel);
 		
+		Virologist2Faded_label = new JLabel();
+		Virologist2Faded_label.setVisible(true);
+		Virologist2Faded_label.setIcon(DesignPatterns.virologist2Faded);
+		add(Virologist2Faded_label);
+		
+		generateRandomLocationToVirologists();
 
 	}
-	
+
 	private void generateRandomLocationToVirologists() {
 		Polygons p1 = getRandomPolygons();
 		Polygons p2 = getRandomPolygons();
 		
-		Virologist1_label.setBounds(p1.middleX, p1.middleY,150,150);
+		Virologist1_label.setBounds(p1.middleX-75, p1.middleY-150,150,150);
 		
-		Virologist1_label.setBounds(p2.middleX, p2.middleY, 150, 150);
+		Virologist2_label.setBounds(p2.middleX-75, p2.middleY-150,150, 150);
 		
 		fieldindex1 = p1.id;
 		fieldindex2 = p2.id;
 		
 	}
+	
 	
 	private Polygons getRandomPolygons() {
 		Random rd = new Random();
@@ -95,6 +106,9 @@ public class GameField extends JPanel {
 
 	@Override
 	public void paintComponent(Graphics g) {
+
+
+
 		for(Polygons p: polygons){
 			Polygon polygon = new Polygon(p.xValues,p.yValues,p.xValues.length);
 			if(p.color.equals("RED")){
@@ -119,60 +133,21 @@ public class GameField extends JPanel {
 			g.fillPolygon(polygon);
 			g.setColor(DesignPatterns.grey);
 			g.drawPolygon(polygon);
-			
-			if(p.isSelected) {
-				g.setColor(DesignPatterns.blue);
-				g.drawPolygon(polygon);	
-			}
+
 		}
 		if(t < 1) {
-			if(Menu.level == 1){
-				fillMap(g, 2, 5, 5);
-			}
-			if(Menu.level == 2){
-				fillMap(g, 3, 5, 6);
-			}
-			if(Menu.level == 3){
-				fillMap(g, 3, 5, 8);
-			}
+			fillMap(g, 2, 5, 5);
 			setNeighboursByPolygons();
-			initFieldsList(Main.fields);
 			t++;
 		}else{
 			loadMap(g);
 		}
+		
 
-		
-		
+	}
 	
-		
+	
 
-	}
-
-
-	public void initEquipmentList(List<Equipment> equipmentList, int level){
-			equipmentList.add(new Bag());
-			equipmentList.add(new Cloak());
-			equipmentList.add(new Glove());
-			if(level > 1){
-				equipmentList.add(new Axe());
-		}
-	}
-
-	public void initGCList(List<GeneticCode> geneticCodeList, int level){
-		for (int i = 0; i < 5; i++){
-			geneticCodeList.add(new GeneticCode());
-		}
-	}
-
-
-	public void addCollectablesToFields(List<Field> map){
-			for(int i = 0; i < map.size(); i++){
-				if(map.get(i) instanceof Laboratory){
-
-				}
-			}
-	}
 
 	public void fillMap(Graphics g, int w, int s, int l){
 
@@ -180,19 +155,19 @@ public class GameField extends JPanel {
 		List<Integer> was = new ArrayList<Integer>();
 		BufferedImage WarehouseImage = null;
 		try {
-			WarehouseImage = ImageIO.read(new File("Final/src/UI/Images/Warehouse.png"));
+			WarehouseImage = ImageIO.read(new File("src/UI/Images/Warehouse.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		BufferedImage LaboratoryImage = null;
 		try {
-			LaboratoryImage = ImageIO.read(new File("Final/src/UI/Images/Laboratory.png"));
+			LaboratoryImage = ImageIO.read(new File("src/UI/Images/Laboratory.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		BufferedImage ShelterImage = null;
 		try {
-			ShelterImage = ImageIO.read(new File("Final/src/UI/Images/Shelter.png"));
+			ShelterImage = ImageIO.read(new File("src/UI/Images/Shelter.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -241,19 +216,19 @@ public class GameField extends JPanel {
 	public void loadMap(Graphics g){
 		BufferedImage WarehouseImage = null;
 		try {
-			WarehouseImage = ImageIO.read(new File("Final/src/UI/Images/Warehouse.png"));
+			WarehouseImage = ImageIO.read(new File("src/UI/Images/Warehouse.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		BufferedImage LaboratoryImage = null;
 		try {
-			LaboratoryImage = ImageIO.read(new File("Final/src/UI/Images/Laboratory.png"));
+			LaboratoryImage = ImageIO.read(new File("src/UI/Images/Laboratory.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		BufferedImage ShelterImage = null;
 		try {
-			ShelterImage = ImageIO.read(new File("Final/src/UI/Images/Shelter.png"));
+			ShelterImage = ImageIO.read(new File("src/UI/Images/Shelter.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -271,7 +246,6 @@ public class GameField extends JPanel {
 	}
 
 
-
 public void setVirologsitsToRandomFields() {
 		
 	}
@@ -281,7 +255,7 @@ public void setVirologsitsToRandomFields() {
 		List<Polygons> polygonlist = new ArrayList<Polygons>();
 		Gson gson = new Gson();
 		try {
-			JsonReader reader = new JsonReader(new FileReader("Final/src/UI/Levels/level1.json"));
+			JsonReader reader = new JsonReader(new FileReader("src/UI/Levels/level1.json"));
 			UI.Components.Polygons[] polygons = gson.fromJson(reader, UI.Components.Polygons[].class);
 			polygonlist = Arrays.asList(polygons);
 		} catch (FileNotFoundException e) {
@@ -302,12 +276,30 @@ public void setVirologsitsToRandomFields() {
 	
 	public Field getSelectedField(UI.Player player) {
 		if(player == UI.Player.PLAYER1) {
+			if(fieldselected1 == -1) {
+				return null;
+			}
+			return fields.get(getPolygonsById(fieldselected1));
+		}
+		if(player == UI.Player.PLAYER2) {
+			if(fieldselected2 == -1) {
+				return null;
+			}
+			return fields.get(getPolygonsById(fieldselected2));
+		}
+
+		return null;
+	}
+	
+	public Field getActualField(UI.Player player) {
+		if(player == UI.Player.PLAYER1) {
 			return fields.get(getPolygonsById(fieldindex1));
 		}
 		if(player == UI.Player.PLAYER2) {
-			return fields.get(getPolygonsById(fieldindex2));
+
+			return fields.get(getPolygonsById(fieldindex1));
 		}
-		System.out.println("nulll");
+
 		return null;
 	}
 	
@@ -346,12 +338,18 @@ public void setVirologsitsToRandomFields() {
 					fieldselected1 = actual.neighbours[num+1];
 				}
 				
+				
 				selected = getPolygonsById(fieldselected1);
+				Virologist1Faded_label.setVisible(true);
+				Virologist1Faded_label.setBounds(selected.middleX-75, selected.middleY-150,150,150);
 				selected.isSelected = true;
 			}
 			else {
 				actual = getPolygonsById(fieldindex1);
 				selected = getPolygonsById(actual.neighbours[0]);
+				Virologist1Faded_label.setVisible(true);
+				Virologist1Faded_label.setBounds(selected.middleX-75,selected.middleX-150,150,150);
+				fieldselected1 = selected.id;
 				selected.isSelected = true;
 			}
 			
@@ -362,7 +360,6 @@ public void setVirologsitsToRandomFields() {
 		
 		if(player == UI.Player.PLAYER2) {
 			if(fieldselected2 != -1) {
-			
 				selected = getPolygonsById(fieldselected2);
 				selected.isSelected = false;
 				actual = getPolygonsById(fieldindex2);
@@ -381,16 +378,22 @@ public void setVirologsitsToRandomFields() {
 				else{
 					fieldselected2 = actual.neighbours[num+1];
 				}
-			
+				
+				
 				selected = getPolygonsById(fieldselected2);
+				Virologist2Faded_label.setBounds(selected.middleX-75, selected.middleY-150,150,150);
+				Virologist2Faded_label.setVisible(true);
 				selected.isSelected = true;
-	
 			}
-		else {
-			actual = getPolygonsById(fieldindex2);
-			selected = getPolygonsById(actual.neighbours[0]);
-			selected.isSelected = true;
+			else {
+				actual = getPolygonsById(fieldindex2);
+				selected = getPolygonsById(actual.neighbours[0]);
+				Virologist2Faded_label.setBounds(selected.middleX-75,selected.middleX-150,150,150);
+				Virologist2Faded_label.setVisible(true);
+				fieldselected2 = selected.id;
+				selected.isSelected = true;
 			}
+
 		}
 		
 	}
@@ -415,16 +418,10 @@ public void setVirologsitsToRandomFields() {
 		}
 	}
 
-	public void initFieldsList(List<Field> map){
-		Iterator<Map.Entry<Polygons, Field>> itr = fields.entrySet().iterator();
-		while(itr.hasNext()){
-			Map.Entry<Polygons, Field> entry = itr.next();
-			map.add(entry.getValue());
-		}
-	}
+
 
 	public void drawVirologist(Virologist v, Graphics graphics) throws IOException {
-		BufferedImage virologistImage = ImageIO.read(new File("Final/src/UI/Images/Virologist.png"));
+		BufferedImage virologistImage = ImageIO.read(new File("src/UI/Images/Virologist.png"));
 		JLabel virologistLabel = new JLabel();
 		virologistLabel.setIcon(new ImageIcon(virologistImage));
 		Iterator<Map.Entry<Polygons, Field>> itr1 = fields.entrySet().iterator();
@@ -442,39 +439,42 @@ public void setVirologsitsToRandomFields() {
 	
 	public void moveVirologist(UI.Player player,Field f) {
 		
-		
+
 		Polygons poly = null;
 		 for (Entry<Polygons, Field> entry : fields.entrySet()) {
 			 if(entry.getValue().equals(f))
 				 poly=entry.getKey();
 		 }
 		 
-		 System.out.println(fieldselected1);
-		 
 		 if(poly == null) {
 			 return;
 		 }
 		
 		if(player == UI.Player.PLAYER1) {
-			Virologist1_label.setBounds(poly.middleX-158, poly.middleY-75, 158, 150);
+			if(fieldselected1 == -1) {
+				return;
+			}
+			Virologist1_label.setBounds(poly.middleX-75, poly.middleY-150, 150, 150);
+			Virologist1Faded_label.setVisible(false);
 			getPolygonsById(fieldselected1).isSelected = false;
-			fieldselected1 = fieldindex1;
-			getPolygonsById(fieldselected1).isSelected = true;
+			fieldselected1 = -1;
 			fieldindex1 = poly.id;
 			
 			
 		}
 		if(player == UI.Player.PLAYER2) {
-			Virologist2_label.setBounds(poly.middleX-158, poly.middleY-75, 158, 150);
+			if(fieldselected2 == -1) {
+				return;
+			}
+			Virologist2_label.setBounds(poly.middleX-75, poly.middleY-150, 150, 150);
+			Virologist2Faded_label.setVisible(false);
 			getPolygonsById(fieldselected2).isSelected = false;
-			fieldselected2 = fieldindex2;
-			getPolygonsById(fieldselected2).isSelected = true;
+			fieldselected2 = -1;
 			fieldindex2 = poly.id;
 		}
 
 
 	}
-
 }
 
 

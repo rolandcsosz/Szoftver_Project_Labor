@@ -32,6 +32,8 @@ public class Listener implements KeyListener {
 	
 	Field selectedField1;
 	Field selectedField2;
+	Field actualField1;
+	Field actualField2;
 	
     @Override
     public void keyTyped(KeyEvent e) {
@@ -108,6 +110,7 @@ public class Listener implements KeyListener {
             {
             	Game.gameField.moveVirologist(Player.PLAYER1,selectedField1);
             	Game.gameField.repaint();
+            	actualField1 = Game.gameField.getActualField(Player.PLAYER1);
             	break;
             	
             }
@@ -206,7 +209,8 @@ public class Listener implements KeyListener {
             {	//P2 lep
            
             	Game.gameField.moveVirologist(Player.PLAYER2,selectedField2);
-            	 Game.gameField.repaint();
+            	Game.gameField.repaint();
+            	actualField1 = Game.gameField.getActualField(Player.PLAYER2);
             	 
             	 //Main.virologist1.move(selectedField1);
             	break;
