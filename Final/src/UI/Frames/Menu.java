@@ -1,10 +1,7 @@
 package UI.Frames;
 
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.event.*;
 
 import javax.swing.JFrame;
 import java.awt.Color;
@@ -20,7 +17,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JComboBox;
 
-public class Menu {
+public class Menu extends JFrame{
 
 	private JFrame frame;
 	private JTextField textField;
@@ -30,11 +27,7 @@ public class Menu {
 	private JLabel lblNewLabel_1;
 	private JComboBox comboBox;
 	private JLabel lblNewLabel_2;
-	private String level = "1";
-
-
-
-
+	public static int level;
 
 	/**
 	 * Launch the application.
@@ -114,17 +107,31 @@ public class Menu {
 		btnNewButton.setBounds(173, 248, 344, 54);
 		btnNewButton.setBorder(null);
 
+		btnNewButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new Game();
+			}
+		});
+
 		frame.getContentPane().add(btnNewButton);
-		
-		comboBox = new JComboBox();
+		String s1[] = { "Level 1", "Level 2", "Level 3"};
+		comboBox = new JComboBox(s1);
+		comboBox.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if("Level 1" == comboBox.getSelectedItem().toString()) level = 1;
+				else if("Level 2" == comboBox.getSelectedItem().toString()) level = 2;
+				else if("Level 3" == comboBox.getSelectedItem().toString()) level = 3;
+			}
+		});
+
 		comboBox.setToolTipText("fhgh");
 		comboBox.setBounds(261, 191, 183, 26);
 		comboBox.setBackground(DesignPatterns.grey);
 		comboBox.setFont(DesignPatterns.robotoMono14);
 		comboBox.setBorder(null);
-		comboBox.addItem("Level 1");
-		comboBox.addItem("Level 2");
-		comboBox.addItem("Level 3");
 		frame.getContentPane().add(comboBox);
 		
 		lblNewLabel_2 = new JLabel("Level");
@@ -132,9 +139,7 @@ public class Menu {
 		lblNewLabel_2.setBounds(261, 166, 70, 18);
 		lblNewLabel_2.setFont(DesignPatterns.robotoMono14);
 		frame.getContentPane().add(lblNewLabel_2);
-		
 
-		level = comboBox.getSelectedItem().toString();
 
 
 		/*
@@ -162,21 +167,21 @@ public class Menu {
 		 * 
 		 * });
 		 */
+		;
+
 
 		ActionListener cbActionListener = new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String lvl = (String) comboBox.getSelectedItem();
+				new Game().main(null);
 			}
 		};
 
-		comboBox.addActionListener(cbActionListener);
-		btnNewButton.grabFocus();
+	}
 
-	}
-	public String getLevel(){
-		return level;
-	}
+
+
 
 
 }

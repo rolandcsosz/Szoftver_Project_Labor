@@ -17,12 +17,12 @@ public class Main {
 	
     static boolean isRunning = true;
     
-  	static List<Field> fields = new ArrayList<Field>();
+  	public static List<Field> fields = new ArrayList<Field>();
   	static List<Virologist> virologists = new ArrayList<Virologist>();
-  	static List<Equipment> equipments = new ArrayList<Equipment>();
-  	static List<Agent> agents = new ArrayList<Agent>();
-  	static List<Material> materials = new ArrayList<Material>();
-  	static List<GeneticCode> geneticCodes = new ArrayList<GeneticCode>();
+  	public static List<Equipment> equipments = new ArrayList<Equipment>();
+  	public static List<Agent> agents = new ArrayList<Agent>();
+  	public static List<Material> materials = new ArrayList<Material>();
+  	public static List<GeneticCode> geneticCodes = new ArrayList<GeneticCode>();
   	
   	public static Virologist virologist1 = new Virologist();
   	public static Virologist virologist2 = new Virologist();
@@ -32,7 +32,7 @@ public class Main {
 
     	Menu m = new Menu();
     	m.main(null);
-    	Game g = new Game();
+    	//Game g = new Game();
     }
     
 
