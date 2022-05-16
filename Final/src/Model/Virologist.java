@@ -195,6 +195,11 @@ public class Virologist implements Steppable {
             wh.removeCollectable(cb);
         }
     }
+    
+    public void scout(Field f) {
+
+
+    }
 
 
     public void pickUp(Collectable c) {

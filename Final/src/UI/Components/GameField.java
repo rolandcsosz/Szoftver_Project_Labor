@@ -83,6 +83,30 @@ public class GameField extends JPanel {
 		generateRandomLocationToVirologists();
 
 	}
+	
+		public void initEquipmentList(List<Equipment> equipmentList, int level){
+			equipmentList.add(new Bag());
+			equipmentList.add(new Cloak());
+			equipmentList.add(new Glove());
+			if(level > 1){
+				equipmentList.add(new Axe());
+		}
+	}
+	
+	public void initGCList(List<GeneticCode> geneticCodeList, int level){
+		for (int i = 0; i < 5; i++){
+			geneticCodeList.add(new GeneticCode());
+		}
+	}
+	
+	
+	public void addCollectablesToFields(List<Field> map){
+			for(int i = 0; i < map.size(); i++){
+				if(map.get(i) instanceof Laboratory){
+	
+				}
+			}
+	}
 
 	private void generateRandomLocationToVirologists() {
 		Polygons p1 = getRandomPolygons();

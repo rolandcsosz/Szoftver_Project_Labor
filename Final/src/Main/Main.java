@@ -9,6 +9,7 @@ import Model.Field;
 import Model.GeneticCode;
 import Model.Material;
 import Model.Virologist;
+import UI.Player;
 import UI.Frames.Game;
 import UI.Frames.Menu;
 
@@ -18,6 +19,7 @@ public class Main {
     static boolean isRunning = true;
     
   	public static List<Field> fields = new ArrayList<Field>();
+  	
   	static List<Virologist> virologists = new ArrayList<Virologist>();
   	public static List<Equipment> equipments = new ArrayList<Equipment>();
   	public static List<Agent> agents = new ArrayList<Agent>();
@@ -31,10 +33,17 @@ public class Main {
   	public static String Player2Name;
   	
     public static void main(String[] args) {
+    	
+    	init();
 
     	Menu m = new Menu();
     	m.main(null);
     	//Game g = new Game();
+    }
+    
+    static void init() {
+    	virologist1.setCurrentfield(Game.gameField.getActualField(Player.PLAYER1));
+    	virologist2.setCurrentfield(Game.gameField.getActualField(Player.PLAYER2));
     }
     
 

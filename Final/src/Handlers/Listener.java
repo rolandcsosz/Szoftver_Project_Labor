@@ -32,8 +32,6 @@ public class Listener implements KeyListener {
 	
 	Field selectedField1;
 	Field selectedField2;
-	Field actualField1;
-	Field actualField2;
 	
     @Override
     public void keyTyped(KeyEvent e) {
@@ -61,9 +59,8 @@ public class Listener implements KeyListener {
             case KeyEvent.VK_B:
                 //P1 scout
             {
-            	//P1 selectagens
-            	//Panel.selectfirstAgent(Player.PLAYER1);
-            	System.out.println("B");
+            	
+            Main.virologist1.scout(Main.virologist1.getCurrentfield());
             	break;
             	
             }
@@ -71,7 +68,6 @@ public class Listener implements KeyListener {
                 //P1 mező kiválaszt
             {
             	Game.gameField.selectNextField(Player.PLAYER1);
-            	Game.gameField.repaint();
             	selectedField1 = Game.gameField.getSelectedField(Player.PLAYER1);
             	//SwingUtilities.windowForComponent(Game.gameField).repaint();
             	//GameField.getSelectedField(Player.PLAYER1);
@@ -109,8 +105,8 @@ public class Listener implements KeyListener {
                 //P1 move
             {
             	Game.gameField.moveVirologist(Player.PLAYER1,selectedField1);
-            	Game.gameField.repaint();
-            	actualField1 = Game.gameField.getActualField(Player.PLAYER1);
+            	Main.virologist1.move(selectedField1);
+            	//actualField1 = Game.gameField.getActualField(Player.PLAYER1);
             	break;
             	
             }
@@ -183,7 +179,6 @@ public class Listener implements KeyListener {
                 //P2 select mező
             {
             	Game.gameField.selectNextField(Player.PLAYER2);
-            	Game.gameField.repaint();
             	selectedField2 = Game.gameField.getSelectedField(Player.PLAYER2);
             	break;
             	
@@ -209,8 +204,7 @@ public class Listener implements KeyListener {
             {	//P2 lep
            
             	Game.gameField.moveVirologist(Player.PLAYER2,selectedField2);
-            	Game.gameField.repaint();
-            	actualField1 = Game.gameField.getActualField(Player.PLAYER2);
+            	Main.virologist2.move(selectedField2);
             	 
             	 //Main.virologist1.move(selectedField1);
             	break;
