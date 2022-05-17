@@ -2,12 +2,14 @@ package Handlers;
 
 import Main.Main;
 import Model.*;
+import UI.Collectable;
 import UI.Components.Panel;
 import UI.Frames.Game;
 import UI.Player;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 
 public class Listener implements KeyListener {
 	
@@ -58,14 +60,50 @@ public class Listener implements KeyListener {
 				System.out.println(actualField1.getClass().getName());
 				switch(actualField1.getClass().getName()){
 					case "Model.Shelter":
-						System.out.println(((Shelter)actualField1).getEquipment().getClass().getName());
-
-						//Panel.addEquipment();
+						int r1 = new Random().nextInt(4);
+							switch(r1){
+								case 1:
+									Panel.addEquipment(UI.Collectable.AXE,Player.PLAYER1);
+									break;
+								case 2:
+									Panel.addEquipment(Collectable.BAG,Player.PLAYER1);
+									break;
+								case 3:
+									Panel.addEquipment(Collectable.GLOVE,Player.PLAYER1);
+									break;
+								case 4:
+									Panel.addEquipment(Collectable.CLOAK,Player.PLAYER1);
+									break;
+							}
 						break;
 					case "Model.Warehouse":
 						//Panel.setMaterialLevel();
+						int r2 = new Random().nextInt(30);
+						Panel.setMaterialLevel(Player.PLAYER1,r2);
 						break;
 					case "Model.Laboratory":
+						int r4 = new Random().nextInt(10);
+						switch(r4){
+							case 1:
+							case 2:
+								Panel.addGeneticCode(Collectable.VACCINE_GC, Player.PLAYER1);
+								break;
+							case 3:
+							case 4:
+								Panel.addGeneticCode(Collectable.OBLIVION_GC, Player.PLAYER1);
+								break;
+							case 5:
+							case 6:
+								Panel.addGeneticCode(Collectable.PARALYSES_GC, Player.PLAYER1);
+								break;
+							case 7:
+							case 8:
+								Panel.addGeneticCode(Collectable.DANCE_GC, Player.PLAYER1);
+								break;
+							case 9:
+								Panel.transformToBear(Player.PLAYER1);
+								break;
+						}
 						//Panel.addGeneticCode();
 						break;
 					default:
