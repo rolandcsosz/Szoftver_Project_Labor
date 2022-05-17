@@ -1,33 +1,10 @@
 package UI;
 
-import java.awt.AlphaComposite;
-import java.awt.Composite;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.awt.image.Raster;
-import java.awt.image.WritableRaster;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-
-
-
-
-import java.awt.Image;
+import javax.swing.*;
+import java.awt.*;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import java.awt.Color;
-import java.awt.Font;
 
 public class DesignPatterns {
 
@@ -47,39 +24,39 @@ public class DesignPatterns {
 	public static Font robotoMono8 = createFont(8);
 	
 
-	public static ImageIcon crown = new ImageIcon("src/UI/Images/Crown.png");
+	public static ImageIcon crown = new ImageIcon("Final/src/UI/Images/Crown.png");
 
 
-	public static ImageIcon axe = new ImageIcon("src/UI/Images/Axe.png");
-	public static ImageIcon brokenAxe = new ImageIcon("src/UI/Images/Broken Axe.png");
-	public static ImageIcon cloack = new ImageIcon("src/UI/Images/Cloack.png");
-	public static ImageIcon bag = new ImageIcon("src/UI/Images/Bag.png");
-	public static ImageIcon glove = new ImageIcon("src/UI/Images/Glove.png");
+	public static ImageIcon axe = new ImageIcon("Final/src/UI/Images/Axe.png");
+	public static ImageIcon brokenAxe = new ImageIcon("Final/src/UI/Images/Broken Axe.png");
+	public static ImageIcon cloack = new ImageIcon("Final//UI/Images/Cloack.png");
+	public static ImageIcon bag = new ImageIcon("Final/src/UI/Images/Bag.png");
+	public static ImageIcon glove = new ImageIcon("Final/src/UI/Images/Glove.png");
 	
-	public static ImageIcon laboratory = new ImageIcon("src/UI/Images/Laboratory.png");
-	public static ImageIcon shelter = new ImageIcon("src/UI/Images/Shelter.png");
-	public static ImageIcon warehouse = new ImageIcon("src/UI/Images/Warehouse.png");
+	public static ImageIcon laboratory = new ImageIcon("Final/src/UI/Images/Laboratory.png");
+	public static ImageIcon shelter = new ImageIcon("Final/src/UI/Images/Shelter.png");
+	public static ImageIcon warehouse = new ImageIcon("Final/src/UI/Images/Warehouse.png");
 	
 
-	public static ImageIcon virologist1 = new ImageIcon("src/UI/Images/Virologist1.png");
-	public static ImageIcon virologist2 = new ImageIcon("src/UI/Images/Virologist2.png");
-	public static ImageIcon bear = new ImageIcon("src/UI/Images/Bear.png");
+	public static ImageIcon virologist1 = new ImageIcon("Final/src/UI/Images/Virologist1.png");
+	public static ImageIcon virologist2 = new ImageIcon("Final/src/UI/Images/Virologist2.png");
+	public static ImageIcon bear = new ImageIcon("Final/src/UI/Images/Bear.png");
 	public static ImageIcon bearVirus = new ImageIcon("src/UI/Images/Bear.png");
 
-	public static ImageIcon virologist1Faded = new ImageIcon("src/UI/Images/Virologist1Faded.png");
-	public static ImageIcon virologist2Faded = new ImageIcon("src/UI/Images/Virologist2Faded.png");
+	public static ImageIcon virologist1Faded = new ImageIcon("Final/src/UI/Images/Virologist1Faded.png");
+	public static ImageIcon virologist2Faded = new ImageIcon("Final/src/UI/Images/Virologist2Faded.png");
 
 
 	
-	public static ImageIcon danceVirus = new ImageIcon("src/UI/Images/Virus1.png");
-	public static ImageIcon oblivionVirus = new ImageIcon("src/UI/Images/Virus2.png");
-	public static ImageIcon vaccine = new ImageIcon("src/UI/Images/Vaccine.png");
-	public static ImageIcon paralyseVirus = new ImageIcon("src/UI/Images/Virus3.png");
+	public static ImageIcon danceVirus = new ImageIcon("Final/src/UI/Images/Virus1.png");
+	public static ImageIcon oblivionVirus = new ImageIcon("Final/src/UI/Images/Virus2.png");
+	public static ImageIcon vaccine = new ImageIcon("Final/src/UI/Images/Vaccine.png");
+	public static ImageIcon paralyseVirus = new ImageIcon("Final/src/UI/Images/Virus3.png");
 	
-	public static ImageIcon danceVirusGC = new ImageIcon("src/UI/Images/DanceVirusGC.png");
-	public static ImageIcon paralysesVirusGC = new ImageIcon("src/UI/Images/paralysesVirusGC.png");
-	public static ImageIcon oblivionVirusGC = new ImageIcon("src/UI/Images/oblivionVirusGC.png");
-	public static ImageIcon vaccineGC = new ImageIcon("src/UI/Images/VaccineGC.png");
+	public static ImageIcon danceVirusGC = new ImageIcon("Final/src/UI/Images/DanceVirusGC.png");
+	public static ImageIcon paralysesVirusGC = new ImageIcon("Final/src/UI/Images/paralysesVirusGC.png");
+	public static ImageIcon oblivionVirusGC = new ImageIcon("Final/src/UI/Images/oblivionVirusGC.png");
+	public static ImageIcon vaccineGC = new ImageIcon("Final/src/UI/Images/VaccineGC.png");
 
 	
 	
@@ -93,7 +70,7 @@ public class DesignPatterns {
 			 
 	         try {
 	         	//myStream3 = new BufferedInputStream();
-	             myStream = new BufferedInputStream(new FileInputStream("src/UI/Fonts/RobotoMono-Regular.ttf"));
+	             myStream = new BufferedInputStream(new FileInputStream("Final/src/UI/Fonts/RobotoMono-Regular.ttf"));
 	             ttfBase = Font.createFont(Font.TRUETYPE_FONT, myStream);
 	             telegraficoFont = ttfBase.deriveFont(Font.PLAIN, size);               
 	         } catch (Exception ex) {

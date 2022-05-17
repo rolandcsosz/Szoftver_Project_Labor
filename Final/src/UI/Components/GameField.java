@@ -176,19 +176,19 @@ public class GameField extends JPanel {
 		List<Integer> was = new ArrayList<Integer>();
 		BufferedImage WarehouseImage = null;
 		try {
-			WarehouseImage = ImageIO.read(new File("src/UI/Images/Warehouse.png"));
+			WarehouseImage = ImageIO.read(new File("Final/src/UI/Images/Warehouse.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		BufferedImage LaboratoryImage = null;
 		try {
-			LaboratoryImage = ImageIO.read(new File("src/UI/Images/Laboratory.png"));
+			LaboratoryImage = ImageIO.read(new File("Final/src/UI/Images/Laboratory.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		BufferedImage ShelterImage = null;
 		try {
-			ShelterImage = ImageIO.read(new File("src/UI/Images/Shelter.png"));
+			ShelterImage = ImageIO.read(new File("Final/src/UI/Images/Shelter.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -237,19 +237,19 @@ public class GameField extends JPanel {
 	public void loadMap(Graphics g){
 		BufferedImage WarehouseImage = null;
 		try {
-			WarehouseImage = ImageIO.read(new File("src/UI/Images/Warehouse.png"));
+			WarehouseImage = ImageIO.read(new File("Final/src/UI/Images/Warehouse.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		BufferedImage LaboratoryImage = null;
 		try {
-			LaboratoryImage = ImageIO.read(new File("src/UI/Images/Laboratory.png"));
+			LaboratoryImage = ImageIO.read(new File("Final/src/UI/Images/Laboratory.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		BufferedImage ShelterImage = null;
 		try {
-			ShelterImage = ImageIO.read(new File("src/UI/Images/Shelter.png"));
+			ShelterImage = ImageIO.read(new File("Final/src/UI/Images/Shelter.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -274,7 +274,7 @@ public class GameField extends JPanel {
 		List<Polygons> polygonlist = new ArrayList<Polygons>();
 		Gson gson = new Gson();
 		try {
-			JsonReader reader = new JsonReader(new FileReader("src/UI/Levels/level1.json"));
+			JsonReader reader = new JsonReader(new FileReader("Final/src/UI/Levels/level1.json"));
 			UI.Components.Polygons[] polygons = gson.fromJson(reader, UI.Components.Polygons[].class);
 			polygonlist = Arrays.asList(polygons);
 		} catch (FileNotFoundException e) {
@@ -436,7 +436,7 @@ public class GameField extends JPanel {
 	}
 
 	public void drawVirologist(Virologist v, Graphics graphics) throws IOException {
-		BufferedImage virologistImage = ImageIO.read(new File("src/UI/Images/Virologist.png"));
+		BufferedImage virologistImage = ImageIO.read(new File("Final/src/UI/Images/Virologist.png"));
 		JLabel virologistLabel = new JLabel();
 		virologistLabel.setIcon(new ImageIcon(virologistImage));
 		Iterator<Map.Entry<Polygons, Field>> itr1 = fields.entrySet().iterator();

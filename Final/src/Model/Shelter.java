@@ -13,4 +13,8 @@ public class Shelter extends Field {
 		cl.add(equipment);
 		return cl;
 	}
+
+	public Equipment getEquipment(){
+		return equipment;
+	}
 }
