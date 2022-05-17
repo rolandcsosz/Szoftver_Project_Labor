@@ -177,7 +177,7 @@ public class Menu extends JFrame{
 		;
 
 
-		ActionListener cbActionListener = new ActionListener(){
+		/*ActionListener cbActionListener = new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
@@ -185,7 +185,7 @@ public class Menu extends JFrame{
 				new Game().main(null);
 
 			}
-		};
+		}; */
 
 	}
 
