@@ -939,28 +939,29 @@ public class Panel extends JPanel {
 					number = getNumberLabel(player, equipments2.size());
 					equipments2.add(type);
 				}
-				
-				
-				switch(type) {
-					case AXE:
-						{ perm.setIcon(DesignPatterns.axe);
+				if(perm != null) {
+
+					switch (type) {
+						case AXE: {
+							perm.setIcon(DesignPatterns.axe);
 							break;
 						}
-					case CLOAK:
-						{ perm.setIcon(DesignPatterns.cloack);
+						case CLOAK: {
+							perm.setIcon(DesignPatterns.cloack);
 							break;
 						}
-					case BAG:
-					{ perm.setIcon(DesignPatterns.bag);
-						break;
-					}
-					
-					case GLOVE:
-					{ perm.setIcon(DesignPatterns.glove);
-						GloveNumber_label = number;
-						number.setVisible(true);
-						setCounter(number, 3);
-						break;
+						case BAG: {
+							perm.setIcon(DesignPatterns.bag);
+							break;
+						}
+
+						case GLOVE: {
+							perm.setIcon(DesignPatterns.glove);
+							GloveNumber_label = number;
+							number.setVisible(true);
+							setCounter(number, 3);
+							break;
+						}
 					}
 				}
 	}

@@ -9,7 +9,6 @@ import UI.Player;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Random;
 
 public class Listener implements KeyListener {
 	
@@ -17,7 +16,9 @@ public class Listener implements KeyListener {
 	boolean isAgentSelected2 = false;
 	boolean isEquipmentSelected1 = false;
 	boolean isEquipmentSelected2 = false;
-	
+
+	int geneticCodeCounter1 = 0;
+	int geneticCodeCounter2 = 0;
 
 	UI.Collectable selectedEquipment1;
 	UI.Collectable selectedEquipment2;
@@ -54,80 +55,53 @@ public class Listener implements KeyListener {
 
 			//P1 createagens
 			case KeyEvent.VK_S: {
-				switch(selectedAgent1){
-					case VACCINE:
-						Panel.createAgens(Collectable.VACCINE, Player.PLAYER1);
-						break;
-					case OBLIVION:
-						Panel.createAgens(Collectable.OBLIVION, Player.PLAYER1);
-						break;
-					case DANCE:
-						Panel.createAgens(Collectable.DANCE, Player.PLAYER1);
-						break;
-					case PARALYSES:
-						Panel.createAgens(Collectable.PARALYSES, Player.PLAYER1);
-						break;
 
-				}
 				break;
 			}
 
 			//P1 scout
 			case KeyEvent.VK_B: {
+				if(actualField1 instanceof Shelter){
+					if(((Shelter) actualField1).getEquipment() instanceof Axe){
+						Panel.addEquipment(UI.Collectable.AXE, Player.PLAYER1);
+						actualField1.removeCollectable(((Shelter) actualField1).getEquipment());
+					}else if(((Shelter) actualField1).getEquipment() instanceof Glove){
+						Panel.addEquipment(Collectable.GLOVE, Player.PLAYER1);
+						actualField1.removeCollectable(((Shelter) actualField1).getEquipment());
+					}else if(((Shelter) actualField1).getEquipment() instanceof Cloak){
+						Panel.addEquipment(Collectable.CLOAK, Player.PLAYER1);
+						actualField1.removeCollectable(((Shelter) actualField1).getEquipment());
+					}
+					else if(((Shelter) actualField1).getEquipment() instanceof Bag){
+						Panel.addEquipment(Collectable.BAG, Player.PLAYER1);
+						actualField1.removeCollectable(((Shelter) actualField1).getEquipment());
+					}
 
-				System.out.println(actualField1.getClass().getName());
-				switch(actualField1.getClass().getName()){
-					case "Model.Shelter":
-						int r1 = new Random().nextInt(4);
-						//Equipment r = ((Model.Shelter)actualField1).getEquipment();
-						//r.getClass().getName();
-							switch(r1){
-								case 1:
-									Panel.addEquipment(UI.Collectable.AXE,Player.PLAYER1);
-									break;
-								case 2:
-									Panel.addEquipment(Collectable.BAG,Player.PLAYER1);
-									break;
-								case 3:
-									Panel.addEquipment(Collectable.GLOVE,Player.PLAYER1);
-									break;
+				}else if(actualField1 instanceof Warehouse){
+					Main.virologist1.setMaterialCount(((Warehouse) actualField1).getMaterialLevel());
+					Panel.setMaterialLevel(Player.PLAYER1,((Warehouse) actualField1).getMaterialLevel());
+					((Warehouse) actualField1).removeMaterial();
+				}else if(actualField1 instanceof Laboratory){
+					for(Model.Collectable c : ((Laboratory) actualField1).getCollectables()){
+						if(c instanceof GeneticCode){
+							switch (geneticCodeCounter1){
+								case 0: Panel.addGeneticCode(Collectable.VACCINE_GC, Player.PLAYER1);
+										geneticCodeCounter1++;
+										break;
+								case 1:Panel.addGeneticCode(Collectable.DANCE_GC, Player.PLAYER1);
+									geneticCodeCounter1++;
+										break;
+								case 2:Panel.addGeneticCode(Collectable.OBLIVION_GC, Player.PLAYER1);
+									geneticCodeCounter1++;
+										break;
+								case 3:Panel.addGeneticCode(Collectable.PARALYSES_GC, Player.PLAYER1);
+									geneticCodeCounter1++;
+										break;
 								case 4:
-									Panel.addEquipment(Collectable.CLOAK,Player.PLAYER1);
-									break;
 							}
-						break;
-					case "Model.Warehouse":
-						//Panel.setMaterialLevel();
-						int r2 = new Random().nextInt(50);
-						Panel.setMaterialLevel(Player.PLAYER1,r2);
-						break;
-					case "Model.Laboratory":
-						int r4 = new Random().nextInt(10);
-						switch(r4){
-							case 1:
-							case 2:
-								Panel.addGeneticCode(Collectable.VACCINE_GC, Player.PLAYER1);
-								break;
-							case 3:
-							case 4:
-								Panel.addGeneticCode(Collectable.OBLIVION_GC, Player.PLAYER1);
-								break;
-							case 5:
-							case 6:
-								Panel.addGeneticCode(Collectable.PARALYSES_GC, Player.PLAYER1);
-								break;
-							case 7:
-							case 8:
-								Panel.addGeneticCode(Collectable.DANCE_GC, Player.PLAYER1);
-								break;
-							case 9:
-								Panel.transformToBear(Player.PLAYER1);
-								break;
 						}
-						//Panel.addGeneticCode();
-						break;
-					default:
-						break;
+					}
+
 				}
 				break;
 			}
@@ -248,62 +222,50 @@ public class Listener implements KeyListener {
 
 
 			//P2 scouts
-			case KeyEvent.VK_COMMA:
+			case KeyEvent.VK_Y:
 			{
+				System.out.println(actualField2);
+				if(actualField2 instanceof Shelter){
+					if(((Shelter) actualField2).getEquipment() instanceof Axe){
+						Panel.addEquipment(UI.Collectable.AXE, Player.PLAYER2);
+						actualField2.removeCollectable(((Shelter) actualField2).getEquipment());
+					}else if(((Shelter) actualField2).getEquipment() instanceof Glove){
+						Panel.addEquipment(Collectable.GLOVE, Player.PLAYER2);
+						actualField2.removeCollectable(((Shelter) actualField2).getEquipment());
+					}else if(((Shelter) actualField2).getEquipment() instanceof Cloak){
+						Panel.addEquipment(Collectable.CLOAK, Player.PLAYER2);
+						actualField2.removeCollectable(((Shelter) actualField2).getEquipment());
+					}
+					else if(((Shelter) actualField2).getEquipment() instanceof Bag){
+						Panel.addEquipment(Collectable.BAG, Player.PLAYER2);
+						actualField2.removeCollectable(((Shelter) actualField2).getEquipment());
+					}
 
-
-				System.out.println(actualField2.getClass().getName());
-				switch (actualField2.getClass().getName()) {
-					case "Model.Shelter":
-						int r1 = new Random().nextInt(4);
-						//Equipment r = ((Model.Shelter)actualField1).getEquipment();
-						//r.getClass().getName();
-						switch (r1) {
-							case 1:
-								Panel.addEquipment(UI.Collectable.AXE, Player.PLAYER2);
-								break;
-							case 2:
-								Panel.addEquipment(Collectable.BAG, Player.PLAYER2);
-								break;
-							case 3:
-								Panel.addEquipment(Collectable.GLOVE, Player.PLAYER2);
-								break;
-							case 4:
-								Panel.addEquipment(Collectable.CLOAK, Player.PLAYER2);
-								break;
+				}else if(actualField2 instanceof Warehouse){
+					Main.virologist2.setMaterialCount(((Warehouse) actualField2).getMaterialLevel());
+					Panel.setMaterialLevel(Player.PLAYER2,((Warehouse) actualField2).getMaterialLevel());
+					((Warehouse) actualField2).removeMaterial();
+					}
+				else if(actualField2 instanceof Laboratory){
+					for(Model.Collectable c : ((Laboratory) actualField2).getCollectables()){
+						if(c instanceof GeneticCode){
+							switch (geneticCodeCounter2){
+								case 0: Panel.addGeneticCode(Collectable.VACCINE_GC, Player.PLAYER2);
+									geneticCodeCounter2++;
+									break;
+								case 1:Panel.addGeneticCode(Collectable.DANCE_GC, Player.PLAYER2);
+									geneticCodeCounter2++;
+									break;
+								case 2:Panel.addGeneticCode(Collectable.OBLIVION_GC, Player.PLAYER2);
+									geneticCodeCounter2++;
+									break;
+								case 3:Panel.addGeneticCode(Collectable.PARALYSES_GC, Player.PLAYER2);
+									geneticCodeCounter2++;
+									break;
+								case 4:
+							}
 						}
-						break;
-					case "Model.Warehouse":
-						//Panel.setMaterialLevel();
-						int r2 = new Random().nextInt(50);
-						Panel.setMaterialLevel(Player.PLAYER2, r2);
-						break;
-					case "Model.Laboratory":
-						int r4 = new Random().nextInt(10);
-						switch (r4) {
-							case 1:
-							case 2:
-								Panel.addGeneticCode(Collectable.VACCINE_GC, Player.PLAYER2);
-								break;
-							case 3:
-							case 4:
-								Panel.addGeneticCode(Collectable.OBLIVION_GC, Player.PLAYER2);
-								break;
-							case 5:
-							case 6:
-								Panel.addGeneticCode(Collectable.PARALYSES_GC, Player.PLAYER2);
-								break;
-							case 7:
-							case 8:
-								Panel.addGeneticCode(Collectable.DANCE_GC, Player.PLAYER2);
-								break;
-							case 9:
-								Panel.transformToBear(Player.PLAYER2);
-								break;
-						}
-						break;
-					default:
-						break;
+					}
 				}
 				break;
 			}
@@ -339,14 +301,11 @@ public class Listener implements KeyListener {
 
 			//P2 moves
 			case KeyEvent.VK_LEFT: {
-
 				Game.gameField.moveVirologist(Player.PLAYER2, selectedField2);
-				Game.gameField.repaint();
-				actualField1 = Game.gameField.getActualField(Player.PLAYER2);
-
-				//Main.virologist1.move(selectedField1);
+				actualField2 = Game.gameField.getActualField(Player.PLAYER2);
 				break;
 			}
+
 
 			//P2 attacks
 			case KeyEvent.VK_DOWN: {

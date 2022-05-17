@@ -1,25 +1,23 @@
 package UI.Components;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.io.*;
-import java.util.*;
-import java.util.List;
-import java.util.Map.Entry;
+import UI.Frames.Menu;
+import Main.Main;
+import Model.*;
+import UI.DesignPatterns;
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
-import Model.*;
-import UI.DesignPatterns;
-import UI.Player;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.stream.JsonReader;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
+import java.util.*;
+import java.util.Map.Entry;
 
 public class GameField extends JPanel {
 
@@ -84,29 +82,47 @@ public class GameField extends JPanel {
 
 	}
 	
-		public void initEquipmentList(List<Equipment> equipmentList, int level){
-			equipmentList.add(new Bag());
-			equipmentList.add(new Cloak());
-			equipmentList.add(new Glove());
-			if(level > 1){
-				equipmentList.add(new Axe());
+	public void setEquipments(int lvl){
+		if(lvl == 3){
+			Main.equipments.add(new Axe());
+			Main.equipments.add(new Axe());
 		}
+			Main.equipments.add(new Bag());
+			Main.equipments.add(new Cloak());
+			Main.equipments.add(new Glove());
+			Main.equipments.add(new Bag());
+			Main.equipments.add(new Cloak());
+			Main.equipments.add(new Glove());
+
 	}
 	
-	public void initGCList(List<GeneticCode> geneticCodeList, int level){
-		for (int i = 0; i < 5; i++){
-			geneticCodeList.add(new GeneticCode());
-		}
-	}
-	
-	
-	public void addCollectablesToFields(List<Field> map){
-			for(int i = 0; i < map.size(); i++){
-				if(map.get(i) instanceof Laboratory){
-	
+	public void addCollectablesToFields(int lvl){
+		boolean hasBear = false;
+		System.out.println("IM ALIVE!");
+		setEquipments(lvl);
+		int eqNr = 0;
+			for(int i = 0; i < fields.size(); i++){
+				if(Main.fields.get(i) instanceof Laboratory){
+					((Laboratory) Main.fields.get(i)).addGeneticCode(new GeneticCode());
+					if(!hasBear){
+						((Laboratory)Main.fields.get(i)).addBear(new BearVirus());
+						hasBear = true;
+					}
+				}
+				if(Main.fields.get(i) instanceof Warehouse) {
+					((Warehouse)Main.fields.get(i)).setMaterialLevel(30);
+				}
+				if(Main.fields.get(i) instanceof Shelter) {
+					if(eqNr < Main.equipments.size()) {
+						((Shelter) Main.fields.get(i)).addEquipment(Main.equipments.get(eqNr));
+						eqNr++;
+					}
+
 				}
 			}
 	}
+
+
 
 	private void generateRandomLocationToVirologists() {
 		Polygons p1 = getRandomPolygons();
@@ -160,13 +176,14 @@ public class GameField extends JPanel {
 
 		}
 		if(t < 1) {
-			fillMap(g, 2, 5, 5);
+			fillMap(g, 2, 8, 5);
 			setNeighboursByPolygons();
+			addCollectablesToFields(Menu.level);
 			t++;
 		}else{
 			loadMap(g);
 		}
-		
+
 
 	}
 	
@@ -231,8 +248,15 @@ public class GameField extends JPanel {
 				fields.put(polygons.get(i), new Field());
 			}
 		}
+		for (Entry<Polygons, Field> entry : fields.entrySet()) {
+			Main.fields.add(entry.getValue());
+		}
 
 	}
+
+
+
+
 
 	public void loadMap(Graphics g){
 		BufferedImage WarehouseImage = null;
@@ -315,7 +339,7 @@ public class GameField extends JPanel {
 		}
 		if(player == UI.Player.PLAYER2) {
 
-			return fields.get(getPolygonsById(fieldindex1));
+			return fields.get(getPolygonsById(fieldindex2));
 		}
 
 		return null;

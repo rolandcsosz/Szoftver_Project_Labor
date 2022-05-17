@@ -11,7 +11,7 @@ public class Virologist implements Steppable {
     private List<Equipment> equipments;
     private List<Agent> agents;
     private List<GeneticCode> geneticcodes;
-    private List<Material> materials;
+    private int materials;
 
     /**
      * This is a method which set the attributes after initializing the object.
@@ -20,13 +20,13 @@ public class Virologist implements Steppable {
      * @return Nothing.
      */
     public Virologist() {
-    	maxMaterial = 3;
+    	maxMaterial = 100;
         IsParalysed = false;
         currentfield = new Field();
         equipments = new ArrayList<Equipment>(3);
         agents = new ArrayList<Agent>();
         geneticcodes = new ArrayList<GeneticCode>();
-        materials = new ArrayList<Material>();
+        materials = 0;
 
     }
 
@@ -112,11 +112,7 @@ public class Virologist implements Steppable {
                 virologist.pickUp(equipment);
             }
         }
-        for(Material m: materials){
-            if(materials.size()<maxMaterial){
-                pickUp(m);
-            }
-        }
+         virologist.setMaterialCount(materials + virologist.getMaterialCount());
     }
 
     /**
@@ -228,8 +224,6 @@ public class Virologist implements Steppable {
         perm.addAll(agents);
         perm.addAll(geneticcodes);
         perm.addAll(equipments);
-        perm.addAll(materials);
-
         return perm;
 
     }
@@ -268,8 +262,8 @@ public class Virologist implements Steppable {
     		equipments.add(eq);
     }
 
-    public void pickUp(Material m) {
-        materials.add(m);
+    public void pickUp(int m) {
+        materials +=m;
     }
 
     public void remove(Collectable c) {
@@ -283,17 +277,17 @@ public class Virologist implements Steppable {
         equipments.remove(eq);
     }
 
-    public void remove(Material m) {
-        materials.remove(m);
+    public void remove(int m) {
+        materials -=m;
     }
 
     public void setMaterialCount(int new_size) {
-
+        materials +=new_size;
     }
 
     public int getMaterialCount() {
 
-        return materials.size();
+        return materials;
     }
 
     public boolean IsEnoughSpace(Collectable c) {
