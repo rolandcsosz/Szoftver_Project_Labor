@@ -1,23 +1,13 @@
 package UI.Components;
 
-import java.awt.Color;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-
 import UI.Collectable;
 import UI.DesignPatterns;
-import UI.Frames.Menu;
 
-import javax.swing.SwingConstants;
-import java.awt.Font;
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 public class Panel extends JPanel {
 	
@@ -702,14 +692,21 @@ public class Panel extends JPanel {
 		public static void setMaterialLevel(UI.Player player,int level) {
 			
 			if(player == UI.Player.PLAYER1) {
-				actualMaterial1 = level;
-				MaterialCount_label.setText(actualMaterial1 + "/" + maxMaterial1);
-				
+				actualMaterial1 += level;
+				if(actualMaterial1>maxMaterial1) {
+					MaterialCount_label.setText(maxMaterial1 + "/" + maxMaterial1);
+				}else {
+					MaterialCount_label.setText(actualMaterial1 + "/" + maxMaterial1);
+				}
 			}
 			
 			if(player == UI.Player.PLAYER2) {
-				actualMaterial2 = level;
+				actualMaterial2 += level;
+				if(actualMaterial2>maxMaterial2) {
+					MaterialCount_label_1.setText(maxMaterial2 + "/" + maxMaterial2);
+				} else{
 				MaterialCount_label_1.setText(actualMaterial2 + "/" + maxMaterial2);
+				}
 			}
 		}
 
@@ -966,6 +963,39 @@ public class Panel extends JPanel {
 						break;
 					}
 				}
+	}
+
+	public static void createAgens(UI.Collectable type,UI.Player player){
+		switch (type){
+			case VACCINE:
+				if(player == UI.Player.PLAYER1) {
+					Vaccine_label.setEnabled(true);
+				}
+				if(player == UI.Player.PLAYER2) {
+					Vaccine_label_1.setEnabled(true);
+				}
+			case OBLIVION:
+				if(player == UI.Player.PLAYER1) {
+					OblivionVirus_label.setEnabled(true);
+				}
+				if(player == UI.Player.PLAYER2) {
+					OblivionVirus_label_1.setEnabled(true);
+				}
+			case PARALYSES:
+				if(player == UI.Player.PLAYER1) {
+					ParalysesVirus_label.setEnabled(true);
+				}
+				if(player == UI.Player.PLAYER2) {
+					ParalysesVirus_label_1.setEnabled(true);
+				}
+			case DANCE:
+				if(player == UI.Player.PLAYER1) {
+					DanceVirus_label.setEnabled(true);
+				}
+				if(player == UI.Player.PLAYER2) {
+					DanceVirus_label_1.setEnabled(true);
+				}
+		}
 	}
 	
 	public static void addGeneticCode(UI.Collectable type,UI.Player player) {
