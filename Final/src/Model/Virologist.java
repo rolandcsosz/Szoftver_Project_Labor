@@ -3,6 +3,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * A virológusok létrehozásáért és kezeléséért felelős osztály. Ez az osztály kezeli a
+ * virológus minden játékbeli mozzanatát és viselkedését. Itt tudjuk a léptetési
+ * folyamatot elindítani, amivel a virológus egyik mezőről a másikra lép. Ugyanitt
+ * kezeljük azt is, hogy miképp lép interakcióba más virológussal, illetve miket tud
+ * csinálni egy adott mezőn. Továbbá itt történik a támadások kezelése is, valamint a
+ * fertőzéseké, ebben az osztályban kezeljük a genetikai kódok megtanulását,
+ * használatát, más virológus kifosztását valamint a virológus esetleges halálát is.
+ * Miközben mezőket látogat meg, tárgyakra bukkanhat az ágenseken kívül, ezek
+ * hatását a virológusra is itt kezeljük.
+ */
 public class Virologist implements Steppable {
 	private int maxMaterial;
     private boolean IsParalysed;
@@ -67,7 +78,6 @@ public class Virologist implements Steppable {
      * @param the agent the virologist will attack with
      * @return Nothing.
      */
-
     public void attack(Virologist v, Agent a) {
         if (!this.getParalysedStatus() && currentfield.IsNeighbour(v.getCurrentfield())) {
             v.attackedBy(this, a);
@@ -105,6 +115,8 @@ public class Virologist implements Steppable {
             v.robbedBy(this);
         }
     }
+
+
     public void robbedBy(Virologist virologist) {
         if (!IsParalysed) return;
         for (Equipment equipment : equipments) {
@@ -328,6 +340,10 @@ public class Virologist implements Steppable {
         currentfield.acceptVirologists(b);
     }
 
+    /**
+     * Ennek hatására eldobja a felszerelést.
+     * @param eq
+     */
     public void drop(Equipment eq){
         if(equipments.contains(eq))
             remove(eq);

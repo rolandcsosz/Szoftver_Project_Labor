@@ -72,9 +72,6 @@ public class Menu extends JFrame{
 		textField_2.setBorder(null);
 		textField_2.setFont(DesignPatterns.robotoMono14);
 		
-		
-
-		
 		textField_3 = new JTextField();
 		textField_3.requestFocusInWindow();
 		textField_3.setColumns(10);
@@ -83,12 +80,10 @@ public class Menu extends JFrame{
 		textField_3.setBounds(391, 90, 220, 26);
 		textField_3.setFont(DesignPatterns.robotoMono14);
 
-		
 		JLabel lblNewLabel = new JLabel("Player 1");
 		lblNewLabel.setBounds(66, 63, 70, 18);
 		lblNewLabel.setFont(DesignPatterns.robotoMono14);
-		
-		
+
 		frame.getContentPane().add(textField_2);
 		frame.getContentPane().add(textField_3);
 		frame.getContentPane().add(lblNewLabel);
@@ -103,7 +98,6 @@ public class Menu extends JFrame{
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
 			}
 		});
 		btnNewButton.setFont(DesignPatterns.robotoMono20);
@@ -146,51 +140,5 @@ public class Menu extends JFrame{
 		lblNewLabel_2.setBounds(261, 166, 70, 18);
 		lblNewLabel_2.setFont(DesignPatterns.robotoMono14);
 		frame.getContentPane().add(lblNewLabel_2);
-
-
-
-		/*
-		 * textField_2.addFocusListener(new FocusListener() {
-		 * 
-		 * @Override public void focusGained(FocusEvent e) { if
-		 * (textField_2.getText().equals("Name of Player 1")) { textField_2.setText("");
-		 * textField_2.setForeground(Color.BLACK); } }
-		 * 
-		 * @Override public void focusLost(FocusEvent e) { if
-		 * (textField_2.getText().isEmpty()) { textField_2.setForeground(Color.GRAY);
-		 * textField_2.setText("Name of Player 1"); } }
-		 * 
-		 * });
-		 * 
-		 * textField_3.addFocusListener(new FocusListener() {
-		 * 
-		 * @Override public void focusGained(FocusEvent e) { if
-		 * (textField_3.getText().equals("Name of Player 2")) { textField_3.setText("");
-		 * textField_3.setForeground(Color.BLACK); } }
-		 * 
-		 * @Override public void focusLost(FocusEvent e) { if
-		 * (textField_3.getText().isEmpty()) { textField_3.setForeground(Color.GRAY);
-		 * textField_3.setText("Name of Player 2"); } }
-		 * 
-		 * });
-		 */
-		;
-
-
-		/*ActionListener cbActionListener = new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				String lvl = (String) comboBox.getSelectedItem();
-				new Game().main(null);
-
-			}
-		}; */
-
 	}
-
-
-
-
-
 }

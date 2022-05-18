@@ -2,6 +2,11 @@ package Model;
 
 import java.util.Random;
 
+/**
+ * A játék indításáért és leállításáért felel. Ebben az osztályban van a játék irányításáért
+ * felel?s két f? függvény, az egyik ami elindítja a játékot, a másik pedig leállítja.
+ * Ezekben szervez?dnek meg a játék logikai részei.
+ */
 public class Game {
 	private GameMap gameMap;
 	public void Start() {

@@ -2,6 +2,9 @@ package UI.Components;
 
 import java.awt.*;
 
+/**
+ * Poligonok kezeléséért felelős osztály
+ */
 public class Polygons {
    public int id;
    public int[] xValues;

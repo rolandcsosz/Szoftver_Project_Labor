@@ -9,6 +9,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A map alatt található panelt megvalósító osztály
+ * A panelek egyes elemeinek kirajzolásáért és kezeléséért felel.
+ */
 public class Panel extends JPanel {
 	
 	static int selectedAgent1 = -1;
@@ -199,9 +203,7 @@ public class Panel extends JPanel {
 		ParalysesVirusNumber_label.setBackground(new Color(69, 105, 144));
 		ParalysesVirusNumber_label.setBounds(183, 105, 14, 14);
 		add(ParalysesVirusNumber_label);
-		
-		
-		
+
 		JPanel VaccineGC_panel = new JPanel();
 		VaccineGC_panel.setBorder(null);
 		VaccineGC_panel.setBounds(10, 20, 37, 37);
@@ -239,8 +241,7 @@ public class Panel extends JPanel {
 		Vaccine_panel.setBorder(null);
 		Vaccine_panel.add(Vaccine_label);
 		this.add(Vaccine_panel);
-		
-		
+
 		DanceVirus_label = new JLabel();
 		DanceVirus_label.setEnabled(false);
 		DanceVirus_label.setBounds(1, 1, 35, 35);
@@ -640,7 +641,12 @@ public class Panel extends JPanel {
 		
 	
 	}
-	
+
+	/**
+	 * Visszaadja az adott ágenst ábrázoló ikont a paraméterként kapott típus alapján.
+	 * @param type
+	 * @return
+	 */
 	private static ImageIcon getImageByAgent(UI.Collectable type) {
 		
 		switch(type) {
@@ -660,55 +666,61 @@ public class Panel extends JPanel {
 				return DesignPatterns.vaccine;
 			}
 		}
-		
 		return null;
-		
 	}
 
-		public static void setActualEffect(UI.Player player,UI.Collectable type) {
-			
-			if(player == UI.Player.PLAYER1) {
-				ActualEffect_label.setIcon(getImageByAgent(type));
-			}
-			
-			if(player == UI.Player.PLAYER2) {
-				ActualEffect_label_1.setIcon(getImageByAgent(type));
-			}
+	/**
+	 * Ha a virológust valamilyen ágens éri elhelyezi az ágenst ábrázoló ikont az ő paneljában
+	 * @param player melyik virológus
+	 * @param type milyen típusú ágens
+	 */
+	public static void setActualEffect(UI.Player player,UI.Collectable type) {
+		if(player == UI.Player.PLAYER1) ActualEffect_label.setIcon(getImageByAgent(type));
+		if(player == UI.Player.PLAYER2) ActualEffect_label_1.setIcon(getImageByAgent(type));
+	}
+
+	/**
+	 * A virológus maximális anyagszintjének a megjelenítése
+	 * @param player
+	 * @param level
+	 */
+	public static void setMaxMaterialLevel(UI.Player player,int level) {
+		if(player == UI.Player.PLAYER1) {
+			maxMaterial1 = level;
+			MaterialCount_label.setText(actualMaterial1 + "/" + maxMaterial1);
 		}
-		
-		public static void setMaxMaterialLevel(UI.Player player,int level) {
-			if(player == UI.Player.PLAYER1) {
-				maxMaterial1 = level;
+
+		if(player == UI.Player.PLAYER2) {
+			maxMaterial2 = level;
+			MaterialCount_label_1.setText(actualMaterial2 + "/" + maxMaterial2);
+		}
+	}
+
+	/**
+	 * A virológus aktuális  anyagszintjének a megjelenítése
+	 * @param player
+	 * @param level
+	 */
+	public static void setMaterialLevel(UI.Player player,int level) {
+
+		if(player == UI.Player.PLAYER1) {
+			actualMaterial1 += level;
+			if(actualMaterial1>maxMaterial1) {
+				MaterialCount_label.setText(maxMaterial1 + "/" + maxMaterial1);
+			}else {
 				MaterialCount_label.setText(actualMaterial1 + "/" + maxMaterial1);
-				
-			}
-			
-			if(player == UI.Player.PLAYER2) {
-				maxMaterial2 = level;
-				MaterialCount_label_1.setText(actualMaterial2 + "/" + maxMaterial2);
 			}
 		}
-		
-		public static void setMaterialLevel(UI.Player player,int level) {
-			
-			if(player == UI.Player.PLAYER1) {
-				actualMaterial1 += level;
-				if(actualMaterial1>maxMaterial1) {
-					MaterialCount_label.setText(maxMaterial1 + "/" + maxMaterial1);
-				}else {
-					MaterialCount_label.setText(actualMaterial1 + "/" + maxMaterial1);
-				}
-			}
-			
-			if(player == UI.Player.PLAYER2) {
-				actualMaterial2 += level;
-				if(actualMaterial2>maxMaterial2) {
-					MaterialCount_label_1.setText(maxMaterial2 + "/" + maxMaterial2);
-				} else{
-				MaterialCount_label_1.setText(actualMaterial2 + "/" + maxMaterial2);
-				}
+
+		if(player == UI.Player.PLAYER2) {
+			actualMaterial2 += level;
+			if(actualMaterial2>maxMaterial2) {
+				MaterialCount_label_1.setText(maxMaterial2 + "/" + maxMaterial2);
+			} else{
+			MaterialCount_label_1.setText(actualMaterial2 + "/" + maxMaterial2);
 			}
 		}
+	}
 
 
 	// 0-100
@@ -734,7 +746,6 @@ public class Panel extends JPanel {
 				num = getNumberLabel(player, i);
 				perm.setIcon(null);
 				num.setVisible(false);
-				
 			}
 			
 			DanceVirusNumber_label.setVisible(false);
@@ -749,9 +760,6 @@ public class Panel extends JPanel {
 			Vaccine_label.setEnabled(false);
 			OblivionVirus_label.setEnabled(false);
 			ParalysesVirus_label.setEnabled(false);
-		
-			
-			
 		}
 		
 		if(player == UI.Player.PLAYER2) {
@@ -1409,8 +1417,6 @@ public class Panel extends JPanel {
 	}
 	
 	public static void dropEquipment(UI.Player player, UI.Collectable type) {
-
-		
 		if(player == UI.Player.PLAYER1) {
 			if(!equipments1.contains(type)) {
 				return;

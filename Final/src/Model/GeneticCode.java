@@ -1,5 +1,9 @@
 package Model;
 
+/**
+ * A genetikai kódok létrehozásáért és kezeléséért felelős osztály. Laboratóriumokban
+ * találhatóak meg, és ezek alapján lehet ágenseket létrehozni.
+ */
 public class GeneticCode implements Collectable {
 	public Type type;
 	private Virologist Virologist;

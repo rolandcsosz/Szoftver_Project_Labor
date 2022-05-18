@@ -45,9 +45,6 @@ public class GameField extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	
-	
-	
 	public GameField() {
 
 		this.setBackground(Color.WHITE);
@@ -81,7 +78,12 @@ public class GameField extends JPanel {
 		generateRandomLocationToVirologists();
 
 	}
-	
+
+	/**
+	 * Feltölti a védőfelszereléseket tartalmazó listát védőfelszerelésekkel a paraméterként kapott
+	 * szint alapján
+	 * @param lvl - játék nehézségi szintje
+	 */
 	public void setEquipments(int lvl){
 		if(lvl == 3){
 			Main.equipments.add(new Axe());
@@ -93,9 +95,13 @@ public class GameField extends JPanel {
 			Main.equipments.add(new Bag());
 			Main.equipments.add(new Cloak());
 			Main.equipments.add(new Glove());
-
 	}
-	
+
+	/**
+	 * Feltölti az egyes mezőket a virológus által begyűjthető dolgokkal (védőfelszerelésekkel, genetikai kódokkal,
+	 * anyagmennyiséggel a paraméterként megadott nehézségi szint alapján
+	 * @param lvl - játék nehézségi szintje
+	 */
 	public void addCollectablesToFields(int lvl){
 		boolean hasBear = false;
 		System.out.println("IM ALIVE!");
@@ -122,8 +128,9 @@ public class GameField extends JPanel {
 			}
 	}
 
-
-
+	/**
+	 * Elhelyezi a virológust a pályán random módon a játék kezdetekor
+	 */
 	private void generateRandomLocationToVirologists() {
 		Polygons p1 = getRandomPolygons();
 		Polygons p2 = getRandomPolygons();
@@ -136,44 +143,39 @@ public class GameField extends JPanel {
 		fieldindex2 = p2.id;
 		
 	}
-	
-	
+
+	/**
+	 * Kiválaszt egy random poligont (mezőt) amelyiken a virológust elhelyezi majd és visszaadja azt
+	 * @return egy random poligonnal tér vissza, amin majd a virológust helyezi el a játék kezdetekor
+	 */
 	private Polygons getRandomPolygons() {
 		Random rd = new Random();
 		return polygons.get(rd.nextInt(25));
 	}
 
-
+	/**
+	 * Kirajzolja a poligonokat és beállítja a színeiket
+	 * @param g
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
-
-
-
 		for(Polygons p: polygons){
 			Polygon polygon = new Polygon(p.xValues,p.yValues,p.xValues.length);
 			if(p.color.equals("RED")){
 			g.setColor(DesignPatterns.lightRed);
-
 			} else if(p.color.equals("BLUE")){
 				g.setColor(DesignPatterns.lightBlue);
-
 			} else if(p.color.equals("GREEN")){
 				g.setColor(DesignPatterns.pastelGreen);
-
 			} else if(p.color.equals("ORANGE")){
 				g.setColor(DesignPatterns.pastelOrange);
-
-			}
-			
-			else{
+			} else{
 				g.drawPolygon(polygon);
-
 			}
 			
 			g.fillPolygon(polygon);
 			g.setColor(DesignPatterns.grey);
 			g.drawPolygon(polygon);
-
 		}
 		if(t < 1) {
 			fillMap(g, 2, 8, 5);
@@ -183,12 +185,17 @@ public class GameField extends JPanel {
 		}else{
 			loadMap(g);
 		}
-
-
 	}
-	
-	public void fillMap(Graphics g, int w, int s, int l){
 
+	/**
+	 * Random módon kiválaszt egy poligont a poligonok listájából majd azt megfelelti egy bizonyos mező típussal egy
+	 * hashmapben
+	 * @param g
+	 * @param w raktárak darabszáma
+	 * @param s óvóhelyek darabszáma
+	 * @param l laboratoriumok darbszáma
+	 */
+	public void fillMap(Graphics g, int w, int s, int l){
 		Random random = new Random();
 		List<Integer> was = new ArrayList<Integer>();
 		BufferedImage WarehouseImage = null;
@@ -251,13 +258,12 @@ public class GameField extends JPanel {
 		for (Entry<Polygons, Field> entry : fields.entrySet()) {
 			Main.fields.add(entry.getValue());
 		}
-
 	}
 
-
-
-
-
+	/**
+	 * Elhelyezi az óvóhely, raktár és laboratórium képeket a mezőn
+	 * @param g
+	 */
 	public void loadMap(Graphics g){
 		BufferedImage WarehouseImage = null;
 		try {
@@ -290,10 +296,10 @@ public class GameField extends JPanel {
 		}
 	}
 
-	public void setVirologsitsToRandomFields() {
-		
-	}
-
+	/**
+	 * Json file deszerializálása
+	 * @return poligon listával tér vissza
+	 */
 	public List<Polygons> deserialize() {
 		List<Polygons> polygonlist = new ArrayList<Polygons>();
 		Gson gson = new Gson();
@@ -306,16 +312,25 @@ public class GameField extends JPanel {
 		}
 		return  polygonlist;
 	}
-	
+
+	/**
+	 * Visszaadja az adott poligont az ID alapján
+	 * @param id poligon azonosítója
+	 * @return
+	 */
 	private Polygons getPolygonsById(int id) {
 		for(Polygons p:polygons) {
 			if(p.id == id)
 				return p;
 		}
-		
 		return null;
 	}
-	
+
+	/**
+	 * A játékos által kiválasztott Field-et adja vissza
+	 * @param player
+	 * @return
+	 */
 	public Field getSelectedField(UI.Player player) {
 		if(player == UI.Player.PLAYER1) {
 			if(fieldselected1 == -1) {
@@ -329,22 +344,28 @@ public class GameField extends JPanel {
 			}
 			return fields.get(getPolygonsById(fieldselected2));
 		}
-
 		return null;
 	}
-	
+
+	/**
+	 * A játékos aktuális mezőjét adja vissza
+	 * @param player
+	 * @return
+	 */
 	public Field getActualField(UI.Player player) {
 		if(player == UI.Player.PLAYER1) {
 			return fields.get(getPolygonsById(fieldindex1));
 		}
 		if(player == UI.Player.PLAYER2) {
-
 			return fields.get(getPolygonsById(fieldindex2));
 		}
-
 		return null;
 	}
-	
+
+	/**
+	 * Ha a virológus medvévé változik lecsereli a virológus ikonját a medve ikonjára
+	 * @param player játékos akinek az ikonját le kell cserélni
+	 */
 	public void transformToBear(UI.Player player) {
 		if(player == UI.Player.PLAYER1) {
 			Virologist1_label.setIcon(DesignPatterns.bear);
@@ -354,32 +375,33 @@ public class GameField extends JPanel {
 			Virologist2_label.setIcon(DesignPatterns.bear);
 		}
 	}
-	
+
+	/**
+	 *
+	 * @param player
+	 */
 	public void selectNextField(UI.Player player) {
 	Polygons selected, actual;
 		if(player == UI.Player.PLAYER1) {
-			
 			if(fieldselected1 != -1) {
 				selected = getPolygonsById(fieldselected1);
 				selected.isSelected = false;
 				actual = getPolygonsById(fieldindex1);
 				int num = 0;
-				
+
 				for(int i = 0; i < actual.neighbours.length; i++) {
 					if(actual.neighbours[i] == selected.id) {
 						num = i;
 						break;
 					}
 				}
-				
+
 				if(num == actual.neighbours.length-1) {
 					fieldselected1 = actual.neighbours[0];
 				}
 				else{
 					fieldselected1 = actual.neighbours[num+1];
 				}
-				
-				
 				selected = getPolygonsById(fieldselected1);
 				Virologist1Faded_label.setVisible(true);
 				Virologist1Faded_label.setBounds(selected.middleX-75, selected.middleY-150,150,150);
@@ -393,11 +415,7 @@ public class GameField extends JPanel {
 				fieldselected1 = selected.id;
 				selected.isSelected = true;
 			}
-			
-	
 		}
-		
-		
 		
 		if(player == UI.Player.PLAYER2) {
 			if(fieldselected2 != -1) {
@@ -434,11 +452,12 @@ public class GameField extends JPanel {
 				fieldselected2 = selected.id;
 				selected.isSelected = true;
 			}
-
 		}
-		
 	}
 
+	/**
+	 * Beállítja a mezők szomszédajait a poligonok szomszédjai alapján
+	 */
 	public void setNeighboursByPolygons() {
 		Iterator<Map.Entry<Polygons, Field>> itr1 = fields.entrySet().iterator();
 		Iterator<Map.Entry<Polygons, Field>> itr2 = fields.entrySet().iterator();
@@ -459,33 +478,13 @@ public class GameField extends JPanel {
 		}
 	}
 
-	public void drawVirologist(Virologist v, Graphics graphics) throws IOException {
-		BufferedImage virologistImage = ImageIO.read(new File("Final/src/UI/Images/Virologist.png"));
-		JLabel virologistLabel = new JLabel();
-		virologistLabel.setIcon(new ImageIcon(virologistImage));
-		Iterator<Map.Entry<Polygons, Field>> itr1 = fields.entrySet().iterator();
-		boolean set = false;
-		while (itr1.hasNext() && !set){
-			Map.Entry<Polygons, Field> entry = itr1.next();
-			if(v.getCurrentfield() == entry.getValue()){
-				virologistLabel.setBounds(entry.getKey().middleX,entry.getKey().middleY, size().width, size().height);
-				set = true;
-			}
-		}
-		this.add(virologistLabel);
-		this.setVisible(true);
-	}
-	
-	public void moveRandomVirologist(UI.Player player) {
-		if(player == UI.Player.PLAYER1) {
-			Virologist1Faded_label.setVisible(false);
-
-			Polygons poly = getPolygonsById(fieldindex1);
-		}
-	}
-	
+	/**
+	 * Áthelyezi a virológus ikonját a paraméterként kapott mezőre. Paraméterként várja, hogy melyik játékost, melyik
+	 * mezőre kell áthelyezni.
+	 * @param player
+	 * @param f
+	 */
 	public void moveVirologist(UI.Player player,Field f) {
-		
 
 		Polygons poly = null;
 		 for (Entry<Polygons, Field> entry : fields.entrySet()) {
@@ -506,9 +505,8 @@ public class GameField extends JPanel {
 			getPolygonsById(fieldselected1).isSelected = false;
 			fieldselected1 = -1;
 			fieldindex1 = poly.id;
-			
-			
 		}
+
 		if(player == UI.Player.PLAYER2) {
 			if(fieldselected2 == -1) {
 				return;
@@ -519,9 +517,32 @@ public class GameField extends JPanel {
 			fieldselected2 = -1;
 			fieldindex2 = poly.id;
 		}
-
-
 	}
+
+	public void drawVirologist(Virologist v, Graphics graphics) throws IOException {
+		BufferedImage virologistImage = ImageIO.read(new File("Final/src/UI/Images/Virologist.png"));
+		JLabel virologistLabel = new JLabel();
+		virologistLabel.setIcon(new ImageIcon(virologistImage));
+		Iterator<Map.Entry<Polygons, Field>> itr1 = fields.entrySet().iterator();
+		boolean set = false;
+		while (itr1.hasNext() && !set){
+			Map.Entry<Polygons, Field> entry = itr1.next();
+			if(v.getCurrentfield() == entry.getValue()){
+				virologistLabel.setBounds(entry.getKey().middleX,entry.getKey().middleY, size().width, size().height);
+				set = true;
+			}
+		}
+		this.add(virologistLabel);
+		this.setVisible(true);
+	}
+
+	public void moveRandomVirologist(UI.Player player) {
+		if(player == UI.Player.PLAYER1) {
+			Virologist1Faded_label.setVisible(false);
+			Polygons poly = getPolygonsById(fieldindex1);
+		}
+	}
+
 }
 
 

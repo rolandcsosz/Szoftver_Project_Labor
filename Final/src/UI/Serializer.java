@@ -13,8 +13,6 @@ import java.util.Scanner;
 
 public class Serializer {
 
-
-
 	private class Polynom {
 	 private float id;
 	 private float num;

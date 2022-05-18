@@ -1,4 +1,7 @@
 
+/**
+ * Proto-hoz használtuk.
+ */
 public class Logger {
 	
 	static String actualParameter;

@@ -21,6 +21,9 @@ import Model.Virologist;
 import Model.Virusdance;
 import Model.Warehouse;
 
+/**
+ * Proto-hoz használtuk.
+ */
 public class Handler
 {
 	static HashSet<String> types = new HashSet<String>(Arrays.asList(

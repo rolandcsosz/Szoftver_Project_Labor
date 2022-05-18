@@ -15,7 +15,6 @@ import UI.Frames.Menu;
 
 public class Main {
 
-	
     static boolean isRunning = true;
     
   	public static List<Field> fields = new ArrayList<Field>();
@@ -98,7 +97,7 @@ public class Main {
     		GeneticCode geneticCode = Handler.createGeneticCode(type);
     		
     		if(field != null) {
-    			fields.add(field);
+				fields.add(field);
     			continue;
     		}
     		
